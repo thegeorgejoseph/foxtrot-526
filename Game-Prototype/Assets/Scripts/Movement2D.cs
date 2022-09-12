@@ -26,4 +26,11 @@ public class Movement2D : MonoBehaviour
     {
         rb2d.MovePosition(rb2d.position + movementVec * movementSpeed * Time.fixedDeltaTime);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Wall"){
+            Debug.Log("Wall Hit");
+        }
+    }
 }
