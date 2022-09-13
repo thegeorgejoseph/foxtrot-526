@@ -32,5 +32,10 @@ public class Movement2D : MonoBehaviour
         if (collision.gameObject.tag == "Wall"){
             Debug.Log("Wall Hit");
         }
+
+        if (collision.gameObject.tag == "Enemy"){
+            Debug.Log("Enemy Encounter");
+            gameObject.active = false;
+        }
     }
 }
