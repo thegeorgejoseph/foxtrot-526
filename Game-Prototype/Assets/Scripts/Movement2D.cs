@@ -35,7 +35,7 @@ public class Movement2D : MonoBehaviour
 
         if (collision.gameObject.tag == "Enemy"){
             Debug.Log("Enemy Encounter");
-            collission.gameObject.active = false;
+            collision.gameObject.active = false;
         }
     }
 }
