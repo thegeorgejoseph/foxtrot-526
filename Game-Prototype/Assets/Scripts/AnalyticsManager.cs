@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Analytics;
+using System;
 
 public class AnalyticsManager : MonoBehaviour
 {
 
-    private static int kills;
+    private static long sessionID;
     [SerializeField]
     private static Dictionary<string, string> BASE_URLS;
 
@@ -18,15 +19,15 @@ public class AnalyticsManager : MonoBehaviour
     static void Initialize(){
         BASE_URLS = new Dictionary<string, string>
         {
-            { "kills", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfI4qBnZm4DGVz3uVwVhvfDAj0ZukrhMK8HJ0j5WsEk2EcePA/formResponse" },
+            { "did_finish", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfI4qBnZm4DGVz3uVwVhvfDAj0ZukrhMK8HJ0j5WsEk2EcePA/formResponse" },
         };
 
         FORM_FIELDS = new Dictionary<string, List<string>>
         {
-            { "kills", new List<string>
+            { "did_finish", new List<string>
             {
                 "entry.299620588",  // sessionID
-                "entry.1496711556", // no of kills
+                "entry.1648586970", // did player finish
                 
             }
             }
@@ -35,7 +36,7 @@ public class AnalyticsManager : MonoBehaviour
 
     void Awake()
     {
-        kills++;
+        sessionID = DateTime.Now.Ticks;
     }
     // Start is called before the first frame update
     void Start()
@@ -53,7 +54,7 @@ public class AnalyticsManager : MonoBehaviour
     {
         WWWForm form = new();
         List<string> fieldNames = FORM_FIELDS[eventName];
-        form.AddField(fieldNames[0], AnalyticsSessionInfo.sessionId.ToString());
+        form.AddField(fieldNames[0], sessionID.ToString());
         
         for (int i = 1; i < fieldNames.Count; i++)
         {
@@ -80,5 +81,6 @@ public class AnalyticsManager : MonoBehaviour
         Debug.Log("EVENT HANDLED");
         StartCoroutine(Post(eventName, eventParams));
     }
+    
     
 }

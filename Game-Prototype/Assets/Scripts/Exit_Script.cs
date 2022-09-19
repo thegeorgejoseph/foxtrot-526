@@ -11,7 +11,7 @@ public class Exit_Script : MonoBehaviour
 
     public GameObject analyticsManager;
     private AnalyticsManager analyticsManagerScript;
-    public int kills;
+    public bool did_finish;
 
     // Start is called before the first frame update
     private void Awake(){
@@ -23,7 +23,7 @@ public class Exit_Script : MonoBehaviour
     {
         //analyticsManagerScript = analyticsManager.GetComponent<AnalyticsManager>();
         Exit_UI.SetActive(false); // Disable(Hide) the UI at the start of the game
-        kills = 5;
+        did_finish = false;
     }
 
     // Update is called once per frame
@@ -34,11 +34,11 @@ public class Exit_Script : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        kills++;
+        did_finish = true;
         Exit_UI.SetActive(true); // Enable the UI when detects the collision between player and exit
-        analyticsManagerScript.HandleEvent("kills", new List<object>
+        analyticsManagerScript.HandleEvent("did_finish", new List<object>
                     {
-                        kills
+                        did_finish
                     });
         GameFinishText.text = "Level Passed!";
         Time.timeScale = 0; // Freeze the game (Set value to 1 to continue time flow)

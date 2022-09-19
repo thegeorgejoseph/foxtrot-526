@@ -11,14 +11,26 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     public TextMeshProUGUI GameFinishText; // Text box to display the text when the game reaches to an end
     public GameObject GameOver_UI; // UI to display when player loses the battle
 
+    public GameObject analyticsManager; // GameObj to initialize analytic manager
+    private AnalyticsManager analyticsManagerScript; // Analytic manager object for metric event handler
+
+    public bool did_finish; // to record analytics - did the player reach goal state
+    public bool event_called; // bool to prevent calling analytics handler multiple times inside update()
+
 
     private GameObject currentEnemy; // Temp var to record which enemy the player encountered
 
+     private void Awake(){
+        analyticsManagerScript = analyticsManager.GetComponent<AnalyticsManager>();
+    
+    }
     // Start is called before the first frame update
     void Start()
     {
         // Set battle UI to be inactive in the beginning
         battleUI.SetActive(false);
+        did_finish = false;
+        event_called = false;
     }
 
     // Update is called once per frame
@@ -36,6 +48,14 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                 // The player lost, gameover!
                 GameFinishText.text = "Game Over!";
                 GameOver_UI.SetActive(true);
+                if(!event_called){
+                    
+                    analyticsManagerScript.HandleEvent("did_finish", new List<object>
+                    {
+                        did_finish
+                    }); // send false to did_finish metric
+                    event_called = true;
+                }
             }
             else
             {
