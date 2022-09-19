@@ -79,7 +79,6 @@ public class SliderScript : MonoBehaviour
     void FixedUpdate()
     {
         // Slider Moving Part
-        speed += 0.002f;
         if (isForward && !stopMoving)
         {
             if (slider.value < slider.maxValue)
