@@ -20,6 +20,7 @@ public class AnalyticsManager : MonoBehaviour
         BASE_URLS = new Dictionary<string, string>
         {
             { "did_finish", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfI4qBnZm4DGVz3uVwVhvfDAj0ZukrhMK8HJ0j5WsEk2EcePA/formResponse" },
+            {"portal_use", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdIvCvgLIcmDZ8Rh6-cnuf6dISjI4v8HZxSHpzUN5FMQCnQJg/formResponse"}
         };
 
         FORM_FIELDS = new Dictionary<string, List<string>>
@@ -28,6 +29,13 @@ public class AnalyticsManager : MonoBehaviour
             {
                 "entry.299620588",  // sessionID
                 "entry.1648586970", // did player finish
+                
+            }
+            },
+            { "portal_use", new List<string>
+            {
+                "entry.1497300299",  // sessionID
+                "entry.1903990965", // did player use portal
                 
             }
             }
