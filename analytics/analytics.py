@@ -8,19 +8,30 @@ import numpy as np
 local_path = '/Users/munseonghun/Downloads/'
 did_finish_df = pd.read_csv(local_path + 'enemy_kills.csv')
 portal_use_df = pd.read_csv(local_path + 'Portal_Use.csv')
+did_finish_df.drop('Timestamp', axis=1, inplace=True)
+portal_use_df.drop('Timestamp', axis=1, inplace=True)
 
-
-sns.countplot(x ='did_finish', data = did_finish_df, palette= ["#7fcdbb", "#edf8b1"])
+# Metric 1: Did user finish level
+ax = sns.countplot(x ='did_finish', data = did_finish_df, palette= ["#7fcdbb", "#edf8b1"])
 plt.xlabel('Did player finish?') 
 plt.ylabel('No of plays') 
 plt.title('No of players to finish the level - T or F')
+plt.bar_label(ax.containers[0])
 plt.savefig(local_path + 'did_finish_chart.png')
+plt.close()
 
-sns.countplot(x ='portal_used', data = portal_use_df, palette= ["#7fcdbb", "#edf8b1"])
+# Metric 2: Did user use a portal
+portal_use_merge = pd.merge(did_finish_df, portal_use_df, on='sessionID', how="outer")
+portal_use_merge.drop_duplicates(inplace=True, ignore_index=True)
+portal_use_merge['portal_used'] = portal_use_merge['portal_used'].apply(lambda x: "no" if pd.isnull(x) else "yes")
+
+ax = sns.countplot(x ='portal_used', data = portal_use_merge, palette= ["#7fcdbb", "#edf8b1"])
 plt.xlabel('Did player use the portal?') 
 plt.ylabel('No of plays') 
 plt.title('No of players to use the portal')
+plt.bar_label(ax.containers[0])
 plt.savefig(local_path + 'portal_use_chart.png')
+plt.close()
 
 # Load using Google Forms
 """
