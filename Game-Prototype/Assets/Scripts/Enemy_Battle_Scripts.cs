@@ -19,6 +19,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
 
 
     private GameObject currentEnemy; // Temp var to record which enemy the player encountered
+    private bool battle_started; // Local bool to tell blocks inside Update() whether to check battle status
 
      private void Awake(){
         analyticsManagerScript = analyticsManager.GetComponent<AnalyticsManager>();
@@ -31,38 +32,46 @@ public class Enemy_Battle_Scripts : MonoBehaviour
         battleUI.SetActive(false);
         did_finish = false;
         event_called = false;
+        battle_started = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Check if the player has finished the battle
-        if (sliderSC.isFinished)
+        // Check if the battle is activated
+        if (battle_started)
         {
-            // Battle finished, set battle UI to inactive
-            battleUI.SetActive(false);
-
-            // Check if the player has won
-            if (!sliderSC.checkBattleResult())
+            // Check if the player has finished the battle
+            if (sliderSC.isFinished)
             {
-                // The player lost, gameover!
-                GameFinishText.text = "Game Over!";
-                GameOver_UI.SetActive(true);
-                if(!event_called){
-                    
-                    analyticsManagerScript.HandleEvent("did_finish", new List<object>
+                // Battle finished, set battle UI to inactive
+                battleUI.SetActive(false);
+                // Set battle status to not started
+                battle_started = false;
+
+                // Check if the player has won
+                if (!sliderSC.checkBattleResult())
+                {
+                    // The player lost, gameover!
+                    GameFinishText.text = "Game Over!";
+                    GameOver_UI.SetActive(true);
+                    if (!event_called)
+                    {
+
+                        analyticsManagerScript.HandleEvent("did_finish", new List<object>
                     {
                         did_finish
                     }); // send false to did_finish metric
-                    event_called = true;
+                        event_called = true;
+                    }
                 }
-            }
-            else
-            {
-                // The player has won
-                currentEnemy.SetActive(false);
-                // Enable player movement
-                GetComponent<Movement2D>().enabled = true;
+                else
+                {
+                    // The player has won
+                    currentEnemy.SetActive(false);
+                    // Enable player movement
+                    GetComponent<Movement2D>().enabled = true;
+                }
             }
         }
     }
@@ -76,6 +85,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
         {
             // Record which enemy the player encountered
             currentEnemy = collider.gameObject;
+            // Set battle status to activated
+            battle_started = true;
             // Disable player movement
             GetComponent<Movement2D>().enabled = false;
             // Activate slider UI (battle scene)
