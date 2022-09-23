@@ -95,4 +95,10 @@ public class Enemy_Battle_Scripts : MonoBehaviour
             sliderSC.Reset();
         }
     }
+
+
+    public bool checkBattleStatus()
+    {
+        return battle_started;
+    }
 }

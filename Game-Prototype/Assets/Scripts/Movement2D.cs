@@ -8,10 +8,11 @@ public class Movement2D : MonoBehaviour
     public Rigidbody2D rb2d;
     Vector2 movementVec;
 
+
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -19,16 +20,24 @@ public class Movement2D : MonoBehaviour
     {
         movementVec.x = Input.GetAxisRaw("Horizontal");
         movementVec.y = Input.GetAxisRaw("Vertical");
-        if (Input.GetKeyDown(KeyCode.UpArrow)) {
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
             rb2d.MovePosition(rb2d.position + new Vector2(0.0f, 1.25f));
-        } else if (Input.GetKeyDown(KeyCode.DownArrow)) {
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
             rb2d.MovePosition(rb2d.position + new Vector2(0.0f, -1.25f));
-        } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
             rb2d.MovePosition(rb2d.position + new Vector2(-1.25f, 0.0f));
-        } else if (Input.GetKeyDown(KeyCode.RightArrow)) {
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
             rb2d.MovePosition(rb2d.position + new Vector2(1.25f, 0.0f));
         }
     }
+
 
     // FixedUpdate is called 50 times per second (50 fps fixed)
     // void FixedUpdate() 
@@ -49,4 +58,5 @@ public class Movement2D : MonoBehaviour
         }
     }
     */
+
 }
