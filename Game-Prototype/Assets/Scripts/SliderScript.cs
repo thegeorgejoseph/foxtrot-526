@@ -8,7 +8,7 @@ public class SliderScript : MonoBehaviour
     public Slider slider;
     public GameObject hitImg; // Image to display when we hit the hitzoom
     public GameObject missImg; // Image to display when we miss the hit zoom
-    public float speed = 0.5f; // Speed of the handle
+    public float speed = 100.0f; // Speed of the handle
     public Transform hitZoom; // Determine the position of the hit zoom
     public bool isFinished; // Global bool to tell whether the event has finished
 

@@ -7,11 +7,13 @@ public class CameraScript : MonoBehaviour
     public Transform player;
     public Vector3 Camera_Offset;
     public GameObject Enemy;
+    public GameObject SpaceText;
 
     private Animation camAni;
 
     void Start()
     {
+        SpaceText.SetActive(false);
         // Default camera offset
         Camera_Offset = new Vector3(0, 0, -1f);
 
