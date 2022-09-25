@@ -21,6 +21,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     private GameObject currentEnemy; // Temp var to record which enemy the player encountered
     private bool battle_started; // Local bool to tell blocks inside Update() whether to check battle status
 
+    public float health = 1.0f;
+
      private void Awake(){
         analyticsManagerScript = analyticsManager.GetComponent<AnalyticsManager>();
     
@@ -52,21 +54,26 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                 // Check if the player has won
                 if (!sliderSC.checkBattleResult())
                 {
-                    // The player lost, gameover!
-                    GameFinishText.text = "Game Over!";
-                    GameOver_UI.SetActive(true);
-                    if (!event_called)
+                    HealthManager.health--;
+                    if (HealthManager.health <= 0)
                     {
+                        // The player lost, gameover!
+                        GameFinishText.text = "Game Over!";
+                        GameOver_UI.SetActive(true);
+                        if (!event_called)
+                        {
 
-                        analyticsManagerScript.HandleEvent("did_finish", new List<object>
+                            analyticsManagerScript.HandleEvent("did_finish", new List<object>
                     {
                         did_finish
                     }); // send false to did_finish metric
-                        event_called = true;
+                            event_called = true;
+                        }
                     }
                 }
                 else
                 {
+                    HealthManager.health += 0.5f;
                     // The player has won
                     currentEnemy.SetActive(false);
                     // Enable player movement
