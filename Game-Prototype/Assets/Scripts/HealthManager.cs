@@ -32,7 +32,6 @@ public class HealthManager : MonoBehaviour
     public void DrawHearts()
     {
         ClearHearts();
-
         for (int i = 0; i<Math.Floor(health); i++)
         {
             CreateHeart(HeartStatus.Full);
@@ -53,11 +52,14 @@ public class HealthManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health != prev)
+        if(health <= 0)
+        {
+            ClearHearts ();
+        }
+        else if (health != prev && health > 0)
         {
             DrawHearts ();
             prev = health;
         }
-
     }
 }

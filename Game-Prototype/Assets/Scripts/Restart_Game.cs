@@ -21,5 +21,6 @@ public class Restart_Game : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;
+        HealthManager.health = 1.0f;
     }
 }
