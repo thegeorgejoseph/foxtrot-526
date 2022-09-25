@@ -55,7 +55,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                 if (!sliderSC.checkBattleResult())
                 {
                     HealthManager.health--;
-                    if (HealthManager.health < 0)
+                    if (HealthManager.health <= 0)
                     {
                         // The player lost, gameover!
                         GameFinishText.text = "Game Over!";
