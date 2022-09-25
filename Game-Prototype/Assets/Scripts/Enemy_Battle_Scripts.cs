@@ -10,6 +10,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     public SliderScript sliderSC; // SliderScript object to call function
     public TextMeshProUGUI GameFinishText; // Text box to display the text when the game reaches to an end
     public GameObject GameOver_UI; // UI to display when player loses the battle
+    public GameObject SpaceText;
 
     public GameObject analyticsManager; // GameObj to initialize analytic manager
     private AnalyticsManager analyticsManagerScript; // Analytic manager object for metric event handler
@@ -48,6 +49,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
             {
                 // Battle finished, set battle UI to inactive
                 battleUI.SetActive(false);
+                SpaceText.SetActive(false);
                 // Set battle status to not started
                 battle_started = false;
 
@@ -102,6 +104,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
             GetComponent<Movement2D>().enabled = false;
             // Activate slider UI (battle scene)
             battleUI.SetActive(true);
+            SpaceText.SetActive(true);
             // Reset the slider for next battle
             sliderSC.Reset();
         }
