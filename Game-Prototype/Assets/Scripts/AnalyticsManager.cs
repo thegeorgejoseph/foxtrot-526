@@ -8,7 +8,7 @@ using System;
 public class AnalyticsManager : MonoBehaviour
 {
 
-    private static long sessionID;
+    private static string sessionID;
     [SerializeField]
     private static Dictionary<string, string> BASE_URLS;
 
@@ -20,7 +20,9 @@ public class AnalyticsManager : MonoBehaviour
         BASE_URLS = new Dictionary<string, string>
         {
             { "did_finish", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfI4qBnZm4DGVz3uVwVhvfDAj0ZukrhMK8HJ0j5WsEk2EcePA/formResponse" },
-            {"portal_use", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdIvCvgLIcmDZ8Rh6-cnuf6dISjI4v8HZxSHpzUN5FMQCnQJg/formResponse"}
+            {"portal_use", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdIvCvgLIcmDZ8Rh6-cnuf6dISjI4v8HZxSHpzUN5FMQCnQJg/formResponse"},
+            {"enemies", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSc-MTXGYvqzHRQvUV8i939d3muFMldVOp2RRugqQmGb-vPrwg/formResponse"},
+            {"health_metric", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdvasJd-nrmZOG28ubVEzNGTTI_wVNBh6o5BMcsVvv6xWz6ug/formResponse"}
         };
 
         FORM_FIELDS = new Dictionary<string, List<string>>
@@ -38,13 +40,23 @@ public class AnalyticsManager : MonoBehaviour
                 "entry.1903990965", // did player use portal
                 
             }
-            }
+            },
+            {"enemies",new List<string> {
+                "entry.1311867372", // sessionID
+                "entry.52117501", // enemies enountered
+                "entry.1238626422" // enemies killed
+            }},
+            {"health_metric", new List<string>{
+                "entry.1386133269", // sessionID
+                "entry.1228219699" // health status
+            }}
         };
     }
 
     void Awake()
     {
-        sessionID = DateTime.Now.Ticks;
+        sessionID = DateTime.Now.Ticks.ToString();
+        sessionID = "Session-"+sessionID;
     }
     // Start is called before the first frame update
     void Start()

@@ -15,6 +15,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     public GameObject analyticsManager; // GameObj to initialize analytic manager
     private AnalyticsManager analyticsManagerScript; // Analytic manager object for metric event handler
 
+  
+
     public bool did_finish; // to record analytics - did the player reach goal state
     public bool event_called; // bool to prevent calling analytics handler multiple times inside update()
 
@@ -25,8 +27,13 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     public float health = 1.0f;
     public int count = 0;
 
+    public int kills;
+    public int enemies_encountered;
+
      private void Awake(){
         analyticsManagerScript = analyticsManager.GetComponent<AnalyticsManager>();
+        
+
     
     }
     // Start is called before the first frame update
@@ -37,6 +44,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
         did_finish = false;
         event_called = false;
         battle_started = false;
+        kills = 0;
+        enemies_encountered = 0;
     }
 
     // Update is called once per frame
@@ -59,7 +68,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                 if (!sliderSC.checkBattleResult())
                 {
                     HealthManager.health--;
-                    if (HealthManager.health < 0)
+                    if (HealthManager.health <= 0)
                     {
                         // The player lost, gameover!
                         GameFinishText.text = "Game Over!";
@@ -68,9 +77,18 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                         {
 
                             analyticsManagerScript.HandleEvent("did_finish", new List<object>
-                    {
-                        did_finish
-                    }); // send false to did_finish metric
+                            {
+                                did_finish
+                            }); // send false to did_finish metric
+                            analyticsManagerScript.HandleEvent("enemies", new List<object>
+                            {
+                                enemies_encountered,
+                                kills
+                            });
+                            analyticsManagerScript.HandleEvent("health_metric", new List<object>
+                            {
+                                HealthManager.health
+                            });
                             event_called = true;
                         }
                     }
@@ -85,6 +103,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     // The player has won
                     currentEnemy.SetActive(false);
                     // Enable player movement
+                    kills += 1;
                     GetComponent<Movement2D>().enabled = true;
                 }
             }
@@ -93,13 +112,20 @@ public class Enemy_Battle_Scripts : MonoBehaviour
 
 
     // Detect if the player has collided with enemy
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnCollisionEnter2D(Collision2D collider)
     {
         // Using tags to check if the player has actually met enemy
         if (collider.gameObject.tag == "Enemy")
         {
             // Record which enemy the player encountered
+            enemies_encountered += 1;
+            Debug.Log("enemy encountered: "+enemies_encountered);
             currentEnemy = collider.gameObject;
+            // Stop movements
+            currentEnemy.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            currentEnemy.GetComponent<Rigidbody2D>().angularVelocity = 0f;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            GetComponent<Rigidbody2D>().angularVelocity = 0f;
             // Set battle status to activated
             battle_started = true;
             // Disable player movement
