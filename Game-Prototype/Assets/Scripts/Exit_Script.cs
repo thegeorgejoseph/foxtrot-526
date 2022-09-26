@@ -12,10 +12,14 @@ public class Exit_Script : MonoBehaviour
     public GameObject analyticsManager;
     private AnalyticsManager analyticsManagerScript;
     public bool did_finish;
+    public Enemy_Battle_Scripts battleInfoScript;
+
+    public GameObject battleInfo;
 
     // Start is called before the first frame update
     private void Awake(){
         analyticsManagerScript = analyticsManager.GetComponent<AnalyticsManager>();
+        battleInfoScript = battleInfo.GetComponent<Enemy_Battle_Scripts>();
     //analyticsManagerScript = analyticsManager.GetComponent<AnalyticsManager>();
     }
     
@@ -42,7 +46,20 @@ public class Exit_Script : MonoBehaviour
                     {
                         did_finish
                     });
+
+            analyticsManagerScript.HandleEvent("enemies", new List<object>
+            {
+                battleInfoScript.enemies_encountered,
+                battleInfoScript.kills
+            });
+            analyticsManagerScript.HandleEvent("health_metric", new List<object>
+            {
+                HealthManager.health
+            });
             GameFinishText.text = "Level Passed!";
+
+            Debug.Log("enemies_encountered: "+ battleInfoScript.enemies_encountered);
+            Debug.Log("health: "+HealthManager.health);
             Time.timeScale = 0; // Freeze the game (Set value to 1 to continue time flow)
         }
     }
