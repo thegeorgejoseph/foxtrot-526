@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Exit_Script : MonoBehaviour
 {
@@ -40,27 +41,32 @@ public class Exit_Script : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
-            did_finish = true;
-            Exit_UI.SetActive(true); // Enable the UI when detects the collision between player and exit
-            analyticsManagerScript.HandleEvent("did_finish", new List<object>
-                    {
-                        did_finish
-                    });
+            if (SceneManager.GetActiveScene().name == Loader.Scene.Level_1.ToString() ){
+                Loader.Load(Loader.Scene.Level_2);
+            } else if(SceneManager.GetActiveScene().name == Loader.Scene.Level_2.ToString()){
+                did_finish = true;
+                Exit_UI.SetActive(true); // Enable the UI when detects the collision between player and exit
+                analyticsManagerScript.HandleEvent("did_finish", new List<object>
+                        {
+                            did_finish
+                        });
 
-            analyticsManagerScript.HandleEvent("enemies", new List<object>
-            {
-                battleInfoScript.enemies_encountered,
-                battleInfoScript.kills
-            });
-            analyticsManagerScript.HandleEvent("health_metric", new List<object>
-            {
-                HealthManager.health
-            });
-            GameFinishText.text = "Level Passed!";
+                analyticsManagerScript.HandleEvent("enemies", new List<object>
+                {
+                    battleInfoScript.enemies_encountered,
+                    battleInfoScript.kills
+                });
+                analyticsManagerScript.HandleEvent("health_metric", new List<object>
+                {
+                    HealthManager.health
+                });
+                GameFinishText.text = "Level Passed!";
 
-            Debug.Log("enemies_encountered: "+ battleInfoScript.enemies_encountered);
-            Debug.Log("health: "+HealthManager.health);
-            Time.timeScale = 0; // Freeze the game (Set value to 1 to continue time flow)
+                Debug.Log("enemies_encountered: "+ battleInfoScript.enemies_encountered);
+                Debug.Log("health: "+HealthManager.health);
+                Time.timeScale = 0; // Freeze the game (Set value to 1 to continue time flow)
+            }
+            
         }
     }
 }
