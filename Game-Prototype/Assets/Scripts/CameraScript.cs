@@ -7,21 +7,21 @@ public class CameraScript : MonoBehaviour
     public Transform player;
     public Vector3 Camera_Offset;
     public GameObject Enemy;
-    public GameObject SpaceText;
+    public GameObject Player;
 
     private Animation camAni;
 
     void Start()
     {
-        SpaceText.SetActive(false);
         // Default camera offset
         Camera_Offset = new Vector3(0, 0, -1f);
 
         // Play starting animation
         camAni = gameObject.GetComponent<Animation>();
         camAni.Play();
-        // Stop Enemy from moving before the animation has finished
+        // Stop Anyone from moving before the animation has finished
         Enemy.SetActive(false);
+        Player.GetComponent<Movement2D>().enabled = false;
         Debug.Log("Length of Clip = " + Mathf.Ceil(camAni.clip.length));
         StartCoroutine(CountDown((int)Mathf.Ceil(camAni.clip.length)));
     }
@@ -38,5 +38,6 @@ public class CameraScript : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         Enemy.SetActive(true);
+        Player.GetComponent<Movement2D>().enabled = true;
     }
 }

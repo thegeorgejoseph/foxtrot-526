@@ -41,6 +41,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     {
         // Set battle UI to be inactive in the beginning
         battleUI.SetActive(false);
+        SpaceText.SetActive(false);
         did_finish = false;
         event_called = false;
         battle_started = false;
