@@ -56,7 +56,7 @@ public class AnalyticsManager : MonoBehaviour
     void Awake()
     {
         sessionID = DateTime.Now.Ticks.ToString();
-        sessionID = "User-"+sessionID;
+        sessionID = "Session-"+sessionID;
     }
     // Start is called before the first frame update
     void Start()
