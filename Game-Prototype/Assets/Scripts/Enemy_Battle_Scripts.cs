@@ -93,13 +93,18 @@ public class Enemy_Battle_Scripts : MonoBehaviour
 
 
     // Detect if the player has collided with enemy
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnCollisionEnter2D(Collision2D collider)
     {
         // Using tags to check if the player has actually met enemy
         if (collider.gameObject.tag == "Enemy")
         {
             // Record which enemy the player encountered
             currentEnemy = collider.gameObject;
+            // Stop movements
+            currentEnemy.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            currentEnemy.GetComponent<Rigidbody2D>().angularVelocity = 0f;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            GetComponent<Rigidbody2D>().angularVelocity = 0f;
             // Set battle status to activated
             battle_started = true;
             // Disable player movement
