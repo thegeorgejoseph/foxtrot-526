@@ -1,0 +1,13 @@
+{
+    "type": "service_account",
+    "project_id": "foxtrot-analytics-363116",
+    "private_key_id": "aaba0162b5f5bda25d24432dfe60502a35b1e861",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCiXwBSOYmfzLaM\n8OzhU65EBMb471ULIye/MmJ5CL+pwM1fJDQTRqJSkqE5HuKobMfmX5IQ0FeQXK8U\nzXTVU395xaQpB56D9Odpfc21AV5kMyR62GDzDgkBvo+nL4hy2hzVF8rE+jocFBCk\neb4ajl1JcDKADqeE6X0LF51BFPrf8cNDryJeztrwf2Fr2NRATTr7iHa9bhPUeedL\n9XBcnSFASy7JbLeje/K79CrJg40iUWJcCufeheKFswByu2smGd7c5xCuJDEzra4M\n+3GN1qiVBaucATE+ovzkbf3ULaiA3dGcGVxMG9TPHGBInx2MbWxyIO1FU6/NYp8Z\nAgLVAUCBAgMBAAECggEAJVIPuVaHRwcfKHsR/2KkCfdNIpekJPiyIJS8pJQ5tZNe\nwREJtSqFkdQpIX9zWoISWmW6JYo1rjVXesEUqxnTkZI3fsTFDxCCBjHHz+ReJUrK\nBkBo3ETsFg4OZ7+ZrchrWyFqVmcrZxvHjX58Dw+M6p3SxbNYlsiyGJQXbYeceE9z\n/UXUznh3GBei/RV7v4HFBcyuHjhNMNTOZ0nFhgQMd1FjiK2fHKiAe6eKis/rEwxq\nxCbOWD+Y0aB608vIoAKu1bse3uk6Mxxozq1dgGebjkcITD9a4J9QQ7BgcUkAVOIB\nZURbdoVrzIdniIbQSLf4YRIsKhF/5+dNlVnHSjiO6QKBgQDatZotvNvPPPkJK+xw\nJEi8u6RG2Ib7AVyK3sVk4pTlvl9AmS8bNtEv2RLnJv0ThB7ottCbdzjIaAnQFDU+\nyZ65j/K6flzgs0+B3V1pHvd2FzNl3E5CzwdGXZXnGn/CezzaUGnI5RgygoCGBNJ0\n1vw0OWTIx3nVpdyaANkHuu1/jQKBgQC+Dk00733f3vNsiaNz2u+bLGUcRoNmIaOM\nIQxgSLH8CwDlW8l5ALKX68JfeYa02Fpu0721z/bTwQAm1skOrvfbCP5JDJbefr42\nDvevgO1JWfGrPrtd/V3R9MfSlQxRuDHxeGc1VrOD8pE61ql1Kcin4n6Mt1U1c6F9\n+agqvx+9xQKBgF1Kh4io/Y4JsSTTYph3MbunwqwhonohG4t0+PhOmjrhmJnifbB7\nEoH5c1G8VMllWxXjHVqjYUpC7qSeahPtRtJab6xTSGTkt65qcXTsq5voy5jQf2WK\nD81ZEB8zM3oOvWdWU7lI16h7+Dyyg98o8Q2Jyc7HH9YdWNssL2dXugTlAoGAfxF+\nyzqoNQqSQ+oOT4J8monnHC2E4r7w4tqhtKpF3ZbZxX9Fx9IQlgQ5k63jw3u3ksuc\n1jcx9sfeOxl1mYygCGEN6ncxU5b3w5rkPQH9JAKv0meBzEh+9sYq539hmi2FrsVq\nc74BDeIa+XTWHZCPKLgFFj3pCXDC8z/9EH9yUGUCgYEAuFLG+7Eeg+kHbaKYuqn7\np/rzlgV3/0Fgtep2O8gYkY03LIP8os/7OLBq9sBZsdyOqiyppzuv2Lu3rgZBSUX4\nzckg5YHSR25TR5Vukd/qjB10d7zNiihJq6Z1C5tO5UzrWNEuswu64q0js8688h+C\nPx+VfD0dnSDDR13A9XDiVeo=\n-----END PRIVATE KEY-----\n",
+    "client_email": "analytics@foxtrot-analytics-363116.iam.gserviceaccount.com",
+    "client_id": "101380854919103553126",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/analytics%40foxtrot-analytics-363116.iam.gserviceaccount.com"
+  }
+  
