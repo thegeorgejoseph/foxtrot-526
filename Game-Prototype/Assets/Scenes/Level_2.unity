@@ -4814,7 +4814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d9d9a61295b3478c871e731a57ef4c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portal: {fileID: 1920860000}
+  portal: {fileID: 1949279708}
   player: {fileID: 0}
   analyticsManager: {fileID: 475434221}
   event_called: 0
@@ -5302,7 +5302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d9d9a61295b3478c871e731a57ef4c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portal: {fileID: 1442377929}
+  portal: {fileID: 1855138207}
   player: {fileID: 0}
   analyticsManager: {fileID: 475434221}
   event_called: 0
