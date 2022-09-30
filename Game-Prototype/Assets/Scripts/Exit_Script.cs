@@ -16,7 +16,6 @@ public class Exit_Script : MonoBehaviour
     public Enemy_Battle_Scripts battleInfoScript;
 
     public GameObject battleInfo;
-    public GameObject LevelEndText;
 
     // Start is called before the first frame update
     private void Awake(){
@@ -43,9 +42,9 @@ public class Exit_Script : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             if (SceneManager.GetActiveScene().name == Loader.Scene.Level_1.ToString() ){
-                LevelEndText.SetActive(true);
-                StartCoroutine(ExampleCoroutine());
-                
+
+                Loader.Load(Loader.Scene.Level_2);
+
             } else if(SceneManager.GetActiveScene().name == Loader.Scene.Level_2.ToString()){
                 did_finish = true;
                 Exit_UI.SetActive(true); // Enable the UI when detects the collision between player and exit
@@ -73,15 +72,4 @@ public class Exit_Script : MonoBehaviour
         }
     }
 
-    IEnumerator ExampleCoroutine()
-    {
-        //Print the time of when the function is first called.
-        Debug.Log("Started Coroutine at timestamp : " + Time.time);
-
-        //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(5);
-        Loader.Load(Loader.Scene.Level_2);
-        //After we have waited 5 seconds print the time again.
-        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
-    }
 }
