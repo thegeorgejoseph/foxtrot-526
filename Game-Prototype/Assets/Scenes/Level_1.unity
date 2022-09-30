@@ -1597,6 +1597,7 @@ MonoBehaviour:
   did_finish: 0
   battleInfoScript: {fileID: 0}
   battleInfo: {fileID: 0}
+  LevelEndText: {fileID: 0}
 --- !u!61 &585153101
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2170,6 +2171,7 @@ MonoBehaviour:
   did_finish: 0
   battleInfoScript: {fileID: 0}
   battleInfo: {fileID: 1811579274}
+  LevelEndText: {fileID: 0}
 --- !u!1001 &813956964
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3265,6 +3267,7 @@ MonoBehaviour:
   did_finish: 0
   battleInfoScript: {fileID: 0}
   battleInfo: {fileID: 0}
+  LevelEndText: {fileID: 0}
 --- !u!4 &1277789400 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1943059854109316447, guid: aae3b432c90d54c37914fafb3bb80ab3, type: 3}

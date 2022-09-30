@@ -29,4 +29,9 @@ public class Level_Menu : MonoBehaviour
         SceneManager.LoadScene("Level_2");
         Time.timeScale = 1f;
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
