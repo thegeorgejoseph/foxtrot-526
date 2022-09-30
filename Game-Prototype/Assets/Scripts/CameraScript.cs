@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    public Transform player;
     public Vector3 Camera_Offset;
     public GameObject Enemy;
     public GameObject Player;
@@ -22,14 +21,14 @@ public class CameraScript : MonoBehaviour
         // Stop Anyone from moving before the animation has finished
         Enemy.SetActive(false);
         Player.GetComponent<Movement2D>().enabled = false;
-        Debug.Log("Length of Clip = " + Mathf.Ceil(camAni.clip.length));
+        // Debug.Log("Length of Clip = " + Mathf.Ceil(camAni.clip.length));
         StartCoroutine(CountDown((int)Mathf.Ceil(camAni.clip.length)));
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(player.position.x + Camera_Offset.x, player.position.y + Camera_Offset.y, Camera_Offset.z);
+        transform.position = new Vector3(Player.transform.position.x + Camera_Offset.x, Player.transform.position.y + Camera_Offset.y, Camera_Offset.z);
     }
 
 
