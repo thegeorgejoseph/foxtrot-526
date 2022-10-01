@@ -47,14 +47,17 @@ public class Exit_Script : MonoBehaviour
                 Debug.Log("Health Remaining - "+HealthManager.health);
                 Debug.Log("Enemies killed - " + battleInfoScript.kills);
                 scoreBoard.SetActive(true);
+                Time.timeScale = 0;
                 //Loader.Load(Loader.Scene.Level_2);
 
             } else if(SceneManager.GetActiveScene().name == Loader.Scene.Level_2.ToString()){
                 Debug.Log("Bullets Remaining - " + bulletSys.getBulletNum());
                 Debug.Log("Health Remaining - " + HealthManager.health);
                 Debug.Log("Enemies killed - " + battleInfoScript.kills);
+                scoreBoard.SetActive(true);
+                Time.timeScale = 0;
                 did_finish = true;
-                Exit_UI.SetActive(true); // Enable the UI when detects the collision between player and exit
+                //Exit_UI.SetActive(true); // Enable the UI when detects the collision between player and exit
                 analyticsManagerScript.HandleEvent("did_finish", new List<object>
                         {
                             did_finish
@@ -79,9 +82,6 @@ public class Exit_Script : MonoBehaviour
         }
     }
 
-    public void loadLevel2()
-    {
-        Loader.Load(Loader.Scene.Level_2);
-    }
+    
 
 }
