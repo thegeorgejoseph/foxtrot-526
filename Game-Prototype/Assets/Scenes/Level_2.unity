@@ -1576,8 +1576,8 @@ MonoBehaviour:
   analyticsManager: {fileID: 475434221}
   did_finish: 0
   battleInfoScript: {fileID: 0}
+  bulletSys: {fileID: 0}
   battleInfo: {fileID: 0}
-  LevelEndText: {fileID: 0}
 --- !u!61 &585153101
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2282,8 +2282,8 @@ MonoBehaviour:
   analyticsManager: {fileID: 475434221}
   did_finish: 0
   battleInfoScript: {fileID: 0}
+  bulletSys: {fileID: 1916629558}
   battleInfo: {fileID: 1811579274}
-  LevelEndText: {fileID: 0}
 --- !u!1 &874436005
 GameObject:
   m_ObjectHideFlags: 0
@@ -3519,8 +3519,8 @@ MonoBehaviour:
   analyticsManager: {fileID: 0}
   did_finish: 0
   battleInfoScript: {fileID: 0}
+  bulletSys: {fileID: 0}
   battleInfo: {fileID: 0}
-  LevelEndText: {fileID: 0}
 --- !u!1001 &1267663902
 PrefabInstance:
   m_ObjectHideFlags: 0

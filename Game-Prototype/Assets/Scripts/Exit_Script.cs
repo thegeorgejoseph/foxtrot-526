@@ -14,7 +14,7 @@ public class Exit_Script : MonoBehaviour
     private AnalyticsManager analyticsManagerScript;
     public bool did_finish;
     public Enemy_Battle_Scripts battleInfoScript;
-
+    public Bullet_System bulletSys; // Bullet_System Obejct to gain info about remaining bullet
     public GameObject battleInfo;
 
     // Start is called before the first frame update
@@ -42,10 +42,15 @@ public class Exit_Script : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             if (SceneManager.GetActiveScene().name == Loader.Scene.Level_1.ToString() ){
-
+                Debug.Log("Bullets Remaining - "+bulletSys.getBulletNum());
+                Debug.Log("Health Remaining - "+HealthManager.health);
+                Debug.Log("Enemies killed - " + battleInfoScript.kills);
                 Loader.Load(Loader.Scene.Level_2);
 
             } else if(SceneManager.GetActiveScene().name == Loader.Scene.Level_2.ToString()){
+                Debug.Log("Bullets Remaining - " + bulletSys.getBulletNum());
+                Debug.Log("Health Remaining - " + HealthManager.health);
+                Debug.Log("Enemies killed - " + battleInfoScript.kills);
                 did_finish = true;
                 Exit_UI.SetActive(true); // Enable the UI when detects the collision between player and exit
                 analyticsManagerScript.HandleEvent("did_finish", new List<object>
