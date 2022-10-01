@@ -16,6 +16,7 @@ public class Exit_Script : MonoBehaviour
     public Enemy_Battle_Scripts battleInfoScript;
     public Bullet_System bulletSys; // Bullet_System Obejct to gain info about remaining bullet
     public GameObject battleInfo;
+    public GameObject scoreBoard;
 
     // Start is called before the first frame update
     private void Awake(){
@@ -45,7 +46,8 @@ public class Exit_Script : MonoBehaviour
                 Debug.Log("Bullets Remaining - "+bulletSys.getBulletNum());
                 Debug.Log("Health Remaining - "+HealthManager.health);
                 Debug.Log("Enemies killed - " + battleInfoScript.kills);
-                Loader.Load(Loader.Scene.Level_2);
+                scoreBoard.SetActive(true);
+                //Loader.Load(Loader.Scene.Level_2);
 
             } else if(SceneManager.GetActiveScene().name == Loader.Scene.Level_2.ToString()){
                 Debug.Log("Bullets Remaining - " + bulletSys.getBulletNum());
@@ -75,6 +77,11 @@ public class Exit_Script : MonoBehaviour
             }
             
         }
+    }
+
+    public void loadLevel2()
+    {
+        Loader.Load(Loader.Scene.Level_2);
     }
 
 }
