@@ -1394,7 +1394,6 @@ GameObject:
   - component: {fileID: 475434225}
   - component: {fileID: 475434226}
   - component: {fileID: 475434227}
-  - component: {fileID: 475434228}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1489,26 +1488,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 519420028}
---- !u!114 &475434228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 475434221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef8431f908c52c44c9be528df66d394c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Exit_UI: {fileID: 0}
-  GameFinishText: {fileID: 0}
-  analyticsManager: {fileID: 0}
-  did_finish: 0
-  battleInfoScript: {fileID: 0}
-  bulletSys: {fileID: 0}
-  battleInfo: {fileID: 0}
-  scoreBoard: {fileID: 0}
 --- !u!1001 &475796439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5665,8 +5644,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 475434228}
-        m_TargetAssemblyTypeName: Exit_Script, Assembly-CSharp
+      - m_Target: {fileID: 475434226}
+        m_TargetAssemblyTypeName: GameOver_Panel, Assembly-CSharp
         m_MethodName: loadLevel2
         m_Mode: 1
         m_Arguments:

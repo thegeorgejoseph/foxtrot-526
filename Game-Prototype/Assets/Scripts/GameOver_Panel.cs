@@ -29,4 +29,16 @@ public class GameOver_Panel : MonoBehaviour
         SceneManager.LoadScene("Level_Menu");
         //Time.timeScale = 1f;
     }
+
+    public void loadMainMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Level_Menu");
+    }
+
+    public void loadLevel2()
+    {
+        Time.timeScale = 1;
+        Loader.Load(Loader.Scene.Level_2);
+    }
 }
