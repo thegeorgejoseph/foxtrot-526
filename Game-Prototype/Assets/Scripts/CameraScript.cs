@@ -38,5 +38,8 @@ public class CameraScript : MonoBehaviour
         yield return new WaitForSeconds(duration);
         Enemy.SetActive(true);
         Player.GetComponent<Movement2D>().enabled = true;
+        GameObject.Find("Hearts").GetComponent<HealthManager>().EnlargeHeart();
+        yield return new WaitForSeconds(1);
+        GameObject.Find("Hearts").GetComponent<HealthManager>().ShrinkHearts();
     }
 }
