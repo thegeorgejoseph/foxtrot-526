@@ -17,6 +17,12 @@ public class Exit_Script : MonoBehaviour
     public Bullet_System bulletSys; // Bullet_System Obejct to gain info about remaining bullet
     public GameObject battleInfo;
     public GameObject scoreBoard;
+    public TMP_Text bul_remaining;
+    public TMP_Text hearts_remaining;
+    public TMP_Text enemies_killed;
+    public TMP_Text level_passed;
+    public TMP_Text level_score;
+    public TMP_Text total_score;
 
     // Start is called before the first frame update
     private void Awake(){
@@ -47,6 +53,18 @@ public class Exit_Script : MonoBehaviour
                 Debug.Log("Health Remaining - "+HealthManager.health);
                 Debug.Log("Enemies killed - " + battleInfoScript.kills);
                 scoreBoard.SetActive(true);
+                float bul_count = bulletSys.getBulletNum();
+                float heart_count = HealthManager.health;
+                float enemies_count = battleInfoScript.kills;
+                float total_score_val = 0;
+
+                bul_remaining.text = bul_count.ToString()+ " * 100 = "+ bul_count * 100;
+                hearts_remaining.text = heart_count.ToString() + " * 100 = "+ heart_count*100;
+                enemies_killed.text = enemies_count.ToString() + " * 100 = " + enemies_count * 100;
+                level_passed.text = "1 * 100 = " +100;
+                total_score_val = bul_count * 100 + heart_count * 100 + enemies_count * 100 + 100;
+                level_score.text = total_score_val.ToString();
+                total_score.text = total_score_val.ToString();
                 Time.timeScale = 0;
                 //Loader.Load(Loader.Scene.Level_2);
 

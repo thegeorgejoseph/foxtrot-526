@@ -2545,6 +2545,9 @@ MonoBehaviour:
   bulletSys: {fileID: 0}
   battleInfo: {fileID: 0}
   scoreBoard: {fileID: 0}
+  bul_remaining: {fileID: 0}
+  hearts_remaining: {fileID: 0}
+  enemies_killed: {fileID: 0}
 --- !u!61 &585153101
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3268,6 +3271,9 @@ MonoBehaviour:
   bulletSys: {fileID: 615781987}
   battleInfo: {fileID: 1811579274}
   scoreBoard: {fileID: 1201831547}
+  bul_remaining: {fileID: 0}
+  hearts_remaining: {fileID: 0}
+  enemies_killed: {fileID: 0}
 --- !u!1 &874436005
 GameObject:
   m_ObjectHideFlags: 0
@@ -4718,7 +4724,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1201831548
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4907,6 +4913,9 @@ MonoBehaviour:
   bulletSys: {fileID: 0}
   battleInfo: {fileID: 0}
   scoreBoard: {fileID: 0}
+  bul_remaining: {fileID: 0}
+  hearts_remaining: {fileID: 0}
+  enemies_killed: {fileID: 0}
 --- !u!1 &1261854218
 GameObject:
   m_ObjectHideFlags: 0

@@ -2149,6 +2149,12 @@ MonoBehaviour:
   bulletSys: {fileID: 0}
   battleInfo: {fileID: 0}
   scoreBoard: {fileID: 0}
+  bul_remaining: {fileID: 0}
+  hearts_remaining: {fileID: 0}
+  enemies_killed: {fileID: 0}
+  level_passed: {fileID: 0}
+  level_score: {fileID: 0}
+  total_score: {fileID: 0}
 --- !u!61 &585153101
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2347,7 +2353,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 174, y: -19.000004}
+  m_AnchoredPosition: {x: 174, y: -71}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &601026159
@@ -3205,6 +3211,12 @@ MonoBehaviour:
   bulletSys: {fileID: 1588954301}
   battleInfo: {fileID: 1811579274}
   scoreBoard: {fileID: 917018026}
+  bul_remaining: {fileID: 1664519213}
+  hearts_remaining: {fileID: 1204525017}
+  enemies_killed: {fileID: 743352678}
+  level_passed: {fileID: 2047770051}
+  level_score: {fileID: 601026159}
+  total_score: {fileID: 2109190784}
 --- !u!1001 &813956964
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3651,7 +3663,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &917018027
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4665,6 +4677,12 @@ MonoBehaviour:
   bulletSys: {fileID: 0}
   battleInfo: {fileID: 1811579274}
   scoreBoard: {fileID: 0}
+  bul_remaining: {fileID: 0}
+  hearts_remaining: {fileID: 0}
+  enemies_killed: {fileID: 0}
+  level_passed: {fileID: 0}
+  level_score: {fileID: 0}
+  total_score: {fileID: 0}
 --- !u!4 &1277789400 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1943059854109316447, guid: aae3b432c90d54c37914fafb3bb80ab3, type: 3}
@@ -6569,7 +6587,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 174, y: -69}
+  m_AnchoredPosition: {x: 174, y: -18}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2047770051
