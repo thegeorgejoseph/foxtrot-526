@@ -4963,7 +4963,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1442377931
@@ -5821,6 +5821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 5
   rb2d: {fileID: 1811579276}
+  Player: {fileID: 1811579274}
 --- !u!50 &1811579276
 Rigidbody2D:
   serializedVersion: 4
@@ -6353,7 +6354,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1920860002
@@ -7081,6 +7082,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 5
   rb2d: {fileID: 2130376573}
+  Player: {fileID: 0}
 --- !u!114 &2130376577
 MonoBehaviour:
   m_ObjectHideFlags: 0
