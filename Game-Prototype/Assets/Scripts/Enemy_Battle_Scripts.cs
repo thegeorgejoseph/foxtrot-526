@@ -11,11 +11,15 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     public TextMeshProUGUI GameFinishText; // Text box to display the text when the game reaches to an end
     public GameObject GameOver_UI; // UI to display when player loses the battle
     public GameObject SpaceText; // UI to display SpaceBar Hint while attack
+    public GameObject player; // Player gameobject to display damage effect
+
+    public Bullet_System bulletSys; // Bullet_System Obejct to gain info about remaining bullet
+    public ScreenShaking screenShake; // ScreenShaking object to display screen shaking effect
 
     public GameObject analyticsManager; // GameObj to initialize analytic manager
     private AnalyticsManager analyticsManagerScript; // Analytic manager object for metric event handler
 
-  
+    private bool noBullets;
 
     public bool did_finish; // to record analytics - did the player reach goal state
     public bool event_called; // bool to prevent calling analytics handler multiple times inside update()
@@ -32,9 +36,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
 
      private void Awake(){
         analyticsManagerScript = analyticsManager.GetComponent<AnalyticsManager>();
-        
-
-    
+   
     }
     // Start is called before the first frame update
     void Start()
@@ -45,6 +47,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
         did_finish = false;
         event_called = false;
         battle_started = false;
+        noBullets = false;
         kills = 0;
         enemies_encountered = 0;
     }
@@ -57,7 +60,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
         {
             count += 1;
             // Check if the player has finished the battle
-            if (sliderSC.isFinished)
+            if (sliderSC.isFinished || noBullets)
             {
                 // Battle finished, set battle UI to inactive
                 battleUI.SetActive(false);
@@ -65,10 +68,22 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                 // Set battle status to not started
                 battle_started = false;
 
-                // Check if the player has won
-                if (!sliderSC.checkBattleResult())
+                if (!noBullets)
                 {
+                    // Update # of remaining bullets
+                    bulletSys.setCurBulletNum(1);
+                }
+                
+                // Check if the player has won 
+                if (!sliderSC.checkBattleResult() || noBullets)
+                {
+                    // Player Lost or no bullets
                     HealthManager.health--;
+
+                    // Play effects where player takes damage
+                    player.GetComponent<SpriteRenderer>().color = Color.red;
+                    StartCoroutine(CountDown(1));
+
                     if (HealthManager.health <= 0)
                     {
                         // The player lost, gameover!
@@ -96,6 +111,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     }
                     else
                     {
+                        screenShake.TriggerShake();
                         GetComponent<Movement2D>().enabled = true;
                     }
                 }
@@ -132,18 +148,33 @@ public class Enemy_Battle_Scripts : MonoBehaviour
             battle_started = true;
             // Disable player movement
             GetComponent<Movement2D>().enabled = false;
-            // Activate slider UI (battle scene)
-            battleUI.SetActive(true);
-            if(count == 0)
-            {
-                SpaceText.SetActive(true);
 
+            // Check remaining bullets
+            if (bulletSys.getBulletNum() == 0)
+            {
+                // In this case player has no remaining bullets, lost one heart
+                noBullets = true;
             }
-            // Reset the slider for next battle
-            sliderSC.Reset();
+            else
+            {
+                // Activate slider UI (battle scene)
+                battleUI.SetActive(true);
+                if (count == 0)
+                {
+                    SpaceText.SetActive(true);
+                }
+                // Reset the slider for next battle
+                sliderSC.Reset();
+            } 
         }
     }
 
+    // Coroutine for Player's damage effect
+    private IEnumerator CountDown(int duration)
+    {
+        yield return new WaitForSeconds(duration);
+        player.GetComponent<SpriteRenderer>().color = Color.white;
+    }
 
     public bool checkBattleStatus()
     {
