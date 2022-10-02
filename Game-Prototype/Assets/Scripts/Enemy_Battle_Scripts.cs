@@ -15,6 +15,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
 
     public Bullet_System bulletSys; // Bullet_System Obejct to gain info about remaining bullet
     public ScreenShaking screenShake; // ScreenShaking object to display screen shaking effect
+    public Enemy_Respawn respawn; // Enemy_Respawn object to respawn the enemy that player defeats
 
     public GameObject analyticsManager; // GameObj to initialize analytic manager
     private AnalyticsManager analyticsManagerScript; // Analytic manager object for metric event handler
@@ -119,7 +120,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                 {
                     HealthManager.health += 0.5f;
                     // The player has won
-                    currentEnemy.SetActive(false);
+                    /*  OLD currentEnemy.SetActive(false);   */
+                    respawn.DisableEnemy(currentEnemy);
                     // Enable player movement
                     kills += 1;
                     GetComponent<Movement2D>().enabled = true;

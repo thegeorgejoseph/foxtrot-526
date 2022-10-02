@@ -14,8 +14,8 @@ public class Bullet_System : MonoBehaviour
 
     void setBulletNum()
     {
-        // Current logic: the # of bullet = total # of enemies of this level + 1
-        bulletNum = enemies.transform.childCount + 1; 
+        // Current logic: the # of bullet = total # of enemies of this level
+        bulletNum = enemies.transform.childCount; 
     }
 
     public void setCurBulletNum(int decreaseNum)
