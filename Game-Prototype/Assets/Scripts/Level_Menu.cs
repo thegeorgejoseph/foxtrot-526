@@ -17,7 +17,10 @@ public class Level_Menu : MonoBehaviour
         
     }
 
-
+    public void RoadLevel_0(){
+        SceneManager.LoadScene("Level_0");
+        Time.timeScale = 1f;
+    }
     public void RoadLevel_1()
     {
         SceneManager.LoadScene("Level_1");
