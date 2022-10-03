@@ -28,6 +28,9 @@ public class Enemy_Battle_Scripts : MonoBehaviour
 
 
     private GameObject currentEnemy; // Temp var to record which enemy the player encountered
+    public GameObject deathScore;
+    public TMP_Text total_score;
+
     private bool battle_started; // Local bool to tell blocks inside Update() whether to check battle status
 
     public float health = 1.0f;
@@ -90,7 +93,13 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     {
                         // The player lost, gameover!
                         GameFinishText.text = "Game Over!";
-                        GameOver_UI.SetActive(true);
+                        deathScore.SetActive(true);
+                        if(SceneManager.GetActiveScene().name == Loader.Scene.Level_2.ToString())
+                        {
+                            total_score.text = Exit_Script.level1_score.ToString();
+                        }
+                        //GameOver_UI.SetActive(true);
+
                         if (!event_called)
                         {
                         

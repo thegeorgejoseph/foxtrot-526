@@ -49,7 +49,13 @@ public class Exit_Script : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
-            if (SceneManager.GetActiveScene().name == Loader.Scene.Level_1.ToString() ){
+            if(SceneManager.GetActiveScene().name == Loader.Scene.Level_0.ToString())
+            {
+                scoreBoard.SetActive(true);
+                Time.timeScale = 0;
+                //Loader.Load(Loader.Scene.Level_1);
+            }
+            else if (SceneManager.GetActiveScene().name == Loader.Scene.Level_1.ToString() ){
                 Debug.Log("Bullets Remaining - "+bulletSys.getBulletNum());
                 Debug.Log("Health Remaining - "+HealthManager.health);
                 Debug.Log("Enemies killed - " + battleInfoScript.kills);
