@@ -2548,6 +2548,9 @@ MonoBehaviour:
   bul_remaining: {fileID: 0}
   hearts_remaining: {fileID: 0}
   enemies_killed: {fileID: 0}
+  level_passed: {fileID: 0}
+  level_score: {fileID: 0}
+  total_score: {fileID: 0}
 --- !u!61 &585153101
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3271,9 +3274,12 @@ MonoBehaviour:
   bulletSys: {fileID: 615781987}
   battleInfo: {fileID: 1811579274}
   scoreBoard: {fileID: 1201831547}
-  bul_remaining: {fileID: 0}
-  hearts_remaining: {fileID: 0}
-  enemies_killed: {fileID: 0}
+  bul_remaining: {fileID: 1358493509}
+  hearts_remaining: {fileID: 1856412056}
+  enemies_killed: {fileID: 329583726}
+  level_passed: {fileID: 1352262289}
+  level_score: {fileID: 1810121374}
+  total_score: {fileID: 1281290030}
 --- !u!1 &874436005
 GameObject:
   m_ObjectHideFlags: 0
@@ -4916,6 +4922,9 @@ MonoBehaviour:
   bul_remaining: {fileID: 0}
   hearts_remaining: {fileID: 0}
   enemies_killed: {fileID: 0}
+  level_passed: {fileID: 0}
+  level_score: {fileID: 0}
+  total_score: {fileID: 0}
 --- !u!1 &1261854218
 GameObject:
   m_ObjectHideFlags: 0
@@ -5726,7 +5735,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 174, y: -69}
+  m_AnchoredPosition: {x: 174, y: -20}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1352262289
@@ -6860,7 +6869,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 174, y: -19.000004}
+  m_AnchoredPosition: {x: 174, y: -71}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1810121374
