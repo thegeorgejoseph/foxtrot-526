@@ -49,7 +49,13 @@ public class Exit_Script : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
-            if (SceneManager.GetActiveScene().name == Loader.Scene.Level_1.ToString() ){
+            if(SceneManager.GetActiveScene().name == Loader.Scene.Level_0.ToString())
+            {
+                scoreBoard.SetActive(true);
+                Time.timeScale = 0;
+                //Loader.Load(Loader.Scene.Level_1);
+            }
+            else if (SceneManager.GetActiveScene().name == Loader.Scene.Level_1.ToString() ){
                 Debug.Log("Bullets Remaining - "+bulletSys.getBulletNum());
                 Debug.Log("Health Remaining - "+HealthManager.health);
                 Debug.Log("Enemies killed - " + battleInfoScript.kills);
@@ -69,6 +75,18 @@ public class Exit_Script : MonoBehaviour
                 level1_score = total_score_val;
                 Time.timeScale = 0;
                 //Loader.Load(Loader.Scene.Level_2);
+
+                string level = SceneManager.GetActiveScene().name;
+
+                analyticsManagerScript.HandleEvent("master_metrics", new List<object>
+                        {
+                            level,
+                            did_finish,
+                            battleInfoScript.enemies_encountered,
+                            battleInfoScript.kills,
+                            HealthManager.health
+                            
+                        });
 
             } else if(SceneManager.GetActiveScene().name == Loader.Scene.Level_2.ToString()){
                 Debug.Log("Bullets Remaining - " + bulletSys.getBulletNum());
@@ -91,21 +109,46 @@ public class Exit_Script : MonoBehaviour
                 level1_score = total_score_val;
                 Time.timeScale = 0;
                 did_finish = true;
-                //Exit_UI.SetActive(true); // Enable the UI when detects the collision between player and exit
-                analyticsManagerScript.HandleEvent("did_finish", new List<object>
+
+                string level = SceneManager.GetActiveScene().name;
+
+                analyticsManagerScript.HandleEvent("master_metrics", new List<object>
                         {
-                            did_finish
+                            level,
+                            did_finish,
+                            battleInfoScript.enemies_encountered,
+                            battleInfoScript.kills,
+                            HealthManager.health
+                            
                         });
 
-                analyticsManagerScript.HandleEvent("enemies", new List<object>
-                {
-                    battleInfoScript.enemies_encountered,
-                    battleInfoScript.kills
-                });
-                analyticsManagerScript.HandleEvent("health_metric", new List<object>
-                {
-                    HealthManager.health
-                });
+                // string name = "not";
+                // foreach (UnityEditor.EditorBuildSettingsScene S in UnityEditor.EditorBuildSettings.scenes)
+                // {
+                //     if (S.enabled)
+                //     {
+                //         name = S.path.Substring(S.path.LastIndexOf('/')+1);
+                //         name = name.Substring(0,name.Length-6);
+                //     }
+                // }
+
+                //Exit_UI.SetActive(true); // Enable the UI when detects the collision between player and exit
+                // analyticsManagerScript.HandleEvent("did_finish", new List<object>
+                //         {
+                //             did_finish,
+                //             name
+                //         });
+
+                // analyticsManagerScript.HandleEvent("enemies", new List<object>
+                // {
+                //     battleInfoScript.enemies_encountered,
+                //     battleInfoScript.kills
+                   
+                // });
+                // analyticsManagerScript.HandleEvent("health_metric", new List<object>
+                // {
+                //     HealthManager.health
+                // });
                 GameFinishText.text = "Level Passed!";
 
                 Debug.Log("enemies_encountered: "+ battleInfoScript.enemies_encountered);

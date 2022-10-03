@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -27,6 +28,9 @@ public class Enemy_Battle_Scripts : MonoBehaviour
 
 
     private GameObject currentEnemy; // Temp var to record which enemy the player encountered
+    public GameObject deathScore;
+    public TMP_Text total_score;
+
     private bool battle_started; // Local bool to tell blocks inside Update() whether to check battle status
 
     public float health = 1.0f;
@@ -89,23 +93,43 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     {
                         // The player lost, gameover!
                         GameFinishText.text = "Game Over!";
-                        GameOver_UI.SetActive(true);
+                        deathScore.SetActive(true);
+                        if(SceneManager.GetActiveScene().name == Loader.Scene.Level_2.ToString())
+                        {
+                            total_score.text = Exit_Script.level1_score.ToString();
+                        }
+                        //GameOver_UI.SetActive(true);
+
                         if (!event_called)
                         {
+                        
+                            
+                            string level = SceneManager.GetActiveScene().name;
 
-                            analyticsManagerScript.HandleEvent("did_finish", new List<object>
-                            {
-                                did_finish
-                            }); // send false to did_finish metric
-                            analyticsManagerScript.HandleEvent("enemies", new List<object>
-                            {
-                                enemies_encountered,
-                                kills
-                            });
-                            analyticsManagerScript.HandleEvent("health_metric", new List<object>
-                            {
-                                HealthManager.health
-                            });
+                            analyticsManagerScript.HandleEvent("master_metrics", new List<object>
+                                    {
+                                        level,
+                                        did_finish,
+                                        enemies_encountered,
+                                        kills,
+                                        HealthManager.health
+                                        
+                                    });
+                            
+                            // analyticsManagerScript.HandleEvent("did_finish", new List<object>
+                            // {
+                            //     did_finish,
+                            //     name
+                            // }); // send false to did_finish metric
+                            // analyticsManagerScript.HandleEvent("enemies", new List<object>
+                            // {
+                            //     enemies_encountered,
+                            //     kills
+                            // });
+                            // analyticsManagerScript.HandleEvent("health_metric", new List<object>
+                            // {
+                            //     HealthManager.health
+                            // });
                             event_called = true;
                         }
                         Time.timeScale = 0f;
