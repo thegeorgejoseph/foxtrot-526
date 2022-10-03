@@ -827,13 +827,13 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 97690656
+  m_TextStyleHashCode: 2427
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1005,13 +1005,13 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
+  m_TextStyleHashCode: 2427
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2237,7 +2237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.023985408, g: 0.075547665, b: 0.46226418, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3500,8 +3500,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.016242431, g: 0.583358, b: 0.6886792, a: 1}
-    m_HighlightedColor: {r: 0.083704166, g: 0.110411935, b: 0.5377358, a: 1}
+    m_NormalColor: {r: 0.028301895, g: 0.028301895, b: 0.028301895, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.29411766}
     m_PressedColor: {r: 0.12646317, g: 0.07329121, b: 0.5754717, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -3769,6 +3769,8 @@ MonoBehaviour:
   analyticsManager: {fileID: 475434221}
   did_finish: 0
   event_called: 0
+  deathScore: {fileID: 0}
+  total_score: {fileID: 0}
   health: 1
   count: 0
   kills: 0
@@ -4463,6 +4465,8 @@ MonoBehaviour:
   analyticsManager: {fileID: 0}
   did_finish: 0
   event_called: 0
+  deathScore: {fileID: 0}
+  total_score: {fileID: 0}
   health: 1
   count: 0
   kills: 0
