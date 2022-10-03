@@ -56,7 +56,10 @@ public class HealthManager : MonoBehaviour
     {
         for (int i = 0; i < 20; i++)
         {
-            hearts[0].transform.localScale += new Vector3(0.05f, 0.05f, 0.05f);
+            for (int j = 0; j < hearts.Count; j++)
+            {
+                hearts[j].transform.localScale += new Vector3(0.03f, 0.03f, 0.03f);
+            }
         }
     }
 
@@ -64,7 +67,10 @@ public class HealthManager : MonoBehaviour
     {
         for (int i = 0; i < 20; i++)
         {
-            hearts[0].transform.localScale -= new Vector3(0.05f, 0.05f, 0.05f);
+            for (int j = 0; j < hearts.Count; j++)
+            {
+                hearts[j].transform.localScale -= new Vector3(0.03f, 0.03f, 0.03f);
+            }
         }
     }
     
