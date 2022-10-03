@@ -15,10 +15,13 @@ public class AnalyticsManager : MonoBehaviour
     [SerializeField]
     private static Dictionary<string, List<string>> FORM_FIELDS;
 
+    private static bool set_sessionID = false;
+
     [RuntimeInitializeOnLoadMethod]
     static void Initialize(){
         BASE_URLS = new Dictionary<string, string>
         {
+            {"master_metrics", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSe0qkfw0HmteA6mJr9D8mqOqwWkkOJOlZU4IvOPwmLVc5wIDg/formResponse"},
             { "did_finish", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfI4qBnZm4DGVz3uVwVhvfDAj0ZukrhMK8HJ0j5WsEk2EcePA/formResponse" },
             {"portal_use", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdIvCvgLIcmDZ8Rh6-cnuf6dISjI4v8HZxSHpzUN5FMQCnQJg/formResponse"},
             {"enemies", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSc-MTXGYvqzHRQvUV8i939d3muFMldVOp2RRugqQmGb-vPrwg/formResponse"},
@@ -27,10 +30,22 @@ public class AnalyticsManager : MonoBehaviour
 
         FORM_FIELDS = new Dictionary<string, List<string>>
         {
+            { "master_metrics", new List<string>
+            {
+                "entry.864264797",  // sessionID
+                "entry.1065146865", // level
+                "entry.1655820095", // did player finish
+                "entry.1249077952", // enemies encountered
+                "entry.792414006", // enemies killed
+                "entry.784575873" // health at the end
+                
+            }
+            },
             { "did_finish", new List<string>
             {
                 "entry.299620588",  // sessionID
                 "entry.1648586970", // did player finish
+                "entry.833191274" // level
                 
             }
             },

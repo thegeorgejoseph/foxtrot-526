@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -92,20 +93,34 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                         GameOver_UI.SetActive(true);
                         if (!event_called)
                         {
+                        
+                            
+                            string level = SceneManager.GetActiveScene().name;
 
-                            analyticsManagerScript.HandleEvent("did_finish", new List<object>
-                            {
-                                did_finish
-                            }); // send false to did_finish metric
-                            analyticsManagerScript.HandleEvent("enemies", new List<object>
-                            {
-                                enemies_encountered,
-                                kills
-                            });
-                            analyticsManagerScript.HandleEvent("health_metric", new List<object>
-                            {
-                                HealthManager.health
-                            });
+                            analyticsManagerScript.HandleEvent("master_metrics", new List<object>
+                                    {
+                                        level,
+                                        did_finish,
+                                        enemies_encountered,
+                                        kills,
+                                        HealthManager.health
+                                        
+                                    });
+                            
+                            // analyticsManagerScript.HandleEvent("did_finish", new List<object>
+                            // {
+                            //     did_finish,
+                            //     name
+                            // }); // send false to did_finish metric
+                            // analyticsManagerScript.HandleEvent("enemies", new List<object>
+                            // {
+                            //     enemies_encountered,
+                            //     kills
+                            // });
+                            // analyticsManagerScript.HandleEvent("health_metric", new List<object>
+                            // {
+                            //     HealthManager.health
+                            // });
                             event_called = true;
                         }
                         Time.timeScale = 0f;
