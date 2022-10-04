@@ -42,8 +42,8 @@ public class Bullet_System : MonoBehaviour
     void Update()
     {
         bulletDisplay.text = "" + bulletNum;
-        bulletDisplay_slider_hit.text = "Bullets Remaining: " + (getBulletNum()-1);
-        bulletDisplay_slider_miss.text = "Bullets Remaining: " + (getBulletNum()-1);
+        //bulletDisplay_slider_hit.text = "Bullets Remaining: " + (getBulletNum()-1);
+        //bulletDisplay_slider_miss.text = "Bullets Remaining: " + (getBulletNum()-1);
         
     }
 
