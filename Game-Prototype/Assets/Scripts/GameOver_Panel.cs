@@ -41,4 +41,10 @@ public class GameOver_Panel : MonoBehaviour
         Time.timeScale = 1;
         Loader.Load(Loader.Scene.Level_2);
     }
+
+    public void loadLevel0()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Level_0");
+    }
 }

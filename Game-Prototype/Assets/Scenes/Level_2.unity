@@ -1115,6 +1115,7 @@ MonoBehaviour:
   missImg: {fileID: 912355226}
   hitZoom: {fileID: 59059586}
   isFinished: 0
+  speed: 2
 --- !u!1001 &267570237
 PrefabInstance:
   m_ObjectHideFlags: 0
