@@ -46,10 +46,10 @@ public class HealthManager : MonoBehaviour
             ++hearts;
         }
 
-        for(int i=hearts; i<mxHealth; i++)
-        {
-            CreateHeart (HeartStatus.Empty);
-        }
+            for (int i = hearts; i < mxHealth; i++)
+            {
+                CreateHeart(HeartStatus.Empty);
+            }
     }
 
     public void EnlargeHeart()

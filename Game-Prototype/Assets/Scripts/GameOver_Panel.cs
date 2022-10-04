@@ -34,6 +34,7 @@ public class GameOver_Panel : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("Level_Menu");
+        HealthManager.health = 1.0f;
     }
 
     public void loadLevel2()
