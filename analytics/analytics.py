@@ -11,56 +11,64 @@ did_finish_sheet = gc.open_by_url('https://docs.google.com/spreadsheets/d/1HrI4z
 portal_use_sheet = gc.open_by_url('https://docs.google.com/spreadsheets/d/1uWWQ7coQKffPQeyn5jsCq6Yql5bWVQF2VBqAhQCD-YY/edit?usp=sharing')
 health_sheet = gc.open_by_url('https://docs.google.com/spreadsheets/d/17BnmISvDoqx76OJoc0MhrI1-VB9Xx0b_h_3YYyjmU40/edit?resourcekey#gid=919270586')
 enemy_sheet = gc.open_by_url('https://docs.google.com/spreadsheets/d/1-sthW5lMDrmSKu5H8Zf1oSOL-aAarPrSni6j-SYWtO4/edit?resourcekey#gid=1919056539')
+# Master 
+master_sheet = gc.open_by_url('https://docs.google.com/spreadsheets/d/1kLuixeZApgd2pH9_NH4nJU2XvfMmd7NdkVaFAj9-zHk/edit#gid=749049105')
 
 did_finish_sheet = did_finish_sheet.worksheet('Form Responses 1')
 portal_use_sheet = portal_use_sheet.worksheet('Form Responses 1')
 health_sheet = health_sheet.worksheet('Form Responses 1')
 enemy_sheet = enemy_sheet.worksheet('Form Responses 1')
+master_sheet = master_sheet.worksheet('Form Responses 1')
 
 did_finish_df = pd.DataFrame(did_finish_sheet.get_all_records())
 portal_use_df = pd.DataFrame(portal_use_sheet.get_all_records())
 health_df = pd.DataFrame(health_sheet.get_all_records())
 enemy_df = pd.DataFrame(enemy_sheet.get_all_records())
+master_df = pd.DataFrame(master_sheet.get_all_records())
 
 did_finish_df.drop('Timestamp', axis=1, inplace=True)
 portal_use_df.drop('Timestamp', axis=1, inplace=True)
 health_df.drop('Timestamp', axis=1, inplace=True)
 enemy_df.drop('Timestamp', axis=1, inplace=True)
+master_df.drop('Timestamp', axis=1, inplace=True)
 
-print(health_df)
-print(enemy_df)
+
+# Remove prefixes from variables
+master_df = master_df.replace('Session-', '', regex=True)
+master_df = master_df.replace('Level_', '', regex=True)
+print(master_df)
 
 """
 Metric 1: Enemies Encountered
 """
-# Add a variable for level 
-enemy_df['level'] = 1
-enemy_df.reset_index()
-print(enemy_df)
+def enemies_encountered(df, df_name):
+    print('function start')
+    # Calculate the average number of enemies encountered and killed by level
+    df = df.groupby(['level'])[['enemies_encountered', 'enemies_killed']].mean().reset_index()
+    print(len(df))
+    # Create a side-by-side bar plot  
+    # Number of pairs of bars
+    N = len(df)
+    ind = np.arange(N)
+    width = 0.3
+    print('test')
+    plt.bar(ind, tuple(df['enemies_encountered']), width, label = 'Enemies Encountered', color = "#6596C7")
+    plt.bar(ind + width, tuple(df['enemies_killed']), width, label = 'Enemies Killed', color = "#7fcdbb")
+    print('test')
+    plt.xlabel('Level')
+    plt.ylabel('Average Number of Enemies')
+    plt.suptitle('Average Number of Enemies Encountered vs. Killed')
+    plt.title('By Level')
+    print('test')
 
-# Calculate the average number of enemies encountered and killed by level
-enemy_df = enemy_df.groupby(['level'])[['enemies_enocountered', 'enemies_killed']].mean().reset_index()
-print(enemy_df)
-print(len(enemy_df))
+    level_labels = tuple(str(item) for item in tuple(df['level']))
+    plt.xticks(ind + width / 2, level_labels)
+    print('test')
+    plt.legend(loc='best')
+    plt.savefig(df_name + '_plot.png')
+    plt.close()
 
-# Create a side-by-side bar plot for 
-# Number of pairs of bars
-N = len(enemy_df)
-ind = np.arange(N)
-width = 0.3
-plt.bar(ind, tuple(enemy_df['enemies_enocountered']), width, label = 'Enemies Encountered', color = "#6596C7")
-plt.bar(ind + width, tuple(enemy_df['enemies_killed']), width, label = 'Enemies Killed', color = "#7fcdbb")
-plt.xlabel('Level')
-plt.ylabel('Average Number of Enemies')
-plt.suptitle('Average Number of Enemies Encountered vs. Killed')
-plt.title('By Level')
-
-level_labels = tuple(str(item) for item in tuple(enemy_df['level']))
-plt.xticks(ind + width / 2, level_labels)
-
-plt.legend(loc='best')
-plt.savefig('enemies_plot.png')
-plt.close()
+enemies_encountered(master_df, 'enemies')
 
 """
 Metric 2: Health of Player
@@ -68,25 +76,22 @@ Metric 2: Health of Player
 ### Plot 1: Average Player Health
 ### Side-by-side bar plots grouped by level
 
-# Add a variable for level 
-health_df['level'] = 1
-health_df.reset_index()
-print(health_df)
-
 # Calculate the average player health at the end of each level
-health_df_avg = health_df.groupby(['level'])['health_level'].mean().reset_index()
-print(health_df_avg)
-print(len(health_df_avg))
+health_master_df_avg = master_df.groupby(['level'])['health_at_end'].mean().reset_index()
+print(health_master_df_avg)
+print(len(health_master_df_avg))
 
 # Create a side-by-side bar plot for 
 # Number of pairs of bars
-game_level_labels = tuple(str(item) for item in tuple(health_df_avg['level']))
-health_level_labels = tuple(health_df_avg['health_level'])
+game_level_labels = tuple(str(item) for item in tuple(health_master_df_avg['level']))
+health_level_labels = tuple(health_master_df_avg['health_at_end'])
 plt.bar(game_level_labels, health_level_labels, width = 0.3, color = "#6596C7")
-plt.ylim(0, 1.5)
+plt.ylim(-1.5, 1.5)
+threshold = 0
 plt.xlabel('Level')
 plt.ylabel('Average Health')
 plt.title('Average Player Health at End of Level')
+plt.axhline(y=threshold,linewidth=1, color='k')
 
 for x,y in zip(game_level_labels,health_level_labels):
 
@@ -106,7 +111,7 @@ plt.close()
 ### Plot 2: Level 1 Distribution of Player Health
 ### Vertically stacked bar plots for each level
 
-sns.countplot(x = 'health_level', data = health_df, palette = ["#6596C7"])
+sns.countplot(x = 'health_at_end', data = master_df, palette = ["#6596C7"])
 plt.title("Player Health Disribution")
 plt.xlabel("End of Level Health")
 plt.ylabel("Number of Players")
@@ -119,11 +124,8 @@ Metric 3: Level Completions
 ### Plot 1: Count of Completions: Bar
 ### Side-by-side bar plots grouped by level
 
-did_finish_df['level'] = 1
-did_finish_df.reset_index()
-print(did_finish_df)
 sns.color_palette("hls", 8)
-sns.countplot(x ='did_finish', data = did_finish_df, palette= ["#7fcdbb", "#edf8b1"])
+sns.countplot(x ='finished_level', data = master_df, palette= ["#7fcdbb", "#edf8b1"])
 plt.title("No of players to finish the level - T or F")
 plt.xlabel("Did player finish?")
 plt.ylabel("No of players")
@@ -136,12 +138,12 @@ plt.close()
 
 ### Plot 3: Overall Percentage of Completions
 ### Pie Chart
-did_finish_df['count_val'] = 1
-did_finish_df_counts = did_finish_df.groupby(['did_finish']).sum().reset_index()
+master_df['count_val'] = 1
+did_finish_df_counts = master_df.groupby(['finished_level']).sum().reset_index()
 
 colors = ['#D98D82', '#82D9A8']
 fig = plt.figure(figsize =(10, 7))
-plt.pie(did_finish_df_counts['count_val'], labels=did_finish_df_counts['did_finish'], autopct='%1.1f%%', colors=colors)
+plt.pie(did_finish_df_counts['count_val'], labels=did_finish_df_counts['finished_level'], autopct='%1.1f%%', colors=colors)
 plt.title("Overall Percentage of Level Completions")
 plt.savefig('did_finish_pie_plot.png')
 plt.close()
@@ -151,7 +153,7 @@ Metric 4: Portal Use
 """
 portal_use_merge = pd.merge(did_finish_df, portal_use_df, on='sessionID', how="outer")
 
-portal_use_merge['portal_used'] = portal_use_merge['portal_used'].apply(lambda x: "no" if pd.isnull(x) else "yes")
+portal_use_merge['portal_used'] = master_df['portal_used'].apply(lambda x: "no" if pd.isnull(x) else "yes")
 portal_use_merge.drop_duplicates(inplace=True, ignore_index=True)
 
 sns.countplot(x ='portal_used', data = portal_use_merge, palette= ["#7fcdbb", "#edf8b1"])
