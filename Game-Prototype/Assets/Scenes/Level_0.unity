@@ -294,11 +294,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Exit_UI: {fileID: 0}
   GameFinishText: {fileID: 0}
-  analyticsManager: {fileID: 0}
+  analyticsManager: {fileID: 475434221}
   did_finish: 0
   battleInfoScript: {fileID: 0}
   bulletSys: {fileID: 0}
-  battleInfo: {fileID: 0}
+  battleInfo: {fileID: 1811579274}
   scoreBoard: {fileID: 917018026}
   bul_remaining: {fileID: 0}
   hearts_remaining: {fileID: 0}
