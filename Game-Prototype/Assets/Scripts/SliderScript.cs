@@ -11,7 +11,7 @@ public class SliderScript : MonoBehaviour
     public Transform hitZoom; // Determine the position of the hit zoom
     public bool isFinished; // Global bool to tell whether the event has finished
 
-    private float speed = 1.5f; // Speed of the handle
+    public float speed = 1.5f; // Speed of the handle
     private bool isForward; // Used for judging which side the handle goes
     private float minHit; // Min value of hit zoom
     private float maxHit; // Max value of hit zoom
