@@ -126,7 +126,7 @@ Metric 3: Level Completions
 
 sns.color_palette("hls", 8)
 sns.countplot(x ='finished_level', data = master_df, palette= ["#7fcdbb", "#edf8b1"])
-plt.title("No of players to finish the level - T or F")
+plt.title("No of players to finish the level")
 plt.xlabel("Did player finish?")
 plt.ylabel("No of players")
 plt.savefig('did_finish_bar_plot.png')
