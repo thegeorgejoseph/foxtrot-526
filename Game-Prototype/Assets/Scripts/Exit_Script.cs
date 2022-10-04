@@ -111,6 +111,7 @@ public class Exit_Script : MonoBehaviour
                 did_finish = true;
 
                 string level = SceneManager.GetActiveScene().name;
+                did_finish = true;
 
                 analyticsManagerScript.HandleEvent("master_metrics", new List<object>
                         {
