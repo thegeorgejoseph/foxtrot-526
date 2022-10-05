@@ -25,6 +25,8 @@ public class Exit_Script : MonoBehaviour
     public TMP_Text total_score;
     public static float level1_score;
 
+    
+
     // Start is called before the first frame update
     private void Awake(){
         analyticsManagerScript = analyticsManager.GetComponent<AnalyticsManager>();
@@ -78,15 +80,26 @@ public class Exit_Script : MonoBehaviour
 
                 string level = SceneManager.GetActiveScene().name;
 
-                analyticsManagerScript.HandleEvent("master_metrics", new List<object>
-                        {
-                            level,
-                            did_finish,
-                            battleInfoScript.enemies_encountered,
-                            battleInfoScript.kills,
-                            HealthManager.health
+                // analyticsManagerScript.HandleEvent("master_metrics", new List<object>
+                //         {
+                //             level,
+                //             did_finish,
+                //             battleInfoScript.enemies_encountered,
+                //             battleInfoScript.kills,
+                //             HealthManager.health
                             
-                        });
+                //         });
+
+                  var metrics = new Metrics(analyticsManagerScript.sessionID, 
+                                            level, did_finish.ToString(), 
+                                            battleInfoScript.enemies_encountered.ToString(), 
+                                            battleInfoScript.kills.ToString(),
+                                            HealthManager.health.ToString());
+                DatabaseHandler.PostMetrics(metrics, analyticsManagerScript.sessionID, () =>
+                {
+                    Debug.Log("done posting to firebase");
+                });
+
 
             } else if(SceneManager.GetActiveScene().name == Loader.Scene.Level_2.ToString()){
                 Debug.Log("Bullets Remaining - " + bulletSys.getBulletNum());

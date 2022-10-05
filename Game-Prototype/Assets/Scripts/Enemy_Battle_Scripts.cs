@@ -106,15 +106,25 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                             
                             string level = SceneManager.GetActiveScene().name;
 
-                            analyticsManagerScript.HandleEvent("master_metrics", new List<object>
-                                    {
-                                        level,
-                                        did_finish,
-                                        enemies_encountered,
-                                        kills,
-                                        HealthManager.health
+                            // analyticsManagerScript.HandleEvent("master_metrics", new List<object>
+                            //         {
+                            //             level,
+                            //             did_finish,
+                            //             enemies_encountered,
+                            //             kills,
+                            //             HealthManager.health
                                         
-                                    });
+                            //         });
+
+                            var metrics = new Metrics(analyticsManagerScript.sessionID, 
+                                            level, did_finish.ToString(), 
+                                            enemies_encountered.ToString(), 
+                                            kills.ToString(),
+                                            HealthManager.health.ToString());
+                            DatabaseHandler.PostMetrics(metrics, analyticsManagerScript.sessionID, () =>
+                            {
+                                Debug.Log("done posting to firebase");
+                            });
                             
                             // analyticsManagerScript.HandleEvent("did_finish", new List<object>
                             // {

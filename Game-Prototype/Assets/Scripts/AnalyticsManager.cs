@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Analytics;
 using System;
+using Random=UnityEngine.Random;
 
 public class AnalyticsManager : MonoBehaviour
 {
 
-    private static string sessionID;
+    public string sessionID;
     [SerializeField]
     private static Dictionary<string, string> BASE_URLS;
 
@@ -70,8 +71,8 @@ public class AnalyticsManager : MonoBehaviour
 
     void Awake()
     {
-        sessionID = DateTime.Now.Ticks.ToString();
-        sessionID = "Session-"+sessionID;
+        sessionID = Random.Range(0, 100000).ToString();// DateTime.Now.Ticks.ToString();
+        sessionID = "session-"+sessionID;
     }
     // Start is called before the first frame update
     void Start()
@@ -85,8 +86,11 @@ public class AnalyticsManager : MonoBehaviour
         
     }
 
+
+
     IEnumerator Post(string eventName, List<object> eventParams)
     {
+      
         WWWForm form = new();
         List<string> fieldNames = FORM_FIELDS[eventName];
         form.AddField(fieldNames[0], sessionID.ToString());
