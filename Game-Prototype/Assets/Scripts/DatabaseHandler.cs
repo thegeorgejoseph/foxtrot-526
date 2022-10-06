@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using FullSerializer;
 using Proyecto26;
 
+
 public static class DatabaseHandler{
 
     private const string projectID = "foxtrot-analytics-95472";
@@ -18,9 +19,9 @@ public static class DatabaseHandler{
     /// <param name="user"> User object that will be uploaded </param>
     /// <param name="userId"> Id of the user that will be uploaded </param>
     /// <param name="callback"> What to do after the user is uploaded successfully </param>
-    public static void PostMetrics(Metrics metrics, string sessionID, PostUserCallback callback)
+    public static void PostMetrics<T>(T metrics, string sessionID, PostUserCallback callback, string section="metrics")
     {
-        RestClient.Put<Metrics>($"{databaseURL}metrics/{sessionID}.json", metrics).Then(response => { 
+        RestClient.Put<T>($"{databaseURL}{section}/{sessionID}.json", metrics).Then(response => { 
             callback();
             // Debug.Log("The user was successfully uploaded to the database");; 
             });

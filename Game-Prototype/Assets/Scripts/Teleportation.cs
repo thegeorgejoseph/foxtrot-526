@@ -39,10 +39,10 @@ public class Teleportation : MonoBehaviour
                 player.transform.position = new Vector2(portal.transform.position.x, portal.transform.position.y); 
                  if(!event_called){
                     
-                    analyticsManagerScript.HandleEvent("portal_use", new List<object>
-                    {
-                        "yes"
-                    }); // send false to did_finish metric
+                    // analyticsManagerScript.HandleEvent("portal_use", new List<object>
+                    // {
+                    //     "yes"
+                    // }); // send false to did_finish metric
                     event_called = true;
                 }  
 

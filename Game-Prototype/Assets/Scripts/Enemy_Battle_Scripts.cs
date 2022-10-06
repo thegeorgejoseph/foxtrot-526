@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class Enemy_Battle_Scripts : MonoBehaviour
 {
@@ -116,16 +117,26 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                                         
                             //         });
 
-                            var metrics = new Metrics(analyticsManagerScript.sessionID, 
+                            var metrics = new Metrics(analyticsManagerScript.sessionID,
+                            DateTimeOffset.Now.ToUnixTimeSeconds().ToString(), 
                                             level, did_finish.ToString(), 
                                             enemies_encountered.ToString(), 
                                             kills.ToString(),
                                             HealthManager.health.ToString());
-                            DatabaseHandler.PostMetrics(metrics, analyticsManagerScript.sessionID, () =>
+
+                            var testMetric = new testMetricStore(analyticsManagerScript.sessionID, 
+                            DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
+                                            level,"1", "2", "3");
+                            DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.sessionID, () =>
                             {
-                                Debug.Log("done posting to firebase");
+                                Debug.Log("done posting to firebase metric");
                             });
-                            
+
+                            DatabaseHandler.PostMetrics<testMetricStore>(testMetric, analyticsManagerScript.sessionID, () =>
+                            {
+                                Debug.Log("done posting to firebase test metric");
+                            }, "testMetric");
+                                        
                             // analyticsManagerScript.HandleEvent("did_finish", new List<object>
                             // {
                             //     did_finish,
