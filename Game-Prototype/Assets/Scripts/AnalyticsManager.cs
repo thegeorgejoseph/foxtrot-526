@@ -9,7 +9,9 @@ using Random=UnityEngine.Random;
 public class AnalyticsManager : MonoBehaviour
 {
 
-    public string sessionID;
+    public string clientID;
+
+    public string startTime;
     [SerializeField]
     private static Dictionary<string, string> BASE_URLS;
 
@@ -71,8 +73,17 @@ public class AnalyticsManager : MonoBehaviour
 
     void Awake()
     {
-        sessionID = Random.Range(0, 100000).ToString();// DateTime.Now.Ticks.ToString();
-        sessionID = "session-"+sessionID;
+        startTime =  DateTime.Now.ToString(); // 
+
+        clientID = PlayerPrefs.GetString("clientID", "null");
+        if (clientID == "null") {
+            clientID = Random.Range(0, 100000000).ToString();
+            PlayerPrefs.SetString("clientID", clientID);
+        }
+        else{
+            clientID = PlayerPrefs.GetString("clientID");
+        }
+        
     }
     // Start is called before the first frame update
     void Start()

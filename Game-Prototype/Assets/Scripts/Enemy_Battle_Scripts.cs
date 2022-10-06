@@ -117,22 +117,22 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                                         
                             //         });
 
-                            var metrics = new Metrics(analyticsManagerScript.sessionID,
+                            var metrics = new Metrics(analyticsManagerScript.clientID,
                             DateTimeOffset.Now.ToUnixTimeSeconds().ToString(), 
                                             level, did_finish.ToString(), 
                                             enemies_encountered.ToString(), 
                                             kills.ToString(),
                                             HealthManager.health.ToString());
 
-                            var testMetric = new testMetricStore(analyticsManagerScript.sessionID, 
+                            var testMetric = new testMetricStore(analyticsManagerScript.clientID, 
                             DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
                                             level,"1", "2", "3");
-                            DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.sessionID, () =>
+                            DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.startTime, () =>
                             {
                                 Debug.Log("done posting to firebase metric");
                             });
 
-                            DatabaseHandler.PostMetrics<testMetricStore>(testMetric, analyticsManagerScript.sessionID, () =>
+                            DatabaseHandler.PostMetrics<testMetricStore>(testMetric, analyticsManagerScript.startTime, () =>
                             {
                                 Debug.Log("done posting to firebase test metric");
                             }, "testMetric");
@@ -141,7 +141,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                             {
                                 foreach (var user in users)
                                 {
-                                    Debug.Log($"{user.Value.sessionID} {user.Value.level} {user.Value.timestamp}");
+                                    Debug.Log($"{user.Value.clientID} {user.Value.level} {user.Value.timestamp}");
                                 }
                             }, "testMetric");
                                                         

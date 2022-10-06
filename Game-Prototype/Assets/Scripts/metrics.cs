@@ -5,7 +5,7 @@ using System;
 [Serializable] // This makes the class able to be serialized into a JSON
 public class Metrics
 {
-    public string sessionID;
+    public string clientID;
 
     public string timestamp;
     public string level;
@@ -13,9 +13,9 @@ public class Metrics
     public string enemies_encountered;
     public string enemies_killed;
     public string health;
-    public Metrics(string sessionID, string timestamp, string level, string finished, string enemies_encountered, string enemies_killed, string health)
+    public Metrics(string clientID, string timestamp, string level, string finished, string enemies_encountered, string enemies_killed, string health)
     {
-        this.sessionID = sessionID;
+        this.clientID = clientID;
         this.timestamp = timestamp;
         this.level = level;
         this.finished = finished;
