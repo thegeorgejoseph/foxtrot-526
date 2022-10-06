@@ -12,7 +12,7 @@ public static class DatabaseHandler{
 
     public delegate void PostUserCallback();
     // public delegate void GetMetricCallback(Metrics metrics);
-    public delegate void GetMetricCallback(Dictionary<string, Metrics> metrics);
+    public delegate void GetMetricCallback<T>(Dictionary<string, T> metrics);
     /// <summary>
     /// Adds a user to the Firebase Database
     /// </summary>
@@ -31,9 +31,9 @@ public static class DatabaseHandler{
     /// Gets all users from the Firebase Database
     /// </summary>
     /// <param name="callback"> What to do after all users are downloaded successfully </param>
-    public static void GetMetrics(GetMetricCallback callback)
+    public static void GetMetrics<T>(GetMetricCallback<T> callback, string section = "metrics")
     {
-        RestClient.Get($"{databaseURL}metrics.json").Then(response =>
+        RestClient.Get($"{databaseURL}{section}.json").Then(response =>
         {
             var responseJson = response.Text;
 
@@ -41,9 +41,9 @@ public static class DatabaseHandler{
             // to serialize more complex types (a Dictionary, in this case)
             var data = fsJsonParser.Parse(responseJson);
             object deserialized = null;
-            serializer.TryDeserialize(data, typeof(Dictionary<string, Metrics>), ref deserialized);
+            serializer.TryDeserialize(data, typeof(Dictionary<string, T>), ref deserialized);
 
-            var metrics = deserialized as Dictionary<string, Metrics>;
+            var metrics = deserialized as Dictionary<string, T>;
             callback(metrics);
         });
     }

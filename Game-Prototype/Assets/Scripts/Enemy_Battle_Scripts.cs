@@ -136,7 +136,15 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                             {
                                 Debug.Log("done posting to firebase test metric");
                             }, "testMetric");
-                                        
+
+                            DatabaseHandler.GetMetrics<testMetricStore>(users =>
+                            {
+                                foreach (var user in users)
+                                {
+                                    Debug.Log($"{user.Value.sessionID} {user.Value.level} {user.Value.timestamp}");
+                                }
+                            }, "testMetric");
+                                                        
                             // analyticsManagerScript.HandleEvent("did_finish", new List<object>
                             // {
                             //     did_finish,

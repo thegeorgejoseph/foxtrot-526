@@ -52,6 +52,39 @@ public class Exit_Script : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
+            string level = SceneManager.GetActiveScene().name;
+            did_finish = true;
+
+            
+            var metrics = new Metrics(analyticsManagerScript.sessionID, 
+                  DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
+                                            level, did_finish.ToString(), 
+                                            battleInfoScript.enemies_encountered.ToString(), 
+                                            battleInfoScript.kills.ToString(),
+                                            HealthManager.health.ToString());
+
+            var testMetric = new testMetricStore(analyticsManagerScript.sessionID, 
+                DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
+                                        level,"1", "2", "3");
+
+            DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.sessionID, () =>
+                {
+                    Debug.Log("done posting to firebase metric");
+                });
+            DatabaseHandler.PostMetrics<testMetricStore>(testMetric, analyticsManagerScript.sessionID, () =>
+            {
+                Debug.Log("done posting to firebase test metric");
+            }, "testMetric");
+            // get method test
+
+            DatabaseHandler.GetMetrics<Metrics>(users =>
+        {
+            foreach (var user in users)
+            {
+                Debug.Log($"{user.Value.sessionID} {user.Value.level} {user.Value.timestamp}");
+            }
+        });
+
             if(SceneManager.GetActiveScene().name == Loader.Scene.Level_0.ToString())
             {
                 scoreBoard.SetActive(true);
@@ -79,8 +112,7 @@ public class Exit_Script : MonoBehaviour
                 Time.timeScale = 0;
                 //Loader.Load(Loader.Scene.Level_2);
 
-                string level = SceneManager.GetActiveScene().name;
-
+                
                 // analyticsManagerScript.HandleEvent("master_metrics", new List<object>
                 //         {
                 //             level,
@@ -91,25 +123,9 @@ public class Exit_Script : MonoBehaviour
                             
                 //         });
 
-                  var metrics = new Metrics(analyticsManagerScript.sessionID, 
-                  DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
-                                            level, did_finish.ToString(), 
-                                            battleInfoScript.enemies_encountered.ToString(), 
-                                            battleInfoScript.kills.ToString(),
-                                            HealthManager.health.ToString());
+                  
 
-                var testMetric = new testMetricStore(analyticsManagerScript.sessionID, 
-                  DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
-                                            level,"1", "2", "3");
-
-                DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.sessionID, () =>
-                {
-                    Debug.Log("done posting to firebase metric");
-                });
-                DatabaseHandler.PostMetrics<testMetricStore>(testMetric, analyticsManagerScript.sessionID, () =>
-                {
-                    Debug.Log("done posting to firebase test metric");
-                }, "testMetric");
+                
 
 
             } else if(SceneManager.GetActiveScene().name == Loader.Scene.Level_2.ToString()){
@@ -132,10 +148,10 @@ public class Exit_Script : MonoBehaviour
                 total_score.text = (total_score_val+level1_score).ToString();
                 level1_score = total_score_val;
                 Time.timeScale = 0;
-                did_finish = true;
+                
+                
 
-                string level = SceneManager.GetActiveScene().name;
-                did_finish = true;
+                
 
                 // analyticsManagerScript.HandleEvent("master_metrics", new List<object>
                 //         {
