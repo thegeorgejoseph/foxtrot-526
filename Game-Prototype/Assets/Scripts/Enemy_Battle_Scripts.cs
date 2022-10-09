@@ -9,7 +9,7 @@ using System;
 public class Enemy_Battle_Scripts : MonoBehaviour
 {
     public GameObject battleUI; // Battle UI 
-    public SliderScript sliderSC; // SliderScript object to call function
+    private SliderScript sliderSC; // SliderScript object to call function
     public TextMeshProUGUI GameFinishText; // Text box to display the text when the game reaches to an end
     public GameObject GameOver_UI; // UI to display when player loses the battle
     public GameObject SpaceText; // UI to display SpaceBar Hint while attack
@@ -49,6 +49,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sliderSC = battleUI.GetComponent<SliderScript>();
         // Set battle UI to be inactive in the beginning
         battleUI.SetActive(false);
         SpaceText.SetActive(false);
@@ -212,8 +213,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                 SpaceText.SetActive(true);
             }
             // Reset the slider for next battle
-            sliderSC.Reset();
-             
+            sliderSC.Reset(currentEnemy, this.gameObject);
+
         }
     }
 
