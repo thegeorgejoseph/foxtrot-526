@@ -54,11 +54,45 @@ for x,y in zip(finish_by_level['level'],finish_by_level['finished_count']):
 
 
 plt.legend(loc='best')
-plt.savefig('firebase_plots/level_completion_count_bar.png')
-plt.show()
+plt.savefig('firebase_plots/level_completion_count_bar.png', dpi=1200)
+#plt.show()
+plt.close()
 
+### Plot 2: Players that completed the level vs. overall
+### Line plot
+plt.plot(finish_by_level['level'], finish_by_level['finished_count'], label = 'Successful Completions', color='#FFB06B')
+for x,y in zip(finish_by_level['level'],finish_by_level['finished_count']):
+
+    label = "{:.0f}".format(y)
+
+    plt.annotate(label, # this is the text
+                 (x,y), # these are the coordinates to position the label
+                 textcoords="offset points", # how to position the text
+                 xytext=(0,10), # distance from text to points (x,y)
+                 ha='center') # horizontal alignment can be left, right or center
+
+plt.plot(finish_by_level['level'], finish_by_level['total_finished_count'], label = 'Total Completions', color='#6596C7')
+plt.ylim(0, max(finish_by_level['total_finished_count']) + 2)
+for x,y in zip(finish_by_level['level'], finish_by_level['total_finished_count']):
+
+    label = "{:.0f}".format(y)
+
+    plt.annotate(label, # this is the text
+                 (x,y), # these are the coordinates to position the label
+                 textcoords="offset points", # how to position the text
+                 xytext=(0,10), # distance from text to points (x,y)
+                 ha='center') # horizontal alignment can be left, right or center
+
+plt.xlabel("Level")
+plt.ylabel("Count")
+plt.legend()
+plt.title('Successful Completions vs. Total Level Plays')
+plt.savefig('firebase_plots/level_completion_line_chart.png', dpi=1200)
+#plt.show()
+plt.close()
+
+### Plot 3: Percentage of Users that Completed Level
 ### Level Completion Percentages (Success/Overall)
-### Plot 2: Percentage of Users that Completed Level
 finish_by_level['percentage'] = (finish_by_level['finished_count'] / finish_by_level['total_finished_count']) * 100
 print(finish_by_level)
 plt.bar(finish_by_level['level'], finish_by_level['percentage'], width = 0.3, color = "#6596C7")
@@ -79,27 +113,35 @@ for x,y in zip(finish_by_level['level'],finish_by_level['percentage']):
 
 
 plt.legend(loc='best')
-plt.savefig('firebase_plots/level_completion_percentage_bar.png')
-plt.show()
+plt.savefig('firebase_plots/level_completion_percentage_bar.png', dpi=1200)
+#plt.show()
+plt.close()
 
-### Plot 3: Compare Count of Successful Completions vs. Overall Plays
+### Plot 4: Compare Count of Successful Completions vs. Overall Plays
 ### Stacked area chart by count
 colors = ['#B8E4FF', '#6596C7']
-plt.stackplot(finish_by_level['level'], finish_by_level['finished_count'], finish_by_level['total_finished_count'], labels=['Completed Level', 'Total Completions'], colors=colors)
+plt.stackplot(finish_by_level['level'], finish_by_level['finished_count'], finish_by_level['total_finished_count'], labels=['Successful Completions', 'Total Completions'], colors=colors)
 plt.legend(loc='upper left')
-plt.show()
+plt.xlabel('Level')
+plt.ylabel('Count')
+plt.title('Successful Completions vs. Total Level Plays')
+plt.savefig('firebase_plots/level_completion_area_chart.png', dpi=1200)
+#plt.show()
+plt.close()
 
-### Plot 4: Overall Percentage of Completions
+### Plot 5: Overall Percentage of Completions
 ### Pie Chart
 df['count_val'] = 1
 did_finish_df_counts = df.groupby(['finished']).sum().reset_index()
+did_finish_df_counts.loc[did_finish_df_counts['finished'] == 'True', 'finished'] = 'Wins'
+did_finish_df_counts.loc[did_finish_df_counts['finished'] == 'False', 'finished'] = 'Losses'
+
 colors = ['#ED9C9C', '#97DEB1']
-fig = plt.figure(figsize =(10, 7))
 plt.pie(did_finish_df_counts['count_val'], labels=did_finish_df_counts['finished'], autopct='%1.1f%%', colors=colors)
 plt.title('Total Game Plays: Wins vs. Losses')
-plt.savefig('firebase_plots/level_completion_pie.png')
-plt.show()
-
+plt.savefig('firebase_plots/level_completion_pie.png', dpi=1200)
+#plt.show()
+plt.close()
 
 #time taken per level
 #time taken vs enemies killed/encountered
