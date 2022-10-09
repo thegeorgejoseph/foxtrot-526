@@ -6,7 +6,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-cred = credentials.Certificate("foxtrot-analytics-95472-firebase-adminsdk-6e9fo-d86906cb59.json")
+cred = credentials.Certificate("/Users/sarapesavento/Documents/foxtrot-analytics-95472-firebase-adminsdk-6e9fo-d86906cb59.json")
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://foxtrot-analytics-95472-default-rtdb.firebaseio.com/'
 })
