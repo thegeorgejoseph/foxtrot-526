@@ -115,8 +115,6 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                             // Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);
 
 
-
-
                             var metrics = new Metrics(analyticsManagerScript.clientID,
                             DateTimeOffset.Now.ToUnixTimeSeconds().ToString(), 
                                             level, did_finish.ToString(), 

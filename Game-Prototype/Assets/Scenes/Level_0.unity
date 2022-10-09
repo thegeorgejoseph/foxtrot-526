@@ -340,12 +340,11 @@ MonoBehaviour:
   Exit_UI: {fileID: 0}
   GameFinishText: {fileID: 0}
   analyticsManager: {fileID: 475434221}
+  playerMovement: {fileID: 0}
   did_finish: 0
   battleInfoScript: {fileID: 0}
-  bulletSys: {fileID: 0}
   battleInfo: {fileID: 1811579274}
   scoreBoard: {fileID: 917018026}
-  bul_remaining: {fileID: 0}
   hearts_remaining: {fileID: 0}
   enemies_killed: {fileID: 0}
   level_passed: {fileID: 0}
@@ -1735,6 +1734,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1574a04b6a554c01b02792e0a5cd45b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clientID: 
+  startTime: 
 --- !u!114 &475434226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2395,12 +2396,11 @@ MonoBehaviour:
   Exit_UI: {fileID: 1832000481}
   GameFinishText: {fileID: 1788523839}
   analyticsManager: {fileID: 475434221}
+  playerMovement: {fileID: 0}
   did_finish: 0
   battleInfoScript: {fileID: 0}
-  bulletSys: {fileID: 0}
   battleInfo: {fileID: 0}
   scoreBoard: {fileID: 0}
-  bul_remaining: {fileID: 0}
   hearts_remaining: {fileID: 0}
   enemies_killed: {fileID: 0}
   level_passed: {fileID: 0}
@@ -3801,12 +3801,11 @@ MonoBehaviour:
   Exit_UI: {fileID: 1832000481}
   GameFinishText: {fileID: 1788523839}
   analyticsManager: {fileID: 475434221}
+  playerMovement: {fileID: 0}
   did_finish: 0
   battleInfoScript: {fileID: 1811579280}
-  bulletSys: {fileID: 0}
   battleInfo: {fileID: 1811579274}
   scoreBoard: {fileID: 0}
-  bul_remaining: {fileID: 0}
   hearts_remaining: {fileID: 0}
   enemies_killed: {fileID: 0}
   level_passed: {fileID: 0}
@@ -5024,6 +5023,7 @@ MonoBehaviour:
   movementSpeed: 5
   rb2d: {fileID: 1811579276}
   Player: {fileID: 1811579274}
+  portalUsageCount: 0
 --- !u!50 &1811579276
 Rigidbody2D:
   serializedVersion: 4
@@ -5156,7 +5156,6 @@ MonoBehaviour:
   GameOver_UI: {fileID: 1832000481}
   SpaceText: {fileID: 347018096}
   player: {fileID: 1811579274}
-  bulletSys: {fileID: 0}
   screenShake: {fileID: 475434227}
   respawn: {fileID: 475434228}
   analyticsManager: {fileID: 475434221}
@@ -5168,6 +5167,7 @@ MonoBehaviour:
   count: 0
   kills: 0
   enemies_encountered: 0
+  playerMovement: {fileID: 0}
 --- !u!1 &1825269716
 GameObject:
   m_ObjectHideFlags: 0
@@ -5832,6 +5832,7 @@ MonoBehaviour:
   movementSpeed: 5
   rb2d: {fileID: 2130376573}
   Player: {fileID: 0}
+  portalUsageCount: 0
 --- !u!114 &2130376577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5850,7 +5851,6 @@ MonoBehaviour:
   GameOver_UI: {fileID: 0}
   SpaceText: {fileID: 0}
   player: {fileID: 0}
-  bulletSys: {fileID: 0}
   screenShake: {fileID: 0}
   respawn: {fileID: 0}
   analyticsManager: {fileID: 0}
@@ -5862,6 +5862,7 @@ MonoBehaviour:
   count: 0
   kills: 0
   enemies_encountered: 0
+  playerMovement: {fileID: 0}
 --- !u!1001 &2137752843
 PrefabInstance:
   m_ObjectHideFlags: 0

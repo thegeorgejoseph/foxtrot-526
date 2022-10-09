@@ -23,6 +23,7 @@ public class CameraScript : MonoBehaviour
         Player.GetComponent<Movement2D>().enabled = false;
         // Debug.Log("Length of Clip = " + Mathf.Ceil(camAni.clip.length));
         StartCoroutine(CountDown((int)Mathf.Ceil(camAni.clip.length)));
+        Player.GetComponent<Enemy_Battle_Scripts>().enabled = true;
     }
 
     // Update is called once per frame
