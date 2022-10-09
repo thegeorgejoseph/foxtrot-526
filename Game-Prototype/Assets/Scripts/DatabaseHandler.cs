@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using FullSerializer;
 using Proyecto26;
-
+using Debug=UnityEngine.Debug;
 
 public static class DatabaseHandler{
 
@@ -24,6 +24,15 @@ public static class DatabaseHandler{
         RestClient.Put<T>($"{databaseURL}{section}/{sessionID}.json", metrics).Then(response => { 
             callback();
             // Debug.Log("The user was successfully uploaded to the database");; 
+            });
+    }
+
+
+    public static void PostHighScore<T>(T highscores, string level, string username, PostUserCallback callback, string section = "highscores")
+    {
+        RestClient.Put<T>($"{databaseURL}{section}/{level}/{username}.json", highscores).Then(response => { 
+            callback();
+            Debug.Log("The user was successfully uploaded to the database");
             });
     }
 
