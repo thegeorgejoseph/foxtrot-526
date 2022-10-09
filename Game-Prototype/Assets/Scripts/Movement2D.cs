@@ -8,7 +8,7 @@ public class Movement2D : MonoBehaviour
     public Rigidbody2D rb2d;
     Vector2 movementVec;
     public GameObject Player;
-
+    public float portalUsageCount = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +54,14 @@ public class Movement2D : MonoBehaviour
         }
     }
 
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Portal")
+        {
+            portalUsageCount += 0.5f;
+        }
+    }
     /*     Block below has been replaced by slider script
     private void OnCollisionEnter2D(Collision2D collision)
     {

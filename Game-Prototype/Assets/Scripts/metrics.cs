@@ -13,7 +13,12 @@ public class Metrics
     public string enemies_encountered;
     public string enemies_killed;
     public string health;
-    public Metrics(string clientID, string timestamp, string level, string finished, string enemies_encountered, string enemies_killed, string health)
+    public string levelCompletionTime;
+    public string portalUsageCount;
+    public string levelScore;
+
+
+    public Metrics(string clientID, string timestamp, string level, string finished, string enemies_encountered, string enemies_killed, string health, string levelCompletionTime, string portalUsageCount, string levelScore)
     {
         this.version = "2.0";
         this.clientID = clientID;
@@ -23,5 +28,8 @@ public class Metrics
         this.enemies_encountered = enemies_encountered;
         this.enemies_killed = enemies_killed;
         this.health = health;
+        this.levelCompletionTime = levelCompletionTime;
+        this.portalUsageCount = portalUsageCount;
+        this.levelScore = levelScore;
     }
 }

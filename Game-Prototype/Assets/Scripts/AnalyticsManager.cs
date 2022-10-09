@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine.Networking;
 using UnityEngine.Analytics;
 using System;
 using Random=UnityEngine.Random;
+using Debug=UnityEngine.Debug;
+using System.Globalization;
 
 public class AnalyticsManager : MonoBehaviour
 {
@@ -19,6 +22,9 @@ public class AnalyticsManager : MonoBehaviour
     private static Dictionary<string, List<string>> FORM_FIELDS;
 
     private static bool set_sessionID = false;
+
+    // To time the gameplay for each level
+    public Stopwatch timer;
 
     [RuntimeInitializeOnLoadMethod]
     static void Initialize(){
@@ -73,8 +79,10 @@ public class AnalyticsManager : MonoBehaviour
 
     void Awake()
     {
-        startTime =  DateTime.Now.ToString(); // 
-
+        startTime =  DateTime.Now.ToString("MM/dd/yyyy h:mm:ss tt", CultureInfo.InvariantCulture); 
+        Debug.Log(startTime);
+        timer = new Stopwatch();
+        timer.Start();
         clientID = PlayerPrefs.GetString("clientID", "null");
         if (clientID == "null") {
             clientID = Random.Range(0, 100000000).ToString();

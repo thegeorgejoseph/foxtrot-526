@@ -13,7 +13,7 @@ public class Teleportation : MonoBehaviour
     private AnalyticsManager analyticsManagerScript; // Analytic manager object for metric event handler
 
     public bool event_called; // bool to prevent calling analytics handler multiple times inside update()
-
+    
     private void Awake(){
         analyticsManagerScript = analyticsManager.GetComponent<AnalyticsManager>();
     
@@ -24,7 +24,7 @@ public class Teleportation : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         event_called = false;
-
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,15 +37,6 @@ public class Teleportation : MonoBehaviour
                 is_teleport = false;
                 is_trigger_allowed = false;
                 player.transform.position = new Vector2(portal.transform.position.x, portal.transform.position.y); 
-                 if(!event_called){
-                    
-                    // analyticsManagerScript.HandleEvent("portal_use", new List<object>
-                    // {
-                    //     "yes"
-                    // }); // send false to did_finish metric
-                    event_called = true;
-                }  
-
             }
             else
             {

@@ -37,8 +37,13 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     public int kills;
     public int enemies_encountered;
 
-     private void Awake(){
+    public GameObject playerMovement;
+    private Movement2D playerMovementScript;
+
+    private void Awake(){
         analyticsManagerScript = analyticsManager.GetComponent<AnalyticsManager>();
+        playerMovementScript = playerMovement.GetComponent<Movement2D>();
+        // teleportationScript = teleportation.GetComponent<Teleportation>();
    
     }
     // Start is called before the first frame update
@@ -69,7 +74,6 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                 SpaceText.SetActive(false);
                 // Set battle status to not started
                 battle_started = false;
-
                 // Check if the player has won 
                 if (!sliderSC.checkBattleResult())
                 {
@@ -107,12 +111,21 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                                         
                             //         });
 
+                            analyticsManagerScript.timer.Stop();
+                            // Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);
+
+
+
+
                             var metrics = new Metrics(analyticsManagerScript.clientID,
                             DateTimeOffset.Now.ToUnixTimeSeconds().ToString(), 
                                             level, did_finish.ToString(), 
                                             enemies_encountered.ToString(), 
                                             kills.ToString(),
-                                            HealthManager.health.ToString());
+                                            HealthManager.health.ToString(),
+                                            (analyticsManagerScript.timer.ElapsedTicks / 10000000).ToString(),
+                                            playerMovementScript.portalUsageCount.ToString(),
+                                            "0");
 
                             var testMetric = new testMetricStore(analyticsManagerScript.clientID, 
                             DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
@@ -194,15 +207,15 @@ public class Enemy_Battle_Scripts : MonoBehaviour
             // Disable player movement
             GetComponent<Movement2D>().enabled = false;
 
-
-                // Activate slider UI (battle scene)
-                battleUI.SetActive(true);
-                if (count == 0)
-                {
-                    SpaceText.SetActive(true);
-                }
-                // Reset the slider for next battle
-                sliderSC.Reset();
+            // Activate slider UI (battle scene)
+            battleUI.SetActive(true);
+            if (count == 0)
+            {
+                SpaceText.SetActive(true);
+            }
+            // Reset the slider for next battle
+            sliderSC.Reset();
+             
         }
     }
 

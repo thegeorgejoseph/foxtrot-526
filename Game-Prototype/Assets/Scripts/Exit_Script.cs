@@ -13,11 +13,14 @@ public class Exit_Script : MonoBehaviour
 
     public GameObject analyticsManager;
     private AnalyticsManager analyticsManagerScript;
+    
+    public GameObject playerMovement;
+    private Movement2D playerMovementScript;
+
     public bool did_finish;
     public Enemy_Battle_Scripts battleInfoScript;
     public GameObject battleInfo;
     public GameObject scoreBoard;
-    public TMP_Text bul_remaining;
     public TMP_Text hearts_remaining;
     public TMP_Text enemies_killed;
     public TMP_Text level_passed;
@@ -31,6 +34,7 @@ public class Exit_Script : MonoBehaviour
     private void Awake(){
         analyticsManagerScript = analyticsManager.GetComponent<AnalyticsManager>();
         battleInfoScript = battleInfo.GetComponent<Enemy_Battle_Scripts>();
+        playerMovementScript = playerMovement.GetComponent<Movement2D>();
     //analyticsManagerScript = analyticsManager.GetComponent<AnalyticsManager>();
     }
     
@@ -51,31 +55,7 @@ public class Exit_Script : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
-            string level = SceneManager.GetActiveScene().name;
-            did_finish = true;
-
             
-            var metrics = new Metrics(analyticsManagerScript.clientID, 
-                  DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
-                                            level, did_finish.ToString(), 
-                                            battleInfoScript.enemies_encountered.ToString(), 
-                                            battleInfoScript.kills.ToString(),
-                                            HealthManager.health.ToString());
-
-            var testMetric = new testMetricStore(analyticsManagerScript.clientID, 
-                DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
-                                        level,"1", "2", "3");
-
-            DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.startTime, () =>
-                {
-                    Debug.Log("done posting to firebase metric");
-                });
-            DatabaseHandler.PostMetrics<testMetricStore>(testMetric, analyticsManagerScript.startTime, () =>
-            {
-                Debug.Log("done posting to firebase test metric");
-            }, "testMetric");
-            // get method test
-
             DatabaseHandler.GetMetrics<Metrics>(users =>
         {
             foreach (var user in users)
@@ -101,10 +81,50 @@ public class Exit_Script : MonoBehaviour
                 hearts_remaining.text = heart_count.ToString() + " * 100 = "+ heart_count*100;
                 enemies_killed.text = enemies_count.ToString() + " * 100 = " + enemies_count * 100;
                 level_passed.text = "1 * 100 = " +100;
+                total_score_val = heart_count * 100 + enemies_count * 100 + 100;
                 level_score.text = total_score_val.ToString();
                 total_score.text = total_score_val.ToString();
                 level1_score = total_score_val;
                 Time.timeScale = 0;
+                
+                string level = SceneManager.GetActiveScene().name;
+                did_finish = true;
+                analyticsManagerScript.timer.Stop();
+                // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
+                Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);
+
+
+                var metrics = new Metrics(analyticsManagerScript.clientID, 
+                    DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
+                                                level, did_finish.ToString(), 
+                                                battleInfoScript.enemies_encountered.ToString(), 
+                                                battleInfoScript.kills.ToString(),
+                                                HealthManager.health.ToString(),
+                                                (analyticsManagerScript.timer.ElapsedTicks / 10000000).ToString(),
+                                                playerMovementScript.portalUsageCount.ToString(),
+                                                level1_score.ToString());
+
+                // teleportationScript.portalUsageCount.ToString()
+
+                var testMetric = new testMetricStore(analyticsManagerScript.clientID, 
+                    DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
+                                            level,"1", "2", "3");
+
+                DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.startTime, () =>
+                    {
+                        Debug.Log("done posting to firebase metric");
+                    });
+                DatabaseHandler.PostMetrics<testMetricStore>(testMetric, analyticsManagerScript.startTime, () =>
+                {
+                    Debug.Log("done posting to firebase test metric");
+                }, "testMetric");
+                // get method test
+
+
+
+
+
+
                 //Loader.Load(Loader.Scene.Level_2);
 
                 
@@ -135,12 +155,45 @@ public class Exit_Script : MonoBehaviour
                 hearts_remaining.text = heart_count.ToString() + " * 100 = " + heart_count * 100;
                 enemies_killed.text = enemies_count.ToString() + " * 100 = " + enemies_count * 100;
                 level_passed.text = "1 * 100 = " + 100;
+                total_score_val = heart_count * 100 + enemies_count * 100 + 100;
                 level_score.text = total_score_val.ToString();
                 total_score.text = (total_score_val+level1_score).ToString();
                 level1_score = total_score_val;
                 Time.timeScale = 0;
                 
                 
+                string level = SceneManager.GetActiveScene().name;
+                did_finish = true;
+                analyticsManagerScript.timer.Stop();
+                // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
+                Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);
+
+
+                var metrics = new Metrics(analyticsManagerScript.clientID, 
+                    DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
+                                                level, did_finish.ToString(), 
+                                                battleInfoScript.enemies_encountered.ToString(), 
+                                                battleInfoScript.kills.ToString(),
+                                                HealthManager.health.ToString(),
+                                                (analyticsManagerScript.timer.ElapsedTicks / 10000000).ToString(),
+                                                playerMovementScript.portalUsageCount.ToString(),
+                                                level1_score.ToString());
+
+                // teleportationScript.portalUsageCount.ToString()
+
+                var testMetric = new testMetricStore(analyticsManagerScript.clientID, 
+                    DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
+                                            level,"1", "2", "3");
+
+                DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.startTime, () =>
+                    {
+                        Debug.Log("done posting to firebase metric");
+                    });
+                DatabaseHandler.PostMetrics<testMetricStore>(testMetric, analyticsManagerScript.startTime, () =>
+                {
+                    Debug.Log("done posting to firebase test metric");
+                }, "testMetric");
+                // get method test
 
                 
 
@@ -174,7 +227,4 @@ public class Exit_Script : MonoBehaviour
             
         }
     }
-
-    
-
 }
