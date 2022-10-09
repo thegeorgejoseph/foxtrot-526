@@ -93,6 +93,9 @@ public class Exit_Script : MonoBehaviour
                 // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
                 Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);
 
+                var playerHighscore = new HighScores(total_score_val);
+                Debug.Log("Data "+ playerHighscore.levelScore);
+
 
                 var metrics = new Metrics(analyticsManagerScript.clientID, 
                     DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
@@ -114,6 +117,12 @@ public class Exit_Script : MonoBehaviour
                     {
                         Debug.Log("done posting to firebase metric");
                     });
+                
+                DatabaseHandler.PostHighScore<HighScores>(playerHighscore,"Level_1", "AJ96", () =>
+                    {
+                        Debug.Log("done posting AJ96 data");
+                    });
+
                 DatabaseHandler.PostMetrics<testMetricStore>(testMetric, analyticsManagerScript.startTime, () =>
                 {
                     Debug.Log("done posting to firebase test metric");
