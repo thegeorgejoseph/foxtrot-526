@@ -65,7 +65,7 @@ def enemies_encountered(df, df_name):
     plt.xticks(ind + width / 2, level_labels)
     print('test')
     plt.legend(loc='best')
-    plt.savefig(df_name + '_plot.png')
+    plt.savefig('google_form_plots/' + df_name + '_plot.png')
     plt.close()
 
 enemies_encountered(master_df, 'enemies')
@@ -105,7 +105,7 @@ for x,y in zip(game_level_labels,health_level_labels):
 
 
 plt.legend(loc='best')
-plt.savefig('avg_health_plot.png')
+plt.savefig('google_form_plots/avg_health_plot.png')
 plt.close()
 
 ### Plot 2: Level 1 Distribution of Player Health
@@ -115,7 +115,7 @@ sns.countplot(x = 'health_at_end', data = master_df, palette = ["#6596C7"])
 plt.title("Player Health Disribution")
 plt.xlabel("End of Level Health")
 plt.ylabel("Number of Players")
-plt.savefig('dist_health_plot.png')
+plt.savefig('google_form_plots/dist_health_plot.png')
 plt.close()
 
 """
@@ -129,7 +129,7 @@ sns.countplot(x ='finished_level', data = master_df, palette= ["#7fcdbb", "#edf8
 plt.title("No of players to finish the level")
 plt.xlabel("Did player finish?")
 plt.ylabel("No of players")
-plt.savefig('did_finish_bar_plot.png')
+plt.savefig('google_form_plots/did_finish_bar_plot.png')
 plt.close()
 
 ### Plot 2: Percentage of Users that Completed Level
@@ -145,7 +145,7 @@ colors = ['#D98D82', '#82D9A8']
 fig = plt.figure(figsize =(10, 7))
 plt.pie(did_finish_df_counts['count_val'], labels=did_finish_df_counts['finished_level'], autopct='%1.1f%%', colors=colors)
 plt.title("Overall Percentage of Level Completions")
-plt.savefig('did_finish_pie_plot.png')
+plt.savefig('google_form_plots/did_finish_pie_plot.png')
 plt.close()
 
 """
@@ -160,7 +160,7 @@ sns.countplot(x ='portal_used', data = portal_use_merge, palette= ["#7fcdbb", "#
 plt.title("No of players to use the portal")
 plt.xlabel("Did player use the portal?")
 plt.ylabel("No of players")
-plt.savefig('portal_use_plot.png')
+plt.savefig('google_form_plots/portal_use_plot.png')
 plt.close()
 
 # Plots using CSV data
