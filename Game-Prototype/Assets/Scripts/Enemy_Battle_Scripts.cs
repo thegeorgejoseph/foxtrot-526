@@ -14,14 +14,11 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     public GameObject SpaceText; // UI to display SpaceBar Hint while attack
     public GameObject player; // Player gameobject to display damage effect
 
-    public Bullet_System bulletSys; // Bullet_System Obejct to gain info about remaining bullet
     public ScreenShaking screenShake; // ScreenShaking object to display screen shaking effect
     public Enemy_Respawn respawn; // Enemy_Respawn object to respawn the enemy that player defeats
 
     public GameObject analyticsManager; // GameObj to initialize analytic manager
     private AnalyticsManager analyticsManagerScript; // Analytic manager object for metric event handler
-
-    private bool noBullets;
 
     public bool did_finish; // to record analytics - did the player reach goal state
     public bool event_called; // bool to prevent calling analytics handler multiple times inside update()
@@ -52,7 +49,6 @@ public class Enemy_Battle_Scripts : MonoBehaviour
         did_finish = false;
         event_called = false;
         battle_started = false;
-        noBullets = false;
         kills = 0;
         enemies_encountered = 0;
     }
@@ -65,7 +61,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
         {
             count += 1;
             // Check if the player has finished the battle
-            if (sliderSC.isFinished || noBullets)
+            if (sliderSC.isFinished)
             {
                 // Battle finished, set battle UI to inactive
                 battleUI.SetActive(false);
@@ -73,14 +69,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                 // Set battle status to not started
                 battle_started = false;
 
-                if (!noBullets)
-                {
-                    // Update # of remaining bullets
-                    bulletSys.setCurBulletNum(1);
-                }
-                
                 // Check if the player has won 
-                if (!sliderSC.checkBattleResult() || noBullets)
+                if (!sliderSC.checkBattleResult())
                 {
                     // Player Lost or no bullets
                     HealthManager.health--;
@@ -175,14 +165,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
             // Disable player movement
             GetComponent<Movement2D>().enabled = false;
 
-            // Check remaining bullets
-            if (bulletSys.getBulletNum() == 0)
-            {
-                // In this case player has no remaining bullets, lost one heart
-                noBullets = true;
-            }
-            else
-            {
+
                 // Activate slider UI (battle scene)
                 battleUI.SetActive(true);
                 if (count == 0)
@@ -191,7 +174,6 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                 }
                 // Reset the slider for next battle
                 sliderSC.Reset();
-            } 
         }
     }
 

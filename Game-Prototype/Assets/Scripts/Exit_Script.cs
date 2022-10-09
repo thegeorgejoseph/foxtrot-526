@@ -14,7 +14,6 @@ public class Exit_Script : MonoBehaviour
     private AnalyticsManager analyticsManagerScript;
     public bool did_finish;
     public Enemy_Battle_Scripts battleInfoScript;
-    public Bullet_System bulletSys; // Bullet_System Obejct to gain info about remaining bullet
     public GameObject battleInfo;
     public GameObject scoreBoard;
     public TMP_Text bul_remaining;
@@ -56,20 +55,16 @@ public class Exit_Script : MonoBehaviour
                 //Loader.Load(Loader.Scene.Level_1);
             }
             else if (SceneManager.GetActiveScene().name == Loader.Scene.Level_1.ToString() ){
-                Debug.Log("Bullets Remaining - "+bulletSys.getBulletNum());
                 Debug.Log("Health Remaining - "+HealthManager.health);
                 Debug.Log("Enemies killed - " + battleInfoScript.kills);
                 scoreBoard.SetActive(true);
-                float bul_count = bulletSys.getBulletNum();
                 float heart_count = HealthManager.health;
                 float enemies_count = battleInfoScript.kills;
                 float total_score_val = 0;
 
-                bul_remaining.text = bul_count.ToString()+ " * 100 = "+ bul_count * 100;
                 hearts_remaining.text = heart_count.ToString() + " * 100 = "+ heart_count*100;
                 enemies_killed.text = enemies_count.ToString() + " * 100 = " + enemies_count * 100;
                 level_passed.text = "1 * 100 = " +100;
-                total_score_val = bul_count * 100 + heart_count * 100 + enemies_count * 100 + 100;
                 level_score.text = total_score_val.ToString();
                 total_score.text = total_score_val.ToString();
                 level1_score = total_score_val;
@@ -89,21 +84,17 @@ public class Exit_Script : MonoBehaviour
                         });
 
             } else if(SceneManager.GetActiveScene().name == Loader.Scene.Level_2.ToString()){
-                Debug.Log("Bullets Remaining - " + bulletSys.getBulletNum());
                 Debug.Log("Health Remaining - " + HealthManager.health);
                 Debug.Log("Enemies killed - " + battleInfoScript.kills);
 
                 scoreBoard.SetActive(true);
-                float bul_count = bulletSys.getBulletNum();
                 float heart_count = HealthManager.health;
                 float enemies_count = battleInfoScript.kills;
                 float total_score_val = 0;
 
-                bul_remaining.text = bul_count.ToString() + " * 100 = " + bul_count * 100;
                 hearts_remaining.text = heart_count.ToString() + " * 100 = " + heart_count * 100;
                 enemies_killed.text = enemies_count.ToString() + " * 100 = " + enemies_count * 100;
                 level_passed.text = "1 * 100 = " + 100;
-                total_score_val = bul_count * 100 + heart_count * 100 + enemies_count * 100 + 100;
                 level_score.text = total_score_val.ToString();
                 total_score.text = (total_score_val+level1_score).ToString();
                 level1_score = total_score_val;
