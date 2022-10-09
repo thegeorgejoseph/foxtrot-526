@@ -5,29 +5,43 @@ using UnityEngine.UI;
 
 public class SliderScript : MonoBehaviour
 {
-    public Slider slider;
-    public GameObject hitImg; // Image to display when we hit the hitzoom
-    public GameObject missImg; // Image to display when we miss the hit zoom
-    public float speed = 0.5f; // Speed of the handle
-    public Transform hitZoom; // Determine the position of the hit zoom
-    public bool isFinished; // Global bool to tell whether the event has finished
+    public GameObject wayPoints; // A set of waypoints to guide the enemy's movement
+    public GameObject hitText; // Image to display when we hit the hitzoom
+    public GameObject missText; // Image to display when we miss the hit zoomoom
+    public Image currentEnemy; // Current Enemy that the player encountered
+    public Image player; // Player Object to be displaied
 
+    private float enemySpeed = 0.7f; // Speed of the enemy
+    private float playerSpeed = 0.8f; // Speed of the player
 
-    private bool isForward; // Used for judging which side the handle goes
-    private float minHit; // Min value of hit zoom
-    private float maxHit; // Max value of hit zoom
-    private bool stopMoving; // Stop the handle movement
-    private RectTransform slider_Rect;
-    private RectTransform hitzone_Rect;
-    private bool playerWin;
-    
- 
+    public bool isFinished; // Bool to tell whether the event has finished
+
+    private bool stopMoving; // Stop the slider movement
+    private bool playerWin; // To store the result of the battle
+    private int enemyDirection; // Direction of enemy's movement
+    private int playerDirection; // Direction of player's movement
+    private Transform enemy_nextCoor; // Next waypoint of enemy's movement
+    private int curEnemyWaypoint; // Current target waypoint of enemy
+    private Transform player_nextCoor; // Next waypoint of player's movement
+    private int curPlayerWaypoint; // Current target waypoint of player
+    private float[] remainCoorEnemy; // Movement related: 0 for x, 1 for y
+    private float[] remainCoorPlayer;
+    private bool canAttack;
+
+    private Vector3 playerOriginPos; // The vector where the player should sit when reset
+    private Vector3 enemyOriginPos; // The vector where the enemy should sit when reset
+
+    public Vector3 PlayerPos;
+    public Vector3 EnemyPos;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        slider_Rect = (RectTransform)slider.transform;
-        hitzone_Rect = (RectTransform)hitZoom;
-        Reset();     
+        remainCoorEnemy = new float[2];
+        remainCoorPlayer = new float[2];
+        playerOriginPos = this.player.gameObject.transform.position;
+        enemyOriginPos = currentEnemy.gameObject.transform.position;
+        //Reset(currentEnemy.gameObject, this.player.gameObject);     
     }
 
     public bool checkBattleResult()
@@ -35,92 +49,131 @@ public class SliderScript : MonoBehaviour
         return playerWin;
     }
 
-    // Reset all vars for next event
-    public void Reset()
+    float getDistance(Transform a, Transform b)
     {
-        float hitzoneHalf = hitzone_Rect.rect.width / 2.0f;
+        return Vector3.Distance(a.position, b.position);
+    }
 
+    // Reset all vars for next event
+    public void Reset(GameObject enemy, GameObject player)
+    {
         playerWin = false;
-        slider.value = 0;
-        isForward = true;
         isFinished = false;
         stopMoving = false;
-        hitImg.SetActive(false);
-        missImg.SetActive(false);
-        float randomPosX = Random.Range(0, slider_Rect.rect.width*1.0f); // width of the slider (e.g, width = 100, range = (0, 100))
-        // Calculate min and max for hitzone
-        // Note that randomRosX is the center pos of hitzone
-        // Both minHit and maxHit need to be divided by slider_Rect.rect.width to normalize their value in between [0, 1]
-        if (randomPosX >= (slider_Rect.rect.width - hitzoneHalf))
-        {
-            // Special Case 1: maxHit is outside the slide area
-            minHit = (slider_Rect.rect.width - hitzone_Rect.rect.width) / slider_Rect.rect.width;
-            maxHit = slider_Rect.rect.width / slider_Rect.rect.width;
-            hitZoom.localPosition = new Vector2(slider_Rect.rect.width / 2 - hitzoneHalf, 0);
-        }
-        else if (randomPosX <= hitzoneHalf)
-        {
-            // Special Case 2: minHit is outside the slide area
-            minHit = 0;
-            maxHit = hitzone_Rect.rect.width / slider_Rect.rect.width;
-            hitZoom.localPosition = new Vector2(-slider_Rect.rect.width / 2 + hitzoneHalf, 0);
-        }
-        else
-        {
-            // Normal Case
-            minHit = (randomPosX - hitzoneHalf) / slider_Rect.rect.width;
-            maxHit = (randomPosX + hitzoneHalf) / slider_Rect.rect.width;
-            hitZoom.localPosition = new Vector2(randomPosX - slider_Rect.rect.width / 2, 0);
-        }
+        hitText.SetActive(false);
+        missText.SetActive(false);
+        canAttack = true;
 
+        enemyDirection = Random.Range(0, 2); // 0 for clockwise, 1 for counter-clockwise
+        playerDirection = (enemyDirection == 0) ? 1 : 0; // Opposite of enemy's direction
+        curEnemyWaypoint = 0;   // Current Waypoint: 0, 1, 2, 3
+        curPlayerWaypoint = 2;
+        enemy_nextCoor = wayPoints.transform.GetChild(curEnemyWaypoint);
+        player_nextCoor = wayPoints.transform.GetChild(curPlayerWaypoint);
+
+        // Debug.Log("Player dire: " + playerDirection + "     Enemy dire: " + enemyDirection);
+        
+        if (!enemy)
+        {
+            Debug.Log("Warning: No enemy object found!");
+        }
+        currentEnemy.sprite = enemy.GetComponent<SpriteRenderer>().sprite;
+        this.player.sprite = player.GetComponent<SpriteRenderer>().sprite;
+
+        // Reset Position
+        this.player.gameObject.transform.position = playerOriginPos;
+        currentEnemy.gameObject.transform.position = enemyOriginPos;
+
+        remainCoorEnemy[0] = enemy_nextCoor.position.x - currentEnemy.gameObject.transform.position.x;
+        remainCoorEnemy[1] = enemy_nextCoor.position.y - currentEnemy.gameObject.transform.position.y;
+        remainCoorPlayer[0] = player_nextCoor.position.x - this.player.gameObject.transform.position.x;
+        remainCoorPlayer[1] = player_nextCoor.position.y - this.player.gameObject.transform.position.y;
+    }
+
+    Transform changeMovementDirection(int mode, ref int curWaypoint)
+    {
+        /* *** !!! The waypoint set is sorted in CCW order !!! *** */
+        if (mode == 0) // CW
+        {
+            if (curWaypoint > 0)
+            {
+                curWaypoint--;
+            }
+            else // One cycle is completed, reset
+            {
+                curWaypoint = wayPoints.transform.childCount - 1;
+            }
+        }
+        else // CCW
+        {
+            if (curWaypoint < wayPoints.transform.childCount - 1)
+            {
+                curWaypoint++;
+            }
+            else // One cycle is completed, reset
+            {
+                curWaypoint = 0;
+            }
+        }
+        return wayPoints.transform.GetChild(curWaypoint);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        // Slider Moving Part
-        if (isForward && !stopMoving)
+        
+        if (!stopMoving)
         {
-            if (slider.value < slider.maxValue)
+            // Enemy Movement
+            //Debug.Log("Enemy Distance Delta: " + getDistance(currentEnemy.gameObject.transform, enemy_nextCoor));
+            Debug.Log("Min delta Enemy: " + Time.deltaTime * enemySpeed * (remainCoorEnemy[0] == 0 ? Mathf.Abs(remainCoorEnemy[1]) : Mathf.Abs(remainCoorEnemy[0])));
+            if (getDistance(currentEnemy.gameObject.transform, enemy_nextCoor) <= (Time.deltaTime * enemySpeed * (remainCoorEnemy[0] == 0 ? Mathf.Abs(remainCoorEnemy[1]) : Mathf.Abs(remainCoorEnemy[0]))))
             {
-                slider.value += speed;
+                currentEnemy.gameObject.transform.position = enemy_nextCoor.position; // Line up with current point
+                enemy_nextCoor = changeMovementDirection(enemyDirection, ref curEnemyWaypoint); // Set next waypoint
+                remainCoorEnemy[0] = enemy_nextCoor.position.x - currentEnemy.gameObject.transform.position.x;
+                remainCoorEnemy[1] = enemy_nextCoor.position.y - currentEnemy.gameObject.transform.position.y;
             }
-            else
+            currentEnemy.gameObject.transform.position = currentEnemy.gameObject.transform.position + new Vector3((remainCoorEnemy[0] == 0) ? 0 : (remainCoorEnemy[0] * Time.deltaTime * enemySpeed), (remainCoorEnemy[1] == 0) ? 0 : (remainCoorEnemy[1] * Time.deltaTime * enemySpeed), 0);
+
+            // Player Movement
+            //Debug.Log("Player Distance Delta: " + getDistance(player.gameObject.transform, player_nextCoor));
+            Debug.Log("Min delta Player: " + Time.deltaTime * playerSpeed * (remainCoorPlayer[0] == 0 ? Mathf.Abs(remainCoorPlayer[1]) : Mathf.Abs(remainCoorPlayer[0])));
+            if (getDistance(player.gameObject.transform, player_nextCoor) <= (Time.deltaTime * playerSpeed * (remainCoorPlayer[0] == 0 ? Mathf.Abs(remainCoorPlayer[1]) : Mathf.Abs(remainCoorPlayer[0]))))
             {
-                isForward = !isForward;
+                player.gameObject.transform.position = player_nextCoor.position; // Line up with current point
+                player_nextCoor = changeMovementDirection(playerDirection, ref curPlayerWaypoint); // Set next waypoint
+                remainCoorPlayer[0] = player_nextCoor.position.x - player.gameObject.transform.position.x;
+                remainCoorPlayer[1] = player_nextCoor.position.y - player.gameObject.transform.position.y;
             }
+            player.gameObject.transform.position = player.gameObject.transform.position + new Vector3((remainCoorPlayer[0] == 0) ? 0 : (remainCoorPlayer[0] * Time.deltaTime * playerSpeed), (remainCoorPlayer[1] == 0) ? 0 : (remainCoorPlayer[1] * Time.deltaTime * playerSpeed), 0);
         }
-        else if(!stopMoving)
-        {
-            if (slider.value > slider.minValue)
-            {
-                slider.value -= speed;
-            }
-            else
-            {
-                isForward = !isForward;
-            }
-        }
+
+        PlayerPos = player.gameObject.transform.position;
+        EnemyPos = currentEnemy.gameObject.transform.position;
 
         // Hit Pending Part
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && canAttack)
         {
-            Debug.Log("Min: " + minHit + "/n Max: " + maxHit);
             stopMoving = true;
+            canAttack = false;
 
-            if (slider.normalizedValue >= minHit && slider.normalizedValue <= maxHit)
+            PlayerPos = player.gameObject.transform.position;
+
+            Debug.Log("Dist = " + getDistance(player.gameObject.transform, currentEnemy.gameObject.transform));
+            if (getDistance(player.gameObject.transform, currentEnemy.gameObject.transform) < 50f)
             {
                 Debug.Log("Hit!");
-                hitImg.SetActive(true);
+                hitText.SetActive(true);
                 playerWin = true;
             }
             else
             {
                 Debug.Log("Missed!");
-                missImg.SetActive(true);
+                missText.SetActive(true);
                 playerWin = false;
             }
-            Debug.Log("Hitzone Pos: " + hitZoom.localPosition);
+
             StartCoroutine(CountDown(3));
         }
 

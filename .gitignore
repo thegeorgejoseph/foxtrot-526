@@ -60,3 +60,9 @@ crashlytics-build.properties
 
 .DS_Store
 
+[merge]
+tool = unityyamlmerge
+
+[mergetool "unityyamlmerge"]
+trustExitCode = false
+cmd = 'D:\Unity\2021.3.8f1\Editor\Data\Tools\UnityYAMLMerge.exe' merge -p "$BASE" "$REMOTE" "$LOCAL" "$MERGED"

@@ -7,12 +7,13 @@ public class Movement2D : MonoBehaviour
     public float movementSpeed = 5.0f;
     public Rigidbody2D rb2d;
     Vector2 movementVec;
+    public GameObject Player;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -20,30 +21,38 @@ public class Movement2D : MonoBehaviour
     {
         movementVec.x = Input.GetAxisRaw("Horizontal");
         movementVec.y = Input.GetAxisRaw("Vertical");
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            rb2d.MovePosition(rb2d.position + new Vector2(0.0f, 1.25f));
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            rb2d.MovePosition(rb2d.position + new Vector2(0.0f, -1.25f));
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            rb2d.MovePosition(rb2d.position + new Vector2(-1.25f, 0.0f));
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            rb2d.MovePosition(rb2d.position + new Vector2(1.25f, 0.0f));
-        }
+        // if (Input.GetKeyDown(KeyCode.UpArrow))
+        // {
+        //     rb2d.MovePosition(rb2d.position + new Vector2(0.0f, 1.25f));
+        // }
+        // else if (Input.GetKeyDown(KeyCode.DownArrow))
+        // {
+        //     rb2d.MovePosition(rb2d.position + new Vector2(0.0f, -1.25f));
+        // }
+        // else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        // {
+        //     rb2d.MovePosition(rb2d.position + new Vector2(-1.25f, 0.0f));
+        // }
+        // else if (Input.GetKeyDown(KeyCode.RightArrow))
+        // {
+        //     rb2d.MovePosition(rb2d.position + new Vector2(1.25f, 0.0f));
+        // }
     }
 
 
     // FixedUpdate is called 50 times per second (50 fps fixed)
-    // void FixedUpdate() 
-    // {
-    //     // rb2d.MovePosition(rb2d.position + movementVec * movementSpeed * Time.fixedDeltaTime); 
-    // }
+    void FixedUpdate()
+    {
+        rb2d.MovePosition(rb2d.position + movementVec * movementSpeed * Time.fixedDeltaTime);
+        if (movementVec.x < 0)
+        {
+            Player.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if (movementVec.x > 0)
+        {
+            Player.GetComponent<SpriteRenderer>().flipX = false;
+        }
+    }
 
     /*     Block below has been replaced by slider script
     private void OnCollisionEnter2D(Collision2D collision)
