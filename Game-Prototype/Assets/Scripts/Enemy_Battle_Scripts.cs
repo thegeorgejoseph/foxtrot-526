@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class Enemy_Battle_Scripts : MonoBehaviour
 {
@@ -96,16 +97,44 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                             
                             string level = SceneManager.GetActiveScene().name;
 
-                            analyticsManagerScript.HandleEvent("master_metrics", new List<object>
-                                    {
-                                        level,
-                                        did_finish,
-                                        enemies_encountered,
-                                        kills,
-                                        HealthManager.health
+                            // analyticsManagerScript.HandleEvent("master_metrics", new List<object>
+                            //         {
+                            //             level,
+                            //             did_finish,
+                            //             enemies_encountered,
+                            //             kills,
+                            //             HealthManager.health
                                         
-                                    });
-                            
+                            //         });
+
+                            var metrics = new Metrics(analyticsManagerScript.clientID,
+                            DateTimeOffset.Now.ToUnixTimeSeconds().ToString(), 
+                                            level, did_finish.ToString(), 
+                                            enemies_encountered.ToString(), 
+                                            kills.ToString(),
+                                            HealthManager.health.ToString());
+
+                            var testMetric = new testMetricStore(analyticsManagerScript.clientID, 
+                            DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
+                                            level,"1", "2", "3");
+                            DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.startTime, () =>
+                            {
+                                Debug.Log("done posting to firebase metric");
+                            });
+
+                            DatabaseHandler.PostMetrics<testMetricStore>(testMetric, analyticsManagerScript.startTime, () =>
+                            {
+                                Debug.Log("done posting to firebase test metric");
+                            }, "testMetric");
+
+                            DatabaseHandler.GetMetrics<testMetricStore>(users =>
+                            {
+                                foreach (var user in users)
+                                {
+                                    Debug.Log($"{user.Value.clientID} {user.Value.level} {user.Value.timestamp}");
+                                }
+                            }, "testMetric");
+                                                        
                             // analyticsManagerScript.HandleEvent("did_finish", new List<object>
                             // {
                             //     did_finish,

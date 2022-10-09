@@ -4,11 +4,14 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Analytics;
 using System;
+using Random=UnityEngine.Random;
 
 public class AnalyticsManager : MonoBehaviour
 {
 
-    private static string sessionID;
+    public string clientID;
+
+    public string startTime;
     [SerializeField]
     private static Dictionary<string, string> BASE_URLS;
 
@@ -70,8 +73,17 @@ public class AnalyticsManager : MonoBehaviour
 
     void Awake()
     {
-        sessionID = DateTime.Now.Ticks.ToString();
-        sessionID = "Session-"+sessionID;
+        startTime =  DateTime.Now.ToString(); // 
+
+        clientID = PlayerPrefs.GetString("clientID", "null");
+        if (clientID == "null") {
+            clientID = Random.Range(0, 100000000).ToString();
+            PlayerPrefs.SetString("clientID", clientID);
+        }
+        else{
+            clientID = PlayerPrefs.GetString("clientID");
+        }
+        
     }
     // Start is called before the first frame update
     void Start()
@@ -85,37 +97,40 @@ public class AnalyticsManager : MonoBehaviour
         
     }
 
-    IEnumerator Post(string eventName, List<object> eventParams)
-    {
-        WWWForm form = new();
-        List<string> fieldNames = FORM_FIELDS[eventName];
-        form.AddField(fieldNames[0], sessionID.ToString());
+
+
+    // IEnumerator Post(string eventName, List<object> eventParams)
+    // {
+      
+    //     WWWForm form = new();
+    //     List<string> fieldNames = FORM_FIELDS[eventName];
+    //     form.AddField(fieldNames[0], sessionID.ToString());
         
-        for (int i = 1; i < fieldNames.Count; i++)
-        {
-            form.AddField(fieldNames[i], eventParams[i - 1].ToString());
-        }
+    //     for (int i = 1; i < fieldNames.Count; i++)
+    //     {
+    //         form.AddField(fieldNames[i], eventParams[i - 1].ToString());
+    //     }
 
-        using (UnityWebRequest www = UnityWebRequest.Post(BASE_URLS[eventName], form))
-        {
-            yield return www.SendWebRequest();
+    //     using (UnityWebRequest www = UnityWebRequest.Post(BASE_URLS[eventName], form))
+    //     {
+    //         yield return www.SendWebRequest();
 
-            if (www.result == UnityWebRequest.Result.ConnectionError)
-            {
-                Debug.Log(www.error);
-            }
-            else
-            {
-                Debug.LogFormat("Form upload complete! {0}", eventName);
-            }
-        }
-    }
+    //         if (www.result == UnityWebRequest.Result.ConnectionError)
+    //         {
+    //             Debug.Log(www.error);
+    //         }
+    //         else
+    //         {
+    //             Debug.LogFormat("Form upload complete! {0}", eventName);
+    //         }
+    //     }
+    // }
 
-    public void HandleEvent(string eventName, List<object> eventParams)
-    {
-        Debug.Log("EVENT HANDLED");
-        StartCoroutine(Post(eventName, eventParams));
-    }
+    // public void HandleEvent(string eventName, List<object> eventParams)
+    // {
+    //     Debug.Log("EVENT HANDLED");
+    //     StartCoroutine(Post(eventName, eventParams));
+    // }
     
     
 }

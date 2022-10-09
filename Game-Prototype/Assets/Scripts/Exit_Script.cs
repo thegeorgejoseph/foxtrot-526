@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
 
 public class Exit_Script : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class Exit_Script : MonoBehaviour
     public TMP_Text level_score;
     public TMP_Text total_score;
     public static float level1_score;
+
+    
 
     // Start is called before the first frame update
     private void Awake(){
@@ -48,6 +51,39 @@ public class Exit_Script : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
+            string level = SceneManager.GetActiveScene().name;
+            did_finish = true;
+
+            
+            var metrics = new Metrics(analyticsManagerScript.clientID, 
+                  DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
+                                            level, did_finish.ToString(), 
+                                            battleInfoScript.enemies_encountered.ToString(), 
+                                            battleInfoScript.kills.ToString(),
+                                            HealthManager.health.ToString());
+
+            var testMetric = new testMetricStore(analyticsManagerScript.clientID, 
+                DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
+                                        level,"1", "2", "3");
+
+            DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.startTime, () =>
+                {
+                    Debug.Log("done posting to firebase metric");
+                });
+            DatabaseHandler.PostMetrics<testMetricStore>(testMetric, analyticsManagerScript.startTime, () =>
+            {
+                Debug.Log("done posting to firebase test metric");
+            }, "testMetric");
+            // get method test
+
+            DatabaseHandler.GetMetrics<Metrics>(users =>
+        {
+            foreach (var user in users)
+            {
+                Debug.Log($"{user.Value.clientID} {user.Value.level} {user.Value.timestamp}");
+            }
+        });
+
             if(SceneManager.GetActiveScene().name == Loader.Scene.Level_0.ToString())
             {
                 scoreBoard.SetActive(true);
@@ -71,17 +107,21 @@ public class Exit_Script : MonoBehaviour
                 Time.timeScale = 0;
                 //Loader.Load(Loader.Scene.Level_2);
 
-                string level = SceneManager.GetActiveScene().name;
-
-                analyticsManagerScript.HandleEvent("master_metrics", new List<object>
-                        {
-                            level,
-                            did_finish,
-                            battleInfoScript.enemies_encountered,
-                            battleInfoScript.kills,
-                            HealthManager.health
+                
+                // analyticsManagerScript.HandleEvent("master_metrics", new List<object>
+                //         {
+                //             level,
+                //             did_finish,
+                //             battleInfoScript.enemies_encountered,
+                //             battleInfoScript.kills,
+                //             HealthManager.health
                             
-                        });
+                //         });
+
+                  
+
+                
+
 
             } else if(SceneManager.GetActiveScene().name == Loader.Scene.Level_2.ToString()){
                 Debug.Log("Health Remaining - " + HealthManager.health);
@@ -99,20 +139,20 @@ public class Exit_Script : MonoBehaviour
                 total_score.text = (total_score_val+level1_score).ToString();
                 level1_score = total_score_val;
                 Time.timeScale = 0;
-                did_finish = true;
+                
+                
 
-                string level = SceneManager.GetActiveScene().name;
-                did_finish = true;
+                
 
-                analyticsManagerScript.HandleEvent("master_metrics", new List<object>
-                        {
-                            level,
-                            did_finish,
-                            battleInfoScript.enemies_encountered,
-                            battleInfoScript.kills,
-                            HealthManager.health
+                // analyticsManagerScript.HandleEvent("master_metrics", new List<object>
+                //         {
+                //             level,
+                //             did_finish,
+                //             battleInfoScript.enemies_encountered,
+                //             battleInfoScript.kills,
+                //             HealthManager.health
                             
-                        });
+                //         });
 
                 // string name = "not";
                 // foreach (UnityEditor.EditorBuildSettingsScene S in UnityEditor.EditorBuildSettings.scenes)
@@ -125,22 +165,6 @@ public class Exit_Script : MonoBehaviour
                 // }
 
                 //Exit_UI.SetActive(true); // Enable the UI when detects the collision between player and exit
-                // analyticsManagerScript.HandleEvent("did_finish", new List<object>
-                //         {
-                //             did_finish,
-                //             name
-                //         });
-
-                // analyticsManagerScript.HandleEvent("enemies", new List<object>
-                // {
-                //     battleInfoScript.enemies_encountered,
-                //     battleInfoScript.kills
-                   
-                // });
-                // analyticsManagerScript.HandleEvent("health_metric", new List<object>
-                // {
-                //     HealthManager.health
-                // });
                 GameFinishText.text = "Level Passed!";
 
                 Debug.Log("enemies_encountered: "+ battleInfoScript.enemies_encountered);
