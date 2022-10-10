@@ -48,4 +48,10 @@ public class GameOver_Panel : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene("Level_0");
     }
+
+    public void loadLevelNameEnterScene()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("InputNameScene");
+    }
 }
