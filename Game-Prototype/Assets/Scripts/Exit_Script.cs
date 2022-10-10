@@ -21,13 +21,15 @@ public class Exit_Script : MonoBehaviour
     public Enemy_Battle_Scripts battleInfoScript;
     public GameObject battleInfo;
     public GameObject scoreBoard;
+    public GameObject highScoreTable;
     public TMP_Text hearts_remaining;
     public TMP_Text enemies_killed;
     public TMP_Text level_passed;
     public TMP_Text level_score;
     public TMP_Text total_score;
+    public TMP_Text level_pass_msg;
     public static float level1_score;
-
+    public GameObject MainMenuBtn;
     
 
     // Start is called before the first frame update
@@ -157,6 +159,9 @@ public class Exit_Script : MonoBehaviour
                 Debug.Log("Enemies killed - " + battleInfoScript.kills);
 
                 scoreBoard.SetActive(true);
+                highScoreTable.SetActive(true);
+                level_pass_msg.gameObject.SetActive(true);
+                MainMenuBtn.SetActive(true);
                 float heart_count = HealthManager.health;
                 float enemies_count = battleInfoScript.kills;
                 float total_score_val = 0;
