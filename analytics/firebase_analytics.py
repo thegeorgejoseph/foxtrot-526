@@ -41,6 +41,8 @@ df = df.replace('Level_', '', regex=True)
 df['enemies_encountered'] = pd.to_numeric(df['enemies_encountered'])
 df['enemies_killed'] = pd.to_numeric(df['enemies_killed'])
 df['health'] = pd.to_numeric(df['health'])
+df['levelCompletionTime'] = pd.to_numeric(df['levelCompletionTime'])
+df['levelScore'] = pd.to_numeric(df['levelScore'])
 
 """
 Metric 1: Level Completions
@@ -60,7 +62,7 @@ plt.title('Successful Level Completions')
 print('FINISHED COUNT')
 print(finish_by_level['finished_count'])
 print(max(finish_by_level['finished_count']))
-plt.ylim(0, max(finish_by_level['finished_count']) + 2)
+plt.ylim(0, max(finish_by_level['finished_count']) + max(finish_by_level['finished_count'])*.10)
 for x,y in zip(finish_by_level['level'],finish_by_level['finished_count']):
 
     label = "{:.0f}".format(y)
@@ -91,7 +93,7 @@ for x,y in zip(finish_by_level['level'],finish_by_level['finished_count']):
                  ha='center') # horizontal alignment can be left, right or center
 
 plt.plot(finish_by_level['level'], finish_by_level['total_finished_count'], label = 'Total Completions', color='#6596C7')
-plt.ylim(0, max(finish_by_level['total_finished_count']) + 2)
+plt.ylim(0, max(finish_by_level['total_finished_count']) + max(finish_by_level['total_finished_count'])*.10)
 for x,y in zip(finish_by_level['level'], finish_by_level['total_finished_count']):
 
     label = "{:.0f}".format(y)
@@ -119,7 +121,7 @@ plt.xlabel('Level')
 plt.ylabel('Percentage')
 plt.title('Percentage of Successful Level Completions')
 # leave room for counts
-plt.ylim(0, max(finish_by_level['percentage']) + 10)
+plt.ylim(0, max(finish_by_level['percentage']) + max(finish_by_level['percentage'])*.10)
 for x,y in zip(finish_by_level['level'],finish_by_level['percentage']):
 
     label = "{:.2f}%".format(y)
@@ -182,7 +184,7 @@ plt.title('Portal Use Counts')
 # leave room for counts
 print(portals_by_level['portalUsageCount'])
 print(max(portals_by_level['portalUsageCount']))
-plt.ylim(0, max(portals_by_level['portalUsageCount']) + 4)
+plt.ylim(0, max(portals_by_level['portalUsageCount']) + max(portals_by_level['portalUsageCount'])*.10)
 for x,y in zip(portals_by_level['level'],portals_by_level['portalUsageCount']):
 
     label = "{:.0f}".format(y)
@@ -234,7 +236,7 @@ for x,y in zip(portals_by_level['level'],portals_by_level['count_non0']):
 plt.legend(loc='best')
 
 portals_by_level['max_count'] = portals_by_level['count_0'] + portals_by_level['count_non0']
-plt.ylim(0, max(portals_by_level['max_count']) + 2)
+plt.ylim(0, max(portals_by_level['max_count']) + max(portals_by_level['max_count'])*.10)
 
 plt.xlabel("Level")
 plt.ylabel("Count")
@@ -322,7 +324,7 @@ print(len(health_master_df_avg))
 game_level_labels = tuple(str(item) for item in tuple(health_master_df_avg['level']))
 health_level_labels = tuple(health_master_df_avg['health'])
 plt.bar(game_level_labels, health_level_labels, color = "#6596C7")
-plt.ylim(0, max(health_master_df_avg['health']) + 2)
+plt.ylim(0, max(health_master_df_avg['health']) + max(health_master_df_avg['health'])*.10)
 plt.xlabel('Level')
 plt.ylabel('Average Health')
 plt.title('Average Player Health at End of Level')
@@ -345,25 +347,34 @@ plt.savefig('firebase_plots/health_avg_bar_plot.png')
 plt.close()
 
 ### Plot 2: Side by Side Distribution of Player Health
-N = 6
-ind = np.arange(N)  
-width = 0.27 
 
 df['health_count'] = 1
 health_counts = df.groupby(['level', 'health'])['health_count'].sum().reset_index()
-
+print('health_counts')
+print(health_counts)
 level_1_health = health_counts[health_counts['level'] == '1']
 level_1_health_y = list(level_1_health['health_count'])
 level_2_health = health_counts[health_counts['level'] == '2']
 level_2_health_y = list(level_2_health['health_count'])
 health_lables = list(level_2_health['health'])
 health_lables = (str(x) for x in health_lables)
-print(health_lables)
+print('health_lables')
+print(x for x in health_lables)
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
 
+print('level_1_health_y')
+print(level_1_health_y)
+print('level_2_health_y')
+print(level_2_health_y)
+
+N = len(level_1_health)
+ind = np.arange(N)  
+width = 0.27 
 rects1 = ax.bar(ind, level_1_health_y, width, color='#FFB06B')
+N = len(level_2_health)
+ind = np.arange(N)  
 rects2 = ax.bar(ind+width, level_2_health_y, width, color='#6596C7')
 
 ax.set_ylabel('Scores')
@@ -380,16 +391,98 @@ def autolabel(rects):
 autolabel(rects1)
 autolabel(rects2)
 max_health = max(level_1_health_y + level_2_health_y)
-plt.ylim(0, max_health + 3)
+plt.ylim(0, max_health + max_health*.10)
 plt.xlabel('Health')
 plt.ylabel('Count')
 plt.title('Health At Level End')
 
 plt.savefig('firebase_plots/health_bar_plot.png')
-plt.show()
+plt.close()
 
-#time taken per level
+"""
+Metric 5: Time taken
+"""
+### Plot 1: Average time taken take per level
+time_by_level = df.groupby(['level'])[('levelCompletionTime')].mean().reset_index()
+print(time_by_level)
+plt.bar(time_by_level['level'], time_by_level['levelCompletionTime'], color = "#6596C7")
+plt.xlabel('Level')
+plt.ylabel('Time (seconds)')
+plt.title('Average Time Taken to Complete Level')
+print(time_by_level['levelCompletionTime'])
+print(max(time_by_level['levelCompletionTime']))
+plt.ylim(0, max(time_by_level['levelCompletionTime']) + max(time_by_level['levelCompletionTime'])*.10)
+for x,y in zip(time_by_level['level'],time_by_level['levelCompletionTime']):
+
+    label = "{:.0f}".format(y)
+
+    plt.annotate(label, # this is the text
+                 (x,y), # these are the coordinates to position the label
+                 textcoords="offset points", # how to position the text
+                 xytext=(0,10), # distance from text to points (x,y)
+                 ha='center') # horizontal alignment can be left, right or center
+
+
+plt.legend(loc='best')
+plt.savefig('firebase_plots/time_bar.png', dpi=1200)
+#plt.show()
+plt.close()
+
+### Plot 2: Time taken vs enemies killed/encountered
 #time taken vs enemies killed/encountered
 #time taken vs highscore
 #enemies killed vs highscore
 #health at end vs highscore
+
+"""
+Metric 6: Score
+"""
+### Plot 1: Average score per level
+score_by_level = df.groupby(['level'])[('levelScore')].mean().reset_index()
+print(score_by_level)
+plt.bar(score_by_level['level'], score_by_level['levelScore'], color = "#6596C7")
+plt.xlabel('Level')
+plt.ylabel('Time (seconds)')
+plt.title('Average Time Taken to Complete Level')
+print(score_by_level['levelScore'])
+print(max(score_by_level['levelScore']))
+plt.ylim(0, max(score_by_level['levelScore']) + max(score_by_level['levelScore'])*.10)
+for x,y in zip(score_by_level['level'],score_by_level['levelScore']):
+
+    label = "{:.0f}".format(y)
+
+    plt.annotate(label, # this is the text
+                 (x,y), # these are the coordinates to position the label
+                 textcoords="offset points", # how to position the text
+                 xytext=(0,10), # distance from text to points (x,y)
+                 ha='center') # horizontal alignment can be left, right or center
+
+
+plt.legend(loc='best')
+plt.savefig('firebase_plots/score_avg_bar.png', dpi=1200)
+#plt.show()
+plt.close()
+
+### Plot 2: Score distribution
+df['level_score_count'] = 1
+score_all = df.groupby(['levelScore'])[('level_score_count')].sum().reset_index()
+plt.bar(score_all['levelScore'], score_all['level_score_count'], color = "#6596C7", width = 50)
+plt.xlabel('Score')
+plt.ylabel('Count')
+plt.title('Score Distribution')
+plt.ylim(0, max(score_all['level_score_count']) + max(score_all['level_score_count'])*.10)
+for x,y in zip(score_all['levelScore'],score_all['level_score_count']):
+
+    label = "{:.0f}".format(y)
+
+    plt.annotate(label, # this is the text
+                 (x,y), # these are the coordinates to position the label
+                 textcoords="offset points", # how to position the text
+                 xytext=(0,10), # distance from text to points (x,y)
+                 ha='center') # horizontal alignment can be left, right or center
+
+
+plt.legend(loc='best')
+plt.savefig('firebase_plots/score_bar.png', dpi=1200)
+#plt.show()
+plt.close()
