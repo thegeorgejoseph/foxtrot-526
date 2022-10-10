@@ -16,6 +16,11 @@ public class Enemy_Movement_Script_Basic : MonoBehaviour
 
     public Enemy_Battle_Scripts battleStatus; // Check if player is in battle to stop enemy movement;
 
+    private float movementSpeed = 2.5f;
+    private Vector2 movementVec;
+
+    private int frameCount = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,31 +29,63 @@ public class Enemy_Movement_Script_Basic : MonoBehaviour
         rightWall = GameObject.Find("RightMostWall");
         topWall = GameObject.Find("TopWall");
         bottonWall = GameObject.Find("BottonWall");
+        movementVec.x = 0;
+        movementVec.y = 0;
     }
 
     void FixedUpdate()
     {
         if (canMove && !battleStatus.checkBattleStatus())
         {
-            canMove = false;
+            if (frameCount < 25)
+            {
+                rb2d.MovePosition(rb2d.position + movementVec * movementSpeed * Time.fixedDeltaTime);
+                frameCount++;
+            }
+            else
+            {
+                frameCount = 0;
+                movementVec.x = 0;
+                movementVec.y = 0;
+                int roll = Random.Range(0, 5);
+                if (roll == 1)
+                {
+                    movementVec.y = 1;
+                }
+                else if (roll == 2)
+                {
+                    movementVec.x = 1;
+                }
+                else if (roll == 3)
+                {
+                    movementVec.y = -1;
+                }
+                else if (roll == 4)
+                {
+                    movementVec.x = -1;
+                }
+            }
+            // canMove = false;
             // Randomly decide which axis to move (x or y in a 50:50 chance)
-            int roll = Random.Range(0, 5);
-            if (roll == 1)
-            {
-                rb2d.MovePosition(rb2d.position + new Vector2(0.0f, 1.26f));
-            }
-            else if (roll == 2)
-            {
-                rb2d.MovePosition(rb2d.position + new Vector2(0.0f, -1.25f));
-            }
-            else if (roll == 3)
-            {
-                rb2d.MovePosition(rb2d.position + new Vector2(-1.25f, 0.0f));
-            }
-            else if (roll == 4)
-            {
-                rb2d.MovePosition(rb2d.position + new Vector2(1.25f, 0.0f));
-            }
+            // int roll = Random.Range(0, 5);
+
+            // if (roll == 1)
+            // {
+            //     rb2d.MovePosition(rb2d.position + new Vector2(0.0f, 1.26f));
+            // }
+            // else if (roll == 2)
+            // {
+            //     rb2d.MovePosition(rb2d.position + new Vector2(0.0f, -1.25f));
+            // }
+            // else if (roll == 3)
+            // {
+            //     rb2d.MovePosition(rb2d.position + new Vector2(-1.25f, 0.0f));
+            // }
+            // else if (roll == 4)
+            // {
+            //     rb2d.MovePosition(rb2d.position + new Vector2(1.25f, 0.0f));
+            // }
+
             // if (roll == 1 && (transform.position.x + 1.25f) < rightWall.transform.position.x)
             // {
             //     // Move in x pos
@@ -72,7 +109,7 @@ public class Enemy_Movement_Script_Basic : MonoBehaviour
             // Follow line is the basic ver of movement where enemy would move in both x and y
             // this.transform.position = new Vector3(transform.position.x + Random.Range(-1.5f, 1.5f), transform.position.y + Random.Range(-1.5f, 1.5f), 0f);
 
-            StartCoroutine(CountDown(1)); // Move the enemy for every 1 second
+            // StartCoroutine(CountDown(1)); // Move the enemy for every 1 second
         }
     }
 
