@@ -38,9 +38,18 @@ public class ShowScore : MonoBehaviour
         {
             NextLevelButton.SetActive(false);
             MainMenuBtn.SetActive(true);
+            level_pass_msg.text = "Game Over";
         }
         else
         {
+            if(Exit_Script.level_num == 1)
+            {
+                level_pass_msg.text = "Level 1 Finished";
+            }
+            else if(Exit_Script.level_num == 2)
+            {
+                level_pass_msg.text = "Level 2 Finished";
+            }
             MainMenuBtn.SetActive(false);
             NextLevelButton.SetActive(true);
 
