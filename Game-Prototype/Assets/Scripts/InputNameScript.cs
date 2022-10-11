@@ -9,6 +9,7 @@ public class InputNameScript : MonoBehaviour
 {
     public TMP_InputField Inputname;
     public TMP_Text Error_Msg;
+    public static string username;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,7 @@ public class InputNameScript : MonoBehaviour
     }
     public void onClickOKBtn()
     {
+        
         Debug.Log(Inputname.text);
         if(Inputname.text == "")
         {
@@ -29,6 +31,7 @@ public class InputNameScript : MonoBehaviour
         }
         else
         {
+            username = Inputname.text;
             SceneManager.LoadScene("Level_1");
         }
     }

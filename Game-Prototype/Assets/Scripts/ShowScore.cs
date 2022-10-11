@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
 public class ShowScore : MonoBehaviour
 {
@@ -17,6 +18,48 @@ public class ShowScore : MonoBehaviour
     public static float level1_score;
     public GameObject MainMenuBtn;
     public GameObject NextLevelButton;
+    public GameObject analyticsManager;
+    private AnalyticsManager analyticsManagerScript;
+
+    public TMP_Text pos1;
+    public TMP_Text pos2;
+    public TMP_Text pos3;
+    public TMP_Text pos4;
+    public TMP_Text pos5;
+    public TMP_Text dot1;
+    public TMP_Text dot2;
+    public TMP_Text dot3;
+    public TMP_Text posn1;
+    public TMP_Text posn2;
+    public TMP_Text posn3;
+
+    public TMP_Text score1;
+    public TMP_Text score2;
+    public TMP_Text score3;
+    public TMP_Text score4;
+    public TMP_Text score5;
+    public TMP_Text scoren1;
+    public TMP_Text scoren2;
+    public TMP_Text scoren3;
+
+    public TMP_Text name1;
+    public TMP_Text name2;
+    public TMP_Text name3;
+    public TMP_Text name4;
+    public TMP_Text name5;
+    public TMP_Text namen1;
+    public TMP_Text namen2;
+    public TMP_Text namen3;
+
+    static int Compare(KeyValuePair<string, float> a, KeyValuePair<string, float> b)
+    {
+        return b.Value.CompareTo(a.Value);
+    }
+
+    private void Awake()
+    {
+        analyticsManagerScript = analyticsManager.GetComponent<AnalyticsManager>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -33,8 +76,291 @@ public class ShowScore : MonoBehaviour
         level_total_score = total_score_val + Exit_Script.score_till_curr_level;
         total_score.text = (level_total_score).ToString();
         level1_score = level1_score + total_score_val;
+
+        // new code
+
+        var playerHighscore = new HighScores(total_score_val);
+        Debug.Log("Data " + playerHighscore.levelScore);
+        var username = InputNameScript.username + "_" + analyticsManagerScript.clientID;
+
+        if (total_score_val > 0)
+        {
+
+            DatabaseHandler.GetHighScore<HighScores>(users =>
+            {
+                Debug.Log("Score " + total_score_val);
+                var myList = new List<KeyValuePair<string, float>>();
+                var returnList = new TableRow[6];
+
+                foreach (KeyValuePair<string, HighScores> kvp in users)
+                {
+                    myList.Add(new KeyValuePair<string, float>(kvp.Key, kvp.Value.levelScore));
+                }
+                Debug.Log("finding the data " + myList.Count);
+                int overallCount = myList.Count;
+                int found = -1;
+                for (int i = 0; i < overallCount; i++)
+                {
+
+                    if (myList[i].Key == username)
+                    {
+                        found = i;
+                        break;
+                    }
+                }
+                if (found == -1)
+                {
+                    myList.Add(new KeyValuePair<string, float>(username, total_score_val));
+                }
+                else
+                {
+                    if ((myList[found].Value < total_score_val))
+                    {
+                        myList.Remove(myList[found]);
+                        myList.Add(new KeyValuePair<string, float>(username, total_score_val));
+                        found = -2;
+                    }
+                }
+                int count = 0;
+                int index = 0;
+                int searchRank = 0;
+                myList.Sort(Compare);
+                foreach (KeyValuePair<string, float> kvp in myList)
+                {
+                    Debug.Log("Key " + kvp.Key);
+                    count += 1;
+                    if (kvp.Key == username)
+                    {
+                        searchRank = count;
+                    }
+                    if (count < 4)
+                    {
+                        returnList[index] = new TableRow(count, kvp.Key, kvp.Value);
+                        index += 1;
+                    }
+                }
+                int counter = 0;
+                if (searchRank == 1 || searchRank == 2)
+                {
+                    Array.Resize(ref returnList, 3);
+                }
+                else if (searchRank == count)
+                {
+                    Array.Resize(ref returnList, 5);
+                    foreach (KeyValuePair<string, float> kvp in myList)
+                    {
+                        counter += 1;
+                        if (counter == searchRank || counter == searchRank - 1)
+                        {
+                            returnList[index] = new TableRow(counter, kvp.Key, kvp.Value);
+                            index += 1;
+                        }
+                    }
+                }
+                else if (searchRank == 3)
+                {
+                    Array.Resize(ref returnList, 4);
+                    foreach (KeyValuePair<string, float> kvp in myList)
+                    {
+                        counter += 1;
+                        if (counter == searchRank + 1)
+                        {
+                            returnList[index] = new TableRow(counter, kvp.Key, kvp.Value);
+                            index += 1;
+                        }
+                    }
+                }
+                else if (searchRank == 4)
+                {
+                    Array.Resize(ref returnList, 5);
+                    foreach (KeyValuePair<string, float> kvp in myList)
+                    {
+                        counter += 1;
+                        if (counter == searchRank || counter == searchRank + 1)
+                        {
+                            returnList[index] = new TableRow(counter, kvp.Key, kvp.Value);
+                            index += 1;
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (KeyValuePair<string, float> kvp in myList)
+                    {
+                        counter += 1;
+                        if (counter == searchRank || counter == searchRank - 1 || counter == searchRank + 1)
+                        {
+                            returnList[index] = new TableRow(counter, kvp.Key, kvp.Value);
+                            index += 1;
+                        }
+                    }
+                }
+                for (int i = 0; i < returnList.Length; i++)
+                {
+                    Debug.Log("DDDDD " + returnList[i].username + " " + returnList[i].levelScore);
+                }
+                if (found < 0)
+                {
+                    DatabaseHandler.PostHighScore<HighScores>(playerHighscore, "Level_"+Exit_Script.level_num.ToString(), username, () =>
+                    {
+                        Debug.Log("done pushing the data" + username);
+                    });
+                }
+
+                int resultSize = returnList.Length;
+                name1.text = returnList[0].username;
+                score1.text = returnList[0].levelScore.ToString();
+
+                name2.text = returnList[1].username;
+                score2.text = returnList[1].levelScore.ToString();
+
+                name3.text = returnList[2].username;
+                score3.text = returnList[2].levelScore.ToString();
+
+                if (resultSize == 3)
+                {    
+
+                    name4.gameObject.SetActive(false);
+                    name5.gameObject.SetActive(false);
+                    namen1.gameObject.SetActive(false);
+                    namen2.gameObject.SetActive(false);
+                    namen3.gameObject.SetActive(false);
+                    score4.gameObject.SetActive(false);
+                    score5.gameObject.SetActive(false);
+                    scoren1.gameObject.SetActive(false);
+                    scoren2.gameObject.SetActive(false);
+                    scoren3.gameObject.SetActive(false);
+                    pos4.gameObject.SetActive(false);
+                    pos5.gameObject.SetActive(false);
+                    posn1.gameObject.SetActive(false);
+                    posn2.gameObject.SetActive(false);
+                    posn3.gameObject.SetActive(false);
+                    dot1.gameObject.SetActive(false);
+                    dot2.gameObject.SetActive(false);
+                    dot3.gameObject.SetActive(false);
+                }
+
+                if (resultSize == 4)
+                {
+                    name4.gameObject.SetActive(true);
+                    score4.gameObject.SetActive(true);
+                    pos4.gameObject.SetActive(true);
+                    
+                    name4.text = returnList[3].username;
+                    score4.text = returnList[3].levelScore.ToString();
+                    pos4.text = "4TH";
+
+                    name5.gameObject.SetActive(false);
+                    namen1.gameObject.SetActive(false);
+                    namen2.gameObject.SetActive(false);
+                    namen3.gameObject.SetActive(false);
+                    score5.gameObject.SetActive(false);
+                    scoren1.gameObject.SetActive(false);
+                    scoren2.gameObject.SetActive(false);
+                    scoren3.gameObject.SetActive(false);
+                    pos5.gameObject.SetActive(false);
+                    posn1.gameObject.SetActive(false);
+                    posn2.gameObject.SetActive(false);
+                    posn3.gameObject.SetActive(false);
+                    dot1.gameObject.SetActive(false);
+                    dot2.gameObject.SetActive(false);
+                    dot3.gameObject.SetActive(false);
+                }
+
+                if (resultSize == 5)
+                {
+                    name4.gameObject.SetActive(true);
+                    score4.gameObject.SetActive(true);
+                    pos4.gameObject.SetActive(true);
+
+                    name4.text = returnList[3].username;
+                    score4.text = returnList[3].levelScore.ToString();
+                    pos4.text = "4TH";
+
+                    name5.gameObject.SetActive(true);
+                    score5.gameObject.SetActive(true);
+                    pos5.gameObject.SetActive(true);
+
+                    name5.text = returnList[4].username;
+                    score5.text = returnList[4].levelScore.ToString();
+                    pos5.text = "5TH";
+
+                    namen1.gameObject.SetActive(false);
+                    namen2.gameObject.SetActive(false);
+                    namen3.gameObject.SetActive(false);
+                    scoren1.gameObject.SetActive(false);
+                    scoren2.gameObject.SetActive(false);
+                    scoren3.gameObject.SetActive(false);
+                    posn1.gameObject.SetActive(false);
+                    posn2.gameObject.SetActive(false);
+                    posn3.gameObject.SetActive(false);
+                    dot1.gameObject.SetActive(false);
+                    dot2.gameObject.SetActive(false);
+                    dot3.gameObject.SetActive(false);
+                }
+                
+                if(resultSize == 6)
+                {
+                    namen1.text = returnList[3].username;
+                    scoren1.text = returnList[3].levelScore.ToString();
+                    posn1.text = returnList[3].rank.ToString()+"TH";
+
+                    namen2.text = returnList[4].username;
+                    scoren2.text = returnList[4].levelScore.ToString();
+                    posn2.text = returnList[4].rank.ToString() + "TH";
+
+                    namen3.text = returnList[5].username;
+                    scoren3.text = returnList[5].levelScore.ToString();
+                    posn3.text = returnList[5].rank.ToString() + "TH"; ;
+
+                    name4.gameObject.SetActive(false);
+                    name5.gameObject.SetActive(false);
+                    score4.gameObject.SetActive(false);
+                    score5.gameObject.SetActive(false);
+                    pos4.gameObject.SetActive(false);
+                    pos5.gameObject.SetActive(false);
+                }
+            });
+        }
+        else
+        {
+            DatabaseHandler.GetHighScore<HighScores>(users =>
+            {
+                Debug.Log("failed state check");
+                var myList = new List<KeyValuePair<string, float>>();
+                var returnList = new TableRow[3];
+                foreach (KeyValuePair<string, HighScores> kvp in users)
+                {
+                    myList.Add(new KeyValuePair<string, float>(kvp.Key, kvp.Value.levelScore));
+                }
+                myList.Sort(Compare);
+                int count = 0;
+                foreach (KeyValuePair<string, float> kvp in myList)
+                {
+                    if (count < 3)
+                    {
+                        returnList[count] = new TableRow(count + 1, kvp.Key, kvp.Value);
+                        count += 1;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                Debug.Log("result count"+returnList.Length);
+                for (int i = 0; i < returnList.Length; i++)
+                {
+                    Debug.Log("CCCC " + returnList[i].username + " " + returnList[i].levelScore);
+                }
+            });
+
+            // end
+            
+
+        }
+
         Exit_Script.score_till_curr_level = level_total_score;
-        if(Exit_Script.level_num == 3)
+        if (Exit_Script.level_num == 3)
         {
             NextLevelButton.SetActive(false);
             MainMenuBtn.SetActive(true);
@@ -42,38 +368,39 @@ public class ShowScore : MonoBehaviour
         }
         else
         {
-            if(Exit_Script.level_num == 1)
+            Debug.Log("LEVEL NUM - " + Exit_Script.level_num.ToString());
+            MainMenuBtn.SetActive(false);
+            NextLevelButton.SetActive(true);
+            if (Exit_Script.level_num == 1)
             {
                 level_pass_msg.text = "Level 1 Finished";
             }
-            else if(Exit_Script.level_num == 2)
+            else if (Exit_Script.level_num == 2)
             {
                 level_pass_msg.text = "Level 2 Finished";
             }
-            MainMenuBtn.SetActive(false);
-            NextLevelButton.SetActive(true);
 
         }
 
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void NextLevel()
-    {
-        if(Exit_Script.level_num == 1)
+        // Update is called once per frame
+        void Update()
         {
-            Time.timeScale = 1;
-            SceneManager.LoadScene("Level_2");
+
         }
-        else if(Exit_Script.level_num == 2)
+
+        public void NextLevel()
         {
-            Time.timeScale = 1;
-            SceneManager.LoadScene("Level_3");
+            if (Exit_Script.level_num == 1)
+            {
+                Time.timeScale = 1;
+                SceneManager.LoadScene("Level_2");
+            }
+            else if (Exit_Script.level_num == 2)
+            {
+                Time.timeScale = 1;
+                SceneManager.LoadScene("Level_3");
+            }
         }
     }
-}
+
