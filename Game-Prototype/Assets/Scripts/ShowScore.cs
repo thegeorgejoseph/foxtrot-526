@@ -311,7 +311,7 @@ public class ShowScore : MonoBehaviour
 
                         name5.text = returnList[4].username.Split("_")[0];
                         score5.text = returnList[4].levelScore.ToString();
-                        pos5.text = returnList[3].rank.ToString()+"TH";
+                        pos5.text = returnList[4].rank.ToString()+"TH";
 
 
                         namen1.gameObject.SetActive(false);
