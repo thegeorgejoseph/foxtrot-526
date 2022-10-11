@@ -209,25 +209,25 @@ public class ShowScore : MonoBehaviour
                 }
 
                 int resultSize = returnList.Length;
-                name1.text = returnList[0].username;
+                name1.text = returnList[0].username.Split("_")[0];
                 score1.text = returnList[0].levelScore.ToString();
 
-                name2.text = returnList[1].username;
+                name2.text = returnList[1].username.Split("_")[0];
                 score2.text = returnList[1].levelScore.ToString();
 
-                name3.text = returnList[2].username;
+                name3.text = returnList[2].username.Split("_")[0];
                 score3.text = returnList[2].levelScore.ToString();
 
-                
                 if (resultSize == 3)
-                {    
-                    if(returnList[0].username == InputNameScript.username)
+                {
+                    
+                    if(returnList[0].username == (InputNameScript.username+"_"+ analyticsManagerScript.clientID))
                     {
                         name1.color = Color.green;
                         score1.color = Color.green;
                         pos1.color = Color.green;
                     }
-                    else if(returnList[1].username == InputNameScript.username)
+                    else if(returnList[1].username == (InputNameScript.username + "_" + analyticsManagerScript.clientID))
                     {
                         name2.color = Color.green;
                         score2.color = Color.green;
@@ -265,7 +265,7 @@ public class ShowScore : MonoBehaviour
                     score4.gameObject.SetActive(true);
                     pos4.gameObject.SetActive(true);
                     
-                    name4.text = returnList[3].username;
+                    name4.text = returnList[3].username.Split("_")[0];
                     score4.text = returnList[3].levelScore.ToString();
                     pos4.text = "4TH";
 
@@ -298,7 +298,7 @@ public class ShowScore : MonoBehaviour
                         score4.gameObject.SetActive(true);
                         pos4.gameObject.SetActive(true);
 
-                        name4.text = returnList[3].username;
+                        name4.text = returnList[3].username.Split("_")[0];
                         score4.text = returnList[3].levelScore.ToString();
                         pos4.text = returnList[3].rank.ToString()+"TH";
                         name4.color = Color.green;
@@ -309,7 +309,7 @@ public class ShowScore : MonoBehaviour
                         score5.gameObject.SetActive(true);
                         pos5.gameObject.SetActive(true);
 
-                        name5.text = returnList[4].username;
+                        name5.text = returnList[4].username.Split("_")[0];
                         score5.text = returnList[4].levelScore.ToString();
                         pos5.text = returnList[3].rank.ToString()+"TH";
 
@@ -333,7 +333,7 @@ public class ShowScore : MonoBehaviour
                         scoren2.gameObject.SetActive(true);
                         posn2.gameObject.SetActive(true);
 
-                        namen2.text = returnList[3].username;
+                        namen2.text = returnList[3].username.Split("_")[0];
                         scoren2.text = returnList[3].levelScore.ToString();
                         posn2.text = returnList[3].rank.ToString()+"TH";
                         
@@ -341,7 +341,7 @@ public class ShowScore : MonoBehaviour
                         scoren3.gameObject.SetActive(true);
                         posn3.gameObject.SetActive(true);
 
-                        namen3.text = returnList[4].username;
+                        namen3.text = returnList[4].username.Split("_")[0];
                         scoren3.text = returnList[4].levelScore.ToString();
                         posn3.text = returnList[4].rank.ToString()+"TH";
                         namen3.color = Color.green;
@@ -365,18 +365,18 @@ public class ShowScore : MonoBehaviour
                 
                 if(resultSize == 6)
                 {
-                    namen1.text = returnList[3].username;
+                    namen1.text = returnList[3].username.Split("_")[0];
                     scoren1.text = returnList[3].levelScore.ToString();
                     posn1.text = returnList[3].rank.ToString()+"TH";
 
-                    namen2.text = returnList[4].username;
+                    namen2.text = returnList[4].username.Split("_")[0];
                     scoren2.text = returnList[4].levelScore.ToString();
                     posn2.text = returnList[4].rank.ToString() + "TH";
                     namen2.color = Color.green;
                     scoren2.color = Color.green;
                     posn2.color = Color.green;
 
-                    namen3.text = returnList[5].username;
+                    namen3.text = returnList[5].username.Split("_")[0];
                     scoren3.text = returnList[5].levelScore.ToString();
                     posn3.text = returnList[5].rank.ToString() + "TH"; ;
 
