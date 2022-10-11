@@ -17,6 +17,9 @@ public class Exit_Script : MonoBehaviour
     public GameObject playerMovement;
     private Movement2D playerMovementScript;
 
+    // public GameObject playerProfile;
+    // private InputNameScript playerProfileScript;
+
     public bool did_finish;
     public static float enemies_count;
     public Enemy_Battle_Scripts battleInfoScript;
@@ -34,13 +37,15 @@ public class Exit_Script : MonoBehaviour
     public static float level_num;
     public GameObject MainMenuBtn;
     
+    // public String username;
+
 
     // Start is called before the first frame update
     private void Awake(){
         analyticsManagerScript = analyticsManager.GetComponent<AnalyticsManager>();
         battleInfoScript = battleInfo.GetComponent<Enemy_Battle_Scripts>();
         playerMovementScript = playerMovement.GetComponent<Movement2D>();
-    //analyticsManagerScript = analyticsManager.GetComponent<AnalyticsManager>();
+        // playerProfileScript = playerMovement.GetComponent<InputNameScript>();
     }
     
     void Start()
@@ -56,18 +61,25 @@ public class Exit_Script : MonoBehaviour
         
     }
 
+    static int Compare(KeyValuePair<string, float> a, KeyValuePair<string, float> b)
+    {
+        return b.Value.CompareTo(a.Value);
+    }
+
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Player")
         {
+            // username = playerProfileScript.Inputname + "_" + analyticsManagerScript.clientID;
+            // Debug.Log("Username is printed " + username);
 
-            DatabaseHandler.GetMetrics<Metrics>(users =>
-        {
-            foreach (var user in users)
-            {
-                Debug.Log($"{user.Value.clientID} {user.Value.level} {user.Value.timestamp}");
-            }
-        });
+            // DatabaseHandler.GetMetrics<Metrics>(users =>
+            // {
+            //     foreach (var user in users)
+            //     {
+            //         Debug.Log($"{user.Value.clientID} {user.Value.level} {user.Value.timestamp}");
+            //     }
+            // });
 
             if (SceneManager.GetActiveScene().name == Loader.Scene.Level_0.ToString())
             {
@@ -115,51 +127,142 @@ public class Exit_Script : MonoBehaviour
                                                 playerMovementScript.portalUsageCount.ToString(),
                                                 level1_score.ToString());
 
-                // teleportationScript.portalUsageCount.ToString()
-
-                var testMetric = new testMetricStore(analyticsManagerScript.clientID,
-                    DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
-                                            level, "1", "2", "3");
-
+                
                 DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.startTime, () =>
                     {
                         Debug.Log("done posting to firebase metric");
                     });
 
-                DatabaseHandler.PostHighScore<HighScores>(playerHighscore, "Level_1", "AJ96", () =>
-                     {
-                         Debug.Log("done posting AJ96 data");
-                     });
-
-                DatabaseHandler.PostMetrics<testMetricStore>(testMetric, analyticsManagerScript.startTime, () =>
-                {
-                    Debug.Log("done posting to firebase test metric");
-                }, "testMetric");
-                // get method test
-
-
-
-
-
-
-                //Loader.Load(Loader.Scene.Level_2);
-
-
-                // analyticsManagerScript.HandleEvent("master_metrics", new List<object>
-                //         {
-                //             level,
-                //             did_finish,
-                //             battleInfoScript.enemies_encountered,
-                //             battleInfoScript.kills,
-                //             HealthManager.health
-
-                //         });
-
-
-
-
-
-
+                string username ="Michael";
+                
+                if(level1_score > 0){
+                    
+                    DatabaseHandler.GetHighScore<HighScores>(users =>
+                        {
+                            Debug.Log("Score " + level1_score);
+                            var myList = new List<KeyValuePair<string, float>>();
+                            var returnList = new TableRow[6];
+                            
+                            foreach (KeyValuePair<string, HighScores> kvp in users)
+                            {
+                                myList.Add(new KeyValuePair<string, float>(kvp.Key, kvp.Value.levelScore)); 
+                            }
+                            Debug.Log("finding the data " + myList.Count);
+                            int overallCount = myList.Count;
+                            int found = -1;
+                            for(int i = 0;i<overallCount;i++){
+                                
+                                if(myList[i].Key == username){
+                                    found = i;
+                                    break;
+                                }
+                            }
+                            if(found == -1){
+                                myList.Add(new KeyValuePair<string, float>(username, level1_score));
+                            }
+                            else{
+                                if((myList[found].Value < level1_score)){
+                                    myList.Remove(myList[found]);
+                                    myList.Add(new KeyValuePair<string, float>(username, level1_score));
+                                    found = -2;
+                                }
+                            }
+                            int count = 0;
+                            int index = 0;
+                            int searchRank = 0;
+                            myList.Sort(Compare);
+                            foreach(KeyValuePair<string, float> kvp in myList){
+                                Debug.Log("Key " + kvp.Key);
+                                count += 1;
+                                if(kvp.Key == username){
+                                    searchRank = count;
+                                }
+                                if(count < 4){
+                                    returnList[index] = new TableRow(count, kvp.Key,kvp.Value);
+                                    index += 1;
+                                }    
+                            }
+                            int counter = 0;
+                            if(searchRank == 1 || searchRank == 2 ){
+                                Array.Resize(ref returnList, 3);
+                            }
+                            else if(searchRank == count){
+                                Array.Resize(ref returnList, 5);
+                                foreach(KeyValuePair<string, float> kvp in myList){
+                                    counter += 1;
+                                    if(counter == searchRank || counter == searchRank - 1){
+                                        returnList[index] = new TableRow(counter, kvp.Key,kvp.Value);
+                                        index += 1;
+                                    }    
+                                }
+                            }
+                            else if(searchRank == 3){
+                                Array.Resize(ref returnList, 4);
+                                foreach(KeyValuePair<string, float> kvp in myList){
+                                    counter += 1;
+                                    if(counter == searchRank + 1){
+                                        returnList[index] = new TableRow(counter, kvp.Key,kvp.Value);
+                                        index += 1;
+                                    }    
+                                }
+                            }
+                            else if(searchRank == 4){
+                                Array.Resize(ref returnList, 5);
+                                foreach(KeyValuePair<string, float> kvp in myList){
+                                    counter += 1;
+                                    if(counter == searchRank || counter == searchRank + 1){
+                                        returnList[index] = new TableRow(counter, kvp.Key,kvp.Value);
+                                        index += 1;
+                                    }    
+                                }
+                            }
+                            else{
+                                foreach(KeyValuePair<string, float> kvp in myList){
+                                    counter += 1;
+                                    if(counter == searchRank || counter == searchRank - 1 || counter == searchRank + 1){
+                                        returnList[index] = new TableRow(counter, kvp.Key,kvp.Value);
+                                        index += 1;
+                                    }    
+                                }
+                            }
+                            for(int i = 0;i<returnList.Length;i++){
+                                Debug.Log("DDDDD "+ returnList[i].username +" " + returnList[i].levelScore);
+                            }
+                            if (found < 0){
+                                DatabaseHandler.PostHighScore<HighScores>(playerHighscore, level, username , () =>
+                                {
+                                    Debug.Log("done pushing the data" + username );
+                                });
+                            }
+                            
+                        });    
+                }
+                else{
+                    DatabaseHandler.GetHighScore<HighScores>(users =>
+                        {
+                            Debug.Log("failed state check");
+                            var myList = new List<KeyValuePair<string, float>>();
+                            var returnList = new TableRow[3];
+                            foreach (KeyValuePair<string, HighScores> kvp in users)
+                            {
+                                myList.Add(new KeyValuePair<string, float>(kvp.Key, kvp.Value.levelScore)); 
+                            }
+                            myList.Sort(Compare);
+                            int count = 0;
+                            foreach(KeyValuePair<string, float> kvp in myList){
+                                if(count < 3){
+                                    returnList[count] = new TableRow(count+1, kvp.Key,kvp.Value);
+                                    count += 1;
+                                }    
+                                else{
+                                    break;
+                                }
+                            }
+                            for(int i = 0;i<returnList.Length;i++){
+                                Debug.Log("CCCC "+ returnList[i].username +" " + returnList[i].levelScore);
+                            }
+                         });
+                }
             }
             else if (SceneManager.GetActiveScene().name == Loader.Scene.Level_2.ToString())
             {

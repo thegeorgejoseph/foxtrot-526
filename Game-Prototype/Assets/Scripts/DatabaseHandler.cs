@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using FullSerializer;
 using Proyecto26;
 using Debug=UnityEngine.Debug;
+using Newtonsoft.Json.Linq;
 
 public static class DatabaseHandler{
 
@@ -19,11 +20,12 @@ public static class DatabaseHandler{
     /// <param name="user"> User object that will be uploaded </param>
     /// <param name="userId"> Id of the user that will be uploaded </param>
     /// <param name="callback"> What to do after the user is uploaded successfully </param>
+    
+    
     public static void PostMetrics<T>(T metrics, string sessionID, PostUserCallback callback, string section="metrics")
     {
         RestClient.Put<T>($"{databaseURL}{section}/{sessionID}.json", metrics).Then(response => { 
             callback();
-            // Debug.Log("The user was successfully uploaded to the database");; 
             });
     }
 
@@ -34,6 +36,18 @@ public static class DatabaseHandler{
             callback();
             Debug.Log("The user was successfully uploaded to the database");
             });
+    }
+
+    public static void GetHighScore<T>(GetMetricCallback<T> callback, string section = "highscores", string level = "Level_1"){
+        RestClient.Get($"{databaseURL}{section}/{level}.json").Then(response =>{
+            var responseJson = response.Text;
+            var data = fsJsonParser.Parse(responseJson);
+            object deserialized = null;
+            serializer.TryDeserialize(data, typeof(Dictionary<string, T>), ref deserialized);
+            var metrics = deserialized as Dictionary<string, T>;
+            callback(metrics);
+            Debug.Log("Response Data " + metrics);
+        });
     }
 
      /// <summary>
