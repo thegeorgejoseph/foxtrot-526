@@ -12100,7 +12100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da9c52bab5ef6f44e8fcaa0cf8a94ba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
+  movementSpeed: 3
   rb2d: {fileID: 1811579276}
   Player: {fileID: 1811579274}
   portalUsageCount: 0
