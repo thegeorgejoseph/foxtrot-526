@@ -86,7 +86,7 @@ public class ShowScore : MonoBehaviour
         if (total_score_val > 0)
         {
 
-            DatabaseHandler.GetHighScore<HighScores>(users =>
+            DatabaseHandler.GetHighScore<HighScores>("Level_"+Exit_Script.level_num.ToString(), (users) =>
             {
                 Debug.Log("Score " + total_score_val);
                 var myList = new List<KeyValuePair<string, float>>();
@@ -139,6 +139,7 @@ public class ShowScore : MonoBehaviour
                         index += 1;
                     }
                 }
+                Debug.Log("Current position to be inserted " + index);
                 int counter = 0;
                 if (searchRank == 1 || searchRank == 2)
                 {
@@ -291,37 +292,75 @@ public class ShowScore : MonoBehaviour
 
                 if (resultSize == 5)
                 {
-                    name4.gameObject.SetActive(true);
-                    score4.gameObject.SetActive(true);
-                    pos4.gameObject.SetActive(true);
+                    
+                    if(returnList[3].rank == 4){
+                        name4.gameObject.SetActive(true);
+                        score4.gameObject.SetActive(true);
+                        pos4.gameObject.SetActive(true);
 
-                    name4.text = returnList[3].username;
-                    score4.text = returnList[3].levelScore.ToString();
-                    pos4.text = "4TH";
-                    name4.color = Color.green;
-                    score4.color = Color.green;
-                    pos4.color = Color.green;
+                        name4.text = returnList[3].username;
+                        score4.text = returnList[3].levelScore.ToString();
+                        pos4.text = returnList[3].rank.ToString()+"TH";
+                        name4.color = Color.green;
+                        score4.color = Color.green;
+                        pos4.color = Color.green;
+                        
+                        name5.gameObject.SetActive(true);
+                        score5.gameObject.SetActive(true);
+                        pos5.gameObject.SetActive(true);
 
-                    name5.gameObject.SetActive(true);
-                    score5.gameObject.SetActive(true);
-                    pos5.gameObject.SetActive(true);
+                        name5.text = returnList[4].username;
+                        score5.text = returnList[4].levelScore.ToString();
+                        pos5.text = returnList[3].rank.ToString()+"TH";
 
-                    name5.text = returnList[4].username;
-                    score5.text = returnList[4].levelScore.ToString();
-                    pos5.text = "5TH";
 
-                    namen1.gameObject.SetActive(false);
-                    namen2.gameObject.SetActive(false);
-                    namen3.gameObject.SetActive(false);
-                    scoren1.gameObject.SetActive(false);
-                    scoren2.gameObject.SetActive(false);
-                    scoren3.gameObject.SetActive(false);
-                    posn1.gameObject.SetActive(false);
-                    posn2.gameObject.SetActive(false);
-                    posn3.gameObject.SetActive(false);
-                    dot1.gameObject.SetActive(false);
-                    dot2.gameObject.SetActive(false);
-                    dot3.gameObject.SetActive(false);
+                        namen1.gameObject.SetActive(false);
+                        namen2.gameObject.SetActive(false);
+                        namen3.gameObject.SetActive(false);
+                        scoren1.gameObject.SetActive(false);
+                        scoren2.gameObject.SetActive(false);
+                        scoren3.gameObject.SetActive(false);
+                        posn1.gameObject.SetActive(false);
+                        posn2.gameObject.SetActive(false);
+                        posn3.gameObject.SetActive(false);
+                        dot1.gameObject.SetActive(false);
+                        dot2.gameObject.SetActive(false);
+                        dot3.gameObject.SetActive(false);
+
+                    }
+                    else{
+                        namen2.gameObject.SetActive(true);
+                        scoren2.gameObject.SetActive(true);
+                        posn2.gameObject.SetActive(true);
+
+                        namen2.text = returnList[3].username;
+                        scoren2.text = returnList[3].levelScore.ToString();
+                        posn2.text = returnList[3].rank.ToString()+"TH";
+                        
+                        namen3.gameObject.SetActive(true);
+                        scoren3.gameObject.SetActive(true);
+                        posn3.gameObject.SetActive(true);
+
+                        namen3.text = returnList[4].username;
+                        scoren3.text = returnList[4].levelScore.ToString();
+                        posn3.text = returnList[4].rank.ToString()+"TH";
+                        namen3.color = Color.green;
+                        scoren3.color = Color.green;
+                        posn3.color = Color.green;
+                        
+                        
+                        name4.gameObject.SetActive(false);
+                        name5.gameObject.SetActive(false);
+                        namen1.gameObject.SetActive(false);
+                        score4.gameObject.SetActive(false);
+                        score5.gameObject.SetActive(false);
+                        scoren1.gameObject.SetActive(false);
+                        pos4.gameObject.SetActive(false);
+                        pos5.gameObject.SetActive(false);
+                        posn1.gameObject.SetActive(false);
+                        
+                    }
+                                        
                 }
                 
                 if(resultSize == 6)
@@ -352,7 +391,7 @@ public class ShowScore : MonoBehaviour
         }
         else
         {
-            DatabaseHandler.GetHighScore<HighScores>(users =>
+            DatabaseHandler.GetHighScore<HighScores>("Level_"+Exit_Script.level_num.ToString(), (users) =>
             {
                 Debug.Log("failed state check");
                 var myList = new List<KeyValuePair<string, float>>();

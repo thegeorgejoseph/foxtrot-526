@@ -38,7 +38,7 @@ public static class DatabaseHandler{
             });
     }
 
-    public static void GetHighScore<T>(GetMetricCallback<T> callback, string section = "highscores", string level = "Level_1"){
+    public static void GetHighScore<T>(string level, GetMetricCallback<T> callback, string section = "highscores"){
         RestClient.Get($"{databaseURL}{section}/{level}.json").Then(response =>{
             var responseJson = response.Text;
             var data = fsJsonParser.Parse(responseJson);
