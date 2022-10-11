@@ -217,9 +217,27 @@ public class ShowScore : MonoBehaviour
                 name3.text = returnList[2].username;
                 score3.text = returnList[2].levelScore.ToString();
 
+                
                 if (resultSize == 3)
                 {    
-
+                    if(returnList[0].username == InputNameScript.username)
+                    {
+                        name1.color = Color.green;
+                        score1.color = Color.green;
+                        pos1.color = Color.green;
+                    }
+                    else if(returnList[1].username == InputNameScript.username)
+                    {
+                        name2.color = Color.green;
+                        score2.color = Color.green;
+                        pos2.color = Color.green;
+                    }
+                    else
+                    {
+                        name3.color = Color.green;
+                        score3.color = Color.green;
+                        pos3.color = Color.green;
+                    }
                     name4.gameObject.SetActive(false);
                     name5.gameObject.SetActive(false);
                     namen1.gameObject.SetActive(false);
@@ -250,6 +268,10 @@ public class ShowScore : MonoBehaviour
                     score4.text = returnList[3].levelScore.ToString();
                     pos4.text = "4TH";
 
+                    name3.color = Color.green;
+                    score3.color = Color.green;
+                    pos3.color = Color.green;
+
                     name5.gameObject.SetActive(false);
                     namen1.gameObject.SetActive(false);
                     namen2.gameObject.SetActive(false);
@@ -276,6 +298,9 @@ public class ShowScore : MonoBehaviour
                     name4.text = returnList[3].username;
                     score4.text = returnList[3].levelScore.ToString();
                     pos4.text = "4TH";
+                    name4.color = Color.green;
+                    score4.color = Color.green;
+                    pos4.color = Color.green;
 
                     name5.gameObject.SetActive(true);
                     score5.gameObject.SetActive(true);
@@ -308,6 +333,9 @@ public class ShowScore : MonoBehaviour
                     namen2.text = returnList[4].username;
                     scoren2.text = returnList[4].levelScore.ToString();
                     posn2.text = returnList[4].rank.ToString() + "TH";
+                    namen2.color = Color.green;
+                    scoren2.color = Color.green;
+                    posn2.color = Color.green;
 
                     namen3.text = returnList[5].username;
                     scoren3.text = returnList[5].levelScore.ToString();
