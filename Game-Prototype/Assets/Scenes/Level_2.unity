@@ -9789,7 +9789,7 @@ MonoBehaviour:
   did_finish: 0
   event_called: 0
   deathScore: {fileID: 1509664946}
-  total_score: {fileID: 0}
+  total_score: {fileID: 1203521341}
   health: 1
   count: 0
   kills: 0

@@ -92,8 +92,13 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                         deathScore.SetActive(true);
                         if(SceneManager.GetActiveScene().name == Loader.Scene.Level_2.ToString())
                         {
-                            total_score.text = Exit_Script.level1_score.ToString();
+                            total_score.text = Exit_Script.score_till_curr_level.ToString();
                         }
+                        else if(SceneManager.GetActiveScene().name == Loader.Scene.Level_3.ToString())
+                        {
+                            total_score.text = Exit_Script.score_till_curr_level.ToString();
+                        }
+
                         //GameOver_UI.SetActive(true);
 
                         if (!event_called)
