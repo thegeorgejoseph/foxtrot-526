@@ -51,6 +51,8 @@ public class ShowScore : MonoBehaviour
     public TMP_Text namen2;
     public TMP_Text namen3;
 
+    public static int totalLevels = 3;
+
     static int Compare(KeyValuePair<string, float> a, KeyValuePair<string, float> b)
     {
         return b.Value.CompareTo(a.Value);
@@ -207,6 +209,32 @@ public class ShowScore : MonoBehaviour
                         Debug.Log("done pushing the data" + username);
                     });
                 }
+                
+                if (Exit_Script.level_num == totalLevels){
+                    //write code to push accumulated data into highscore column
+                    if(found == -1){
+                        var playerTotalscore = new MaxScore(level_total_score);
+                        DatabaseHandler.PostTotalScore<MaxScore>(playerTotalscore, username, ()=>{
+                            Debug.Log("Updated new HighScore");
+                        });
+                    }
+                    else{
+                        DatabaseHandler.GetTotalScore(username, (totScore) =>{
+                            Debug.Log("Total Score Val " + totScore);
+                            if (level_total_score > totScore){
+                                var playerTotalscore = new MaxScore(level_total_score);
+                                DatabaseHandler.PostTotalScore<MaxScore>(playerTotalscore, username, ()=>{
+                                    Debug.Log("Updated new HighScore");
+                                });
+                            }
+                        });
+                    }
+                    
+                    
+                    
+                    // Debug.Log(DatabaseHandler.totalScore);
+                }
+
 
                 int resultSize = returnList.Length;
                 name1.text = returnList[0].username.Split("_")[0];

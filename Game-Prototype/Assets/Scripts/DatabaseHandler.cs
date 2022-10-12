@@ -10,10 +10,12 @@ public static class DatabaseHandler{
     private static readonly string databaseURL = $"https://foxtrot-analytics-95472-default-rtdb.firebaseio.com/";
     private static fsSerializer serializer = new fsSerializer();
 
-
     public delegate void PostUserCallback();
     // public delegate void GetMetricCallback(Metrics metrics);
     public delegate void GetMetricCallback<T>(Dictionary<string, T> metrics);
+    
+    public delegate void GetHighScoreCallback(float totVal);
+    
     /// <summary>
     /// Adds a user to the Firebase Database
     /// </summary>
@@ -49,6 +51,23 @@ public static class DatabaseHandler{
             Debug.Log("Response Data " + metrics);
         });
     }
+
+
+    public static void GetTotalScore(string username, GetHighScoreCallback callback, string section="highscores", string level ="totalScore", string param = "totalGameScore"){
+        
+        RestClient.Get($"{databaseURL}{section}/{level}/{username}/{param}.json").Then(response =>{
+            var responseJson = response.Text;
+            callback(float.Parse(response.Text));
+        });
+    }
+
+    public static void PostTotalScore<T>(T maxscores, string username, PostUserCallback callback, string section = "highscores", string level = "totalScore")
+    {
+        RestClient.Put<T>($"{databaseURL}{section}/{level}/{username}.json", maxscores).Then(response => { 
+            Debug.Log("Data inserted to highscores table");
+            callback();
+        });
+    }    
 
      /// <summary>
     /// Gets all users from the Firebase Database
