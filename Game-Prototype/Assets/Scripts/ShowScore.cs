@@ -87,6 +87,24 @@ public class ShowScore : MonoBehaviour
 
         if (total_score_val > 0)
         {
+            
+            DatabaseHandler.GetAggregate<Aggregate>("Level_"+Exit_Script.level_num.ToString(), (data) =>{
+                data.levelCompletionTime = ((data.levelCompletionTime * data.playersPassed) + Exit_Script.totalSeconds) / (data.playersPassed + 1);
+                if (Exit_Script.did_finish){
+                    data.playersPassed += 1;
+                }
+                data.healthAccquired += Exit_Script.healthValue;
+                data.enemiesEncountered += Exit_Script.enemiesEncountered;
+                data.enemiesKilled += Exit_Script.enemies_count;
+                data.portalUsageCount += Exit_Script.portalUsageCount;
+                data.playersPlayed += 1;
+                DatabaseHandler.PostAggregate<Aggregate>(data, "Level_"+Exit_Script.level_num.ToString() , ()=>{
+                    Debug.Log("Done with Level");
+                });    
+            });
+            
+            
+           
 
             DatabaseHandler.GetHighScore<HighScores>("Level_"+Exit_Script.level_num.ToString(), (users) =>
             {

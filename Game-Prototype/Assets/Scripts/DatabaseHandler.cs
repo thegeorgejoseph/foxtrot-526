@@ -3,6 +3,7 @@ using FullSerializer;
 using Proyecto26;
 using Debug=UnityEngine.Debug;
 using Newtonsoft.Json.Linq;
+using System;
 
 public static class DatabaseHandler{
 
@@ -13,6 +14,7 @@ public static class DatabaseHandler{
     public delegate void PostUserCallback();
     // public delegate void GetMetricCallback(Metrics metrics);
     public delegate void GetMetricCallback<T>(Dictionary<string, T> metrics);
+    public delegate void GetAggregateCallback(Aggregate aggregate);
     
     public delegate void GetHighScoreCallback(float totVal);
     
@@ -68,6 +70,35 @@ public static class DatabaseHandler{
             callback();
         });
     }    
+
+    public static void PostAggregate<T>(T aggregate, string level, PostUserCallback callback, string section = "aggregate")
+    {
+        RestClient.Put<T>($"{databaseURL}{section}/{level}.json", aggregate).Then(response => { 
+            Debug.Log("Data inserted to aggregate table");
+            callback();
+        });
+    }
+
+    public static void GetAggregate<T>(string level, GetAggregateCallback callback, string section = "aggregate"){
+        RestClient.Get($"{databaseURL}{section}/{level}.json").Then(response =>{
+            var responseJson = response.Text;
+            Debug.Log("Type val "+ responseJson);
+            char[] spearator = { ',', ':','{','}' };
+            String[] strlist = responseJson.Split(spearator);
+            float param1 = float.Parse(strlist[2]);
+            float param2 = float.Parse(strlist[4]);
+            float param3 = float.Parse(strlist[6]);
+            float param4 = float.Parse(strlist[8]);
+            float param5 = float.Parse(strlist[10]);
+            float param6 = float.Parse(strlist[12]);
+            float param7 = float.Parse(strlist[14]);
+            Debug.Log("enemeies encountered res val "+ param1 +" "+ param2 +" " + param3 +" " + param4 + " "+ param5 +" "+ param6 +" "+ param7);
+            var aggregateVal = new Aggregate(param6, param5,param1,param2,param3,param7, param4);
+            callback(aggregateVal);
+        });
+    }
+    
+
 
      /// <summary>
     /// Gets all users from the Firebase Database
