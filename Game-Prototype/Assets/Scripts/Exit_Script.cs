@@ -17,13 +17,11 @@ public class Exit_Script : MonoBehaviour
     public GameObject playerMovement;
     private Movement2D playerMovementScript;
 
-    public static bool did_finish;
-    public static float healthValue;
+    // public GameObject playerProfile;
+    // private InputNameScript playerProfileScript;
+
+    public bool did_finish;
     public static float enemies_count;
-    public static float enemiesEncountered;
-    public static float portalUsageCount;
-    public static float totalSeconds;
-    
     public Enemy_Battle_Scripts battleInfoScript;
     public GameObject battleInfo;
     public GameObject scoreBoard;
@@ -93,17 +91,10 @@ public class Exit_Script : MonoBehaviour
             {
                 Debug.Log("Health Remaining - " + HealthManager.health);
                 Debug.Log("Enemies killed - " + battleInfoScript.kills);
-                healthValue = HealthManager.health;
-                did_finish = true;
-                enemies_count = battleInfoScript.kills;
-                enemiesEncountered = battleInfoScript.enemies_encountered;
-                portalUsageCount = playerMovementScript.portalUsageCount;
-                
-
                 level_num = 1;
                 scoreBoard.SetActive(true);
                 float heart_count = HealthManager.health;
-                
+                enemies_count = battleInfoScript.kills;
                 float total_score_val = 0;
 
                 SceneManager.LoadScene("ScoreScene");
@@ -117,12 +108,11 @@ public class Exit_Script : MonoBehaviour
                 Time.timeScale = 0;
 
                 string level = SceneManager.GetActiveScene().name;
+                did_finish = true;
                 analyticsManagerScript.timer.Stop();
                 // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
                 Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);
-                
-                totalSeconds = analyticsManagerScript.timer.ElapsedTicks;
-                
+
                 var playerHighscore = new HighScores(total_score_val);
                 Debug.Log("Data " + playerHighscore.levelScore);
 
