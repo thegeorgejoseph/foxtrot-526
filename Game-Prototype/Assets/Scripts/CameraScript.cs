@@ -39,16 +39,8 @@ public class CameraScript : MonoBehaviour
         yield return new WaitForSeconds(duration);
         Enemy.SetActive(true);
         Player.GetComponent<Movement2D>().enabled = true;
-        for (int i = 0; i < 20; i++)
-        {
-            GameObject.Find("Bullet_Icon").transform.localScale += new Vector3(0.03f, 0.03f, 0.03f);
-        }
         GameObject.Find("Hearts").GetComponent<HealthManager>().EnlargeHeart();
         yield return new WaitForSeconds(1);
-        for (int i = 0; i < 20; i++)
-        {
-            GameObject.Find("Bullet_Icon").transform.localScale -= new Vector3(0.03f, 0.03f, 0.03f);
-        }
         GameObject.Find("Hearts").GetComponent<HealthManager>().ShrinkHearts();
     }
 }

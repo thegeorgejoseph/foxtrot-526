@@ -113,11 +113,26 @@ public class Enemy_Movement_Script_Basic : MonoBehaviour
         }
     }
 
+
+    void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Player" && this.tag == "Defeated")
+        {
+            canMove = false;
+            this.GetComponent<BoxCollider2D>().isTrigger = true;
+            Debug.Log("STOP!");
+            StartCoroutine(CountDown(1));
+        }
+    }
+
+
     // Coroutine for Enemy's movement cool down
     private IEnumerator CountDown(int duration)
     {
         yield return new WaitForSeconds(duration);
         canMove = true;
+        Debug.Log("GO!");
+        this.GetComponent<BoxCollider2D>().isTrigger = false;
     }
 
 }

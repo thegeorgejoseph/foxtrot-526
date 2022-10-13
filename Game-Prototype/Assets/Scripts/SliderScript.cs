@@ -161,7 +161,7 @@ public class SliderScript : MonoBehaviour
             PlayerPos = player.gameObject.transform.position;
 
             Debug.Log("Dist = " + getDistance(player.gameObject.transform, currentEnemy.gameObject.transform));
-            if (getDistance(player.gameObject.transform, currentEnemy.gameObject.transform) < 50f)
+            if (getDistance(player.gameObject.transform, currentEnemy.gameObject.transform) < 100f)
             {
                 Debug.Log("Hit!");
                 hitText.SetActive(true);
