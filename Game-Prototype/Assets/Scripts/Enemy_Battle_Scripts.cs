@@ -15,6 +15,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     public GameObject SpaceText; // UI to display SpaceBar Hint while attack
     public GameObject player; // Player gameobject to display damage effect
 
+    public Crystal crystalScript; // Crystal Script object
+
     public ScreenShaking screenShake; // ScreenShaking object to display screen shaking effect
     public Enemy_Respawn respawn; // Enemy_Respawn object to respawn the enemy that player defeats
 
@@ -186,6 +188,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     // The player has won
                     /*  OLD currentEnemy.SetActive(false);   */
                     respawn.DisableEnemy(currentEnemy);
+                    // Gain one crystal
+                    crystalScript.gainCrystal(1);
                     // Enable player movement
                     kills += 1;
                     GetComponent<Movement2D>().enabled = true;
@@ -223,7 +227,6 @@ public class Enemy_Battle_Scripts : MonoBehaviour
             }
             // Reset the slider for next battle
             sliderSC.Reset(currentEnemy, this.gameObject);
-
         }
     }
 

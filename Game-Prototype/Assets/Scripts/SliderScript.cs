@@ -118,15 +118,13 @@ public class SliderScript : MonoBehaviour
         return wayPoints.transform.GetChild(curWaypoint);
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-
         if (!stopMoving)
         {
             // Enemy Movement
             //Debug.Log("Enemy Distance Delta: " + getDistance(currentEnemy.gameObject.transform, enemy_nextCoor));
-            Debug.Log("Min delta Enemy: " + Time.deltaTime * enemySpeed * (remainCoorEnemy[0] == 0 ? Mathf.Abs(remainCoorEnemy[1]) : Mathf.Abs(remainCoorEnemy[0])));
+            // Debug.Log("Min delta Enemy: " + Time.deltaTime * enemySpeed * (remainCoorEnemy[0] == 0 ? Mathf.Abs(remainCoorEnemy[1]) : Mathf.Abs(remainCoorEnemy[0])));
             if (getDistance(currentEnemy.gameObject.transform, enemy_nextCoor) <= (Time.deltaTime * enemySpeed * (remainCoorEnemy[0] == 0 ? Mathf.Abs(remainCoorEnemy[1]) : Mathf.Abs(remainCoorEnemy[0]))))
             {
                 currentEnemy.gameObject.transform.position = enemy_nextCoor.position; // Line up with current point
@@ -138,14 +136,16 @@ public class SliderScript : MonoBehaviour
 
             // Player Movement
             //Debug.Log("Player Distance Delta: " + getDistance(player.gameObject.transform, player_nextCoor));
-            Debug.Log("Min delta Player: " + Time.deltaTime * playerSpeed * (remainCoorPlayer[0] == 0 ? Mathf.Abs(remainCoorPlayer[1]) : Mathf.Abs(remainCoorPlayer[0])));
+            // Debug.Log("Min delta Player: " + Time.deltaTime * playerSpeed * (remainCoorPlayer[0] == 0 ? Mathf.Abs(remainCoorPlayer[1]) : Mathf.Abs(remainCoorPlayer[0])));
             if (getDistance(player.gameObject.transform, player_nextCoor) <= (Time.deltaTime * playerSpeed * (remainCoorPlayer[0] == 0 ? Mathf.Abs(remainCoorPlayer[1]) : Mathf.Abs(remainCoorPlayer[0]))))
             {
                 player.gameObject.transform.position = player_nextCoor.position; // Line up with current point
                 player_nextCoor = changeMovementDirection(playerDirection, ref curPlayerWaypoint); // Set next waypoint
                 remainCoorPlayer[0] = player_nextCoor.position.x - player.gameObject.transform.position.x;
                 remainCoorPlayer[1] = player_nextCoor.position.y - player.gameObject.transform.position.y;
+               
             }
+            Debug.Log("Player offest = " + remainCoorPlayer[0] + ", " + remainCoorPlayer[1]);
             player.gameObject.transform.position = player.gameObject.transform.position + new Vector3((remainCoorPlayer[0] == 0) ? 0 : (remainCoorPlayer[0] * Time.deltaTime * playerSpeed), (remainCoorPlayer[1] == 0) ? 0 : (remainCoorPlayer[1] * Time.deltaTime * playerSpeed), 0);
         }
 
@@ -160,7 +160,7 @@ public class SliderScript : MonoBehaviour
 
             PlayerPos = player.gameObject.transform.position;
 
-            Debug.Log("Dist = " + getDistance(player.gameObject.transform, currentEnemy.gameObject.transform));
+            // Debug.Log("Dist = " + getDistance(player.gameObject.transform, currentEnemy.gameObject.transform));
             if (getDistance(player.gameObject.transform, currentEnemy.gameObject.transform) < 100f)
             {
                 Debug.Log("Hit!");
