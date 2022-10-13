@@ -10,7 +10,8 @@ public static class Loader
         Level_0,
         Level_1,
         Level_2,
-        Level_3
+        Level_3,
+        Level_4
     }
     public static void Load(Scene scene){
         SceneManager.LoadScene(scene.ToString());
