@@ -31,8 +31,8 @@ public class SliderScript : MonoBehaviour
     private Vector3 playerOriginPos; // The vector where the player should sit when reset
     private Vector3 enemyOriginPos; // The vector where the enemy should sit when reset
 
-    public Vector3 PlayerPos;
-    public Vector3 EnemyPos;
+    //public Vector3 PlayerPos;
+    //public Vector3 EnemyPos;
 
     // Start is called before the first frame update
     void Awake()
@@ -42,6 +42,17 @@ public class SliderScript : MonoBehaviour
         playerOriginPos = this.player.gameObject.transform.position;
         enemyOriginPos = currentEnemy.gameObject.transform.position;
         //Reset(currentEnemy.gameObject, this.player.gameObject);     
+    }
+
+    // Public method to set the player / enemy speed using a multiplier
+    public void setEnemySpeed(float speedMultiplier)
+    {
+        enemySpeed *= speedMultiplier;
+    }
+
+    public void setPlayerSpeed(float speedMultiplier)
+    {
+        playerSpeed *= speedMultiplier;
     }
 
     public bool checkBattleResult()
@@ -145,12 +156,12 @@ public class SliderScript : MonoBehaviour
                 remainCoorPlayer[1] = player_nextCoor.position.y - player.gameObject.transform.position.y;
                
             }
-            Debug.Log("Player offest = " + remainCoorPlayer[0] + ", " + remainCoorPlayer[1]);
+            //Debug.Log("Player offest = " + remainCoorPlayer[0] + ", " + remainCoorPlayer[1]);
             player.gameObject.transform.position = player.gameObject.transform.position + new Vector3((remainCoorPlayer[0] == 0) ? 0 : (remainCoorPlayer[0] * Time.deltaTime * playerSpeed), (remainCoorPlayer[1] == 0) ? 0 : (remainCoorPlayer[1] * Time.deltaTime * playerSpeed), 0);
         }
 
-        PlayerPos = player.gameObject.transform.position;
-        EnemyPos = currentEnemy.gameObject.transform.position;
+        //PlayerPos = player.gameObject.transform.position;
+        //EnemyPos = currentEnemy.gameObject.transform.position;
 
         // Hit Pending Part
         if (Input.GetKey(KeyCode.Space) && canAttack)
@@ -158,7 +169,7 @@ public class SliderScript : MonoBehaviour
             stopMoving = true;
             canAttack = false;
 
-            PlayerPos = player.gameObject.transform.position;
+            //PlayerPos = player.gameObject.transform.position;
 
             // Debug.Log("Dist = " + getDistance(player.gameObject.transform, currentEnemy.gameObject.transform));
             if (getDistance(player.gameObject.transform, currentEnemy.gameObject.transform) < 100f)

@@ -16,6 +16,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     public GameObject player; // Player gameobject to display damage effect
 
     public Crystal crystalScript; // Crystal Script object
+    public DynamicMovingSpeed DMS; // Script object
 
     public ScreenShaking screenShake; // ScreenShaking object to display screen shaking effect
     public Enemy_Respawn respawn; // Enemy_Respawn object to respawn the enemy that player defeats
@@ -192,6 +193,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     crystalScript.gainCrystal(1);
                     // Enable player movement
                     kills += 1;
+                    DMS.updateSpeed();
                     GetComponent<Movement2D>().enabled = true;
                 }
             }
