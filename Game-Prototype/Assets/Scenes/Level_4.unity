@@ -248,6 +248,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8224332802870053003, guid: 8f79aa8a2ae4cc747adc8ca1cc929bf9, type: 3}
   m_PrefabInstance: {fileID: 23616309}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &23616312 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8224332802870053001, guid: 8f79aa8a2ae4cc747adc8ca1cc929bf9, type: 3}
+  m_PrefabInstance: {fileID: 23616309}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23616311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28e4fecae44bf61408cf1ad9e33ebd72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &28579312 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1943059854109316447, guid: aae3b432c90d54c37914fafb3bb80ab3, type: 3}
@@ -3447,6 +3458,7 @@ GameObject:
   - component: {fileID: 475434226}
   - component: {fileID: 475434227}
   - component: {fileID: 475434228}
+  - component: {fileID: 475434229}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3555,6 +3567,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6c6756b26055949872e3b2eef0528e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &475434229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475434221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1688487bdce91142a588ebd23049640, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sliderScript: {fileID: 23616312}
 --- !u!1 &487393347
 GameObject:
   m_ObjectHideFlags: 0
@@ -13308,6 +13333,7 @@ MonoBehaviour:
   SpaceText: {fileID: 458800385}
   player: {fileID: 1811579274}
   crystalScript: {fileID: 1970752050}
+  DMS: {fileID: 475434229}
   screenShake: {fileID: 475434227}
   respawn: {fileID: 475434228}
   analyticsManager: {fileID: 475434221}
@@ -16183,6 +16209,7 @@ MonoBehaviour:
   SpaceText: {fileID: 0}
   player: {fileID: 0}
   crystalScript: {fileID: 0}
+  DMS: {fileID: 0}
   screenShake: {fileID: 0}
   respawn: {fileID: 0}
   analyticsManager: {fileID: 0}
