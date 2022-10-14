@@ -17,6 +17,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
 
     public Crystal crystalScript; // Crystal Script object
     public DynamicMovingSpeed DMS; // Script object
+    public Heart_Animation HA; // Script object
 
     public ScreenShaking screenShake; // ScreenShaking object to display screen shaking effect
     public Enemy_Respawn respawn; // Enemy_Respawn object to respawn the enemy that player defeats
@@ -83,7 +84,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                 {
                     // Player Lost or no bullets
                     HealthManager.health--;
-
+                    // Play heart animation
+                    HA.heartLose();
                     // Play effects where player takes damage
                     player.GetComponent<SpriteRenderer>().color = Color.red;
                     StartCoroutine(CountDown(1));
@@ -191,6 +193,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     respawn.DisableEnemy(currentEnemy);
                     // Gain one crystal
                     crystalScript.gainCrystal(1);
+                    // Play heart animation
+                    HA.heartGain();
                     // Enable player movement
                     kills += 1;
                     DMS.updateSpeed();
