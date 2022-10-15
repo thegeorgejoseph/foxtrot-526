@@ -1235,6 +1235,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1530178587623487709, guid: de4444c1fee174f4bbf1e4cc673b8a81, type: 3}
   m_PrefabInstance: {fileID: 183438568}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &183438570 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1530178587623487708, guid: de4444c1fee174f4bbf1e4cc673b8a81, type: 3}
+  m_PrefabInstance: {fileID: 183438568}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &186792570
 GameObject:
   m_ObjectHideFlags: 0
@@ -3685,7 +3690,7 @@ MonoBehaviour:
   Camera_Offset: {x: 0, y: 0, z: -1}
   Enemy: {fileID: 1825269716}
   Player: {fileID: 1811579274}
-  Timer: {fileID: 0}
+  Timer: {fileID: 183438570}
 --- !u!111 &519420034
 Animation:
   m_ObjectHideFlags: 0
@@ -11867,6 +11872,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TimeBonus
       objectReference: {fileID: 0}
+    - target: {fileID: 579518342782742235, guid: af86e67d2b06467499192a73dfcafb2f, type: 3}
+      propertyPath: Timer
+      value: 
+      objectReference: {fileID: 183438570}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af86e67d2b06467499192a73dfcafb2f, type: 3}
 --- !u!224 &1915069984 stripped

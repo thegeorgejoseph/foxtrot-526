@@ -51,7 +51,7 @@ public class ShowScore : MonoBehaviour
     public TMP_Text namen2;
     public TMP_Text namen3;
 
-    public static int totalLevels = 4;
+    public static int totalLevels = 5;
 
     static int Compare(KeyValuePair<string, float> a, KeyValuePair<string, float> b)
     {
@@ -455,7 +455,7 @@ public class ShowScore : MonoBehaviour
         }
 
         Exit_Script.score_till_curr_level = level_total_score;
-        if (Exit_Script.level_num == 4)
+        if (Exit_Script.level_num == 5)
         {
             NextLevelButton.SetActive(false);
             MainMenuBtn.SetActive(true);
@@ -478,7 +478,10 @@ public class ShowScore : MonoBehaviour
             {
                 level_pass_msg.text = "Level 3 Finished";
             }
-
+            else if (Exit_Script.level_num == 4)
+            {
+                level_pass_msg.text = "Level 4 Finished";
+            }
         }
 
     }
@@ -504,6 +507,11 @@ public class ShowScore : MonoBehaviour
             {
                 Time.timeScale = 1;
                 SceneManager.LoadScene("Level_4");
+            }
+            else if (Exit_Script.level_num == 4)
+            {
+                Time.timeScale = 1;
+                SceneManager.LoadScene("Level_5");
             }
         }
     }

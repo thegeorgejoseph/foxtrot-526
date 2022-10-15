@@ -365,6 +365,13 @@ public class Exit_Script : MonoBehaviour
                 SceneManager.LoadScene("ScoreScene");
 
             }
+            else if (SceneManager.GetActiveScene().name == Loader.Scene.Level_5.ToString())
+            {
+                enemies_count = battleInfoScript.kills;
+                level_num = 5;
+                SceneManager.LoadScene("ScoreScene");
+
+            }
         }
     }
 

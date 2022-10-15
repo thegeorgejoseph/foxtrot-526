@@ -107,6 +107,10 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                         {
                             total_score.text = Exit_Script.score_till_curr_level.ToString();
                         }
+                        else if (SceneManager.GetActiveScene().name == Loader.Scene.Level_5.ToString())
+                        {
+                            total_score.text = Exit_Script.score_till_curr_level.ToString();
+                        }
 
                         //GameOver_UI.SetActive(true);
 

@@ -8607,6 +8607,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TimeBonus
       objectReference: {fileID: 0}
+    - target: {fileID: 579518342782742235, guid: af86e67d2b06467499192a73dfcafb2f, type: 3}
+      propertyPath: Timer
+      value: 
+      objectReference: {fileID: 338811783}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af86e67d2b06467499192a73dfcafb2f, type: 3}
 --- !u!224 &576040030 stripped
