@@ -7,6 +7,7 @@ public class CameraScript : MonoBehaviour
     public Vector3 Camera_Offset;
     public GameObject Enemy;
     public GameObject Player;
+    public GameObject Timer;
 
     private Animation camAni;
 
@@ -21,6 +22,7 @@ public class CameraScript : MonoBehaviour
         // Stop Anyone from moving before the animation has finished
         Enemy.SetActive(false);
         Player.GetComponent<Movement2D>().enabled = false;
+        Timer.GetComponent<Timer_Script>().enabled = false;
         // Debug.Log("Length of Clip = " + Mathf.Ceil(camAni.clip.length));
         StartCoroutine(CountDown((int)Mathf.Ceil(camAni.clip.length)));
         Player.GetComponent<Enemy_Battle_Scripts>().enabled = true;
@@ -39,6 +41,7 @@ public class CameraScript : MonoBehaviour
         yield return new WaitForSeconds(duration);
         Enemy.SetActive(true);
         Player.GetComponent<Movement2D>().enabled = true;
+        Timer.GetComponent<Timer_Script>().enabled = true;
         GameObject.Find("Hearts").GetComponent<HealthManager>().EnlargeHeart();
         yield return new WaitForSeconds(1);
         GameObject.Find("Hearts").GetComponent<HealthManager>().ShrinkHearts();
