@@ -2382,6 +2382,79 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aae3b432c90d54c37914fafb3bb80ab3, type: 3}
+--- !u!1001 &366263419
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1811579279}
+    m_Modifications:
+    - target: {fileID: 4890157595525418245, guid: 2fa2be2e29c12644fa3add3addaa6963, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4890157595525418245, guid: 2fa2be2e29c12644fa3add3addaa6963, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4890157595525418245, guid: 2fa2be2e29c12644fa3add3addaa6963, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4890157595525418245, guid: 2fa2be2e29c12644fa3add3addaa6963, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4890157595525418245, guid: 2fa2be2e29c12644fa3add3addaa6963, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4890157595525418245, guid: 2fa2be2e29c12644fa3add3addaa6963, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4890157595525418245, guid: 2fa2be2e29c12644fa3add3addaa6963, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4890157595525418245, guid: 2fa2be2e29c12644fa3add3addaa6963, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4890157595525418245, guid: 2fa2be2e29c12644fa3add3addaa6963, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4890157595525418245, guid: 2fa2be2e29c12644fa3add3addaa6963, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4890157595525418245, guid: 2fa2be2e29c12644fa3add3addaa6963, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4890157595525418246, guid: 2fa2be2e29c12644fa3add3addaa6963, type: 3}
+      propertyPath: m_Name
+      value: Heart Animation
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2fa2be2e29c12644fa3add3addaa6963, type: 3}
+--- !u!4 &366263420 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4890157595525418245, guid: 2fa2be2e29c12644fa3add3addaa6963, type: 3}
+  m_PrefabInstance: {fileID: 366263419}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &366263421 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4890157595525418251, guid: 2fa2be2e29c12644fa3add3addaa6963, type: 3}
+  m_PrefabInstance: {fileID: 366263419}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f905e0f14cdf24da9f33ad12594b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &367391859
 GameObject:
   m_ObjectHideFlags: 0
@@ -12642,6 +12715,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 167428185}
+  - {fileID: 366263420}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12664,6 +12738,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   crystalScript: {fileID: 1389861019}
   DMS: {fileID: 475434229}
+  HA: {fileID: 366263421}
   screenShake: {fileID: 475434227}
   respawn: {fileID: 475434228}
   analyticsManager: {fileID: 475434221}
@@ -14741,6 +14816,7 @@ MonoBehaviour:
   player: {fileID: 0}
   crystalScript: {fileID: 0}
   DMS: {fileID: 0}
+  HA: {fileID: 0}
   screenShake: {fileID: 0}
   respawn: {fileID: 0}
   analyticsManager: {fileID: 0}

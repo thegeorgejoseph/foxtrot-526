@@ -10166,6 +10166,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1727604127}
+  - {fileID: 1627766344}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10188,6 +10189,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   crystalScript: {fileID: 1056137207}
   DMS: {fileID: 475434229}
+  HA: {fileID: 1627766345}
   screenShake: {fileID: 475434227}
   respawn: {fileID: 475434228}
   analyticsManager: {fileID: 475434221}
@@ -12025,6 +12027,7 @@ MonoBehaviour:
   player: {fileID: 0}
   crystalScript: {fileID: 0}
   DMS: {fileID: 0}
+  HA: {fileID: 0}
   screenShake: {fileID: 0}
   respawn: {fileID: 0}
   analyticsManager: {fileID: 0}
