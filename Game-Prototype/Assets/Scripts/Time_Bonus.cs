@@ -7,7 +7,7 @@ using UnityEngine;
 public class Time_Bonus : MonoBehaviour
 {
     // Start is called before the first frame update
-    private int bonus_num = 140;
+    public int bonus_num = 140;
     public TextMeshProUGUI display;
     public GameObject Timer;
     private HashSet<int> timeSet = new HashSet<int>();

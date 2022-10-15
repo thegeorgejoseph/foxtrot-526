@@ -14,6 +14,7 @@ public class ShowScore : MonoBehaviour
     public TMP_Text level_passed;
     public TMP_Text level_score;
     public TMP_Text total_score;
+    public TMP_Text time_bonus;
     public TMP_Text level_pass_msg;
     public static float level1_score;
     public GameObject MainMenuBtn;
@@ -74,6 +75,7 @@ public class ShowScore : MonoBehaviour
         level_passed.text = "1 * 100 = " + 100;
         total_score_val = heart_count * 100 + Exit_Script.enemies_count * 100 + 100;
         level_score.text = total_score_val.ToString();
+        time_bonus.text = Exit_Script.bonus_num.ToString();
 
         level_total_score = total_score_val + Exit_Script.score_till_curr_level;
         total_score.text = (level_total_score).ToString();

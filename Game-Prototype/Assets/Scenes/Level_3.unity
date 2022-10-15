@@ -1330,7 +1330,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &181325587
@@ -2215,7 +2215,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &362333884
@@ -3025,6 +3025,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 579518342782742232, guid: af86e67d2b06467499192a73dfcafb2f, type: 3}
   m_PrefabInstance: {fileID: 423833331}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &423833333 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 579518342782742233, guid: af86e67d2b06467499192a73dfcafb2f, type: 3}
+  m_PrefabInstance: {fileID: 423833331}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &427885766
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3376,7 +3381,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &440899374
@@ -4863,6 +4868,7 @@ MonoBehaviour:
   total_score: {fileID: 0}
   level_pass_msg: {fileID: 0}
   MainMenuBtn: {fileID: 0}
+  time_bonus: {fileID: 0}
 --- !u!61 &585153101
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5759,7 +5765,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &724350625
@@ -6494,6 +6500,7 @@ MonoBehaviour:
   total_score: {fileID: 2109190784}
   level_pass_msg: {fileID: 0}
   MainMenuBtn: {fileID: 0}
+  time_bonus: {fileID: 423833333}
 --- !u!1001 &813956964
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9531,6 +9538,7 @@ MonoBehaviour:
   total_score: {fileID: 0}
   level_pass_msg: {fileID: 0}
   MainMenuBtn: {fileID: 0}
+  time_bonus: {fileID: 0}
 --- !u!4 &1255281577 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1943059854109316447, guid: aae3b432c90d54c37914fafb3bb80ab3, type: 3}
@@ -9646,7 +9654,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1263751007
@@ -10728,7 +10736,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1442377931
@@ -11383,7 +11391,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1585303642
@@ -13462,7 +13470,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1920860002

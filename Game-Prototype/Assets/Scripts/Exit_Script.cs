@@ -35,7 +35,9 @@ public class Exit_Script : MonoBehaviour
     public static float level1_score;
     public static float score_till_curr_level;
     public static float level_num;
+    public static int bonus_num;
     public GameObject MainMenuBtn;
+    public GameObject time_bonus;
     
     // public String username;
 
@@ -70,6 +72,7 @@ public class Exit_Script : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
+            bonus_num = time_bonus.GetComponent<Time_Bonus>().bonus_num;
             // username = playerProfileScript.Inputname + "_" + analyticsManagerScript.clientID;
             // Debug.Log("Username is printed " + username);
 
