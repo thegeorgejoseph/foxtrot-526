@@ -226,7 +226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8224332802870053002, guid: 8f79aa8a2ae4cc747adc8ca1cc929bf9, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8224332802870053002, guid: 8f79aa8a2ae4cc747adc8ca1cc929bf9, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1853,9 +1853,9 @@ RectTransform:
   - {fileID: 1509664947}
   - {fileID: 703875492}
   - {fileID: 1970752049}
-  - {fileID: 23616310}
   - {fileID: 576040030}
   - {fileID: 338811782}
+  - {fileID: 23616310}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4342,7 +4342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1530178587623487709, guid: de4444c1fee174f4bbf1e4cc673b8a81, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1530178587623487709, guid: de4444c1fee174f4bbf1e4cc673b8a81, type: 3}
       propertyPath: m_AnchorMax.x
@@ -8533,7 +8533,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 579518342782742232, guid: af86e67d2b06467499192a73dfcafb2f, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 579518342782742232, guid: af86e67d2b06467499192a73dfcafb2f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -8736,6 +8736,7 @@ MonoBehaviour:
   total_score: {fileID: 0}
   level_pass_msg: {fileID: 0}
   MainMenuBtn: {fileID: 0}
+  time_bonus: {fileID: 0}
 --- !u!61 &585153101
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11935,6 +11936,7 @@ MonoBehaviour:
   total_score: {fileID: 2109190784}
   level_pass_msg: {fileID: 0}
   MainMenuBtn: {fileID: 0}
+  time_bonus: {fileID: 0}
 --- !u!1001 &817966902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18601,6 +18603,7 @@ MonoBehaviour:
   total_score: {fileID: 0}
   level_pass_msg: {fileID: 0}
   MainMenuBtn: {fileID: 0}
+  time_bonus: {fileID: 0}
 --- !u!1001 &1236337657
 PrefabInstance:
   m_ObjectHideFlags: 0

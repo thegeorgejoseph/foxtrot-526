@@ -34,7 +34,7 @@ public class Enemy_Respawn : MonoBehaviour
         */
         enemyQ.Enqueue(curEnemy); // Push this enemy into the queue
         // Respawn the enemy, current respawn time: 5 sec
-        StartCoroutine(Respawn(Random.Range(8,13))); // Start coroutine that respawns the enemy
+        StartCoroutine(Respawn(Random.Range(10,16))); // Start coroutine that respawns the enemy
     }
 
     // Coroutine for Enemy's respawn
