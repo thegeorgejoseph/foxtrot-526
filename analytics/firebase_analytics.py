@@ -6,7 +6,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-cred = credentials.Certificate("/Users/sarapesavento/Documents/foxtrot-analytics-95472-firebase-adminsdk-6e9fo-d86906cb59.json")
+cred = credentials.Certificate("/Users/sarapesavento/Documents/foxtrot-analytics-95472-firebase-adminsdk-6e9fo-b1ac3bad32.json")
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://foxtrot-analytics-95472-default-rtdb.firebaseio.com/'
 })
@@ -164,6 +164,29 @@ plt.savefig('firebase_plots/level_completion_pie.png', dpi=1200)
 #plt.show()
 plt.close()
 
+### Plot 6: Total Game Plays
+### Bar plot
+plt.bar(finish_by_level['level'], finish_by_level['total_finished_count'], color = "#FFB06B")
+plt.xlabel('Level')
+plt.ylabel('Count')
+plt.title('Total Game Plays')
+# leave room for counts
+plt.ylim(0, max(finish_by_level['total_finished_count']) + max(finish_by_level['total_finished_count'])*.10)
+for x,y in zip(finish_by_level['level'],finish_by_level['total_finished_count']):
+
+    label = "{:.0f}".format(y)
+
+    plt.annotate(label, # this is the text
+                 (x,y), # these are the coordinates to position the label
+                 textcoords="offset points", # how to position the text
+                 xytext=(0,10), # distance from text to points (x,y)
+                 ha='center') # horizontal alignment can be left, right or center
+
+
+plt.legend(loc='best')
+plt.savefig('firebase_plots/level_game_plays.png', dpi=1200)
+plt.close()
+
 """
 Metric 2: Portal Use
 """
@@ -250,12 +273,12 @@ plt.close()
 portal_counts = df_portals.astype({'portalUsageCount': int, 'level': str})
 portal_counts['counts'] = 1
 portal_counts = portal_counts.groupby(['level', 'portalUsageCount'])['counts'].sum().reset_index()
-portal_counts_1 = portal_counts[portal_counts['level'] == '1']
-portal_counts_1['sum'] = sum(portal_counts_1['counts'])
 colors = ['#B8E4FF', '#6596C7', '#ED9C9C', '#97DEB1', '#FFB06B']
 
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10,10)) 
+fig, (ax1, ax2, ax3, ax4, ax5) = plt.subplots(1, 5, figsize=(20,20)) 
 
+portal_counts_1 = portal_counts[portal_counts['level'] == '1']
+portal_counts_1['sum'] = sum(portal_counts_1['counts'])
 labels = portal_counts_1['portalUsageCount']
 values = portal_counts_1['counts']
 ax1.pie(values,labels = labels, colors = colors, autopct = '%1.1f%%') #plot first pie
@@ -263,11 +286,31 @@ ax1.set_title('Level 1')
 
 portal_counts_2 = portal_counts[portal_counts['level'] == '2']
 portal_counts_2['sum'] = sum(portal_counts_2['counts'])
-
 labels = portal_counts_2['portalUsageCount']
 values = portal_counts_2['counts']
-ax2.pie(values,labels = labels, colors = colors, autopct = '%1.1f%%') #plot first pie
+ax2.pie(values,labels = labels, colors = colors, autopct = '%1.1f%%') #plot second pie
 ax2.set_title('Level 2')
+
+portal_counts_3 = portal_counts[portal_counts['level'] == '3']
+portal_counts_3['sum'] = sum(portal_counts_3['counts'])
+labels = portal_counts_3['portalUsageCount']
+values = portal_counts_3['counts']
+ax3.pie(values,labels = labels, colors = colors, autopct = '%1.1f%%') #plot third pie
+ax3.set_title('Level 3')
+
+portal_counts_4 = portal_counts[portal_counts['level'] == '4']
+portal_counts_4['sum'] = sum(portal_counts_4['counts'])
+labels = portal_counts_4['portalUsageCount']
+values = portal_counts_4['counts']
+ax4.pie(values,labels = labels, colors = colors, autopct = '%1.1f%%') #plot fourth pie
+ax4.set_title('Level 4')
+
+portal_counts_5 = portal_counts[portal_counts['level'] == '5']
+portal_counts_5['sum'] = sum(portal_counts_5['counts'])
+labels = portal_counts_5['portalUsageCount']
+values = portal_counts_5['counts']
+ax5.pie(values,labels = labels, colors = colors, autopct = '%1.1f%%') #plot fifth pie
+ax5.set_title('Level 5')
 
 plt.suptitle('Number of Portal Uses')
 plt.savefig('firebase_plots/portal_use_pie.png', dpi=1200)
@@ -442,8 +485,8 @@ score_by_level = df.groupby(['level'])[('levelScore')].mean().reset_index()
 print(score_by_level)
 plt.bar(score_by_level['level'], score_by_level['levelScore'], color = "#6596C7")
 plt.xlabel('Level')
-plt.ylabel('Time (seconds)')
-plt.title('Average Time Taken to Complete Level')
+plt.ylabel('Score')
+plt.title('Average Score by Level')
 print(score_by_level['levelScore'])
 print(max(score_by_level['levelScore']))
 plt.ylim(0, max(score_by_level['levelScore']) + max(score_by_level['levelScore'])*.10)
