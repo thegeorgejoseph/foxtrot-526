@@ -95,44 +95,36 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                         // The player lost, gameover!
                         GameFinishText.text = "Game Over!";
                         deathScore.SetActive(true);
-                        if(SceneManager.GetActiveScene().name == Loader.Scene.Level_2.ToString())
-                        {
-                            total_score.text = Exit_Script.score_till_curr_level.ToString();
-                        }
-                        else if(SceneManager.GetActiveScene().name == Loader.Scene.Level_3.ToString())
-                        {
-                            total_score.text = Exit_Script.score_till_curr_level.ToString();
-                        }
-                        else if (SceneManager.GetActiveScene().name == Loader.Scene.Level_4.ToString())
-                        {
-                            total_score.text = Exit_Script.score_till_curr_level.ToString();
-                        }
-                        else if (SceneManager.GetActiveScene().name == Loader.Scene.Level_5.ToString())
-                        {
-                            total_score.text = Exit_Script.score_till_curr_level.ToString();
-                        }
+                        
+                        SceneManager.LoadScene("GameHighscore");
+                        
+                        // if(SceneManager.GetActiveScene().name == Loader.Scene.Level_2.ToString())
+                        // {
+                        //     total_score.text = Exit_Script.score_till_curr_level.ToString();
+                        // }
+                        // else if(SceneManager.GetActiveScene().name == Loader.Scene.Level_3.ToString())
+                        // {
+                        //     total_score.text = Exit_Script.score_till_curr_level.ToString();
+                        // }
+                        // else if (SceneManager.GetActiveScene().name == Loader.Scene.Level_4.ToString())
+                        // {
+                        //     total_score.text = Exit_Script.score_till_curr_level.ToString();
+                        // }
+                        // else if (SceneManager.GetActiveScene().name == Loader.Scene.Level_5.ToString())
+                        // {
+                        //     total_score.text = Exit_Script.score_till_curr_level.ToString();
+                        // }
 
-                        //GameOver_UI.SetActive(true);
-
+                      
                         if (!event_called)
                         {
                         
                             
                             string level = SceneManager.GetActiveScene().name;
 
-                            // analyticsManagerScript.HandleEvent("master_metrics", new List<object>
-                            //         {
-                            //             level,
-                            //             did_finish,
-                            //             enemies_encountered,
-                            //             kills,
-                            //             HealthManager.health
-                                        
-                            //         });
-
+                          
                             analyticsManagerScript.timer.Stop();
-                            // Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);
-
+                          
 
                             var metrics = new Metrics(analyticsManagerScript.clientID,
                             DateTimeOffset.Now.ToUnixTimeSeconds().ToString(), 
@@ -152,33 +144,6 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                                 Debug.Log("done posting to firebase metric");
                             });
 
-                            // DatabaseHandler.PostMetrics<testMetricStore>(testMetric, analyticsManagerScript.startTime, () =>
-                            // {
-                            //     Debug.Log("done posting to firebase test metric");
-                            // }, "testMetric");
-
-                            // DatabaseHandler.GetMetrics<testMetricStore>(users =>
-                            // {
-                            //     foreach (var user in users)
-                            //     {
-                            //         Debug.Log($"{user.Value.clientID} {user.Value.level} {user.Value.timestamp}");
-                            //     }
-                            // }, "testMetric");
-                                                        
-                            // analyticsManagerScript.HandleEvent("did_finish", new List<object>
-                            // {
-                            //     did_finish,
-                            //     name
-                            // }); // send false to did_finish metric
-                            // analyticsManagerScript.HandleEvent("enemies", new List<object>
-                            // {
-                            //     enemies_encountered,
-                            //     kills
-                            // });
-                            // analyticsManagerScript.HandleEvent("health_metric", new List<object>
-                            // {
-                            //     HealthManager.health
-                            // });
                             event_called = true;
                         }
                         Time.timeScale = 0f;

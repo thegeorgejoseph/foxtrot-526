@@ -15,6 +15,10 @@ public static class DatabaseHandler{
     public delegate void GetMetricCallback<T>(Dictionary<string, T> metrics);
     
     public delegate void GetHighScoreCallback(float totVal);
+
+
+
+
     
     /// <summary>
     /// Adds a user to the Firebase Database
@@ -61,6 +65,23 @@ public static class DatabaseHandler{
         });
     }
 
+
+    public static void GetAllTotalScore<T>(GetMetricCallback<T> callback, string section="highscores", string level ="totalScore"){
+        
+        RestClient.Get($"{databaseURL}{section}/{level}.json").Then(response =>{
+            var responseJson = response.Text;
+            Debug.Log(responseJson);
+            var data = fsJsonParser.Parse(responseJson);
+            object deserialized = null;
+            serializer.TryDeserialize(data, typeof(Dictionary<string, T>), ref deserialized);
+            var metrics = deserialized as Dictionary<string, T>;
+            callback(metrics);
+            Debug.Log("Response Data " + metrics);
+        });
+    }
+
+
+
     public static void PostTotalScore<T>(T maxscores, string username, PostUserCallback callback, string section = "highscores", string level = "totalScore")
     {
         RestClient.Put<T>($"{databaseURL}{section}/{level}/{username}.json", maxscores).Then(response => { 
@@ -69,7 +90,7 @@ public static class DatabaseHandler{
         });
     }    
 
-     /// <summary>
+    /// <summary>
     /// Gets all users from the Firebase Database
     /// </summary>
     /// <param name="callback"> What to do after all users are downloaded successfully </param>

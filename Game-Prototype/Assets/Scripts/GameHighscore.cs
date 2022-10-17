@@ -54,17 +54,44 @@ public class GameHighscore : MonoBehaviour
     void Start()
     {
         var username = InputNameScript.username + "_" + analyticsManagerScript.clientID;
-        DatabaseHandler.GetHighScore<HighScores>("totalScore", (users) =>
+        Debug.Log("highscore username " + username);
+
+        float failStateValue = Exit_Script.score_till_curr_level;
+
+        DatabaseHandler.GetAllTotalScore<MaxScore>((users) => 
         {
             var myList = new List<KeyValuePair<string, float>>();
             var returnList = new TableRow[6];
-            
-            foreach (KeyValuePair<string, HighScores> kvp in users)
+
+            foreach (KeyValuePair<string, MaxScore> kvp in users)
             {
-                myList.Add(new KeyValuePair<string, float>(kvp.Key, kvp.Value.levelScore));
+                myList.Add(new KeyValuePair<string, float>(kvp.Key, kvp.Value.totalGameScore));
             }
             Debug.Log("finding the data " + myList.Count);
             int overallCount = myList.Count;
+            int found = -1;
+            for (int i = 0; i < overallCount; i++)
+            {
+
+                if (myList[i].Key == username)
+                {
+                    found = i;
+                    break;
+                }
+            }
+            if (found == -1)
+            {
+                myList.Add(new KeyValuePair<string, float>(username, failStateValue));
+            }
+            else
+            {
+                if ((myList[found].Value < failStateValue))
+                {
+                    myList.Remove(myList[found]);
+                    myList.Add(new KeyValuePair<string, float>(username, failStateValue));
+                    found = -2;
+                }
+            }
             int count = 0;
             int index = 0;
             int searchRank = 0;
@@ -144,6 +171,14 @@ public class GameHighscore : MonoBehaviour
             {
                 Debug.Log("DDDDD " + returnList[i].username + " " + returnList[i].levelScore);
             }
+            if (found < 0)
+            {
+                 var playerTotalscore = new MaxScore(failStateValue);
+                DatabaseHandler.PostTotalScore<MaxScore>(playerTotalscore, username, ()=>{
+                    Debug.Log("Updated new HighScore");
+                });
+            }
+            
 
             int resultSize = returnList.Length;
             name1.text = returnList[0].username.Split("_")[0];
