@@ -2977,7 +2977,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -217.68, y: 8}
+  m_AnchoredPosition: {x: -217.68, y: -22}
   m_SizeDelta: {x: 106.84, y: 37.3104}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &525803544
@@ -4534,7 +4534,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 133, y: 9}
+  m_AnchoredPosition: {x: 133, y: -22}
   m_SizeDelta: {x: 117.99, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &824517237
@@ -8007,7 +8007,6 @@ MonoBehaviour:
   MainMenuBtn: {fileID: 707686967}
   NextLevelButton: {fileID: 1267367808}
   analyticsManager: {fileID: 1569101525}
-  timeBonus: {fileID: 579518342782742233, guid: af86e67d2b06467499192a73dfcafb2f, type: 3}
   pos1: {fileID: 1399023711}
   pos2: {fileID: 1921398204}
   pos3: {fileID: 353078274}
@@ -9357,7 +9356,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 133, y: -22}
+  m_AnchoredPosition: {x: 133, y: 9}
   m_SizeDelta: {x: 117.9785, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1811360655
@@ -10071,7 +10070,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -217.68, y: -22}
+  m_AnchoredPosition: {x: -217.68, y: 8}
   m_SizeDelta: {x: 106.84, y: 37.3104}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1972785479
