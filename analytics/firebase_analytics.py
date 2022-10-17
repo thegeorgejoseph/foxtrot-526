@@ -273,47 +273,58 @@ plt.close()
 portal_counts = df_portals.astype({'portalUsageCount': int, 'level': str})
 portal_counts['counts'] = 1
 portal_counts = portal_counts.groupby(['level', 'portalUsageCount'])['counts'].sum().reset_index()
-colors = ['#B8E4FF', '#6596C7', '#ED9C9C', '#97DEB1', '#FFB06B']
 
-fig, (ax1, ax2, ax3, ax4, ax5) = plt.subplots(1, 5, figsize=(20,20)) 
+colors = ['#B8E4FF', '#6596C7', '#A497DE', '#DDDE97', '#ED9C9C', '#97DEB1', '#FFB06B', '#DE97D8']
+#fig, (ax1, ax2, ax3, ax4, ax5) = plt.subplots(1, 5, figsize=(20,20)) 
 
 portal_counts_1 = portal_counts[portal_counts['level'] == '1']
 portal_counts_1['sum'] = sum(portal_counts_1['counts'])
 labels = portal_counts_1['portalUsageCount']
 values = portal_counts_1['counts']
-ax1.pie(values,labels = labels, colors = colors, autopct = '%1.1f%%') #plot first pie
-ax1.set_title('Level 1')
+plt.pie(values,labels = labels, colors = colors, autopct = '%1.1f%%') #plot first pie
+plt.title('Level 1')
+plt.suptitle('Number of Portal Uses')
+plt.savefig('firebase_plots/portal_use_pie_level1.png', dpi=1200)
+plt.close()
 
 portal_counts_2 = portal_counts[portal_counts['level'] == '2']
 portal_counts_2['sum'] = sum(portal_counts_2['counts'])
 labels = portal_counts_2['portalUsageCount']
 values = portal_counts_2['counts']
-ax2.pie(values,labels = labels, colors = colors, autopct = '%1.1f%%') #plot second pie
-ax2.set_title('Level 2')
+plt.pie(values,labels = labels, colors = colors, autopct = '%1.1f%%') #plot second pie
+plt.title('Level 2')
+plt.suptitle('Number of Portal Uses')
+plt.savefig('firebase_plots/portal_use_pie_level2.png', dpi=1200)
+plt.close()
 
 portal_counts_3 = portal_counts[portal_counts['level'] == '3']
 portal_counts_3['sum'] = sum(portal_counts_3['counts'])
 labels = portal_counts_3['portalUsageCount']
 values = portal_counts_3['counts']
-ax3.pie(values,labels = labels, colors = colors, autopct = '%1.1f%%') #plot third pie
-ax3.set_title('Level 3')
+plt.pie(values,labels = labels, colors = colors, autopct = '%1.1f%%') #plot third pie
+plt.title('Level 3')
+plt.suptitle('Number of Portal Uses')
+plt.savefig('firebase_plots/portal_use_pie_level3.png', dpi=1200)
+plt.close()
 
 portal_counts_4 = portal_counts[portal_counts['level'] == '4']
 portal_counts_4['sum'] = sum(portal_counts_4['counts'])
 labels = portal_counts_4['portalUsageCount']
 values = portal_counts_4['counts']
-ax4.pie(values,labels = labels, colors = colors, autopct = '%1.1f%%') #plot fourth pie
-ax4.set_title('Level 4')
+plt.pie(values,labels = labels, colors = colors, autopct = '%1.1f%%') #plot fourth pie
+plt.title('Level 4')
+plt.suptitle('Number of Portal Uses')
+plt.savefig('firebase_plots/portal_use_pie_level4.png', dpi=1200)
+plt.close()
 
 portal_counts_5 = portal_counts[portal_counts['level'] == '5']
 portal_counts_5['sum'] = sum(portal_counts_5['counts'])
 labels = portal_counts_5['portalUsageCount']
 values = portal_counts_5['counts']
-ax5.pie(values,labels = labels, colors = colors, autopct = '%1.1f%%') #plot fifth pie
-ax5.set_title('Level 5')
-
+plt.pie(values,labels = labels, colors = colors, autopct = '%1.1f%%') #plot fourth pie
+plt.title('Level 5')
 plt.suptitle('Number of Portal Uses')
-plt.savefig('firebase_plots/portal_use_pie.png', dpi=1200)
+plt.savefig('firebase_plots/portal_use_pie_level5.png', dpi=1200)
 plt.close()
 
 """
@@ -343,13 +354,40 @@ def enemies_encountered(df):
     plt.title('By Level')
 
     level_labels = tuple(str(item) for item in tuple(df_enemy['level']))
-    plt.xticks(ind + width / 2, level_labels)
-    print('test')
+    plt.xticks(ind + width / 2, level_labels)      
     plt.legend(loc='best')
     plt.savefig('firebase_plots/enemies_bar_plot.png')
     plt.close()
 
 enemies_encountered(df)
+
+# Plot 2: Percentage encountered versus killed. 
+df_enemy = df[['level', 'enemies_encountered', 'enemies_killed']]
+df_enemy = df_enemy.dropna()
+df_enemy = df_enemy.groupby(['level'])[['enemies_encountered', 'enemies_killed']].sum().reset_index()
+print('df_enemy')
+print(df_enemy)
+df_enemy['killed_percentage'] = (df_enemy['enemies_killed'] / df_enemy['enemies_encountered']) * 100
+
+plt.bar(df_enemy['level'], df_enemy['killed_percentage'], color = "#FFB06B")
+plt.xlabel('Level')
+plt.ylabel('Percentage Killed')
+plt.title('Percentage of Enemies Encountered Vs. Killed')
+# leave room for counts
+plt.ylim(0, max(df_enemy['killed_percentage']) + max(df_enemy['killed_percentage'])*.10)
+for x,y in zip(df_enemy['level'],df_enemy['killed_percentage']):
+
+    label = "{:.2f}%".format(y)
+
+    plt.annotate(label, # this is the text
+                 (x,y), # these are the coordinates to position the label
+                 textcoords="offset points", # how to position the text
+                 xytext=(0,10), # distance from text to points (x,y)
+                 ha='center') # horizontal alignment can be left, right or center
+
+plt.legend(loc='best')
+plt.savefig('firebase_plots/enemies_percentage_bar_plot.png', dpi=1200)
+plt.close()
 
 """
 Metric 4: Health of Player
@@ -468,6 +506,21 @@ for x,y in zip(time_by_level['level'],time_by_level['levelCompletionTime']):
 
 plt.legend(loc='best')
 plt.savefig('firebase_plots/time_bar.png', dpi=1200)
+#plt.show()
+plt.close()
+
+# Plot 2: Time taken per level (vertically stacked)
+df_level1 = df.loc[df['level'] == '1']
+df_level1 = df_level1[['levelCompletionTime']]
+df_level1 = df_level1.dropna()
+df_level1['time_count'] = 1
+df_level1_agg = df_level1.groupby(['levelCompletionTime'])[('time_count')].sum().reset_index()
+print(df_level1_agg)
+plt.plot(df_level1_agg['levelCompletionTime'], df_level1_agg['time_count'], marker="o", linestyle = "", markersize=2, markeredgecolor="black")
+plt.xlabel('Time Taken')
+plt.ylabel('Count')
+plt.title('Level 1 Time Taken')
+plt.savefig('firebase_plots/time_level_1_dist_point.png', dpi=1200)
 #plt.show()
 plt.close()
 
