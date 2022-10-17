@@ -55,4 +55,10 @@ public class GameOver_Panel : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene("InputNameScene");
     }
+
+    public void loadHighScoreTotal()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("GameHighScore");
+    }
 }

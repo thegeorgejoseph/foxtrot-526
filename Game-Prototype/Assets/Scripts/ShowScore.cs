@@ -19,6 +19,7 @@ public class ShowScore : MonoBehaviour
     public static float level1_score;
     public GameObject MainMenuBtn;
     public GameObject NextLevelButton;
+    public GameObject TotalScoreBoardBtn;
     public GameObject analyticsManager;
     private AnalyticsManager analyticsManagerScript;
 
@@ -461,6 +462,7 @@ public class ShowScore : MonoBehaviour
         {
             NextLevelButton.SetActive(false);
             MainMenuBtn.SetActive(true);
+            TotalScoreBoardBtn.SetActive(true);
             level_pass_msg.text = "Game Over";
         }
         else
@@ -468,6 +470,7 @@ public class ShowScore : MonoBehaviour
             Debug.Log("LEVEL NUM - " + Exit_Script.level_num.ToString());
             MainMenuBtn.SetActive(false);
             NextLevelButton.SetActive(true);
+            TotalScoreBoardBtn.SetActive(false);
             if (Exit_Script.level_num == 1)
             {
                 level_pass_msg.text = "Level 1 Finished";
