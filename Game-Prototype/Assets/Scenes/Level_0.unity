@@ -202,7 +202,7 @@ MonoBehaviour:
   Exit_UI: {fileID: 0}
   GameFinishText: {fileID: 0}
   analyticsManager: {fileID: 475434221}
-  playerMovement: {fileID: 475434221}
+  playerMovement: {fileID: 0}
   did_finish: 0
   battleInfoScript: {fileID: 0}
   battleInfo: {fileID: 1811579274}
@@ -215,7 +215,6 @@ MonoBehaviour:
   total_score: {fileID: 0}
   level_pass_msg: {fileID: 0}
   MainMenuBtn: {fileID: 0}
-  time_bonus: {fileID: 0}
 --- !u!61 &114672606
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2130,7 +2129,6 @@ MonoBehaviour:
   total_score: {fileID: 0}
   level_pass_msg: {fileID: 0}
   MainMenuBtn: {fileID: 0}
-  time_bonus: {fileID: 0}
 --- !u!61 &585153101
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3666,7 +3664,6 @@ MonoBehaviour:
   total_score: {fileID: 0}
   level_pass_msg: {fileID: 0}
   MainMenuBtn: {fileID: 0}
-  time_bonus: {fileID: 0}
 --- !u!1 &1324869801
 GameObject:
   m_ObjectHideFlags: 0
@@ -5206,7 +5203,7 @@ MonoBehaviour:
   count: 0
   kills: 0
   enemies_encountered: 0
-  playerMovement: {fileID: 475434221}
+  playerMovement: {fileID: 0}
 --- !u!1 &1825269716
 GameObject:
   m_ObjectHideFlags: 0
