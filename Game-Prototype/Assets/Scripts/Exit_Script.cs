@@ -34,6 +34,7 @@ public class Exit_Script : MonoBehaviour
     public TMP_Text level_pass_msg;
     public static float level1_score;
     public static float score_till_curr_level;
+    public float level_score_metric;
     public static float level_num;
     public static int bonus_num;
     public GameObject MainMenuBtn;
@@ -109,10 +110,12 @@ public class Exit_Script : MonoBehaviour
                 total_score.text = total_score_val.ToString();
                 level1_score = total_score_val;
                 Time.timeScale = 0;
+                level_score_metric = level1_score;
 
-                string level = SceneManager.GetActiveScene().name;
+                string level = level_num.ToString();
                 did_finish = true;
                 analyticsManagerScript.timer.Stop();
+                
                 // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
                 Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);
 
@@ -128,12 +131,12 @@ public class Exit_Script : MonoBehaviour
                                                 HealthManager.health.ToString(),
                                                 (analyticsManagerScript.timer.ElapsedTicks / 10000000).ToString(),
                                                 playerMovementScript.portalUsageCount.ToString(),
-                                                level1_score.ToString());
+                                                level_score_metric.ToString());
 
                 
                 DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.startTime, () =>
                     {
-                        Debug.Log("done posting to firebase metric");
+                        Debug.Log("done posting to firebase metric"+level);
                     });
 
                 string username ="Michael";
@@ -289,9 +292,10 @@ public class Exit_Script : MonoBehaviour
                 total_score.text = (total_score_val + level1_score).ToString();
                 level1_score = total_score_val;
                 Time.timeScale = 0;
+                level_score_metric = level1_score;
 
 
-                string level = SceneManager.GetActiveScene().name;
+                string level = level_num.ToString();
                 did_finish = true;
                 analyticsManagerScript.timer.Stop();
                 // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
@@ -306,7 +310,7 @@ public class Exit_Script : MonoBehaviour
                                                 HealthManager.health.ToString(),
                                                 (analyticsManagerScript.timer.ElapsedTicks / 10000000).ToString(),
                                                 playerMovementScript.portalUsageCount.ToString(),
-                                                level1_score.ToString());
+                                                level_score_metric.ToString());
 
                 // teleportationScript.portalUsageCount.ToString()
 
@@ -358,7 +362,31 @@ public class Exit_Script : MonoBehaviour
             {
                 enemies_count = battleInfoScript.kills;
                 level_num = 3;
+                string level = level_num.ToString();
                 SceneManager.LoadScene("ScoreScene");
+                
+
+                did_finish = true;
+                analyticsManagerScript.timer.Stop();
+                // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
+                Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);
+                level_score_metric = HealthManager.health * 100 + enemies_count * 100 + 100;
+
+                var metrics = new Metrics(analyticsManagerScript.clientID,
+                    DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
+                                                level, did_finish.ToString(),
+                                                battleInfoScript.enemies_encountered.ToString(),
+                                                battleInfoScript.kills.ToString(),
+                                                HealthManager.health.ToString(),
+                                                (analyticsManagerScript.timer.ElapsedTicks / 10000000).ToString(),
+                                                playerMovementScript.portalUsageCount.ToString(),
+                                                level_score_metric.ToString());
+
+                
+                DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.startTime, () =>
+                    {
+                        Debug.Log("done posting to firebase metric"+level);
+                    });
 
             }
             else if (SceneManager.GetActiveScene().name == Loader.Scene.Level_4.ToString())
@@ -367,12 +395,58 @@ public class Exit_Script : MonoBehaviour
                 level_num = 4;
                 SceneManager.LoadScene("ScoreScene");
 
+                string level = level_num.ToString();
+                did_finish = true;
+                analyticsManagerScript.timer.Stop();
+                level_score_metric = HealthManager.health * 100 + enemies_count * 100 + 100;
+                // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
+                Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);
+
+                var metrics = new Metrics(analyticsManagerScript.clientID,
+                    DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
+                                                level, did_finish.ToString(),
+                                                battleInfoScript.enemies_encountered.ToString(),
+                                                battleInfoScript.kills.ToString(),
+                                                HealthManager.health.ToString(),
+                                                (analyticsManagerScript.timer.ElapsedTicks / 10000000).ToString(),
+                                                playerMovementScript.portalUsageCount.ToString(),
+                                                level_score_metric.ToString());
+
+                
+                DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.startTime, () =>
+                    {
+                        Debug.Log("done posting to firebase metric"+level);
+                    });
+
             }
             else if (SceneManager.GetActiveScene().name == Loader.Scene.Level_5.ToString())
             {
                 enemies_count = battleInfoScript.kills;
                 level_num = 5;
                 SceneManager.LoadScene("ScoreScene");
+
+                string level = level_num.ToString();
+                level_score_metric = HealthManager.health * 100 + enemies_count * 100 + 100;
+                did_finish = true;
+                analyticsManagerScript.timer.Stop();
+                // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
+                Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);
+
+                var metrics = new Metrics(analyticsManagerScript.clientID,
+                    DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
+                                                level, did_finish.ToString(),
+                                                battleInfoScript.enemies_encountered.ToString(),
+                                                battleInfoScript.kills.ToString(),
+                                                HealthManager.health.ToString(),
+                                                (analyticsManagerScript.timer.ElapsedTicks / 10000000).ToString(),
+                                                playerMovementScript.portalUsageCount.ToString(),
+                                                level_score_metric.ToString());
+
+                
+                DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.startTime, () =>
+                    {
+                        Debug.Log("done posting to firebase metric"+level);
+                    });
 
             }
         }
