@@ -214,7 +214,9 @@ MonoBehaviour:
   level_score: {fileID: 0}
   total_score: {fileID: 0}
   level_pass_msg: {fileID: 0}
+  level_score_metric: 0
   MainMenuBtn: {fileID: 0}
+  time_bonus: {fileID: 579518343225593718}
 --- !u!61 &114672606
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2128,7 +2130,9 @@ MonoBehaviour:
   level_score: {fileID: 0}
   total_score: {fileID: 0}
   level_pass_msg: {fileID: 0}
+  level_score_metric: 0
   MainMenuBtn: {fileID: 0}
+  time_bonus: {fileID: 0}
 --- !u!61 &585153101
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3663,7 +3667,9 @@ MonoBehaviour:
   level_score: {fileID: 0}
   total_score: {fileID: 0}
   level_pass_msg: {fileID: 0}
+  level_score_metric: 0
   MainMenuBtn: {fileID: 0}
+  time_bonus: {fileID: 579518343225593718}
 --- !u!1 &1324869801
 GameObject:
   m_ObjectHideFlags: 0
@@ -6003,6 +6009,11 @@ PrefabInstance:
       objectReference: {fileID: 1094965720}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af86e67d2b06467499192a73dfcafb2f, type: 3}
+--- !u!1 &579518343225593718 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 579518342782742233, guid: af86e67d2b06467499192a73dfcafb2f, type: 3}
+  m_PrefabInstance: {fileID: 579518343225593717}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1530178586570858756
 PrefabInstance:
   m_ObjectHideFlags: 0
