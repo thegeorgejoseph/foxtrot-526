@@ -235,7 +235,7 @@ public class ShowScore : MonoBehaviour
                             }
                         });
                     }
-                    SceneManager.LoadScene("GameHighscore");    
+                    // SceneManager.LoadScene("GameHighscore");
                 }
 
 
