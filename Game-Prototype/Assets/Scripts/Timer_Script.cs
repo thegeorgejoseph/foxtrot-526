@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Timer_Script : MonoBehaviour
@@ -9,8 +10,8 @@ public class Timer_Script : MonoBehaviour
     public float timeValue;
     public Text timeText;
     void Start()
-    {      
-        
+    {
+     
     }
 
     // Update is called once per frame

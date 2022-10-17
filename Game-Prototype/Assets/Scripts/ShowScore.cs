@@ -77,7 +77,7 @@ public class ShowScore : MonoBehaviour
         level_score.text = total_score_val.ToString();
         time_bonus.text = Exit_Script.bonus_num.ToString();
 
-        level_total_score = total_score_val + Exit_Script.score_till_curr_level;
+        level_total_score = total_score_val + Exit_Script.score_till_curr_level + Exit_Script.bonus_num;
         total_score.text = (level_total_score).ToString();
         level1_score = level1_score + total_score_val;
 
