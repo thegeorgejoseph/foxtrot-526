@@ -57,7 +57,6 @@ public class Time_Bonus : MonoBehaviour
             bonus_num -= 20;
             timeSet.Add(time);
         }
-
         display.text = bonus_num.ToString();
     }
 }

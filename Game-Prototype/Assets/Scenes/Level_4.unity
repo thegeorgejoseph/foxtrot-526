@@ -3849,6 +3849,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb2d: {fileID: 487393352}
   battleStatus: {fileID: 1811579280}
+--- !u!1 &488437985 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 579518342782742233, guid: af86e67d2b06467499192a73dfcafb2f, type: 3}
+  m_PrefabInstance: {fileID: 576040029}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &497254824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6463,7 +6468,7 @@ MonoBehaviour:
   total_score: {fileID: 2109190784}
   level_pass_msg: {fileID: 0}
   MainMenuBtn: {fileID: 0}
-  time_bonus: {fileID: 0}
+  time_bonus: {fileID: 488437985}
 --- !u!1001 &824674379
 PrefabInstance:
   m_ObjectHideFlags: 0
