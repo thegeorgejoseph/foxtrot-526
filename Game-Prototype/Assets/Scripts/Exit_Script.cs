@@ -22,6 +22,7 @@ public class Exit_Script : MonoBehaviour
 
     public bool did_finish;
     public static float enemies_count;
+    public static float enemies_encountered;
     public Enemy_Battle_Scripts battleInfoScript;
     public GameObject battleInfo;
     public GameObject scoreBoard;
@@ -98,6 +99,7 @@ public class Exit_Script : MonoBehaviour
                 scoreBoard.SetActive(true);
                 float heart_count = HealthManager.health;
                 enemies_count = battleInfoScript.kills;
+                enemies_encountered = battleInfoScript.enemies_encountered;
                 float total_score_val = 0;
 
                 SceneManager.LoadScene("ScoreScene");
@@ -120,21 +122,7 @@ public class Exit_Script : MonoBehaviour
                 Debug.Log("Data " + playerHighscore.levelScore);
 
 
-                var metrics = new Metrics(analyticsManagerScript.clientID,
-                    DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
-                                                level, did_finish.ToString(),
-                                                battleInfoScript.enemies_encountered.ToString(),
-                                                battleInfoScript.kills.ToString(),
-                                                HealthManager.health.ToString(),
-                                                (analyticsManagerScript.timer.ElapsedTicks / 10000000).ToString(),
-                                                playerMovementScript.portalUsageCount.ToString(),
-                                                level1_score.ToString());
-
                 
-                DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.startTime, () =>
-                    {
-                        Debug.Log("done posting to firebase metric");
-                    });
 
                 string username ="Michael";
                 
@@ -278,6 +266,7 @@ public class Exit_Script : MonoBehaviour
                 //MainMenuBtn.SetActive(true);
                 float heart_count = HealthManager.health;
                 enemies_count = battleInfoScript.kills;
+                enemies_encountered = battleInfoScript.enemies_encountered;
                 float total_score_val = 0;
                 level_num = 2;
                 SceneManager.LoadScene("ScoreScene");
@@ -298,30 +287,30 @@ public class Exit_Script : MonoBehaviour
                 Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);
 
 
-                var metrics = new Metrics(analyticsManagerScript.clientID,
-                    DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
-                                                level, did_finish.ToString(),
-                                                battleInfoScript.enemies_encountered.ToString(),
-                                                battleInfoScript.kills.ToString(),
-                                                HealthManager.health.ToString(),
-                                                (analyticsManagerScript.timer.ElapsedTicks / 10000000).ToString(),
-                                                playerMovementScript.portalUsageCount.ToString(),
-                                                level1_score.ToString());
+                // var metrics = new Metrics(analyticsManagerScript.clientID,
+                //     DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
+                //                                 level, did_finish.ToString(),
+                //                                 battleInfoScript.enemies_encountered.ToString(),
+                //                                 battleInfoScript.kills.ToString(),
+                //                                 HealthManager.health.ToString(),
+                //                                 (analyticsManagerScript.timer.ElapsedTicks / 10000000).ToString(),
+                //                                 playerMovementScript.portalUsageCount.ToString(),
+                //                                 level1_score.ToString());
 
-                // teleportationScript.portalUsageCount.ToString()
+                // // teleportationScript.portalUsageCount.ToString()
 
-                var testMetric = new testMetricStore(analyticsManagerScript.clientID,
-                    DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
-                                            level, "1", "2", "3");
+                // var testMetric = new testMetricStore(analyticsManagerScript.clientID,
+                //     DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
+                //                             level, "1", "2", "3");
 
-                DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.startTime, () =>
-                    {
-                        Debug.Log("done posting to firebase metric");
-                    });
-                DatabaseHandler.PostMetrics<testMetricStore>(testMetric, analyticsManagerScript.startTime, () =>
-                {
-                    Debug.Log("done posting to firebase test metric");
-                }, "testMetric");
+                // DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.startTime, () =>
+                //     {
+                //         Debug.Log("done posting to firebase metric");
+                //     });
+                // DatabaseHandler.PostMetrics<testMetricStore>(testMetric, analyticsManagerScript.startTime, () =>
+                // {
+                //     Debug.Log("done posting to firebase test metric");
+                // }, "testMetric");
                 // get method test
 
 
@@ -357,6 +346,7 @@ public class Exit_Script : MonoBehaviour
             else if (SceneManager.GetActiveScene().name == Loader.Scene.Level_3.ToString())
             {
                 enemies_count = battleInfoScript.kills;
+               enemies_encountered = battleInfoScript.enemies_encountered;
                 level_num = 3;
                 SceneManager.LoadScene("ScoreScene");
 
@@ -365,6 +355,7 @@ public class Exit_Script : MonoBehaviour
             {
                 enemies_count = battleInfoScript.kills;
                 level_num = 4;
+                enemies_encountered = battleInfoScript.enemies_encountered;
                 SceneManager.LoadScene("ScoreScene");
 
             }
@@ -372,6 +363,7 @@ public class Exit_Script : MonoBehaviour
             {
                 enemies_count = battleInfoScript.kills;
                 level_num = 5;
+                enemies_encountered = battleInfoScript.enemies_encountered;
                 SceneManager.LoadScene("ScoreScene");
 
             }

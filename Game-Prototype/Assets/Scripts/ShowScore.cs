@@ -22,6 +22,9 @@ public class ShowScore : MonoBehaviour
     public GameObject analyticsManager;
     private AnalyticsManager analyticsManagerScript;
 
+    public GameObject playerMovement;
+    private Movement2D playerMovementScript;
+
     public TMP_Text pos1;
     public TMP_Text pos2;
     public TMP_Text pos3;
@@ -52,6 +55,10 @@ public class ShowScore : MonoBehaviour
     public TMP_Text namen2;
     public TMP_Text namen3;
 
+    public bool did_finish;
+
+    
+
     public static int totalLevels = 5;
 
     static int Compare(KeyValuePair<string, float> a, KeyValuePair<string, float> b)
@@ -62,6 +69,7 @@ public class ShowScore : MonoBehaviour
     private void Awake()
     {
         analyticsManagerScript = analyticsManager.GetComponent<AnalyticsManager>();
+        playerMovementScript = playerMovement.GetComponent<Movement2D>();
     }
 
     // Start is called before the first frame update
@@ -89,7 +97,23 @@ public class ShowScore : MonoBehaviour
 
         if (total_score_val > 0)
         {
+            did_finish = true;
 
+            var metrics = new Metrics(analyticsManagerScript.clientID,
+                    DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
+                                                Exit_Script.level_num.ToString(), did_finish.ToString(),
+                                                Exit_Script.enemies_encountered.ToString(),
+                                                Exit_Script.enemies_count.ToString(),
+                                                HealthManager.health.ToString(),
+                                                (analyticsManagerScript.timer.ElapsedTicks / 10000000).ToString(),
+                                                playerMovementScript.portalUsageCount.ToString(),
+                                                level1_score.ToString());
+
+                
+                DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.startTime, () =>
+                    {
+                        Debug.Log("done posting to firebase metric");
+                    });
             DatabaseHandler.GetHighScore<HighScores>("Level_"+Exit_Script.level_num.ToString(), (users) =>
             {
                 Debug.Log("Score " + total_score_val);
