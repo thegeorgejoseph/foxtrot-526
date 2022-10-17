@@ -67,13 +67,14 @@ public class ShowScore : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        float time_bonus_val = (float) Exit_Script.bonus_num;
         float heart_count = HealthManager.health;
         float total_score_val = 0;
         float level_total_score = 0;
         hearts_remaining.text = heart_count.ToString() + " * 100 = " + heart_count * 100;
         enemies_killed.text = Exit_Script.enemies_count.ToString() + " * 100 = " + Exit_Script.enemies_count * 100;
         level_passed.text = "1 * 100 = " + 100;
-        total_score_val = heart_count * 100 + Exit_Script.enemies_count * 100 + 100;
+        total_score_val = heart_count * 100 + Exit_Script.enemies_count * 100 + 100 + time_bonus_val;
         level_score.text = total_score_val.ToString();
         time_bonus.text = Exit_Script.bonus_num.ToString();
 
@@ -87,6 +88,8 @@ public class ShowScore : MonoBehaviour
         Debug.Log("Data " + playerHighscore.levelScore);
         var username = InputNameScript.username + "_" + analyticsManagerScript.clientID;
 
+        Debug.Log("Level Val" + Exit_Script.level_num.ToString());
+        
         if (total_score_val > 0)
         {
 
