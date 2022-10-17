@@ -152,18 +152,18 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                                 Debug.Log("done posting to firebase metric");
                             });
 
-                            DatabaseHandler.PostMetrics<testMetricStore>(testMetric, analyticsManagerScript.startTime, () =>
-                            {
-                                Debug.Log("done posting to firebase test metric");
-                            }, "testMetric");
+                            // DatabaseHandler.PostMetrics<testMetricStore>(testMetric, analyticsManagerScript.startTime, () =>
+                            // {
+                            //     Debug.Log("done posting to firebase test metric");
+                            // }, "testMetric");
 
-                            DatabaseHandler.GetMetrics<testMetricStore>(users =>
-                            {
-                                foreach (var user in users)
-                                {
-                                    Debug.Log($"{user.Value.clientID} {user.Value.level} {user.Value.timestamp}");
-                                }
-                            }, "testMetric");
+                            // DatabaseHandler.GetMetrics<testMetricStore>(users =>
+                            // {
+                            //     foreach (var user in users)
+                            //     {
+                            //         Debug.Log($"{user.Value.clientID} {user.Value.level} {user.Value.timestamp}");
+                            //     }
+                            // }, "testMetric");
                                                         
                             // analyticsManagerScript.HandleEvent("did_finish", new List<object>
                             // {
