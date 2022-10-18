@@ -304,6 +304,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BattlePanel_NEW
       objectReference: {fileID: 0}
+    - target: {fileID: 8224332802870053003, guid: 8f79aa8a2ae4cc747adc8ca1cc929bf9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8224332803510115048, guid: 8f79aa8a2ae4cc747adc8ca1cc929bf9, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 4.91
@@ -7463,7 +7467,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 0.035, z: -1}
+  m_LocalPosition: {x: -1, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7495,9 +7499,9 @@ Animation:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 8107248d192c36047b2da0f99e53d08a, type: 2}
+  m_Animation: {fileID: 7400000, guid: d642aa86fa2608644ba5218273cb6904, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: 8107248d192c36047b2da0f99e53d08a, type: 2}
+  - {fileID: 7400000, guid: d642aa86fa2608644ba5218273cb6904, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -27719,7 +27723,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1811579274}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.96199894, y: -0.089000195, z: 0}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
   m_LocalScale: {x: 0.09353465, y: 0.08448554, z: 0.34849074}
   m_ConstrainProportionsScale: 0
   m_Children:
