@@ -5643,9 +5643,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Global
+  m_text: 'Game
 
-    Total Scores'
+    Highscores'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8431,7 +8431,7 @@ MonoBehaviour:
   level_pass_msg: {fileID: 1926558329}
   MainMenuBtn: {fileID: 707686967}
   NextLevelButton: {fileID: 1267367808}
-  TotalScoreBoardBtn: {fileID: 0}
+  TotalScoreBoardBtn: {fileID: 241028727}
   analyticsManager: {fileID: 1569101525}
   pos1: {fileID: 1399023711}
   pos2: {fileID: 1921398204}
@@ -8518,7 +8518,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: HighScores
+  m_text: Level Highscores
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}

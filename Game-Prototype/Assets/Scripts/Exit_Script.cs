@@ -100,7 +100,7 @@ public class Exit_Script : MonoBehaviour
                 total_score.text = total_score_val.ToString();
                 level1_score = total_score_val;
                 Time.timeScale = 0;
-                level_score_metric = level1_score;
+                level_score_metric = level1_score + bonus_num;
 
                 string level = level_num.ToString();
                 did_finish = true;
@@ -154,7 +154,7 @@ public class Exit_Script : MonoBehaviour
                 total_score.text = (total_score_val + level1_score).ToString();
                 level1_score = total_score_val;
                 Time.timeScale = 0;
-                level_score_metric = level1_score;
+                level_score_metric = level1_score + bonus_num;
 
 
                 string level = level_num.ToString();
@@ -184,10 +184,10 @@ public class Exit_Script : MonoBehaviour
                     {
                         Debug.Log("done posting to firebase metric");
                     });
-                DatabaseHandler.PostMetrics<testMetricStore>(testMetric, analyticsManagerScript.startTime, () =>
-                {
-                    Debug.Log("done posting to firebase test metric");
-                }, "testMetric");
+                // DatabaseHandler.PostMetrics<testMetricStore>(testMetric, analyticsManagerScript.startTime, () =>
+                // {
+                //     Debug.Log("done posting to firebase test metric");
+                // }, "testMetric");
                 //Exit_UI.SetActive(true); // Enable the UI when detects the collision between player and exit
                 GameFinishText.text = "Level Passed!";
 
@@ -208,7 +208,7 @@ public class Exit_Script : MonoBehaviour
                 analyticsManagerScript.timer.Stop();
                 // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
                 Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);
-                level_score_metric = HealthManager.health * 100 + enemies_count * 100 + 100  ;
+                level_score_metric = HealthManager.health * 100 + enemies_count * 100 + 100  + bonus_num;
 
                 var metrics = new Metrics(analyticsManagerScript.clientID,
                     DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
@@ -236,7 +236,7 @@ public class Exit_Script : MonoBehaviour
                 string level = level_num.ToString();
                 did_finish = true;
                 analyticsManagerScript.timer.Stop();
-                level_score_metric = HealthManager.health * 100 + enemies_count * 100 + 100;
+                level_score_metric = HealthManager.health * 100 + enemies_count * 100 + 100 + bonus_num;
                 // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
                 Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);
 
@@ -265,7 +265,7 @@ public class Exit_Script : MonoBehaviour
                 // SceneManager.LoadScene("GameHighscore");
 
                 string level = level_num.ToString();
-                level_score_metric = HealthManager.health * 100 + enemies_count * 100 + 100;
+                level_score_metric = HealthManager.health * 100 + enemies_count * 100 + 100 + bonus_num;
                 did_finish = true;
                 analyticsManagerScript.timer.Stop();
                 // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
