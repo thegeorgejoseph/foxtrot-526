@@ -423,10 +423,11 @@ for x,y in zip(game_level_labels,health_level_labels):
 
 
 plt.legend(loc='best')
-plt.savefig('firebase_plots/health_avg_bar_plot.png')
+plt.savefig('firebase_plots/health_avg_bar_plot.png', dpi=1200)
 plt.close()
 
 ### Plot 2: Side by Side Distribution of Player Health
+
 
 df['health_count'] = 1
 health_counts = df.groupby(['level', 'health'])['health_count'].sum().reset_index()
@@ -436,7 +437,13 @@ level_1_health = health_counts[health_counts['level'] == '1']
 level_1_health_y = list(level_1_health['health_count'])
 level_2_health = health_counts[health_counts['level'] == '2']
 level_2_health_y = list(level_2_health['health_count'])
-health_lables = list(level_2_health['health'])
+level_3_health = health_counts[health_counts['level'] == '3']
+level_3_health_y = list(level_3_health['health_count'])
+level_4_health = health_counts[health_counts['level'] == '4']
+level_4_health_y = list(level_4_health['health_count'])
+level_5_health = health_counts[health_counts['level'] == '5']
+level_5_health_y = list(level_5_health['health_count'])
+health_lables = list(set(health_counts['health']))
 health_lables = (str(x) for x in health_lables)
 print('health_lables')
 print(x for x in health_lables)
@@ -451,16 +458,25 @@ print(level_2_health_y)
 
 N = len(level_1_health)
 ind = np.arange(N)  
-width = 0.27 
+width = 0.2
 rects1 = ax.bar(ind, level_1_health_y, width, color='#FFB06B')
 N = len(level_2_health)
 ind = np.arange(N)  
 rects2 = ax.bar(ind+width, level_2_health_y, width, color='#6596C7')
+N = len(level_3_health)
+ind = np.arange(N)  
+rects3 = ax.bar(ind+width*2, level_3_health_y, width, color='#DEA897')
+N = len(level_4_health)
+ind = np.arange(N)  
+rects4 = ax.bar(ind+width*3, level_4_health_y, width, color='#9BDE97')
+N = len(level_5_health)
+ind = np.arange(N)  
+rects5 = ax.bar(ind+width*4, level_5_health_y, width, color='#B797DE')
 
 ax.set_ylabel('Scores')
-ax.set_xticks(ind+width)
+#ax.set_xticks(ind+width)
 ax.set_xticklabels(health_lables)
-ax.legend( (rects1[0], rects2[0]), ('Level 1', 'Level 2') )
+ax.legend( (rects1[0], rects2[0], rects3[0], rects4[0], rects5[0]), ('Level 1', 'Level 2', 'Level 3', 'Level 4', 'Level 5') )
 
 def autolabel(rects):
     for rect in rects:
@@ -475,8 +491,7 @@ plt.ylim(0, max_health + max_health*.10)
 plt.xlabel('Health')
 plt.ylabel('Count')
 plt.title('Health At Level End')
-
-plt.savefig('firebase_plots/health_bar_plot.png')
+plt.savefig('firebase_plots/health_bar_plot.png', dpi=1200)
 plt.close()
 
 """
