@@ -51,6 +51,7 @@ df['health'] = pd.to_numeric(df['health'])
 df['levelCompletionTime'] = pd.to_numeric(df['levelCompletionTime'])
 df['level'] = pd.to_numeric(df['level'])
 df['portalUsageCount'] = pd.to_numeric(df['portalUsageCount'])
+df['levelScore'] = pd.to_numeric(df['levelScore'])
 
 # Remove level 0 (tutorial) - we will use Google Form responses
 df = df.loc[df["level"] != 0]
@@ -561,7 +562,7 @@ plt.savefig('firebase_plots/health_bar_plot.png', dpi=1200)
 plt.close()
 
 """
-#Metric 5: Time taken
+Metric 5: Time taken
 """
 ### Plot 1: Average time taken take per level
 time_by_level = df.groupby(['level'])[('levelCompletionTime')].mean().reset_index()
@@ -594,27 +595,27 @@ plt.close()
 f, (ax1, ax2, ax3, ax4, ax5) = plt.subplots(5,1,sharex=True,figsize=(8,12), constrained_layout=True)
 
 #gather data
-df_level1 = df.loc[df['level'] == '1']
+df_level1 = df.loc[df['level'] == 1]
 df_level1 = df_level1[['levelCompletionTime']]
 df_level1 = df_level1.dropna()
 df_level1['time_count'] = 1
 df_level1_agg = df_level1.groupby(['levelCompletionTime'])[('time_count')].sum().reset_index()
-df_level2 = df.loc[df['level'] == '2']
+df_level2 = df.loc[df['level'] == 2]
 df_level2 = df_level2[['levelCompletionTime']]
 df_level2 = df_level2.dropna()
 df_level2['time_count'] = 1
 df_level2_agg = df_level2.groupby(['levelCompletionTime'])[('time_count')].sum().reset_index()
-df_level3 = df.loc[df['level'] == '3']
+df_level3 = df.loc[df['level'] == 3]
 df_level3 = df_level3[['levelCompletionTime']]
 df_level3 = df_level3.dropna()
 df_level3['time_count'] = 1
 df_level3_agg = df_level3.groupby(['levelCompletionTime'])[('time_count')].sum().reset_index()
-df_level4 = df.loc[df['level'] == '4']
+df_level4 = df.loc[df['level'] == 4]
 df_level4 = df_level4[['levelCompletionTime']]
 df_level4 = df_level4.dropna()
 df_level4['time_count'] = 1
 df_level4_agg = df_level4.groupby(['levelCompletionTime'])[('time_count')].sum().reset_index()
-df_level5 = df.loc[df['level'] == '5']
+df_level5 = df.loc[df['level'] == 5]
 df_level5 = df_level5[['levelCompletionTime']]
 df_level5 = df_level5.dropna()
 df_level5['time_count'] = 1
@@ -649,13 +650,43 @@ plt.close()
 f, (ax1, ax2, ax3, ax4, ax5) = plt.subplots(5,1,sharex=True,sharey=True,figsize=(8,12), constrained_layout=True)
 
 # drop anomolies
-df_level1_agg = df_level1_agg[df_level1_agg['levelCompletionTime'] < 800]
+df_level1_agg = df_level1_agg[df_level1_agg['levelCompletionTime'] < 600]
 
-ax1.bar(df_level1_agg['levelCompletionTime'], df_level1_agg['time_count'], color = '#6596C7')
-ax2.bar(df_level2_agg['levelCompletionTime'], df_level2_agg['time_count'], color = '#6596C7')
-ax3.bar(df_level3_agg['levelCompletionTime'], df_level3_agg['time_count'], color = '#6596C7')
-ax4.bar(df_level4_agg['levelCompletionTime'], df_level4_agg['time_count'], color = '#6596C7')
-ax5.bar(df_level5_agg['levelCompletionTime'], df_level5_agg['time_count'], color = '#6596C7')
+ax1.bar(df_level1_agg['levelCompletionTime'], df_level1_agg['time_count'], color = '#FF2525')
+ax2.bar(df_level2_agg['levelCompletionTime'], df_level2_agg['time_count'], color = '#FF2525')
+ax3.bar(df_level3_agg['levelCompletionTime'], df_level3_agg['time_count'], color = '#FF2525')
+ax4.bar(df_level4_agg['levelCompletionTime'], df_level4_agg['time_count'], color = '#FF2525')
+ax5.bar(df_level5_agg['levelCompletionTime'], df_level5_agg['time_count'], color = '#FF2525')
+
+ax5.set_xlabel('Time Taken (sec)', size = 12)
+
+plt.suptitle('Distribution of Time Taken to Complete Levels')
+ax1.yaxis.set_label_position("right")
+ax1.set_ylabel('Level 1', size = 12)
+ax2.yaxis.set_label_position("right")
+ax2.set_ylabel('Level 2', size = 12)
+ax3.yaxis.set_label_position("right")
+ax3.set_ylabel('Level 3', size = 12)
+ax4.yaxis.set_label_position("right")
+ax4.set_ylabel('Level 4', size = 12)
+ax5.yaxis.set_label_position("right")
+ax5.set_ylabel('Level 5', size = 12)
+
+plt.savefig('firebase_plots/time_levels_dist_shared_bar.png', dpi=1200)
+#plt.show()
+plt.close()
+
+# Plot 4: Vertically stacked Time taken per level (minus anomolies) - no shared y axis
+f, (ax1, ax2, ax3, ax4, ax5) = plt.subplots(5,1,sharex=True,figsize=(8,12), constrained_layout=True)
+
+# drop anomolies
+df_level1_agg = df_level1_agg[df_level1_agg['levelCompletionTime'] < 600]
+
+ax1.bar(df_level1_agg['levelCompletionTime'], df_level1_agg['time_count'], color = '#FF2525')
+ax2.bar(df_level2_agg['levelCompletionTime'], df_level2_agg['time_count'], color = '#FF2525')
+ax3.bar(df_level3_agg['levelCompletionTime'], df_level3_agg['time_count'], color = '#FF2525')
+ax4.bar(df_level4_agg['levelCompletionTime'], df_level4_agg['time_count'], color = '#FF2525')
+ax5.bar(df_level5_agg['levelCompletionTime'], df_level5_agg['time_count'], color = '#FF2525')
 
 ax5.set_xlabel('Time Taken (sec)', size = 12)
 
@@ -680,13 +711,11 @@ plt.close()
 #time taken vs highscore
 #enemies killed vs highscore
 #health at end vs highscore
-
 """
-#Metric 6: Score
+Metric 6: Score
 """
 ### Plot 1: Average score per level
 score_by_level = df.groupby(['level'])[('levelScore')].mean().reset_index()
-print(score_by_level)
 plt.bar(score_by_level['level'], score_by_level['levelScore'], color = "#6596C7")
 plt.xlabel('Level')
 plt.ylabel('Score')
@@ -713,23 +742,13 @@ plt.close()
 ### Plot 2: Score distribution
 df['level_score_count'] = 1
 score_all = df.groupby(['levelScore'])[('level_score_count')].sum().reset_index()
-plt.bar(score_all['levelScore'], score_all['level_score_count'], color = "#6596C7", width = 50)
+score_all = score_all[score_all['levelScore'] > 0]
+plt.bar(score_all['levelScore'], score_all['level_score_count'], color = "#6596C7", width=10)
 plt.xlabel('Score')
 plt.ylabel('Count')
-plt.title('Score Distribution')
+plt.title('Score Distribution (> 0)')
 plt.ylim(0, max(score_all['level_score_count']) + max(score_all['level_score_count'])*.10)
-for x,y in zip(score_all['levelScore'],score_all['level_score_count']):
 
-    label = "{:.0f}".format(y)
-
-    plt.annotate(label,
-                 (x,y),
-                 textcoords="offset points",
-                 xytext=(0,10),
-                 ha='center') 
-
-
-plt.legend(loc='best')
 plt.savefig('firebase_plots/score_bar.png', dpi=1200)
 #plt.show()
 plt.close()
@@ -739,27 +758,32 @@ f, (ax1, ax2, ax3, ax4, ax5) = plt.subplots(5,1,sharex=True,sharey=True,figsize=
 
 print(df.head())
 #gather data
-df_level1 = df.loc[df['level'] == '1']
+df_level1 = df.loc[df['level'] == 1]
 df_level1 = df_level1[['levelCompletionTime', 'levelScore']]
 df_level1 = df_level1.dropna()
 df_level1_agg = df_level1[df_level1['levelCompletionTime'] < 800]
+df_level1_agg = df_level1_agg[df_level1_agg['levelScore'] > 0]
 print(df_level1_agg)
 
-df_level2 = df.loc[df['level'] == '2']
+df_level2 = df.loc[df['level'] == 2]
 df_level2 = df_level2[['levelCompletionTime', 'levelScore']]
 df_level2_agg = df_level2.dropna()
+df_level2_agg = df_level2_agg[df_level2_agg['levelScore'] > 0]
 
-df_level3 = df.loc[df['level'] == '3']
+df_level3 = df.loc[df['level'] == 3]
 df_level3 = df_level3[['levelCompletionTime', 'levelScore']]
 df_level3_agg = df_level3.dropna()
+df_level3_agg = df_level3_agg[df_level3_agg['levelScore'] > 0]
 
-df_level4 = df.loc[df['level'] == '4']
+df_level4 = df.loc[df['level'] == 4]
 df_level4 = df_level4[['levelCompletionTime', 'levelScore']]
 df_level4_agg = df_level4.dropna()
+df_level4_agg = df_level4_agg[df_level4_agg['levelScore'] > 0]
 
-df_level5 = df.loc[df['level'] == '5']
+df_level5 = df.loc[df['level'] == 5]
 df_level5 = df_level5[['levelCompletionTime', 'levelScore']]
 df_level5_agg = df_level5.dropna()
+df_level5_agg = df_level5_agg[df_level5_agg['levelScore'] > 0]
 
 ax1.plot(df_level1_agg['levelCompletionTime'], df_level1_agg['levelScore'], marker="o", linestyle = "", markersize=2, markeredgecolor="black")
 m, b = np.polyfit(df_level1_agg['levelCompletionTime'], df_level1_agg['levelScore'], 1)
@@ -805,25 +829,30 @@ f, (ax1, ax2, ax3, ax4, ax5) = plt.subplots(5,1,sharex=True,sharey=True,figsize=
 
 print(df.head())
 #gather data
-df_level1 = df.loc[df['level'] == '1']
+df_level1 = df.loc[df['level'] == 1]
 df_level1 = df_level1[['levelScore', 'enemies_killed']]
 df_level1_agg = df_level1.dropna()
+df_level1_agg = df_level1_agg[df_level1_agg['levelScore'] > 0]
 
-df_level2 = df.loc[df['level'] == '2']
+df_level2 = df.loc[df['level'] == 2]
 df_level2 = df_level2[['levelScore', 'enemies_killed']]
 df_level2_agg = df_level2.dropna()
+df_level2_agg = df_level2_agg[df_level2_agg['levelScore'] > 0]
 
-df_level3 = df.loc[df['level'] == '3']
+df_level3 = df.loc[df['level'] == 3]
 df_level3 = df_level3[['levelScore', 'enemies_killed']]
 df_level3_agg = df_level3.dropna()
+df_level3_agg = df_level3_agg[df_level3_agg['levelScore'] > 0]
 
-df_level4 = df.loc[df['level'] == '4']
+df_level4 = df.loc[df['level'] == 4]
 df_level4 = df_level4[['levelScore', 'enemies_killed']]
 df_level4_agg = df_level4.dropna()
+df_level4_agg = df_level4_agg[df_level4_agg['levelScore'] > 0]
 
-df_level5 = df.loc[df['level'] == '5']
+df_level5 = df.loc[df['level'] == 5]
 df_level5 = df_level5[['levelScore', 'enemies_killed']]
 df_level5_agg = df_level5.dropna()
+df_level5_agg = df_level5_agg[df_level5_agg['levelScore'] > 0]
 
 ax1.plot(df_level1_agg['levelScore'], df_level1_agg['enemies_killed'], marker="o", linestyle = "", markersize=2, markeredgecolor="black")
 m, b = np.polyfit(df_level1_agg['levelScore'], df_level1_agg['enemies_killed'], 1)
