@@ -486,54 +486,61 @@ plt.savefig('firebase_plots/health_avg_bar_plot.png', dpi=1200)
 plt.close()
 
 ### Plot 2: Side by Side Distribution of Player Health
-"""
+
 df['health_count'] = 1
 health_counts = df.groupby(['level', 'health'])['health_count'].sum().reset_index()
-print('health_counts')
-print(health_counts)
-level_1_health = health_counts[health_counts['level'] == '1']
-level_1_health_y = list(level_1_health['health_count'])
-level_2_health = health_counts[health_counts['level'] == '2']
-level_2_health_y = list(level_2_health['health_count'])
-level_3_health = health_counts[health_counts['level'] == '3']
-level_3_health_y = list(level_3_health['health_count'])
-level_4_health = health_counts[health_counts['level'] == '4']
-level_4_health_y = list(level_4_health['health_count'])
-level_5_health = health_counts[health_counts['level'] == '5']
-level_5_health_y = list(level_5_health['health_count'])
-health_lables = list(set(health_counts['health']))
-health_lables = (str(x) for x in health_lables)
-print('all health_lables')
-print(health_lables)
+all_health_lables = list(set(health_counts['health']))
+all_health_lables.sort()
+
+def create_y_values(level_df, ret_values):
+    j = 0
+    for curr in all_health_lables:
+        if j < len(level_df) and curr == level_df['health'][j]:
+            ret_values.append(level_df['health_count'][j])
+            j+=1
+        else:
+            ret_values.append(0)
+    
+    return ret_values
+
+level_1_health = health_counts[health_counts['level'] == 1].reset_index()
+level_1_health_y = create_y_values(level_1_health, [])
+
+level_2_health = health_counts[health_counts['level'] == 2].reset_index()
+level_2_health_y = create_y_values(level_2_health, [])
+
+level_3_health = health_counts[health_counts['level'] == 3].reset_index()
+level_3_health_y = create_y_values(level_3_health, [])
+
+level_4_health = health_counts[health_counts['level'] == 4].reset_index()
+level_4_health_y = create_y_values(level_4_health, [])
+
+level_5_health = health_counts[health_counts['level'] == 5].reset_index()
+level_5_health_y = create_y_values(level_5_health, [])
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
 
-print('level_1_health_y')
-print(level_1_health_y)
-print('level_2_health_y')
-print(level_2_health_y)
-
-N = len(level_1_health)
+N = len(level_1_health_y)
 ind = np.arange(N)  
 width = 0.2
+labels = all_health_lables
 rects1 = ax.bar(ind, level_1_health_y, width, color='#FFB06B')
-N = len(level_2_health)
+N = len(level_2_health_y)
 ind = np.arange(N)  
 rects2 = ax.bar(ind+width, level_2_health_y, width, color='#6596C7')
-N = len(level_3_health)
+N = len(level_3_health_y)
 ind = np.arange(N)  
 rects3 = ax.bar(ind+width*2, level_3_health_y, width, color='#DEA897')
-N = len(level_4_health)
+N = len(level_4_health_y)
 ind = np.arange(N)  
 rects4 = ax.bar(ind+width*3, level_4_health_y, width, color='#9BDE97')
-N = len(level_5_health)
+N = len(level_5_health_y)
 ind = np.arange(N)  
 rects5 = ax.bar(ind+width*4, level_5_health_y, width, color='#B797DE')
 
 ax.set_ylabel('Scores')
 #ax.set_xticks(ind+width)
-ax.set_xticklabels(health_lables)
 ax.legend( (rects1[0], rects2[0], rects3[0], rects4[0], rects5[0]), ('Level 1', 'Level 2', 'Level 3', 'Level 4', 'Level 5') )
 
 def autolabel(rects):
@@ -542,15 +549,17 @@ def autolabel(rects):
         ax.text(rect.get_x()+rect.get_width()/2., 1.05*h, '%d'%int(h),
                 ha='center', va='bottom')
 
-autolabel(rects1)
-autolabel(rects2)
+#autolabel(rects1)
+#autolabel(rects2)
 max_health = max(level_1_health_y + level_2_health_y)
-plt.ylim(0, max_health + max_health*.10)
+plt.ylim(0, max_health + max_health*.05)
+plt.xticks(ind, (str(x) for x in all_health_lables))
 plt.xlabel('Health')
 plt.ylabel('Count')
 plt.title('Health At Level End')
 plt.savefig('firebase_plots/health_bar_plot.png', dpi=1200)
 plt.close()
+
 """
 #Metric 5: Time taken
 """
@@ -854,4 +863,3 @@ ax5.set_ylabel('Level 5', size = 12)
 plt.savefig('firebase_plots/score_enemies_levels_dist_point.png', dpi=1200)
 #plt.show()
 plt.close()
-"""
