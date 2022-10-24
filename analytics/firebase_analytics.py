@@ -10,7 +10,7 @@ cred = credentials.Certificate("/Users/sarapesavento/Documents/foxtrot-analytics
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://foxtrot-analytics-95472-default-rtdb.firebaseio.com/'
 })
-ref = db.reference('metrics')
+ref = db.reference('midterm')
 json_data = ref.get()
 
 """
@@ -23,7 +23,8 @@ clean_data = dict((k, json_data[k]) for k in json_data if k in month_keys)
 for key in month_keys:
     clean_data.update(clean_data.pop(key))
 
-clean_data = {key: value for key, value in clean_data.items() if key not in ['5','8']}
+# don't exclude any days
+# clean_data = {key: value for key, value in clean_data.items() if key not in ['5','8']}
 day_keys = [key for key in clean_data]
 for key in day_keys:
     print(key)
@@ -36,13 +37,26 @@ df = df.reset_index()
 print(df)
 print(df.columns)
 
+# Clean up health data
+print('Clean up: converting -0,5 and 6,5 to -0.5 and 6.5...')
+df = df.replace('-0,5','0.5')
+df = df.replace('1,5','1.5')
+df = df.replace('6,5','6.5')
+
 # Remove prefixes from variables
 df = df.replace('Level_', '', regex=True)
 df['enemies_encountered'] = pd.to_numeric(df['enemies_encountered'])
 df['enemies_killed'] = pd.to_numeric(df['enemies_killed'])
 df['health'] = pd.to_numeric(df['health'])
 df['levelCompletionTime'] = pd.to_numeric(df['levelCompletionTime'])
-df['levelScore'] = pd.to_numeric(df['levelScore'])
+df['level'] = pd.to_numeric(df['level'])
+df['portalUsageCount'] = pd.to_numeric(df['portalUsageCount'])
+
+# Remove level 0 (tutorial) - we will use Google Form responses
+df = df.loc[df["level"] != 0]
+
+print("CLEANED DATA")
+print(df.head())
 
 """
 Metric 1: Level Completions
@@ -272,15 +286,44 @@ plt.close()
 portal_counts = df_portals.astype({'portalUsageCount': int, 'level': str})
 portal_counts['counts'] = 1
 portal_counts = portal_counts.groupby(['level', 'portalUsageCount'])['counts'].sum().reset_index()
-
-colors = ['#B8E4FF', '#6596C7', '#A497DE', '#DDDE97', '#ED9C9C', '#97DEB1', '#FFB06B', '#DE97D8']
+#colors = ['#B8E4FF', '#6596C7', '#A497DE', '#DDDE97', '#ED9C9C', '#97DEB1', '#FFB06B', '#DE97D8']
+# show only labels over a threshold of 10%
+def autopct(pct):
+    return ('%1.1f%%' % pct) if pct > 4 else ''
 #fig, (ax1, ax2, ax3, ax4, ax5) = plt.subplots(1, 5, figsize=(20,20)) 
+
+colors_select = {
+    0: '#B8E4FF',
+    1: '#6596C7',
+    2: '#BEB5E8',
+    3: '#DDDE97',
+    4: '#ED9C9C',
+    5: '#97DEB1',
+    6: '#FFB06B',
+    7: '#DE97D8',
+    8: '#9C283A',
+    9: '#C6901A',
+    10: '#1AC3C6',
+    11: '#14AE24',
+    12: '#3014AE',
+    14: '#987D93',
+    17: '#B660A5',
+    20: '#CC6DBA',
+    21: '#577C53',
+}
 
 portal_counts_1 = portal_counts[portal_counts['level'] == '1']
 portal_counts_1['sum'] = sum(portal_counts_1['counts'])
 labels = portal_counts_1['portalUsageCount']
+#print('labels')
+#print(labels)
+colors_1 = []
+for label in labels:
+    colors_1.append(colors_select[label])
 values = portal_counts_1['counts']
-plt.pie(values,labels = labels, colors = colors, autopct = '%1.1f%%') #plot first pie
+#print('Values')
+#print(values)
+plt.pie(values,labels = labels, colors = colors_1, autopct = autopct) #plot first pie
 plt.title('Level 1')
 plt.suptitle('Number of Portal Uses')
 plt.savefig('firebase_plots/portal_use_pie_level1.png', dpi=1200)
@@ -289,8 +332,15 @@ plt.close()
 portal_counts_2 = portal_counts[portal_counts['level'] == '2']
 portal_counts_2['sum'] = sum(portal_counts_2['counts'])
 labels = portal_counts_2['portalUsageCount']
+#print('labels')
+#print(labels)
+colors_2 = []
+for label in labels:
+    colors_2.append(colors_select[label])
 values = portal_counts_2['counts']
-plt.pie(values,labels = labels, colors = colors, autopct = '%1.1f%%') #plot second pie
+#print('Values')
+#print(values)
+plt.pie(values,labels = labels, colors = colors_2, autopct = autopct) #plot second pie
 plt.title('Level 2')
 plt.suptitle('Number of Portal Uses')
 plt.savefig('firebase_plots/portal_use_pie_level2.png', dpi=1200)
@@ -299,8 +349,11 @@ plt.close()
 portal_counts_3 = portal_counts[portal_counts['level'] == '3']
 portal_counts_3['sum'] = sum(portal_counts_3['counts'])
 labels = portal_counts_3['portalUsageCount']
+colors_3 = []
+for label in labels:
+    colors_3.append(colors_select[label])
 values = portal_counts_3['counts']
-plt.pie(values,labels = labels, colors = colors, autopct = '%1.1f%%') #plot third pie
+plt.pie(values,labels = labels, colors = colors_3, autopct = autopct) #plot third pie
 plt.title('Level 3')
 plt.suptitle('Number of Portal Uses')
 plt.savefig('firebase_plots/portal_use_pie_level3.png', dpi=1200)
@@ -309,8 +362,11 @@ plt.close()
 portal_counts_4 = portal_counts[portal_counts['level'] == '4']
 portal_counts_4['sum'] = sum(portal_counts_4['counts'])
 labels = portal_counts_4['portalUsageCount']
+colors_4 = []
+for label in labels:
+    colors_4.append(colors_select[label])
 values = portal_counts_4['counts']
-plt.pie(values,labels = labels, colors = colors, autopct = '%1.1f%%') #plot fourth pie
+plt.pie(values,labels = labels, colors = colors_4, autopct = autopct) #plot fourth pie
 plt.title('Level 4')
 plt.suptitle('Number of Portal Uses')
 plt.savefig('firebase_plots/portal_use_pie_level4.png', dpi=1200)
@@ -319,8 +375,11 @@ plt.close()
 portal_counts_5 = portal_counts[portal_counts['level'] == '5']
 portal_counts_5['sum'] = sum(portal_counts_5['counts'])
 labels = portal_counts_5['portalUsageCount']
+colors_5 = []
+for label in labels:
+    colors_5.append(colors_select[label])
 values = portal_counts_5['counts']
-plt.pie(values,labels = labels, colors = colors, autopct = '%1.1f%%') #plot fourth pie
+plt.pie(values,labels = labels, colors = colors_5, autopct = autopct) #plot fourth pie
 plt.title('Level 5')
 plt.suptitle('Number of Portal Uses')
 plt.savefig('firebase_plots/portal_use_pie_level5.png', dpi=1200)
@@ -427,8 +486,7 @@ plt.savefig('firebase_plots/health_avg_bar_plot.png', dpi=1200)
 plt.close()
 
 ### Plot 2: Side by Side Distribution of Player Health
-
-
+"""
 df['health_count'] = 1
 health_counts = df.groupby(['level', 'health'])['health_count'].sum().reset_index()
 print('health_counts')
@@ -445,8 +503,8 @@ level_5_health = health_counts[health_counts['level'] == '5']
 level_5_health_y = list(level_5_health['health_count'])
 health_lables = list(set(health_counts['health']))
 health_lables = (str(x) for x in health_lables)
-print('health_lables')
-print(x for x in health_lables)
+print('all health_lables')
+print(health_lables)
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
@@ -493,9 +551,8 @@ plt.ylabel('Count')
 plt.title('Health At Level End')
 plt.savefig('firebase_plots/health_bar_plot.png', dpi=1200)
 plt.close()
-
 """
-Metric 5: Time taken
+#Metric 5: Time taken
 """
 ### Plot 1: Average time taken take per level
 time_by_level = df.groupby(['level'])[('levelCompletionTime')].mean().reset_index()
@@ -616,7 +673,7 @@ plt.close()
 #health at end vs highscore
 
 """
-Metric 6: Score
+#Metric 6: Score
 """
 ### Plot 1: Average score per level
 score_by_level = df.groupby(['level'])[('levelScore')].mean().reset_index()
@@ -797,3 +854,4 @@ ax5.set_ylabel('Level 5', size = 12)
 plt.savefig('firebase_plots/score_enemies_levels_dist_point.png', dpi=1200)
 #plt.show()
 plt.close()
+"""
