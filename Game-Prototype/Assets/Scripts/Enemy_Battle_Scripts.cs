@@ -44,6 +44,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     public GameObject playerMovement;
     private Movement2D playerMovementScript;
 
+    [SerializeField] private AudioSource gemSoundEffect;
+    [SerializeField] private AudioSource deathSoundEffect;
     private void Awake(){
         analyticsManagerScript = analyticsManager.GetComponent<AnalyticsManager>();
         playerMovementScript = playerMovement.GetComponent<Movement2D>();
@@ -95,7 +97,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                         // The player lost, gameover!
                         GameFinishText.text = "Game Over!";
                         //deathScore.SetActive(true);
-
+                        deathSoundEffect.Play();
                         if (SceneManager.GetActiveScene().name != Loader.Scene.Level_0.ToString())
                         {
                             SceneManager.LoadScene("GameHighscore");
@@ -173,6 +175,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     HA.heartGain();
                     // Enable player movement
                     kills += 1;
+                    gemSoundEffect.Play();
                     DMS.updateSpeed();
                     GetComponent<Movement2D>().enabled = true;
                 }

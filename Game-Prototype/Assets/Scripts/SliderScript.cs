@@ -34,6 +34,8 @@ public class SliderScript : MonoBehaviour
     //public Vector3 PlayerPos;
     //public Vector3 EnemyPos;
 
+    [SerializeField] private AudioSource killSoundEffect;
+    [SerializeField] private AudioSource missSoundEffect;
     // Start is called before the first frame update
     void Awake()
     {
@@ -175,12 +177,14 @@ public class SliderScript : MonoBehaviour
             if (getDistance(player.gameObject.transform, currentEnemy.gameObject.transform) < 100f)
             {
                 Debug.Log("Hit!");
+                killSoundEffect.Play();
                 hitText.SetActive(true);
                 playerWin = true;
             }
             else
             {
                 Debug.Log("Missed!");
+                missSoundEffect.Play();
                 missText.SetActive(true);
                 playerWin = false;
             }

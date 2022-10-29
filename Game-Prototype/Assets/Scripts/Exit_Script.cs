@@ -43,6 +43,8 @@ public class Exit_Script : MonoBehaviour
     // public String username;
 
 
+    [SerializeField] private AudioSource rocketSoundEffect;
+
     // Start is called before the first frame update
     private void Awake(){
         analyticsManagerScript = analyticsManager.GetComponent<AnalyticsManager>();
@@ -74,6 +76,7 @@ public class Exit_Script : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             bonus_num = time_bonus.GetComponent<Time_Bonus>().bonus_num;
+            rocketSoundEffect.Play();
             
             if (SceneManager.GetActiveScene().name == Loader.Scene.Level_0.ToString())
             {
