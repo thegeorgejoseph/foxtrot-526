@@ -36,21 +36,12 @@ public class Exit_Script : MonoBehaviour
     public static float score_till_curr_level;
     public float level_score_metric;
     public static float level_num;
-    public GameObject MainMenuBtn;
-    //public GameObject time_bonus;
-    public GameObject Timer;
     public static int bonus_num;
-
+    public GameObject MainMenuBtn;
+    public GameObject time_bonus;
+    
     // public String username;
-    private Dictionary<string, int> timeLimits = new Dictionary<string, int>
-        {
-            { "Level_0", 1000},
-            { "Level_1", 2000 },
-            { "Level_2", 3000 },
-            { "Level_3", 4000 },
-            { "Level_4", 5000 },
-            { "Level_5", 6000 }
-        };
+
 
     [SerializeField] private AudioSource rocketSoundEffect;
 
@@ -84,11 +75,9 @@ public class Exit_Script : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
-            float time = Timer.GetComponent<Timer_Script>().timeValue;
+            bonus_num = time_bonus.GetComponent<Time_Bonus>().bonus_num;
             rocketSoundEffect.Play();
-            string levels = SceneManager.GetActiveScene().name;
-            bonus_num =(int)(timeLimits[levels] / time);
-
+            
             if (SceneManager.GetActiveScene().name == Loader.Scene.Level_0.ToString())
             {
                 scoreBoard.SetActive(true);
