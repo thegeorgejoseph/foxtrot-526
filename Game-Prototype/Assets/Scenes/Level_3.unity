@@ -1360,6 +1360,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1811579279}
     m_Modifications:
+    - target: {fileID: 2324644609331303401, guid: 5385a78c902320b45893eee9d63e0403, type: 3}
+      propertyPath: display
+      value: 
+      objectReference: {fileID: 1389861019}
     - target: {fileID: 2812329614569848001, guid: 5385a78c902320b45893eee9d63e0403, type: 3}
       propertyPath: m_Name
       value: Gained_Crystal
@@ -1420,6 +1424,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2812329614569848002, guid: 5385a78c902320b45893eee9d63e0403, type: 3}
   m_PrefabInstance: {fileID: 167428183}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &167428186 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2324644609331303401, guid: 5385a78c902320b45893eee9d63e0403, type: 3}
+  m_PrefabInstance: {fileID: 167428183}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d47a75fbdd6d0489a3ef59ed663aa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &181325583
 GameObject:
   m_ObjectHideFlags: 0
@@ -10814,13 +10829,13 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1389861019 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5347365879295803444, guid: e75bf3036709030428dded9f86f1b47e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5347365879502723137, guid: e75bf3036709030428dded9f86f1b47e, type: 3}
   m_PrefabInstance: {fileID: 1389861017}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60d47a75fbdd6d0489a3ef59ed663aa6, type: 3}
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1420323992
@@ -13136,7 +13151,7 @@ MonoBehaviour:
   GameOver_UI: {fileID: 1832000481}
   SpaceText: {fileID: 458800385}
   player: {fileID: 1811579274}
-  crystalScript: {fileID: 1389861019}
+  crystalScript: {fileID: 167428186}
   DMS: {fileID: 475434229}
   HA: {fileID: 366263421}
   screenShake: {fileID: 475434227}

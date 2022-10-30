@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SliderScript : MonoBehaviour
 {
     public GameObject wayPoints; // A set of waypoints to guide the enemy's movement
-    public GameObject hitText; // Image to display when we hit the hitzoom
-    public GameObject missText; // Image to display when we miss the hit zoomoom
     public Image currentEnemy; // Current Enemy that the player encountered
     public Image player; // Player Object to be displaied
+    public Animator BPTransition; // Battle transistion animation & UI
+    public Image BPTransitionBackGround;
+    public TextMeshProUGUI BPTransitionText;
 
     private float enemySpeed = 0.7f; // Speed of the enemy
     private float playerSpeed = 0.8f; // Speed of the player
@@ -73,8 +75,6 @@ public class SliderScript : MonoBehaviour
         playerWin = false;
         isFinished = false;
         stopMoving = false;
-        hitText.SetActive(false);
-        missText.SetActive(false);
         canAttack = true;
 
         enemyDirection = Random.Range(0, 2); // 0 for clockwise, 1 for counter-clockwise
@@ -177,19 +177,23 @@ public class SliderScript : MonoBehaviour
             if (getDistance(player.gameObject.transform, currentEnemy.gameObject.transform) < 100f)
             {
                 Debug.Log("Hit!");
+                BPTransitionText.text = "Battle Won";
+                BPTransitionBackGround.color = new Color(0.23f, 0.68f, 0.23f); // Custom Green Color
+                BPTransition.Play("Base Layer.BP_Finished_Start");
                 killSoundEffect.Play();
-                hitText.SetActive(true);
                 playerWin = true;
             }
             else
             {
                 Debug.Log("Missed!");
+                BPTransitionText.text = "Battle Lost";
+                BPTransitionBackGround.color = new Color(0.68f, 0.23f, 0.23f); // Custom Red Color
+                BPTransition.Play("Base Layer.BP_Finished_Start");
                 missSoundEffect.Play();
-                missText.SetActive(true);
                 playerWin = false;
             }
 
-            StartCoroutine(CountDown(3));
+            StartCoroutine(CountDown(4));
         }
 
     }

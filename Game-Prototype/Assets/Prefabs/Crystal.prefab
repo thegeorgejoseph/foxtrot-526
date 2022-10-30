@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5347365879295803445}
-  - component: {fileID: 5347365879295803444}
   m_Layer: 5
   m_Name: Crystal
   m_TagString: Untagged
@@ -39,20 +38,6 @@ RectTransform:
   m_AnchoredPosition: {x: 100.00006, y: -60.000015}
   m_SizeDelta: {x: 200, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5347365879295803444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5347365879295803434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60d47a75fbdd6d0489a3ef59ed663aa6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  display: {fileID: 5347365879502723137}
-  animator: {fileID: 0}
 --- !u!1 &5347365879502723143
 GameObject:
   m_ObjectHideFlags: 0
