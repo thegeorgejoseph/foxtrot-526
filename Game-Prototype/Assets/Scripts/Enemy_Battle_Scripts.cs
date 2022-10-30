@@ -33,6 +33,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     public GameObject deathScore;
     public TMP_Text total_score;
 
+    private Color transColor; // Color for defeated player
+
     private bool battle_started; // Local bool to tell blocks inside Update() whether to check battle status
 
     public float health = 1.0f;
@@ -62,6 +64,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
         did_finish = false;
         event_called = false;
         battle_started = false;
+        HA.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        crystalScript.GetComponent<SpriteRenderer>().enabled = false;
         kills = 0;
         enemies_encountered = 0;
     }
@@ -87,7 +91,12 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     // Player Lost or no bullets
                     HealthManager.health--;
                     // Play heart animation
+                    HA.gameObject.GetComponent<SpriteRenderer>().enabled = true;
                     HA.heartLose();
+                    // Set tag to be Invisible so that player won't get into battle;
+                    player.tag = "Invisible";
+                    transColor = player.GetComponent<SpriteRenderer>().color;
+                    transColor.a = 0.2f;
                     // Play effects where player takes damage
                     player.GetComponent<SpriteRenderer>().color = Color.red;
                     StartCoroutine(CountDown(1));
@@ -170,8 +179,10 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     /*  OLD currentEnemy.SetActive(false);   */
                     respawn.DisableEnemy(currentEnemy);
                     // Gain one crystal
+                    crystalScript.GetComponent<SpriteRenderer>().enabled = true;
                     crystalScript.gainCrystal(1);
                     // Play heart animation
+                    HA.gameObject.GetComponent<SpriteRenderer>().enabled = true;
                     HA.heartGain();
                     // Enable player movement
                     kills += 1;
@@ -188,7 +199,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collider)
     {
         // Using tags to check if the player has actually met enemy
-        if (collider.gameObject.tag == "Enemy")
+        if (collider.gameObject.tag == "Enemy" && player.tag == "Player")
         {
             // Record which enemy the player encountered
             enemies_encountered += 1;
@@ -203,6 +214,9 @@ public class Enemy_Battle_Scripts : MonoBehaviour
             battle_started = true;
             // Disable player movement
             GetComponent<Movement2D>().enabled = false;
+            // Disable some UIs
+            HA.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            crystalScript.GetComponent<SpriteRenderer>().enabled = false;
 
             // Activate slider UI (battle scene)
             battleUI.SetActive(true);
@@ -219,7 +233,18 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     private IEnumerator CountDown(int duration)
     {
         yield return new WaitForSeconds(duration);
-        player.GetComponent<SpriteRenderer>().color = Color.white;
+        HA.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        player.GetComponent<SpriteRenderer>().color = transColor;
+        StartCoroutine(Invisible(3));
+    }
+
+    // Coroutine for Player's invisible status after being defeated by enemy
+    private IEnumerator Invisible(int duration)
+    {
+        yield return new WaitForSeconds(duration);
+        player.tag = "Player";
+        transColor.a = 1f;
+        player.GetComponent<SpriteRenderer>().color = transColor;
     }
 
     public bool checkBattleStatus()

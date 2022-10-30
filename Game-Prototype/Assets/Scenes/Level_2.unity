@@ -314,7 +314,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8224332802870053003, guid: 8f79aa8a2ae4cc747adc8ca1cc929bf9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f79aa8a2ae4cc747adc8ca1cc929bf9, type: 3}
@@ -4282,6 +4282,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1811579279}
     m_Modifications:
+    - target: {fileID: 2324644609331303401, guid: 5385a78c902320b45893eee9d63e0403, type: 3}
+      propertyPath: display
+      value: 
+      objectReference: {fileID: 1619231809}
     - target: {fileID: 2812329614569848001, guid: 5385a78c902320b45893eee9d63e0403, type: 3}
       propertyPath: m_Name
       value: Gained_Crystal
@@ -4342,8 +4346,23 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 06ea5f3a063cceb4392b8676b24751b0, type: 3}
+    - target: {fileID: 2812329614569848124, guid: 5385a78c902320b45893eee9d63e0403, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5385a78c902320b45893eee9d63e0403, type: 3}
+--- !u!114 &697562293 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2324644609331303401, guid: 5385a78c902320b45893eee9d63e0403, type: 3}
+  m_PrefabInstance: {fileID: 697562292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d47a75fbdd6d0489a3ef59ed663aa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &703875491
 GameObject:
   m_ObjectHideFlags: 0
@@ -6790,17 +6809,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5347365879295803445, guid: e75bf3036709030428dded9f86f1b47e, type: 3}
   m_PrefabInstance: {fileID: 1709015804}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1056137207 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5347365879295803444, guid: e75bf3036709030428dded9f86f1b47e, type: 3}
-  m_PrefabInstance: {fileID: 1709015804}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60d47a75fbdd6d0489a3ef59ed663aa6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1078883982 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1943059854109316447, guid: aae3b432c90d54c37914fafb3bb80ab3, type: 3}
@@ -9217,6 +9225,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1943059854109316447, guid: aae3b432c90d54c37914fafb3bb80ab3, type: 3}
   m_PrefabInstance: {fileID: 1667427689}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1619231809 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5347365879502723137, guid: e75bf3036709030428dded9f86f1b47e, type: 3}
+  m_PrefabInstance: {fileID: 1709015804}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1620071395
 GameObject:
   m_ObjectHideFlags: 0
@@ -10489,7 +10508,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.027541459, y: -0.088466614}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -10500,7 +10519,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7196103, y: 2.0458272}
+  m_Size: {x: 1.7, y: 2}
   m_EdgeRadius: 0
 --- !u!212 &1811579278
 SpriteRenderer:
@@ -10562,7 +10581,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1811579274}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.6, y: -0.5, z: 0}
+  m_LocalPosition: {x: -1.6, y: 0.054, z: 0}
   m_LocalScale: {x: 0.26362178, y: 0.23811741, z: 0.9822}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10588,7 +10607,7 @@ MonoBehaviour:
   GameOver_UI: {fileID: 1832000481}
   SpaceText: {fileID: 741474620}
   player: {fileID: 1811579274}
-  crystalScript: {fileID: 1056137207}
+  crystalScript: {fileID: 697562293}
   DMS: {fileID: 475434229}
   HA: {fileID: 1980106754}
   screenShake: {fileID: 475434227}
@@ -11797,6 +11816,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1811579279}
     m_Modifications:
+    - target: {fileID: 4890157595525418244, guid: 2fa2be2e29c12644fa3add3addaa6963, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4890157595525418245, guid: 2fa2be2e29c12644fa3add3addaa6963, type: 3}
       propertyPath: m_RootOrder
       value: 0
