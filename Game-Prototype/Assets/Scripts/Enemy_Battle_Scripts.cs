@@ -68,6 +68,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
         crystalScript.GetComponent<SpriteRenderer>().enabled = false;
         kills = 0;
         enemies_encountered = 0;
+        transColor = player.GetComponent<SpriteRenderer>().color;
     }
 
     // Update is called once per frame
@@ -95,7 +96,6 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     HA.heartLose();
                     // Set tag to be Invisible so that player won't get into battle;
                     player.tag = "Invisible";
-                    transColor = player.GetComponent<SpriteRenderer>().color;
                     transColor.a = 0.2f;
                     // Play effects where player takes damage
                     player.GetComponent<SpriteRenderer>().color = Color.red;
@@ -178,6 +178,9 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     // The player has won
                     /*  OLD currentEnemy.SetActive(false);   */
                     respawn.DisableEnemy(currentEnemy);
+                    // Player will not get into battle for 3 secs.
+                    player.tag = "Invisible";
+                    StartCoroutine(Invisible(3));
                     // Gain one crystal
                     crystalScript.GetComponent<SpriteRenderer>().enabled = true;
                     crystalScript.gainCrystal(1);
@@ -189,6 +192,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     gemSoundEffect.Play();
                     DMS.updateSpeed();
                     GetComponent<Movement2D>().enabled = true;
+                    
                 }
             }
         }
