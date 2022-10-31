@@ -28,7 +28,7 @@ public static class DatabaseHandler{
     /// <param name="callback"> What to do after the user is uploaded successfully </param>
     
     
-    public static void PostMetrics<T>(T metrics, string sessionID, PostUserCallback callback, string section="midterm")
+    public static void PostMetrics<T>(T metrics, string sessionID, PostUserCallback callback, string section="postmidterm")
     {
         RestClient.Put<T>($"{databaseURL}{section}/{sessionID}.json", metrics).Then(response => { 
             callback();
