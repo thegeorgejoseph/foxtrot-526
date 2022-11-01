@@ -269,7 +269,7 @@ MonoBehaviour:
   Exit_UI: {fileID: 0}
   GameFinishText: {fileID: 0}
   analyticsManager: {fileID: 475434221}
-  playerMovement: {fileID: 0}
+  playerMovement: {fileID: 1811579274}
   did_finish: 0
   battleInfoScript: {fileID: 0}
   battleInfo: {fileID: 1811579274}
@@ -284,6 +284,7 @@ MonoBehaviour:
   level_score_metric: 0
   MainMenuBtn: {fileID: 0}
   Timer: {fileID: 1094965720}
+  crystalScript: {fileID: 0}
   rocketSoundEffect: {fileID: 114672609}
 --- !u!61 &114672606
 BoxCollider2D:
@@ -1459,15 +1460,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 8c941778d0c5d46da895a5f1f4fc5f19, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 19e39826349244b4ba5d5e18812d9f1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 7.57, y: 3.3}
+  m_Size: {x: 11.56, y: 7.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &374374451
@@ -2375,15 +2376,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 7e5d2dd4403fd4d5292ed37208ff5277, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a35039a710d004a738981ce7ac517c13, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 6.31, y: 3.95}
+  m_Size: {x: 11.56, y: 7.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &580961223
@@ -2517,6 +2518,7 @@ MonoBehaviour:
   level_score_metric: 0
   MainMenuBtn: {fileID: 0}
   Timer: {fileID: 0}
+  crystalScript: {fileID: 0}
   rocketSoundEffect: {fileID: 0}
 --- !u!61 &585153101
 BoxCollider2D:
@@ -4640,15 +4642,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 041dfefbd63e04e34a93f8daa44de6f1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c455c3e2fedc94b74baeb81bc46f29c1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 7.12, y: 3.5}
+  m_Size: {x: 11.56, y: 7.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &1219567553
@@ -4752,6 +4754,7 @@ MonoBehaviour:
   level_score_metric: 0
   MainMenuBtn: {fileID: 0}
   Timer: {fileID: 0}
+  crystalScript: {fileID: 0}
   rocketSoundEffect: {fileID: 0}
 --- !u!1001 &1324105252
 PrefabInstance:
@@ -5713,15 +5716,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: c8cfaf29fa35c4bc69784c3423d61fa5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0baae21371ff04d4da6146c21b8f5d0a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 7.91, y: 3.15}
+  m_Size: {x: 13.82, y: 5.51}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1676476052
@@ -5797,15 +5800,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 0f67bbe3d1f4b4188affd828d6c75150, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a2da468223da946b690b65197eccfbd0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 7.31, y: 3.41}
+  m_Size: {x: 11.56, y: 7.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &1679869076
@@ -6633,7 +6636,7 @@ MonoBehaviour:
   count: 0
   kills: 0
   enemies_encountered: 0
-  playerMovement: {fileID: 0}
+  playerMovement: {fileID: 1811579274}
   gemSoundEffect: {fileID: 1811579282}
   deathSoundEffect: {fileID: 1811579281}
   shakeSoundEffect: {fileID: 1811579283}
