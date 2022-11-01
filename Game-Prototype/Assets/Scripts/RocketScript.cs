@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class RocketScript : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class RocketScript : MonoBehaviour
     float velY = 0f;
     Rigidbody2D rb;
     public float lifetime = 5f;
+    public TextMeshProUGUI hint_text;
 
     private void Awake()
     {
