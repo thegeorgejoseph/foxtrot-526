@@ -284,7 +284,7 @@ MonoBehaviour:
   level_score_metric: 0
   MainMenuBtn: {fileID: 0}
   Timer: {fileID: 1094965720}
-  crystalScript: {fileID: 0}
+  crystalScript: {fileID: 2124311192}
   rocketSoundEffect: {fileID: 114672609}
 --- !u!61 &114672606
 BoxCollider2D:
@@ -6466,6 +6466,7 @@ GameObject:
   - component: {fileID: 1811579282}
   - component: {fileID: 1811579281}
   - component: {fileID: 1811579283}
+  - component: {fileID: 1811579284}
   m_Layer: 0
   m_Name: hero
   m_TagString: Player
@@ -6928,6 +6929,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1811579284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811579274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed33da64ed8cf4d7f9ad0ecb0470a4df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GreedyIcon: {fileID: 0}
 --- !u!1 &1825269716
 GameObject:
   m_ObjectHideFlags: 0
@@ -7240,6 +7254,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1811579279}
     m_Modifications:
+    - target: {fileID: 2324644609331303401, guid: 5385a78c902320b45893eee9d63e0403, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1811579274}
     - target: {fileID: 2324644609331303401, guid: 5385a78c902320b45893eee9d63e0403, type: 3}
       propertyPath: display
       value: 

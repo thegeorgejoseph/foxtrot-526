@@ -13,7 +13,7 @@ public class Exit_Script : MonoBehaviour
 
     public GameObject analyticsManager;
     private AnalyticsManager analyticsManagerScript;
-    
+
     public GameObject playerMovement;
     private Movement2D playerMovementScript;
 
@@ -60,13 +60,14 @@ public class Exit_Script : MonoBehaviour
     [SerializeField] private AudioSource rocketSoundEffect;
 
     // Start is called before the first frame update
-    private void Awake(){
+    private void Awake()
+    {
         analyticsManagerScript = analyticsManager.GetComponent<AnalyticsManager>();
         battleInfoScript = battleInfo.GetComponent<Enemy_Battle_Scripts>();
         playerMovementScript = playerMovement.GetComponent<Movement2D>();
         // playerProfileScript = playerMovement.GetComponent<InputNameScript>();
     }
-    
+
     void Start()
     {
         //analyticsManagerScript = analyticsManager.GetComponent<AnalyticsManager>();
@@ -77,7 +78,7 @@ public class Exit_Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     static int Compare(KeyValuePair<string, float> a, KeyValuePair<string, float> b)
@@ -93,7 +94,7 @@ public class Exit_Script : MonoBehaviour
             rocketSoundEffect.Play();
             string levels = SceneManager.GetActiveScene().name;
             constant = timeLimits[levels];
-            bonus_num =(int)(constant / time);
+            bonus_num = (int)(constant / time);
 
             if (SceneManager.GetActiveScene().name == Loader.Scene.Level_0.ToString())
             {
@@ -128,7 +129,7 @@ public class Exit_Script : MonoBehaviour
                 string level = level_num.ToString();
                 did_finish = true;
                 analyticsManagerScript.timer.Stop();
-                
+
                 // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
                 Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);
 
@@ -146,14 +147,14 @@ public class Exit_Script : MonoBehaviour
                                                 playerMovementScript.portalUsageCount.ToString(),
                                                 level_score_metric.ToString());
 
-                
+
                 DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.startTime, () =>
                     {
-                        Debug.Log("done posting to firebase metric"+level);
+                        Debug.Log("done posting to firebase metric" + level);
                     });
 
-                string username ="Michael";
-                
+                string username = "Michael";
+
             }
             else if (SceneManager.GetActiveScene().name == Loader.Scene.Level_2.ToString())
             {
@@ -230,14 +231,14 @@ public class Exit_Script : MonoBehaviour
                 level_num = 3;
                 string level = level_num.ToString();
                 SceneManager.LoadScene("ScoreScene");
-                
+
 
                 did_finish = true;
                 analyticsManagerScript.timer.Stop();
                 // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
                 Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);
                 // level_score_metric = HealthManager.health * 100 + enemies_count * 100 + 100  + bonus_num;
-                level_score_metric = HealthManager.health * 100 + crystal_count * 100 + 100  + bonus_num;
+                level_score_metric = HealthManager.health * 100 + crystal_count * 100 + 100 + bonus_num;
 
                 var metrics = new Metrics(analyticsManagerScript.clientID,
                     DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
@@ -249,10 +250,10 @@ public class Exit_Script : MonoBehaviour
                                                 playerMovementScript.portalUsageCount.ToString(),
                                                 level_score_metric.ToString());
 
-                
+
                 DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.startTime, () =>
                     {
-                        Debug.Log("done posting to firebase metric"+level);
+                        Debug.Log("done posting to firebase metric" + level);
                     });
 
             }
@@ -281,10 +282,10 @@ public class Exit_Script : MonoBehaviour
                                                 playerMovementScript.portalUsageCount.ToString(),
                                                 level_score_metric.ToString());
 
-                
+
                 DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.startTime, () =>
                     {
-                        Debug.Log("done posting to firebase metric"+level);
+                        Debug.Log("done posting to firebase metric" + level);
                     });
 
             }
@@ -314,10 +315,10 @@ public class Exit_Script : MonoBehaviour
                                                 playerMovementScript.portalUsageCount.ToString(),
                                                 level_score_metric.ToString());
 
-                
+
                 DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.startTime, () =>
                     {
-                        Debug.Log("done posting to firebase metric"+level);
+                        Debug.Log("done posting to firebase metric" + level);
                     });
 
             }

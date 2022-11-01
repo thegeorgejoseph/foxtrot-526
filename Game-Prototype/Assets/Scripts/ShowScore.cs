@@ -9,6 +9,7 @@ public class ShowScore : MonoBehaviour
 {
     public GameObject scoreBoard;
     public GameObject highScoreTable;
+    public Crystal crystalScript;
     public TMP_Text hearts_remaining;
     public TMP_Text enemies_killed;
     public TMP_Text level_passed;
@@ -68,14 +69,17 @@ public class ShowScore : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int time_bonus_val =  Exit_Script.bonus_num;
+        int time_bonus_val = Exit_Script.bonus_num;
         float heart_count = HealthManager.health;
         float total_score_val = 0;
         float level_total_score = 0;
         hearts_remaining.text = heart_count.ToString() + " * 100 = " + heart_count * 100;
-        enemies_killed.text = Exit_Script.enemies_count.ToString() + " * 100 = " + Exit_Script.enemies_count * 100;
+
+        // enemies_killed.text = Exit_Script.enemies_count.ToString() + " * 100 = " + Exit_Script.enemies_count * 100;
+        enemies_killed.text = Exit_Script.crystal_count.ToString() + " * 100 = " + Exit_Script.crystal_count * 100;
         level_passed.text = "1 * 100 = " + 100;
-        total_score_val = heart_count * 100 + Exit_Script.enemies_count * 100 + 100 + time_bonus_val;
+        // total_score_val = heart_count * 100 + Exit_Script.enemies_count * 100 + 100 + time_bonus_val;
+        total_score_val = heart_count * 100 + Exit_Script.crystal_count * 100 + 100 + time_bonus_val;
         level_score.text = total_score_val.ToString();
         time_bonus.text = time_bonus_val.ToString();
 
@@ -90,11 +94,11 @@ public class ShowScore : MonoBehaviour
         var username = InputNameScript.username + "_" + analyticsManagerScript.clientID;
 
         Debug.Log("Level Val" + Exit_Script.level_num.ToString());
-        
+
         if (total_score_val > 0)
         {
 
-            DatabaseHandler.GetHighScore<HighScores>("Level_"+Exit_Script.level_num.ToString(), (users) =>
+            DatabaseHandler.GetHighScore<HighScores>("Level_" + Exit_Script.level_num.ToString(), (users) =>
             {
                 Debug.Log("Score " + total_score_val);
                 var myList = new List<KeyValuePair<string, float>>();
@@ -210,26 +214,33 @@ public class ShowScore : MonoBehaviour
                 }
                 if (found < 0)
                 {
-                    DatabaseHandler.PostHighScore<HighScores>(playerHighscore, "Level_"+Exit_Script.level_num.ToString(), username, () =>
+                    DatabaseHandler.PostHighScore<HighScores>(playerHighscore, "Level_" + Exit_Script.level_num.ToString(), username, () =>
                     {
                         Debug.Log("done pushing the data" + username);
                     });
                 }
-                
-                if (Exit_Script.level_num == totalLevels){
+
+                if (Exit_Script.level_num == totalLevels)
+                {
                     //write code to push accumulated data into highscore column
-                    if(found == -1){
+                    if (found == -1)
+                    {
                         var playerTotalscore = new MaxScore(level_total_score);
-                        DatabaseHandler.PostTotalScore<MaxScore>(playerTotalscore, username, ()=>{
+                        DatabaseHandler.PostTotalScore<MaxScore>(playerTotalscore, username, () =>
+                        {
                             Debug.Log("Updated new HighScore");
                         });
                     }
-                    else{
-                        DatabaseHandler.GetTotalScore(username, (totScore) =>{
+                    else
+                    {
+                        DatabaseHandler.GetTotalScore(username, (totScore) =>
+                        {
                             Debug.Log("Total Score Val " + totScore);
-                            if (level_total_score > totScore){
+                            if (level_total_score > totScore)
+                            {
                                 var playerTotalscore = new MaxScore(level_total_score);
-                                DatabaseHandler.PostTotalScore<MaxScore>(playerTotalscore, username, ()=>{
+                                DatabaseHandler.PostTotalScore<MaxScore>(playerTotalscore, username, () =>
+                                {
                                     Debug.Log("Updated new HighScore");
                                 });
                             }
@@ -251,14 +262,14 @@ public class ShowScore : MonoBehaviour
 
                 if (resultSize == 3)
                 {
-                    
-                    if(returnList[0].username == (InputNameScript.username+"_"+ analyticsManagerScript.clientID))
+
+                    if (returnList[0].username == (InputNameScript.username + "_" + analyticsManagerScript.clientID))
                     {
                         name1.color = Color.green;
                         score1.color = Color.green;
                         pos1.color = Color.green;
                     }
-                    else if(returnList[1].username == (InputNameScript.username + "_" + analyticsManagerScript.clientID))
+                    else if (returnList[1].username == (InputNameScript.username + "_" + analyticsManagerScript.clientID))
                     {
                         name2.color = Color.green;
                         score2.color = Color.green;
@@ -295,7 +306,7 @@ public class ShowScore : MonoBehaviour
                     name4.gameObject.SetActive(true);
                     score4.gameObject.SetActive(true);
                     pos4.gameObject.SetActive(true);
-                    
+
                     name4.text = returnList[3].username.Split("_")[0];
                     score4.text = returnList[3].levelScore.ToString();
                     pos4.text = "4TH";
@@ -323,26 +334,27 @@ public class ShowScore : MonoBehaviour
 
                 if (resultSize == 5)
                 {
-                    
-                    if(returnList[3].rank == 4){
+
+                    if (returnList[3].rank == 4)
+                    {
                         name4.gameObject.SetActive(true);
                         score4.gameObject.SetActive(true);
                         pos4.gameObject.SetActive(true);
 
                         name4.text = returnList[3].username.Split("_")[0];
                         score4.text = returnList[3].levelScore.ToString();
-                        pos4.text = returnList[3].rank.ToString()+"TH";
+                        pos4.text = returnList[3].rank.ToString() + "TH";
                         name4.color = Color.green;
                         score4.color = Color.green;
                         pos4.color = Color.green;
-                        
+
                         name5.gameObject.SetActive(true);
                         score5.gameObject.SetActive(true);
                         pos5.gameObject.SetActive(true);
 
                         name5.text = returnList[4].username.Split("_")[0];
                         score5.text = returnList[4].levelScore.ToString();
-                        pos5.text = returnList[4].rank.ToString()+"TH";
+                        pos5.text = returnList[4].rank.ToString() + "TH";
 
 
                         namen1.gameObject.SetActive(false);
@@ -359,27 +371,28 @@ public class ShowScore : MonoBehaviour
                         dot3.gameObject.SetActive(false);
 
                     }
-                    else{
+                    else
+                    {
                         namen2.gameObject.SetActive(true);
                         scoren2.gameObject.SetActive(true);
                         posn2.gameObject.SetActive(true);
 
                         namen2.text = returnList[3].username.Split("_")[0];
                         scoren2.text = returnList[3].levelScore.ToString();
-                        posn2.text = returnList[3].rank.ToString()+"TH";
-                        
+                        posn2.text = returnList[3].rank.ToString() + "TH";
+
                         namen3.gameObject.SetActive(true);
                         scoren3.gameObject.SetActive(true);
                         posn3.gameObject.SetActive(true);
 
                         namen3.text = returnList[4].username.Split("_")[0];
                         scoren3.text = returnList[4].levelScore.ToString();
-                        posn3.text = returnList[4].rank.ToString()+"TH";
+                        posn3.text = returnList[4].rank.ToString() + "TH";
                         namen3.color = Color.green;
                         scoren3.color = Color.green;
                         posn3.color = Color.green;
-                        
-                        
+
+
                         name4.gameObject.SetActive(false);
                         name5.gameObject.SetActive(false);
                         namen1.gameObject.SetActive(false);
@@ -389,16 +402,16 @@ public class ShowScore : MonoBehaviour
                         pos4.gameObject.SetActive(false);
                         pos5.gameObject.SetActive(false);
                         posn1.gameObject.SetActive(false);
-                        
+
                     }
-                                        
+
                 }
-                
-                if(resultSize == 6)
+
+                if (resultSize == 6)
                 {
                     namen1.text = returnList[3].username.Split("_")[0];
                     scoren1.text = returnList[3].levelScore.ToString();
-                    posn1.text = returnList[3].rank.ToString()+"TH";
+                    posn1.text = returnList[3].rank.ToString() + "TH";
 
                     namen2.text = returnList[4].username.Split("_")[0];
                     scoren2.text = returnList[4].levelScore.ToString();
@@ -422,7 +435,7 @@ public class ShowScore : MonoBehaviour
         }
         else
         {
-            DatabaseHandler.GetHighScore<HighScores>("Level_"+Exit_Script.level_num.ToString(), (users) =>
+            DatabaseHandler.GetHighScore<HighScores>("Level_" + Exit_Script.level_num.ToString(), (users) =>
             {
                 Debug.Log("failed state check");
                 var myList = new List<KeyValuePair<string, float>>();
@@ -445,7 +458,7 @@ public class ShowScore : MonoBehaviour
                         break;
                     }
                 }
-                Debug.Log("result count"+returnList.Length);
+                Debug.Log("result count" + returnList.Length);
                 for (int i = 0; i < returnList.Length; i++)
                 {
                     Debug.Log("CCCC " + returnList[i].username + " " + returnList[i].levelScore);
@@ -453,7 +466,7 @@ public class ShowScore : MonoBehaviour
             });
 
             // end
-            
+
 
         }
 
@@ -490,38 +503,38 @@ public class ShowScore : MonoBehaviour
         }
 
     }
-        // Update is called once per frame
-        void Update()
-        {
+    // Update is called once per frame
+    void Update()
+    {
 
+    }
+
+    public void NextLevel()
+    {
+        if (Exit_Script.level_num == 1)
+        {
+            Time.timeScale = 1;
+            SceneManager.LoadScene("LevelSplashScreen");
+            //SceneManager.LoadScene("Level_2");
         }
-
-        public void NextLevel()
+        else if (Exit_Script.level_num == 2)
         {
-            if (Exit_Script.level_num == 1)
-            {
-                Time.timeScale = 1;
-                SceneManager.LoadScene("LevelSplashScreen");
-                //SceneManager.LoadScene("Level_2");
-            }
-            else if (Exit_Script.level_num == 2)
-            {
-                Time.timeScale = 1;
-                SceneManager.LoadScene("LevelSplashScreen");
+            Time.timeScale = 1;
+            SceneManager.LoadScene("LevelSplashScreen");
             //SceneManager.LoadScene("Level_3");
         }
-            else if (Exit_Script.level_num == 3)
-            {
-                Time.timeScale = 1;
-                SceneManager.LoadScene("LevelSplashScreen");
+        else if (Exit_Script.level_num == 3)
+        {
+            Time.timeScale = 1;
+            SceneManager.LoadScene("LevelSplashScreen");
             //SceneManager.LoadScene("Level_4");
         }
-            else if (Exit_Script.level_num == 4)
-            {
-                Time.timeScale = 1;
-                SceneManager.LoadScene("LevelSplashScreen");
+        else if (Exit_Script.level_num == 4)
+        {
+            Time.timeScale = 1;
+            SceneManager.LoadScene("LevelSplashScreen");
             //SceneManager.LoadScene("Level_5");
         }
-        }
     }
+}
 
