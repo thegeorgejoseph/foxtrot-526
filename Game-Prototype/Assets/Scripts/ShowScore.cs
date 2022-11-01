@@ -69,6 +69,8 @@ public class ShowScore : MonoBehaviour
     void Start()
     {
         int time_bonus_val =  Exit_Script.bonus_num;
+        int constant = Exit_Script.constant;
+        int time = Exit_Script.time;
         float heart_count = HealthManager.health;
         float total_score_val = 0;
         float level_total_score = 0;
@@ -77,7 +79,7 @@ public class ShowScore : MonoBehaviour
         level_passed.text = "1 * 100 = " + 100;
         total_score_val = heart_count * 100 + Exit_Script.enemies_count * 100 + 100 + time_bonus_val;
         level_score.text = total_score_val.ToString();
-        time_bonus.text = time_bonus_val.ToString();
+        time_bonus.text = constant.ToString() + " / " + time.ToString() + " = " + time_bonus_val.ToString();
 
         level_total_score = total_score_val + Exit_Script.score_till_curr_level;
         total_score.text = (level_total_score).ToString();

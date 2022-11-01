@@ -40,6 +40,8 @@ public class Exit_Script : MonoBehaviour
     //public GameObject time_bonus;
     public GameObject Timer;
     public static int bonus_num;
+    public static int time;
+    public static int constant;
 
     // public String username;
     private Dictionary<string, int> timeLimits = new Dictionary<string, int>
@@ -84,10 +86,11 @@ public class Exit_Script : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
-            float time = Timer.GetComponent<Timer_Script>().timeValue;
+            time = (int)Timer.GetComponent<Timer_Script>().timeValue;
             rocketSoundEffect.Play();
             string levels = SceneManager.GetActiveScene().name;
-            bonus_num =(int)(timeLimits[levels] / time);
+            constant = timeLimits[levels];
+            bonus_num =(int)(constant / time);
 
             if (SceneManager.GetActiveScene().name == Loader.Scene.Level_0.ToString())
             {
