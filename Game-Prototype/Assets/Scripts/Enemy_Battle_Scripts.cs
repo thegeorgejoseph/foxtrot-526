@@ -48,6 +48,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
 
     [SerializeField] private AudioSource gemSoundEffect;
     [SerializeField] private AudioSource deathSoundEffect;
+    [SerializeField] private AudioSource shakeSoundEffect;
     private void Awake(){
         analyticsManagerScript = analyticsManager.GetComponent<AnalyticsManager>();
         playerMovementScript = playerMovement.GetComponent<Movement2D>();
@@ -100,6 +101,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     // Play effects where player takes damage
                     player.GetComponent<SpriteRenderer>().color = Color.red;
                     StartCoroutine(CountDown(1));
+                    
 
                     if (HealthManager.health <= 0)
                     {
@@ -169,6 +171,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     else
                     {
                         screenShake.TriggerShake();
+                        shakeSoundEffect.Play();
                         GetComponent<Movement2D>().enabled = true;
                     }
                 }
