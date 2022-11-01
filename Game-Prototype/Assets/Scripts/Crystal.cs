@@ -11,6 +11,10 @@ public class Crystal : MonoBehaviour
 
     private int crystalNum;
 
+    public GameObject player;
+
+    private Powerup_Greedy powerup_Greedy;
+
     // Public method to retrive the number of crystal that the player has gained (Level-independent)
     public int getCrystalNum()
     {
@@ -19,7 +23,9 @@ public class Crystal : MonoBehaviour
 
     public void gainCrystal(int gainNum)
     {
-        crystalNum += gainNum;
+        int crystalMultiplier = powerup_Greedy.getCrystalMultiplier();
+        Debug.Log("Printing current multiplier: " + crystalMultiplier);
+        crystalNum += crystalMultiplier * gainNum;
         // Play animation
         animator.Play("Base Layer.Crystal_Gained");
     }
@@ -28,6 +34,7 @@ public class Crystal : MonoBehaviour
     void Start()
     {
         crystalNum = 0;
+        powerup_Greedy = player.GetComponent<Powerup_Greedy>();
     }
 
     // Update is called once per frame
