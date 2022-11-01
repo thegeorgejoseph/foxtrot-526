@@ -32,7 +32,7 @@ public class InputNameScript : MonoBehaviour
         else
         {
             username = Inputname.text;
-            SceneManager.LoadScene("Level_1");
+            SceneManager.LoadScene("Level Selector");
         }
     }
 }
