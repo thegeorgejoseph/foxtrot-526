@@ -22,6 +22,7 @@ public class Exit_Script : MonoBehaviour
 
     public bool did_finish;
     public static float enemies_count;
+    public static float crystal_count;
     public Enemy_Battle_Scripts battleInfoScript;
     public GameObject battleInfo;
     public GameObject scoreBoard;
@@ -40,6 +41,8 @@ public class Exit_Script : MonoBehaviour
     //public GameObject time_bonus;
     public GameObject Timer;
     public static int bonus_num;
+
+    public Crystal crystalScript; // Crystal Script object
 
     // public String username;
     private Dictionary<string, int> timeLimits = new Dictionary<string, int>
@@ -103,13 +106,16 @@ public class Exit_Script : MonoBehaviour
                 scoreBoard.SetActive(true);
                 float heart_count = HealthManager.health;
                 enemies_count = battleInfoScript.kills;
+                crystal_count = crystalScript.getCrystalNum();
                 float total_score_val = 0;
 
                 SceneManager.LoadScene("ScoreScene");
                 hearts_remaining.text = heart_count.ToString() + " * 100 = " + heart_count * 100;
-                enemies_killed.text = enemies_count.ToString() + " * 100 = " + enemies_count * 100;
+                // enemies_killed.text = enemies_count.ToString() + " * 100 = " + enemies_count * 100;
+                enemies_killed.text = crystal_count.ToString() + " * 100 = " + crystal_count * 100;
                 level_passed.text = "1 * 100 = " + 100;
-                total_score_val = heart_count * 100 + enemies_count * 100 + 100;
+                // total_score_val = heart_count * 100 + enemies_count * 100 + 100;
+                total_score_val = heart_count * 100 + crystal_count * 100 + 100;
                 level_score.text = total_score_val.ToString();
                 total_score.text = total_score_val.ToString();
                 level1_score = total_score_val;
@@ -157,13 +163,17 @@ public class Exit_Script : MonoBehaviour
                 //MainMenuBtn.SetActive(true);
                 float heart_count = HealthManager.health;
                 enemies_count = battleInfoScript.kills;
+                crystal_count = crystalScript.getCrystalNum();
                 float total_score_val = 0;
                 level_num = 2;
                 SceneManager.LoadScene("ScoreScene");
                 hearts_remaining.text = heart_count.ToString() + " * 100 = " + heart_count * 100;
-                enemies_killed.text = enemies_count.ToString() + " * 100 = " + enemies_count * 100;
+                // enemies_killed.text = enemies_count.ToString() + " * 100 = " + enemies_count * 100;
+                enemies_killed.text = crystal_count.ToString() + " * 100 = " + crystal_count * 100;
+                // enemies_killed.text = currentCrystal.ToString() + " * 100 = " + currentCrystal * 100;
                 level_passed.text = "1 * 100 = " + 100;
-                total_score_val = heart_count * 100 + enemies_count * 100 + 100;
+                // total_score_val = heart_count * 100 + enemies_count * 100 + 100;
+                total_score_val = heart_count * 100 + crystal_count * 100 + 100;
                 level_score.text = total_score_val.ToString();
                 total_score.text = (total_score_val + level1_score).ToString();
                 level1_score = total_score_val;
@@ -213,6 +223,7 @@ public class Exit_Script : MonoBehaviour
             else if (SceneManager.GetActiveScene().name == Loader.Scene.Level_3.ToString())
             {
                 enemies_count = battleInfoScript.kills;
+                crystal_count = crystalScript.getCrystalNum();
                 level_num = 3;
                 string level = level_num.ToString();
                 SceneManager.LoadScene("ScoreScene");
@@ -222,7 +233,8 @@ public class Exit_Script : MonoBehaviour
                 analyticsManagerScript.timer.Stop();
                 // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
                 Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);
-                level_score_metric = HealthManager.health * 100 + enemies_count * 100 + 100  + bonus_num;
+                // level_score_metric = HealthManager.health * 100 + enemies_count * 100 + 100  + bonus_num;
+                level_score_metric = HealthManager.health * 100 + crystal_count * 100 + 100  + bonus_num;
 
                 var metrics = new Metrics(analyticsManagerScript.clientID,
                     DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
@@ -244,13 +256,15 @@ public class Exit_Script : MonoBehaviour
             else if (SceneManager.GetActiveScene().name == Loader.Scene.Level_4.ToString())
             {
                 enemies_count = battleInfoScript.kills;
+                crystal_count = crystalScript.getCrystalNum();
                 level_num = 4;
                 SceneManager.LoadScene("ScoreScene");
 
                 string level = level_num.ToString();
                 did_finish = true;
                 analyticsManagerScript.timer.Stop();
-                level_score_metric = HealthManager.health * 100 + enemies_count * 100 + 100 + bonus_num;
+                // level_score_metric = HealthManager.health * 100 + enemies_count * 100 + 100 + bonus_num;
+                level_score_metric = HealthManager.health * 100 + crystal_count * 100 + 100 + bonus_num;
                 // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
                 Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);
 
@@ -274,12 +288,14 @@ public class Exit_Script : MonoBehaviour
             else if (SceneManager.GetActiveScene().name == Loader.Scene.Level_5.ToString())
             {
                 enemies_count = battleInfoScript.kills;
+                crystal_count = crystalScript.getCrystalNum();
                 level_num = 5;
                 SceneManager.LoadScene("ScoreScene");
                 // SceneManager.LoadScene("GameHighscore");
 
                 string level = level_num.ToString();
-                level_score_metric = HealthManager.health * 100 + enemies_count * 100 + 100 + bonus_num;
+                // level_score_metric = HealthManager.health * 100 + enemies_count * 100 + 100 + bonus_num;
+                level_score_metric = HealthManager.health * 100 + crystal_count * 100 + 100 + bonus_num;
                 did_finish = true;
                 analyticsManagerScript.timer.Stop();
                 // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
