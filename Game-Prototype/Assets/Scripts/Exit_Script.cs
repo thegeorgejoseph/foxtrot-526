@@ -153,8 +153,6 @@ public class Exit_Script : MonoBehaviour
                         Debug.Log("done posting to firebase metric" + level);
                     });
 
-                string username = "Michael";
-
             }
             else if (SceneManager.GetActiveScene().name == Loader.Scene.Level_2.ToString())
             {

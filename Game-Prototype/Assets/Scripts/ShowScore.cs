@@ -103,7 +103,7 @@ public class ShowScore : MonoBehaviour
                 Debug.Log("Score " + total_score_val);
                 var myList = new List<KeyValuePair<string, float>>();
                 var returnList = new TableRow[6];
-
+                float scoreDiff = 0;
                 foreach (KeyValuePair<string, HighScores> kvp in users)
                 {
                     myList.Add(new KeyValuePair<string, float>(kvp.Key, kvp.Value.levelScore));
@@ -120,6 +120,7 @@ public class ShowScore : MonoBehaviour
                         break;
                     }
                 }
+                Debug.Log("Found at " + found);
                 if (found == -1)
                 {
                     myList.Add(new KeyValuePair<string, float>(username, total_score_val));
@@ -128,6 +129,8 @@ public class ShowScore : MonoBehaviour
                 {
                     if ((myList[found].Value < total_score_val))
                     {
+                        Debug.Log("Old Score " + myList[found].Value);
+                        scoreDiff = total_score_val - myList[found].Value;
                         myList.Remove(myList[found]);
                         myList.Add(new KeyValuePair<string, float>(username, total_score_val));
                         found = -2;
@@ -214,41 +217,43 @@ public class ShowScore : MonoBehaviour
                 }
                 if (found < 0)
                 {
+                    Debug.Log("Score Diff " + scoreDiff);
                     DatabaseHandler.PostHighScore<HighScores>(playerHighscore, "Level_" + Exit_Script.level_num.ToString(), username, () =>
                     {
-                        Debug.Log("done pushing the data" + username);
+                        Debug.Log("done pushing the data " + username + " " + playerHighscore.levelScore);
                     });
-                }
-
-                if (Exit_Script.level_num == totalLevels)
-                {
-                    //write code to push accumulated data into highscore column
-                    if (found == -1)
-                    {
-                        var playerTotalscore = new MaxScore(level_total_score);
-                        DatabaseHandler.PostTotalScore<MaxScore>(playerTotalscore, username, () =>
-                        {
-                            Debug.Log("Updated new HighScore");
-                        });
-                    }
-                    else
-                    {
+                    if (found == -2){
                         DatabaseHandler.GetTotalScore(username, (totScore) =>
                         {
-                            Debug.Log("Total Score Val " + totScore);
-                            if (level_total_score > totScore)
+                            Debug.Log("Old Total Score " + (totScore));
+                            var playerTotalscore = new MaxScore(totScore + scoreDiff);
+                            DatabaseHandler.PostTotalScore<MaxScore>(playerTotalscore, username, () =>
                             {
-                                var playerTotalscore = new MaxScore(level_total_score);
+                                Debug.Log("Updated new HighScore");
+                            });
+                        });
+                    }
+                    else{
+                        if(Exit_Script.level_num == 1){
+                            var playerTotalscore = new MaxScore(level_total_score);
+                            DatabaseHandler.PostTotalScore<MaxScore>(playerTotalscore, username, () =>
+                            {
+                                Debug.Log("Updated new HighScore");
+                            });
+                        }
+                        else{
+                            DatabaseHandler.GetTotalScore(username, (totScore) =>
+                            {
+                                Debug.Log("New Updated Score " + (totScore + level_total_score));
+                                var playerTotalscore = new MaxScore(totScore + level_total_score);
                                 DatabaseHandler.PostTotalScore<MaxScore>(playerTotalscore, username, () =>
                                 {
                                     Debug.Log("Updated new HighScore");
                                 });
-                            }
-                        });
+                            });
+                        }
                     }
-                    // SceneManager.LoadScene("GameHighscore");
                 }
-
 
                 int resultSize = returnList.Length;
                 name1.text = returnList[0].username.Split("_")[0];

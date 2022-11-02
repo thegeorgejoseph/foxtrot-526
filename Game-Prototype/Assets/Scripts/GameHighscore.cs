@@ -56,8 +56,6 @@ public class GameHighscore : MonoBehaviour
         var username = InputNameScript.username + "_" + analyticsManagerScript.clientID;
         Debug.Log("highscore username " + username);
 
-        float failStateValue = Exit_Script.score_till_curr_level;
-
         DatabaseHandler.GetAllTotalScore<MaxScore>((users) => 
         {
             var myList = new List<KeyValuePair<string, float>>();
@@ -79,18 +77,10 @@ public class GameHighscore : MonoBehaviour
                     break;
                 }
             }
+            Debug.Log("P " + found);
             if (found == -1)
             {
-                myList.Add(new KeyValuePair<string, float>(username, failStateValue));
-            }
-            else
-            {
-                if ((myList[found].Value < failStateValue))
-                {
-                    myList.Remove(myList[found]);
-                    myList.Add(new KeyValuePair<string, float>(username, failStateValue));
-                    found = -2;
-                }
+                myList.Add(new KeyValuePair<string, float>(username, 0));
             }
             int count = 0;
             int index = 0;
@@ -171,9 +161,9 @@ public class GameHighscore : MonoBehaviour
             {
                 Debug.Log("DDDDD " + returnList[i].username + " " + returnList[i].levelScore);
             }
-            if (found < 0)
+            if (found == -1)
             {
-                 var playerTotalscore = new MaxScore(failStateValue);
+                var playerTotalscore = new MaxScore(0);
                 DatabaseHandler.PostTotalScore<MaxScore>(playerTotalscore, username, ()=>{
                     Debug.Log("Updated new HighScore");
                 });
