@@ -36,6 +36,7 @@ public class GameHighscore : MonoBehaviour
     public TMP_Text namen1;
     public TMP_Text namen2;
     public TMP_Text namen3;
+    public static string failureScene;
 
     public GameObject analyticsManager;
     private AnalyticsManager analyticsManagerScript;
@@ -55,7 +56,35 @@ public class GameHighscore : MonoBehaviour
     {
         var username = InputNameScript.username + "_" + analyticsManagerScript.clientID;
         Debug.Log("highscore username " + username);
+        Debug.Log("Failure Level " + Exit_Script.level_num.ToString());
+        DatabaseHandler.GetHighScore<HighScores>(failureScene, (users) =>
+        {
+            var myList = new List<KeyValuePair<string, float>>();
+            foreach (KeyValuePair<string, HighScores> kvp in users)
+            {
+                myList.Add(new KeyValuePair<string, float>(kvp.Key, kvp.Value.levelScore));
+            }
+            Debug.Log("finding the data " + myList.Count);
+            int overallCount = myList.Count;
+            int found = -1;
+            for (int i = 0; i < overallCount; i++)
+            {
 
+                if (myList[i].Key == username)
+                {
+                    found = i;
+                    break;
+                }
+            }
+            Debug.Log("found val " + found);
+            if(found == -1){
+                var playerHighscore = new HighScores(0);
+                DatabaseHandler.PostHighScore<HighScores>(playerHighscore, failureScene, username, () =>
+                {
+                    Debug.Log("done pushing the data " + username + " " + playerHighscore.levelScore);
+                });
+            }
+        });
         DatabaseHandler.GetAllTotalScore<MaxScore>((users) => 
         {
             var myList = new List<KeyValuePair<string, float>>();

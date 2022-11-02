@@ -111,6 +111,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                         deathSoundEffect.Play();
                         if (SceneManager.GetActiveScene().name != Loader.Scene.Level_0.ToString())
                         {
+                            GameHighscore.failureScene = SceneManager.GetActiveScene().name; 
+                            Debug.Log("Current Scene " + SceneManager.GetActiveScene().name);
                             SceneManager.LoadScene("GameHighscore");
                         }
                         else
