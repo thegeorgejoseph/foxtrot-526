@@ -185,7 +185,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     respawn.DisableEnemy(currentEnemy);
                     // Player will not get into battle for 3 secs.
                     player.tag = "Invisible";
-                    StartCoroutine(Invisible(3));
+                    StartCoroutine(Invisible(1f));
                     // Gain one crystal
                     crystalScript.GetComponent<SpriteRenderer>().enabled = true;
                     crystalScript.gainCrystal(1);
@@ -203,12 +203,16 @@ public class Enemy_Battle_Scripts : MonoBehaviour
         }
     }
 
-
     // Detect if the player has collided with enemy
     void OnCollisionEnter2D(Collision2D collider)
     {
+        if (collider.gameObject.tag == "Portal")
+        {
+            // Reset the tag if player enter portal (to prevent invisible cd from stopping player to use the portal)
+            player.tag = "Player";
+        }
         // Using tags to check if the player has actually met enemy
-        if (collider.gameObject.tag == "Enemy" && player.tag == "Player")
+        else if (collider.gameObject.tag == "Enemy" && player.tag == "Player")
         {
             // Record which enemy the player encountered
             enemies_encountered += 1;
@@ -244,11 +248,11 @@ public class Enemy_Battle_Scripts : MonoBehaviour
         yield return new WaitForSeconds(duration);
         HA.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         player.GetComponent<SpriteRenderer>().color = transColor;
-        StartCoroutine(Invisible(3));
+        StartCoroutine(Invisible(3f));
     }
 
     // Coroutine for Player's invisible status after being defeated by enemy
-    private IEnumerator Invisible(int duration)
+    private IEnumerator Invisible(float duration)
     {
         yield return new WaitForSeconds(duration);
         player.tag = "Player";

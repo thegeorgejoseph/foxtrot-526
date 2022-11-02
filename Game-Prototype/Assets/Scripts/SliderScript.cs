@@ -64,9 +64,11 @@ public class SliderScript : MonoBehaviour
         return playerWin;
     }
 
-    float getDistance(Transform a, Transform b)
+    float getDistance(Transform a3, Transform b3)
     {
-        return Vector3.Distance(a.position, b.position);
+        Vector2 a2 = a3.position;
+        Vector2 b2 = b3.position;
+        return Vector2.Distance(a2, b2);
     }
 
     // Reset all vars for next event

@@ -19,8 +19,8 @@ public class DynamicMovingSpeed : MonoBehaviour
 
     public void updateSpeed()
     {
-        speedMultEnemy *= 1.1f;
-        speedMultPlayer *= 1.05f;
+        speedMultEnemy *= 1.06f;
+        speedMultPlayer *= 1.03f;
 
         sliderScript.setEnemySpeed(speedMultEnemy);
         sliderScript.setPlayerSpeed(speedMultPlayer);
