@@ -5,7 +5,7 @@ using UnityEngine;
 public class TutorialManager : MonoBehaviour
 {   
     public GameObject[] popUps;
-    private int popUpIndex;
+    static int popUpIndex;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,12 +53,11 @@ public class TutorialManager : MonoBehaviour
             popUps[1].SetActive(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)){
-                popUpIndex++;
-            }
-
-        }
-        
+        }     
+    }
+    private void OnCollisionEnter2D(Collision2D other){
+        popUpIndex++;
+        Destroy(gameObject);
         
     }
 }
