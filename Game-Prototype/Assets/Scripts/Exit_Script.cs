@@ -86,8 +86,11 @@ public class Exit_Script : MonoBehaviour
         return b.Value.CompareTo(a.Value);
     }
 
+
+
     void OnTriggerEnter2D(Collider2D collider)
     {
+        // StartCoroutine(CountDown(10));
         if (collider.gameObject.tag == "Player")
         {
             time = (int)Timer.GetComponent<Timer_Script>().timeValue;
