@@ -3699,7 +3699,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.09433961, g: 0.043322016, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3740,7 +3740,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.6, y: -4.3, z: -1}
+  m_LocalPosition: {x: -3.6, y: -3.982, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12572,7 +12572,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 13dbd667e67e146329f44c972b6bceac, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6988919f1dfb04c8e8edcad927a3eb86, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -14254,12 +14254,24 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3930298974560176018, guid: 95164ebbe2b1147479ab61ffc13e0b39, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4676639
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930298974560176018, guid: 95164ebbe2b1147479ab61ffc13e0b39, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4224193
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930298974560176018, guid: 95164ebbe2b1147479ab61ffc13e0b39, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.7424188
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930298974560176018, guid: 95164ebbe2b1147479ab61ffc13e0b39, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.52
       objectReference: {fileID: 0}
     - target: {fileID: 3930298974560176018, guid: 95164ebbe2b1147479ab61ffc13e0b39, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.22
+      value: -3.96
       objectReference: {fileID: 0}
     - target: {fileID: 3930298974560176018, guid: 95164ebbe2b1147479ab61ffc13e0b39, type: 3}
       propertyPath: m_LocalPosition.z

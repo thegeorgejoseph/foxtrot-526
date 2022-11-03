@@ -3016,7 +3016,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.05660379, g: 0.041433103, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -8624,12 +8624,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 9d2ce727dafe54ffba77d7006d7c73a7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: facf2f8c579f74f0faa0f2985e663a83, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 21.101952, y: 19}
+  m_Size: {x: 21.1, y: 19}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -10809,8 +10809,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1811579274}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.6, y: 0.054, z: 0}
-  m_LocalScale: {x: 0.26362178, y: 0.23811741, z: 0.9822}
+  m_LocalPosition: {x: -2.128, y: -0.832, z: 0}
+  m_LocalScale: {x: 0.34075546, y: 0.3077887, z: 1.269584}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1980106753}
