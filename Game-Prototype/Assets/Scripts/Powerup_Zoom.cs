@@ -13,10 +13,10 @@ public class Powerup_Zoom : MonoBehaviour
     private Dictionary<string, float> scalingFactor = new Dictionary<string, float>
     {
         { "Level_1", 4.0f },
-        { "Level_2", 3.0f },
-        { "Level_3", 4.0f },
+        { "Level_2", 3.5f },
+        { "Level_3", 3.0f },
         { "Level_4", 3.0f },
-        { "Level_5", 6.5f }
+        { "Level_5", 4.0f }
     };
     void Start()
     {
