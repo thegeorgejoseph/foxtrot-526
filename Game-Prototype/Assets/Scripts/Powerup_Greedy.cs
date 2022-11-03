@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Powerup_Greedy : MonoBehaviour
 {
     private int crystalMultiplier;
-
+    public Camera camera;
     public GameObject GreedyIcon;
 
     // Start is called before the first frame update
@@ -34,6 +34,7 @@ public class Powerup_Greedy : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider)
     {
         Debug.Log("Entered powerup");
+        Debug.Log("player is " + collider.gameObject.tag);
         // Using tags to check if the player has actually met enemy
         if (collider.gameObject.tag == "Powerup")
         {
@@ -45,6 +46,7 @@ public class Powerup_Greedy : MonoBehaviour
                 StartCoroutine(CountDown(30));
             }
         }
+
     }
 
     private IEnumerator CountDown(int duration)
