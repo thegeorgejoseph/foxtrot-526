@@ -23,23 +23,28 @@ public class LevelselectorScript : MonoBehaviour
         if (collision.gameObject.name == "Planet1Collider")
         {
             spaceship_level = 1;
+            SceneManager.LoadScene("LevelSplashScreen");
         }
         else if (collision.gameObject.name == "Planet2Collider")
         {
             spaceship_level = 2;
+            SceneManager.LoadScene("LevelSplashScreen");
         }
         else if (collision.gameObject.name == "Planet3Collider")
         {
             spaceship_level = 3;
+            SceneManager.LoadScene("LevelSplashScreen");
         }
         else if (collision.gameObject.name == "Planet4Collider")
         {
             spaceship_level = 4;
+            SceneManager.LoadScene("LevelSplashScreen");
         }
         else if (collision.gameObject.name == "Planet5Collider")
         {
             spaceship_level = 5;
+            SceneManager.LoadScene("LevelSplashScreen");
         }
-        SceneManager.LoadScene("LevelSplashScreen");
+        
     }
 }
