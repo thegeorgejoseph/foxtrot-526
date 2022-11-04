@@ -519,24 +519,28 @@ public class ShowScore : MonoBehaviour
         if (Exit_Script.level_num == 1)
         {
             Time.timeScale = 1;
+            LevelselectorScript.spaceship_level = 2;
             SceneManager.LoadScene("LevelSplashScreen");
             //SceneManager.LoadScene("Level_2");
         }
         else if (Exit_Script.level_num == 2)
         {
             Time.timeScale = 1;
+            LevelselectorScript.spaceship_level = 3;
             SceneManager.LoadScene("LevelSplashScreen");
             //SceneManager.LoadScene("Level_3");
         }
         else if (Exit_Script.level_num == 3)
         {
             Time.timeScale = 1;
+            LevelselectorScript.spaceship_level = 4;
             SceneManager.LoadScene("LevelSplashScreen");
             //SceneManager.LoadScene("Level_4");
         }
         else if (Exit_Script.level_num == 4)
         {
             Time.timeScale = 1;
+            LevelselectorScript.spaceship_level = 5;
             SceneManager.LoadScene("LevelSplashScreen");
             //SceneManager.LoadScene("Level_5");
         }

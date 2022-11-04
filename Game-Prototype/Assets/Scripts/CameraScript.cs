@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraScript : MonoBehaviour
 {
@@ -10,11 +11,19 @@ public class CameraScript : MonoBehaviour
     public GameObject Timer;
 
     private Animation camAni;
+    public static int level_num = 1;
 
     void Start()
     {
         // Default camera offset
         Camera_Offset = new Vector3(0, 0, -1f);
+        
+        int local_level_num = int.Parse(SceneManager.GetActiveScene().name.Split("_")[1]);
+        if (level_num < local_level_num)
+        {
+            level_num = local_level_num;
+        }
+        Debug.Log("SCENEEEEEEEEE"+level_num);
 
         // Play starting animation
         camAni = gameObject.GetComponent<Animation>();

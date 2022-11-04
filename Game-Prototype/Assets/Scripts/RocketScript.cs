@@ -25,19 +25,23 @@ public class RocketScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        if(Exit_Script.level_num == 1)
+        if (LevelselectorScript.spaceship_level == 1)
+        {
+            hint_text.text = "Travelling to planet Mars";
+        }
+        else if (LevelselectorScript.spaceship_level == 2)
         {
             hint_text.text = "Travelling to planet Jupiter";
         }
-        else if (Exit_Script.level_num == 2)
+        else if (LevelselectorScript.spaceship_level == 3)
         {
             hint_text.text = "Travelling to planet Venus ";
         }
-        else if (Exit_Script.level_num == 3)
+        else if (LevelselectorScript.spaceship_level == 4)
         {
             hint_text.text = "Travelling to planet Neptune ";
         }
-        else if (Exit_Script.level_num == 4)
+        else if (LevelselectorScript.spaceship_level == 5)
         {
             hint_text.text = "Travelling to planet Mercury";
         }
@@ -64,25 +68,25 @@ public class RocketScript : MonoBehaviour
         }
         transform.DetachChildren();
         Destroy(gameObject);
-        if (Exit_Script.level_num == 1)
+        if (LevelselectorScript.spaceship_level == 1)
+        {
+            SceneManager.LoadScene("Level_1");
+        }
+        else if (LevelselectorScript.spaceship_level == 2)
         {
             SceneManager.LoadScene("Level_2");
         }
-        else if (Exit_Script.level_num == 2)
+        else if (LevelselectorScript.spaceship_level == 3)
         {
             SceneManager.LoadScene("Level_3");
         }
-        else if (Exit_Script.level_num == 3)
+        else if (LevelselectorScript.spaceship_level == 4)
         {
             SceneManager.LoadScene("Level_4");
         }
-        else if (Exit_Script.level_num == 4)
+        else if (LevelselectorScript.spaceship_level == 5)
         {
             SceneManager.LoadScene("Level_5");
-        }
-        else
-        {
-            SceneManager.LoadScene("Level_1");
         }
     }
 }

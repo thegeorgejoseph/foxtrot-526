@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class LevelselectorScript : MonoBehaviour
 {
+    public static int spaceship_level;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log(CameraScript.level_num);
     }
 
     // Update is called once per frame
@@ -19,9 +20,26 @@ public class LevelselectorScript : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Mars")
+        if (collision.gameObject.name == "Planet1Collider")
         {
-            SceneManager.LoadScene("LevelSplashScreen");
+            spaceship_level = 1;
         }
+        else if (collision.gameObject.name == "Planet2Collider")
+        {
+            spaceship_level = 2;
+        }
+        else if (collision.gameObject.name == "Planet3Collider")
+        {
+            spaceship_level = 3;
+        }
+        else if (collision.gameObject.name == "Planet4Collider")
+        {
+            spaceship_level = 4;
+        }
+        else if (collision.gameObject.name == "Planet5Collider")
+        {
+            spaceship_level = 5;
+        }
+        SceneManager.LoadScene("LevelSplashScreen");
     }
 }
