@@ -27,7 +27,11 @@ public class CameraScript : MonoBehaviour
 
         // Play starting animation
         camAni = gameObject.GetComponent<Animation>();
-        camAni.Play();
+        if (camAni != null)
+        {
+            camAni.Play();
+        }
+
         // Stop Anyone from moving before the animation has finished
         Enemy.SetActive(false);
         Player.GetComponent<Movement2D>().enabled = false;

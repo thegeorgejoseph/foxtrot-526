@@ -1875,7 +1875,6 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
-  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1966,22 +1965,6 @@ MonoBehaviour:
   Enemy: {fileID: 1825269716}
   Player: {fileID: 1811579274}
   Timer: {fileID: 1094965720}
---- !u!111 &519420034
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 273bd70ecaef9664a93934fc1f77ccb2, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 273bd70ecaef9664a93934fc1f77ccb2, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &521659391
 GameObject:
   m_ObjectHideFlags: 0
@@ -7370,7 +7353,7 @@ SpriteRenderer:
   m_Size: {x: 25.3, y: 20.90215}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1732795896
@@ -7777,6 +7760,7 @@ MonoBehaviour:
   GameOver_UI: {fileID: 1832000481}
   SpaceText: {fileID: 347018096}
   player: {fileID: 1811579274}
+  Timer: {fileID: 0}
   crystalScript: {fileID: 2124311192}
   DMS: {fileID: 475434229}
   HA: {fileID: 1711851832}
@@ -8724,6 +8708,7 @@ MonoBehaviour:
   GameOver_UI: {fileID: 0}
   SpaceText: {fileID: 0}
   player: {fileID: 0}
+  Timer: {fileID: 0}
   crystalScript: {fileID: 0}
   DMS: {fileID: 0}
   HA: {fileID: 0}
