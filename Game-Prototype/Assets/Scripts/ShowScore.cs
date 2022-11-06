@@ -73,6 +73,8 @@ public class ShowScore : MonoBehaviour
         float heart_count = HealthManager.health;
         float total_score_val = 0;
         float level_total_score = 0;
+        int constant = Exit_Script.constant;
+        int time = Exit_Script.time;
         hearts_remaining.text = heart_count.ToString() + " * 100 = " + heart_count * 100;
 
         // enemies_killed.text = Exit_Script.enemies_count.ToString() + " * 100 = " + Exit_Script.enemies_count * 100;
@@ -81,7 +83,7 @@ public class ShowScore : MonoBehaviour
         // total_score_val = heart_count * 100 + Exit_Script.enemies_count * 100 + 100 + time_bonus_val;
         total_score_val = heart_count * 100 + Exit_Script.crystal_count * 100 + 100 + time_bonus_val;
         level_score.text = total_score_val.ToString();
-        time_bonus.text = time_bonus_val.ToString();
+        time_bonus.text = constant.ToString() + " / " + time.ToString() + " = " + time_bonus_val.ToString();
 
         level_total_score = total_score_val + Exit_Script.score_till_curr_level;
         total_score.text = (level_total_score).ToString();

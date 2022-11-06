@@ -9,22 +9,20 @@ public class Timer_Script : MonoBehaviour
     // Start is called before the first frame update
     public float timeValue;
     public Text timeText;
+    public bool freeze = false;
     void Start()
     {
-     
+    
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (timeValue > 0)
-        //{
-          timeValue += Time.deltaTime;
-        //}
-        //else
-        //{
-        //    timeValue = 0;
-        //}
+        if (!freeze)
+        {
+            timeValue += Time.deltaTime;
+        }
+
 
         DisplayTime(timeValue);
     }
@@ -41,4 +39,5 @@ public class Timer_Script : MonoBehaviour
 
         timeText.text = string.Format("{0:00}:{1:00}",minutes, seconds);
     }
+
 }

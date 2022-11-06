@@ -14,6 +14,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     public GameObject GameOver_UI; // UI to display when player loses the battle
     public GameObject SpaceText; // UI to display SpaceBar Hint while attack
     public GameObject player; // Player gameobject to display damage effect
+    public GameObject Timer;
 
     public Crystal crystalScript; // Crystal Script object
     public DynamicMovingSpeed DMS; // Script object
@@ -78,10 +79,12 @@ public class Enemy_Battle_Scripts : MonoBehaviour
         // Check if the battle is activated
         if (battle_started)
         {
+            Timer.GetComponent<Timer_Script>().freeze = true;
             count += 1;
             // Check if the player has finished the battle
             if (sliderSC.isFinished)
             {
+                Timer.GetComponent<Timer_Script>().freeze = false;
                 // Battle finished, set battle UI to inactive
                 battleUI.SetActive(false);
                 SpaceText.SetActive(false);

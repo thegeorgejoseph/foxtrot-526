@@ -2415,7 +2415,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &440899374
@@ -4639,7 +4639,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &724350625
@@ -8954,7 +8954,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1442377931
@@ -10835,6 +10835,7 @@ MonoBehaviour:
   GameOver_UI: {fileID: 1832000481}
   SpaceText: {fileID: 741474620}
   player: {fileID: 1811579274}
+  Timer: {fileID: 653648743}
   crystalScript: {fileID: 697562293}
   DMS: {fileID: 475434229}
   HA: {fileID: 1980106754}
@@ -11649,7 +11650,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1920860002
@@ -13163,6 +13164,7 @@ MonoBehaviour:
   GameOver_UI: {fileID: 0}
   SpaceText: {fileID: 0}
   player: {fileID: 0}
+  Timer: {fileID: 0}
   crystalScript: {fileID: 0}
   DMS: {fileID: 0}
   HA: {fileID: 0}
@@ -13392,3 +13394,64 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a53bae9d2b3314a528f1485c258284a0, type: 3}
+--- !u!1001 &8347182931574756019
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1198446968324135091, guid: e7bdd22736380fe46acbb0c03e8c93ea, type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198446968324135091, guid: e7bdd22736380fe46acbb0c03e8c93ea, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198446968324135091, guid: e7bdd22736380fe46acbb0c03e8c93ea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198446968324135091, guid: e7bdd22736380fe46acbb0c03e8c93ea, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198446968324135091, guid: e7bdd22736380fe46acbb0c03e8c93ea, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198446968324135091, guid: e7bdd22736380fe46acbb0c03e8c93ea, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198446968324135091, guid: e7bdd22736380fe46acbb0c03e8c93ea, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198446968324135091, guid: e7bdd22736380fe46acbb0c03e8c93ea, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198446968324135091, guid: e7bdd22736380fe46acbb0c03e8c93ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198446968324135091, guid: e7bdd22736380fe46acbb0c03e8c93ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198446968324135091, guid: e7bdd22736380fe46acbb0c03e8c93ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4843919612825077452, guid: e7bdd22736380fe46acbb0c03e8c93ea, type: 3}
+      propertyPath: m_Name
+      value: Timer Powerup
+      objectReference: {fileID: 0}
+    - target: {fileID: 4843919612825077452, guid: e7bdd22736380fe46acbb0c03e8c93ea, type: 3}
+      propertyPath: m_TagString
+      value: TimerPowerup
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e7bdd22736380fe46acbb0c03e8c93ea, type: 3}
