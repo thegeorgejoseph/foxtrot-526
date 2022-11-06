@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Powerup_Timer : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject TimerPower;
+    public GameObject TimerIcon;
     public GameObject Timer;
     public static int pauseTime;
     public bool condition = false;
@@ -21,6 +22,9 @@ public class Powerup_Timer : MonoBehaviour
         if (collider.gameObject.tag == "TimerPowerup")
         {
             collider.gameObject.SetActive(false);
+            Timer.GetComponent<Timer_Script>().freeze = true;
+            TimerIcon.GetComponent<Image>().color = Color.white;
+            condition = true;
             StartCoroutine(CountDown(pauseTime));
         }
 
@@ -28,10 +32,9 @@ public class Powerup_Timer : MonoBehaviour
 
     private IEnumerator CountDown(int duration)
     {
-        Timer.GetComponent<Timer_Script>().freeze = true;
-        condition = true;
         yield return new WaitForSeconds(duration);
         condition = false;
-        Timer.GetComponent<Timer_Script>().freeze = false;
+        Timer.GetComponent<Timer_Script>().freeze = false; 
+        TimerIcon.GetComponent<Image>().color = Color.grey;
     }
 }
