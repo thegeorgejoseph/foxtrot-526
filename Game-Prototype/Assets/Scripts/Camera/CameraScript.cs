@@ -26,18 +26,18 @@ public class CameraScript : MonoBehaviour
         Debug.Log("SCENEEEEEEEEE"+level_num);
 
         // Play starting animation
-        camAni = gameObject.GetComponent<Animation>();
-        if (camAni != null)
+        if (gameObject.GetComponent<Animation>() != null)
         {
+            camAni = gameObject.GetComponent<Animation>();
             camAni.Play();
-        }
+            StartCoroutine(CountDown((int)Mathf.Ceil(camAni.clip.length)));
+        } 
 
         // Stop Anyone from moving before the animation has finished
         Enemy.SetActive(false);
         Player.GetComponent<Movement2D>().enabled = false;
         Timer.GetComponent<Timer_Script>().enabled = false;
         // Debug.Log("Length of Clip = " + Mathf.Ceil(camAni.clip.length));
-        StartCoroutine(CountDown((int)Mathf.Ceil(camAni.clip.length)));
         Player.GetComponent<Enemy_Battle_Scripts>().enabled = true;
     }
 
