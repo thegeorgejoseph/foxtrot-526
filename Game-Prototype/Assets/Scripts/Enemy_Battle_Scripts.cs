@@ -100,12 +100,19 @@ public class Enemy_Battle_Scripts : MonoBehaviour
         // Check if the battle is activated
         if (battle_started)
         {
-            Timer.GetComponent<Timer_Script>().freeze = true;
+            bool freezeTime = player.GetComponent<Powerup_Timer>().condition;
+            if (!freezeTime)
+            {
+                Timer.GetComponent<Timer_Script>().freeze = true;
+            }
             count += 1;
             // Check if the player has finished the battle
             if (sliderSC.isFinished)
             {
-                Timer.GetComponent<Timer_Script>().freeze = false;
+                if (!freezeTime)
+                {
+                    Timer.GetComponent<Timer_Script>().freeze = false;
+                }
                 // Battle finished, set battle UI to inactive
                 battleUI.SetActive(false);
                 SpaceText.SetActive(false);
