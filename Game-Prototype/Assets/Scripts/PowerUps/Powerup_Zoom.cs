@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class Powerup_Zoom : MonoBehaviour
 {
-    public Camera camera;
+    public Camera myCamera;
     public static int pauseTime;
-    public GameObject gameObject;
+    public GameObject zoomoutIcon;
     private Dictionary<string, float> scalingFactor = new Dictionary<string, float>
     {
         { "Level_1", 4.0f },
@@ -23,7 +23,7 @@ public class Powerup_Zoom : MonoBehaviour
     private bool droppingEnabled;
     void Start()
     {
-        camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        myCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         pauseTime = 10;   
         droppingEnabled = true; // enabled by default
     }
@@ -52,7 +52,7 @@ public class Powerup_Zoom : MonoBehaviour
         if (collision.gameObject.tag == "ZoomPowerup")
         {
             collision.gameObject.SetActive(false);
-            gameObject.GetComponent<Image>().color = Color.white;
+            zoomoutIcon.GetComponent<Image>().color = Color.white;
             changeDroppingStatus(false);
             StartCoroutine(CountDown(pauseTime));
         }
@@ -61,14 +61,14 @@ public class Powerup_Zoom : MonoBehaviour
 
     private IEnumerator CountDown(int duration)
     {
-        float currZoom = camera.orthographicSize;
-        Debug.Log("Initial Camera object " + camera.orthographicSize);
-        camera.orthographicSize = currZoom + scalingFactor[SceneManager.GetActiveScene().name];
-        Debug.Log("Changed Camera object " + camera.orthographicSize);
+        float currZoom = myCamera.orthographicSize;
+        Debug.Log("Initial Camera object " + myCamera.orthographicSize);
+        myCamera.orthographicSize = currZoom + scalingFactor[SceneManager.GetActiveScene().name];
+        Debug.Log("Changed Camera object " + myCamera.orthographicSize);
         yield return new WaitForSeconds(duration);
-        camera.orthographicSize = currZoom;
-        Debug.Log("restore Camera object " + camera.orthographicSize);
-        gameObject.GetComponent<Image>().color = Color.grey;
+        myCamera.orthographicSize = currZoom;
+        Debug.Log("restore Camera object " + myCamera.orthographicSize);
+        zoomoutIcon.GetComponent<Image>().color = Color.grey;
         changeDroppingStatus(true);
     }
 }

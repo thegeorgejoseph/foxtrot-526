@@ -8058,6 +8058,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1943059854109316447, guid: aae3b432c90d54c37914fafb3bb80ab3, type: 3}
   m_PrefabInstance: {fileID: 1940643308}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1230745284 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8606178501687315443, guid: b04f8a0d7c6dc450d9a88f2f0587818e, type: 3}
+  m_PrefabInstance: {fileID: 907069911}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1233910632 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8750286919106748850, guid: 279fbe46da057b641ae4295e9904a870, type: 3}
@@ -9097,6 +9102,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -23}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1531806634 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8606178501848727417, guid: b04f8a0d7c6dc450d9a88f2f0587818e, type: 3}
+  m_PrefabInstance: {fileID: 907069911}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1533731007 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1943059854109316447, guid: aae3b432c90d54c37914fafb3bb80ab3, type: 3}
@@ -10959,7 +10969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed33da64ed8cf4d7f9ad0ecb0470a4df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GreedyIcon: {fileID: 0}
+  GreedyIcon: {fileID: 1230745284}
 --- !u!114 &1811579285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10972,8 +10982,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e65d2f6228018c45be81393fee18c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  gameObject: {fileID: 0}
+  myCamera: {fileID: 0}
+  zoomoutIcon: {fileID: 1976759241}
 --- !u!114 &1811579286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10986,7 +10996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33bf27818ccd08d47b026e2b53b05bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimerIcon: {fileID: 0}
+  TimerIcon: {fileID: 1531806634}
   Timer: {fileID: 653648743}
   condition: 0
 --- !u!1 &1825269716
@@ -11981,6 +11991,11 @@ CanvasRenderer:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1943059854109316447, guid: aae3b432c90d54c37914fafb3bb80ab3, type: 3}
   m_PrefabInstance: {fileID: 2103444217}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1976759241 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8606178500683311855, guid: b04f8a0d7c6dc450d9a88f2f0587818e, type: 3}
+  m_PrefabInstance: {fileID: 907069911}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1980106752
 PrefabInstance:
