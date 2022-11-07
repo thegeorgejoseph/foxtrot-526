@@ -24,7 +24,8 @@ for key in month_keys:
     clean_data.update(clean_data.pop(key))
 
 # don't exclude any days
-# clean_data = {key: value for key, value in clean_data.items() if key not in ['5','8']}
+clean_data = {key: value for key, value in clean_data.items() if key not in ['25','26','27','28','29','30','31']}
+
 day_keys = [key for key in clean_data]
 for key in day_keys:
     print(key)
