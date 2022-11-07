@@ -6,13 +6,16 @@ using UnityEngine.UI;
 public class Powerup_Greedy : MonoBehaviour
 {
     private int crystalMultiplier;
-    public Camera camera;
+
+    // dropping status
+    private bool droppingEnabled;
     public GameObject GreedyIcon;
 
     // Start is called before the first frame update
     void Start()
     {
         crystalMultiplier = 1;
+        droppingEnabled = true; // enabled by default
     }
 
     // Update is called once per frame
@@ -31,6 +34,18 @@ public class Powerup_Greedy : MonoBehaviour
         crystalMultiplier = newMultiplier;
     }
 
+    // public getter for enemy_battle_script
+    public bool getDroppingStatus()
+    {
+        return droppingEnabled;
+    }
+
+    // function to change dropping status
+    public void changeDroppingStatus(bool newStatus)
+    {
+        droppingEnabled = newStatus;
+    }
+
     void OnTriggerEnter2D(Collider2D collider)
     {
         Debug.Log("Entered powerup");
@@ -43,6 +58,7 @@ public class Powerup_Greedy : MonoBehaviour
             {
                 GreedyIcon.GetComponent<Image>().color = Color.white;
                 changeCrystalMultiplier(2);
+                changeDroppingStatus(false);
                 StartCoroutine(CountDown(30));
             }
         }
@@ -55,5 +71,6 @@ public class Powerup_Greedy : MonoBehaviour
         Debug.Log("finished waiting for powerup");
         GreedyIcon.GetComponent<Image>().color = Color.grey;
         changeCrystalMultiplier(1);
+        changeDroppingStatus(true);
     }
 }

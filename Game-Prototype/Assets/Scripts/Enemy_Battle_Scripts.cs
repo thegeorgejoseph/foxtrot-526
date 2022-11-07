@@ -47,14 +47,25 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     public GameObject playerMovement;
     private Movement2D playerMovementScript;
 
+    // powerup scripts
+    public Powerup_Greedy greedyPUScript;
+    public Powerup_Timer timerPUScript;
+    public Powerup_Zoom zoomPUScript;
+
+    // powerup prefabs
+    private GameObject greedyPUPrefab;
+    private GameObject timerPUPrefab;
+    private GameObject zoomPUPrefab;
+
     [SerializeField] private AudioSource gemSoundEffect;
     [SerializeField] private AudioSource deathSoundEffect;
     [SerializeField] private AudioSource shakeSoundEffect;
-    private void Awake(){
+    private void Awake()
+    {
         analyticsManagerScript = analyticsManager.GetComponent<AnalyticsManager>();
         playerMovementScript = playerMovement.GetComponent<Movement2D>();
         // teleportationScript = teleportation.GetComponent<Teleportation>();
-   
+
     }
     // Start is called before the first frame update
     void Start()
@@ -71,6 +82,16 @@ public class Enemy_Battle_Scripts : MonoBehaviour
         kills = 0;
         enemies_encountered = 0;
         transColor = player.GetComponent<SpriteRenderer>().color;
+
+        // find powerup scripts
+        greedyPUScript = player.GetComponent<Powerup_Greedy>();
+        timerPUScript = player.GetComponent<Powerup_Timer>();
+        zoomPUScript = player.GetComponent<Powerup_Zoom>();
+
+        // find powerup prefabs
+        greedyPUPrefab = (GameObject)Resources.Load("Powerup-greedy", typeof(GameObject));
+        timerPUPrefab = (GameObject)Resources.Load("Powerup-timer", typeof(GameObject));
+        zoomPUPrefab = (GameObject)Resources.Load("Powerup-zoom", typeof(GameObject));
     }
 
     // Update is called once per frame
@@ -104,7 +125,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     // Play effects where player takes damage
                     player.GetComponent<SpriteRenderer>().color = Color.red;
                     StartCoroutine(CountDown(1));
-                    
+
 
                     if (HealthManager.health <= 0)
                     {
@@ -114,7 +135,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                         deathSoundEffect.Play();
                         if (SceneManager.GetActiveScene().name != Loader.Scene.Level_0.ToString())
                         {
-                            GameHighscore.failureScene = SceneManager.GetActiveScene().name; 
+                            GameHighscore.failureScene = SceneManager.GetActiveScene().name;
                             Debug.Log("Current Scene " + SceneManager.GetActiveScene().name);
                             SceneManager.LoadScene("GameHighscore");
                         }
@@ -143,27 +164,27 @@ public class Enemy_Battle_Scripts : MonoBehaviour
 
                         if (!event_called)
                         {
-                        
-                            
+
+
                             string level = SceneManager.GetActiveScene().name;
 
-                          
+
                             analyticsManagerScript.timer.Stop();
-                          
+
 
                             var metrics = new Metrics(analyticsManagerScript.clientID,
-                            DateTimeOffset.Now.ToUnixTimeSeconds().ToString(), 
-                                            level, did_finish.ToString(), 
-                                            enemies_encountered.ToString(), 
+                            DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
+                                            level, did_finish.ToString(),
+                                            enemies_encountered.ToString(),
                                             kills.ToString(),
                                             HealthManager.health.ToString(),
                                             (analyticsManagerScript.timer.ElapsedTicks / 10000000).ToString(),
                                             playerMovementScript.portalUsageCount.ToString(),
                                             "0");
 
-                            var testMetric = new testMetricStore(analyticsManagerScript.clientID, 
+                            var testMetric = new testMetricStore(analyticsManagerScript.clientID,
                             DateTimeOffset.Now.ToUnixTimeSeconds().ToString(),
-                                            level,"1", "2", "3");
+                                            level, "1", "2", "3");
                             DatabaseHandler.PostMetrics<Metrics>(metrics, analyticsManagerScript.startTime, () =>
                             {
                                 Debug.Log("done posting to firebase metric");
@@ -200,7 +221,31 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     gemSoundEffect.Play();
                     DMS.updateSpeed();
                     GetComponent<Movement2D>().enabled = true;
-                    
+
+                    // drop powerups
+                    String enemySpriteName = currentEnemy.GetComponent<SpriteRenderer>().sprite.name;
+
+                    if (enemySpriteName == "ooze-blue") // if enemy is blue, drop greedy
+                    {
+                        if (greedyPUScript.getDroppingStatus())
+                        {
+                            Instantiate(greedyPUPrefab, currentEnemy.transform.position, Quaternion.identity);
+                        }
+                    }
+                    else if (enemySpriteName == "ooze-red") // if enemy is red, drop timer
+                    {
+                        if (timerPUScript.getDroppingStatus())
+                        {
+                            Instantiate(timerPUPrefab, currentEnemy.transform.position, Quaternion.identity);
+                        }
+                    }
+                    else if (enemySpriteName == "ooze-green") // if enemy is green, drop zoom
+                    {
+                        if (zoomPUScript.getDroppingStatus())
+                        {
+                            Instantiate(zoomPUPrefab, currentEnemy.transform.position, Quaternion.identity);
+                        }
+                    }
                 }
             }
         }
@@ -219,7 +264,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
         {
             // Record which enemy the player encountered
             enemies_encountered += 1;
-            Debug.Log("enemy encountered: "+enemies_encountered);
+            Debug.Log("enemy encountered: " + enemies_encountered);
             currentEnemy = collider.gameObject;
             // Stop movements
             currentEnemy.GetComponent<Rigidbody2D>().velocity = Vector2.zero;

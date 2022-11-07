@@ -18,16 +18,32 @@ public class Powerup_Zoom : MonoBehaviour
         { "Level_4", 3.0f },
         { "Level_5", 4.0f }
     };
+
+    // dropping status
+    private bool droppingEnabled;
     void Start()
     {
         camera = GameObject.Find("Main Camera").GetComponent<Camera>();
         pauseTime = 10;   
+        droppingEnabled = true; // enabled by default
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    // public getter for enemy_battle_script
+    public bool getDroppingStatus()
+    {
+        return droppingEnabled;
+    }
+
+    // function to change dropping status
+    public void changeDroppingStatus(bool newStatus)
+    {
+        droppingEnabled = newStatus;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -37,6 +53,7 @@ public class Powerup_Zoom : MonoBehaviour
         {
             collision.gameObject.SetActive(false);
             gameObject.GetComponent<Image>().color = Color.white;
+            changeDroppingStatus(false);
             StartCoroutine(CountDown(pauseTime));
         }
     }
@@ -52,5 +69,6 @@ public class Powerup_Zoom : MonoBehaviour
         camera.orthographicSize = currZoom;
         Debug.Log("restore Camera object " + camera.orthographicSize);
         gameObject.GetComponent<Image>().color = Color.grey;
+        changeDroppingStatus(true);
     }
 }

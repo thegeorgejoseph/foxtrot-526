@@ -11,9 +11,25 @@ public class Powerup_Timer : MonoBehaviour
     public static int pauseTime;
     public bool condition = false;
 
+    // dropping status
+    private bool droppingEnabled;
+
     void Start()
     {
         pauseTime = 10;
+        droppingEnabled = true; // enabled by default
+    }
+
+    // public getter for enemy_battle_script
+    public bool getDroppingStatus()
+    {
+        return droppingEnabled;
+    }
+
+    // function to change dropping status
+    public void changeDroppingStatus(bool newStatus)
+    {
+        droppingEnabled = newStatus;
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -25,6 +41,7 @@ public class Powerup_Timer : MonoBehaviour
             Timer.GetComponent<Timer_Script>().freeze = true;
             TimerIcon.GetComponent<Image>().color = Color.white;
             condition = true;
+            changeDroppingStatus(false);
             StartCoroutine(CountDown(pauseTime));
         }
 
@@ -36,5 +53,6 @@ public class Powerup_Timer : MonoBehaviour
         condition = false;
         Timer.GetComponent<Timer_Script>().freeze = false; 
         TimerIcon.GetComponent<Image>().color = Color.grey;
+        changeDroppingStatus(true);
     }
 }
