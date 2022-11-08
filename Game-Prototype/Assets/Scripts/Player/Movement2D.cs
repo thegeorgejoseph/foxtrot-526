@@ -12,6 +12,9 @@ public class Movement2D : MonoBehaviour
     public Sprite idleUpSprite;
     public Sprite idleDownSprite;
     public Sprite idleSideSprite;
+    public RuntimeAnimatorController idleUpAnimator;
+    public RuntimeAnimatorController idleDownAnimator;
+    public RuntimeAnimatorController idleSideAnimator;
 
     // Start is called before the first frame update
     void Start()
@@ -50,9 +53,11 @@ public class Movement2D : MonoBehaviour
         
         if(movementVec.y<0){
             Player.GetComponent<SpriteRenderer>().sprite=idleDownSprite;
+            Player.GetComponent<Animator>().runtimeAnimatorController = idleDownAnimator;
         }
         else if(movementVec.y>0){
             Player.GetComponent<SpriteRenderer>().sprite=idleUpSprite;
+            Player.GetComponent<Animator>().runtimeAnimatorController = idleUpAnimator;
         }
         // else{
         //     Player.GetComponent<SpriteRenderer>().sprite=idleSideSprite;
@@ -60,11 +65,13 @@ public class Movement2D : MonoBehaviour
         if (movementVec.x < 0)
         {
             Player.GetComponent<SpriteRenderer>().sprite=idleSideSprite;
+            Player.GetComponent<Animator>().runtimeAnimatorController = idleSideAnimator;
             Player.GetComponent<SpriteRenderer>().flipX = false;
         }
         else if (movementVec.x > 0)
         {
             Player.GetComponent<SpriteRenderer>().sprite=idleSideSprite;
+            Player.GetComponent<Animator>().runtimeAnimatorController = idleSideAnimator;
             Player.GetComponent<SpriteRenderer>().flipX = true;
         }
     }
