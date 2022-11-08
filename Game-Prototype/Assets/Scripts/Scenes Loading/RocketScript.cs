@@ -27,25 +27,37 @@ public class RocketScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         if (LevelselectorScript.spaceship_level == 1)
         {
-            hint_text.text = "Travelling to planet Mars";
+            hint_text.text = "Travelling to planet Mercury";
         }
         else if (LevelselectorScript.spaceship_level == 2)
         {
-            hint_text.text = "Travelling to planet Jupiter";
+            hint_text.text = "Travelling to planet Venus";
         }
         else if (LevelselectorScript.spaceship_level == 3)
         {
-            hint_text.text = "Travelling to planet Venus ";
+            hint_text.text = "Travelling to planet Moon ";
         }
         else if (LevelselectorScript.spaceship_level == 4)
         {
-            hint_text.text = "Travelling to planet Neptune ";
+            hint_text.text = "Travelling to planet Mars ";
         }
         else if (LevelselectorScript.spaceship_level == 5)
         {
-            hint_text.text = "Travelling to planet Mercury";
+            hint_text.text = "Travelling to planet Asteroid Belt";
         }
-        
+        else if (LevelselectorScript.spaceship_level == 6)
+        {
+            hint_text.text = "Travelling to planet IO";
+        }
+        else if (LevelselectorScript.spaceship_level == 7)
+        {
+            hint_text.text = "Travelling to planet Titan";
+        }
+        else if (LevelselectorScript.spaceship_level == 8)
+        {
+            hint_text.text = "Travelling to planet Charon";
+        }
+
     }
 
     // Update is called once per frame
@@ -88,5 +100,18 @@ public class RocketScript : MonoBehaviour
         {
             SceneManager.LoadScene("Level_5");
         }
+        else if (LevelselectorScript.spaceship_level == 6)
+        {
+            SceneManager.LoadScene("Level_6");
+        }
+        else if (LevelselectorScript.spaceship_level == 7)
+        {
+            SceneManager.LoadScene("Level_7");
+        }
+        else if (LevelselectorScript.spaceship_level == 8)
+        {
+            SceneManager.LoadScene("Level_8");
+        }
+
     }
 }

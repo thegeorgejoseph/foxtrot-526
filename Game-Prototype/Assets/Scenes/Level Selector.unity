@@ -2015,8 +2015,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -21.37, y: 6.19}
-  m_SizeDelta: {x: 3.2045, y: 2.8477}
+  m_AnchoredPosition: {x: -21.295998, y: 6.2999983}
+  m_SizeDelta: {x: 3.7686, y: 2.8477}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &720236494
 MonoBehaviour:
@@ -2038,7 +2038,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Planet Mars
+  m_text: Planet Mercury
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4249,6 +4249,9 @@ MonoBehaviour:
   kills: 0
   enemies_encountered: 0
   playerMovement: {fileID: 0}
+  greedyPUScript: {fileID: 0}
+  timerPUScript: {fileID: 0}
+  zoomPUScript: {fileID: 0}
   gemSoundEffect: {fileID: 1811579282}
   deathSoundEffect: {fileID: 1811579281}
   shakeSoundEffect: {fileID: 1811579283}
@@ -4564,7 +4567,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed33da64ed8cf4d7f9ad0ecb0470a4df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
   GreedyIcon: {fileID: 0}
 --- !u!95 &1811579286
 Animator:
@@ -4775,6 +4777,9 @@ MonoBehaviour:
   kills: 0
   enemies_encountered: 0
   playerMovement: {fileID: 0}
+  greedyPUScript: {fileID: 0}
+  timerPUScript: {fileID: 0}
+  zoomPUScript: {fileID: 0}
   gemSoundEffect: {fileID: 0}
   deathSoundEffect: {fileID: 0}
   shakeSoundEffect: {fileID: 0}

@@ -323,6 +323,27 @@ public class Exit_Script : MonoBehaviour
                     });
 
             }
+            else if (SceneManager.GetActiveScene().name == Loader.Scene.Level_6.ToString())
+            {
+                enemies_count = battleInfoScript.kills;
+                crystal_count = crystalScript.getCrystalNum();
+                level_num = 6;
+                SceneManager.LoadScene("ScoreScene");
+            }
+            else if (SceneManager.GetActiveScene().name == Loader.Scene.Level_7.ToString())
+            {
+                enemies_count = battleInfoScript.kills;
+                crystal_count = crystalScript.getCrystalNum();
+                level_num = 7;
+                SceneManager.LoadScene("ScoreScene");
+            }
+            else if (SceneManager.GetActiveScene().name == Loader.Scene.Level_8.ToString())
+            {
+                enemies_count = battleInfoScript.kills;
+                crystal_count = crystalScript.getCrystalNum();
+                level_num = 8;
+                SceneManager.LoadScene("ScoreScene");
+            }
         }
     }
 

@@ -478,7 +478,7 @@ public class ShowScore : MonoBehaviour
         }
 
         Exit_Script.score_till_curr_level = level_total_score;
-        if (Exit_Script.level_num == 5)
+        if (Exit_Script.level_num == 8)
         {
             NextLevelButton.SetActive(false);
             MainMenuBtn.SetActive(true);
@@ -506,6 +506,18 @@ public class ShowScore : MonoBehaviour
             else if (Exit_Script.level_num == 4)
             {
                 level_pass_msg.text = "Level 4 Finished";
+            }
+            else if (Exit_Script.level_num == 5)
+            {
+                level_pass_msg.text = "Level 5 Finished";
+            }
+            else if (Exit_Script.level_num == 6)
+            {
+                level_pass_msg.text = "Level 6 Finished";
+            }
+            else if (Exit_Script.level_num == 7)
+            {
+                level_pass_msg.text = "Level 7 Finished";
             }
         }
 
@@ -543,6 +555,27 @@ public class ShowScore : MonoBehaviour
         {
             Time.timeScale = 1;
             LevelselectorScript.spaceship_level = 5;
+            SceneManager.LoadScene("LevelSplashScreen");
+            //SceneManager.LoadScene("Level_5");
+        }
+        else if (Exit_Script.level_num == 5)
+        {
+            Time.timeScale = 1;
+            LevelselectorScript.spaceship_level = 6;
+            SceneManager.LoadScene("LevelSplashScreen");
+            //SceneManager.LoadScene("Level_5");
+        }
+        else if (Exit_Script.level_num == 6)
+        {
+            Time.timeScale = 1;
+            LevelselectorScript.spaceship_level = 7;
+            SceneManager.LoadScene("LevelSplashScreen");
+            //SceneManager.LoadScene("Level_5");
+        }
+        else if (Exit_Script.level_num == 7)
+        {
+            Time.timeScale = 1;
+            LevelselectorScript.spaceship_level = 8;
             SceneManager.LoadScene("LevelSplashScreen");
             //SceneManager.LoadScene("Level_5");
         }
