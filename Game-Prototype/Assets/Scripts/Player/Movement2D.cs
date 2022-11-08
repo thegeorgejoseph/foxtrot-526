@@ -9,11 +9,17 @@ public class Movement2D : MonoBehaviour
     Vector2 movementVec;
     public GameObject Player;
     public float portalUsageCount = 0;
+    public Sprite idleUpSprite;
+    public Sprite idleDownSprite;
+    public Sprite idleSideSprite;
+    public RuntimeAnimatorController idleUpAnimator;
+    public RuntimeAnimatorController idleDownAnimator;
+    public RuntimeAnimatorController idleSideAnimator;
 
     // Start is called before the first frame update
     void Start()
     {
-
+            
     }
 
     // Update is called once per frame
@@ -44,13 +50,29 @@ public class Movement2D : MonoBehaviour
     void FixedUpdate()
     {
         rb2d.MovePosition(rb2d.position + movementVec * movementSpeed * Time.fixedDeltaTime);
+        
+        if(movementVec.y<0){
+            Player.GetComponent<SpriteRenderer>().sprite=idleDownSprite;
+            Player.GetComponent<Animator>().runtimeAnimatorController = idleDownAnimator;
+        }
+        else if(movementVec.y>0){
+            Player.GetComponent<SpriteRenderer>().sprite=idleUpSprite;
+            Player.GetComponent<Animator>().runtimeAnimatorController = idleUpAnimator;
+        }
+        // else{
+        //     Player.GetComponent<SpriteRenderer>().sprite=idleSideSprite;
+        // }
         if (movementVec.x < 0)
         {
-            Player.GetComponent<SpriteRenderer>().flipX = true;
+            Player.GetComponent<SpriteRenderer>().sprite=idleSideSprite;
+            Player.GetComponent<Animator>().runtimeAnimatorController = idleSideAnimator;
+            Player.GetComponent<SpriteRenderer>().flipX = false;
         }
         else if (movementVec.x > 0)
         {
-            Player.GetComponent<SpriteRenderer>().flipX = false;
+            Player.GetComponent<SpriteRenderer>().sprite=idleSideSprite;
+            Player.GetComponent<Animator>().runtimeAnimatorController = idleSideAnimator;
+            Player.GetComponent<SpriteRenderer>().flipX = true;
         }
     }
 
