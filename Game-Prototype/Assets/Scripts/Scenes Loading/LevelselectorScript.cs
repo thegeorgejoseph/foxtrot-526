@@ -20,37 +20,37 @@ public class LevelselectorScript : MonoBehaviour
     void Start()
     {
         Debug.Log(CameraScript.level_num);
-        if (CameraScript.level_num == 2)
+        if (CameraScript.level_num == 2 || Exit_Script.level_num == 1)
         {
             planet_2.text = "Venus";
             planet_2.color = Color.green;
         }
-        if (CameraScript.level_num == 3)
+        if (CameraScript.level_num == 3 || Exit_Script.level_num == 2)
         {
             planet_3.text = "Moon";
             planet_3.color = Color.green;
         }
-        if (CameraScript.level_num == 4)
+        if (CameraScript.level_num == 4 || Exit_Script.level_num == 3)
         {
             planet_4.text = "Mars";
             planet_4.color = Color.green;
         }
-        if (CameraScript.level_num == 5)
+        if (CameraScript.level_num == 5 || Exit_Script.level_num == 4)
         {
             planet_5.text = "Asteroid Belt";
             planet_5.color = Color.green;
         }
-        if (CameraScript.level_num == 6)
+        if (CameraScript.level_num == 6 || Exit_Script.level_num == 5)
         {
             planet_6.text = "IO";
             planet_6.color = Color.green;
         }
-        if (CameraScript.level_num == 7)
+        if (CameraScript.level_num == 7 || Exit_Script.level_num == 6)
         {
             planet_7.text = "Titan";
             planet_7.color = Color.green;
         }
-        if (CameraScript.level_num == 8)
+        if (CameraScript.level_num == 8 || Exit_Script.level_num == 7)
         {
             planet_8.text = "Charon";
             planet_8.color = Color.green;
@@ -72,7 +72,7 @@ public class LevelselectorScript : MonoBehaviour
         }
         else if (collision.gameObject.name == "Planet2Collider")
         {
-            if(CameraScript.level_num>=2)
+            if(CameraScript.level_num>=2 || Exit_Script.level_num == 1)
             {
                 spaceship_level = 2;
                 SceneManager.LoadScene("LevelSplashScreen");
@@ -81,7 +81,7 @@ public class LevelselectorScript : MonoBehaviour
         }
         else if (collision.gameObject.name == "Planet3Collider")
         {
-            if (CameraScript.level_num >= 3)
+            if (CameraScript.level_num >= 3 || Exit_Script.level_num == 2)
             {
                 spaceship_level = 3;
                 SceneManager.LoadScene("LevelSplashScreen");
@@ -90,8 +90,8 @@ public class LevelselectorScript : MonoBehaviour
         }
         else if (collision.gameObject.name == "Planet4Collider")
         {
-            if (CameraScript.level_num >= 4)
-            {
+            if (CameraScript.level_num >= 4 || Exit_Script.level_num == 3)
+            { 
                 spaceship_level = 4;
                 SceneManager.LoadScene("LevelSplashScreen");
 
@@ -100,7 +100,7 @@ public class LevelselectorScript : MonoBehaviour
         }
         else if (collision.gameObject.name == "Planet5Collider")
         {
-            if (CameraScript.level_num >= 5)
+            if (CameraScript.level_num >= 5 || Exit_Script.level_num == 4)
             {
                 spaceship_level = 5;
                 SceneManager.LoadScene("LevelSplashScreen");
@@ -109,7 +109,7 @@ public class LevelselectorScript : MonoBehaviour
         }
         else if (collision.gameObject.name == "Planet6Collider")
         {
-            if (CameraScript.level_num >= 6)
+            if (CameraScript.level_num >= 6 || Exit_Script.level_num == 5)
             {
                 spaceship_level = 6;
                 SceneManager.LoadScene("LevelSplashScreen");
@@ -118,7 +118,7 @@ public class LevelselectorScript : MonoBehaviour
         }
         else if (collision.gameObject.name == "Planet7Collider")
         {
-            if (CameraScript.level_num >= 7)
+            if (CameraScript.level_num >= 7 || Exit_Script.level_num == 6)
             {
                 spaceship_level = 7;
                 SceneManager.LoadScene("LevelSplashScreen");
@@ -127,7 +127,7 @@ public class LevelselectorScript : MonoBehaviour
         }
         else if (collision.gameObject.name == "Planet8Collider")
         {
-            if (CameraScript.level_num >= 8)
+            if (CameraScript.level_num >= 8 || Exit_Script.level_num == 7)
             {
                 spaceship_level = 8;
                 SceneManager.LoadScene("LevelSplashScreen");

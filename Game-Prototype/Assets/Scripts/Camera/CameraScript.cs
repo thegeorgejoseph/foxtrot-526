@@ -1,7 +1,9 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Text.RegularExpressions;
 
 public class CameraScript : MonoBehaviour
 {
@@ -18,12 +20,20 @@ public class CameraScript : MonoBehaviour
         // Default camera offset
         Camera_Offset = new Vector3(0, 0, -1f);
 
-        int local_level_num = int.Parse(SceneManager.GetActiveScene().name.Split("_")[1]);
-        if (level_num < local_level_num)
+        if (SceneManager.GetActiveScene().name.Contains("_"))
         {
-            level_num = local_level_num;
+            if (Regex.IsMatch(SceneManager.GetActiveScene().name.Split("_")[1], @"^\d+$"))
+            {
+                int local_level_num = int.Parse(SceneManager.GetActiveScene().name.Split("_")[1]);
+                if (level_num < local_level_num)
+                {
+                    level_num = local_level_num;
+                }
+                Debug.Log("SCENEEEEEEEEE" + level_num);
+            }
+            
         }
-        Debug.Log("SCENEEEEEEEEE" + level_num);
+        
 
         // Play starting animation
         if (gameObject.GetComponent<Animation>() != null)
