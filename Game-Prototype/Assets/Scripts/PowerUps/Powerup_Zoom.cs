@@ -16,7 +16,10 @@ public class Powerup_Zoom : MonoBehaviour
         { "Level_2", 3.5f },
         { "Level_3", 3.0f },
         { "Level_4", 3.0f },
-        { "Level_5", 4.0f }
+        { "Level_5", 4.0f },
+        { "Level_6", 7.0f },
+        { "Level_7", 4.0f },
+        { "Level_8", 5.0f }
     };
 
     // dropping status
