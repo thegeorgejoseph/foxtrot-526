@@ -17,13 +17,13 @@ public class CameraScript : MonoBehaviour
     {
         // Default camera offset
         Camera_Offset = new Vector3(0, 0, -1f);
-        
+
         int local_level_num = int.Parse(SceneManager.GetActiveScene().name.Split("_")[1]);
         if (level_num < local_level_num)
         {
             level_num = local_level_num;
         }
-        Debug.Log("SCENEEEEEEEEE"+level_num);
+        Debug.Log("SCENEEEEEEEEE" + level_num);
 
         // Play starting animation
         if (gameObject.GetComponent<Animation>() != null)
@@ -31,7 +31,7 @@ public class CameraScript : MonoBehaviour
             camAni = gameObject.GetComponent<Animation>();
             camAni.Play();
             StartCoroutine(CountDown((int)Mathf.Ceil(camAni.clip.length)));
-        } 
+        }
 
         // Stop Anyone from moving before the animation has finished
         Enemy.SetActive(false);
@@ -39,6 +39,15 @@ public class CameraScript : MonoBehaviour
         Timer.GetComponent<Timer_Script>().enabled = false;
         // Debug.Log("Length of Clip = " + Mathf.Ceil(camAni.clip.length));
         Player.GetComponent<Enemy_Battle_Scripts>().enabled = true;
+
+        if (gameObject.GetComponent<Animation>() == null)
+        {
+            Enemy.SetActive(true);
+            Player.GetComponent<Movement2D>().enabled = true;
+            Timer.GetComponent<Timer_Script>().enabled = true;
+            GameObject.Find("Hearts").GetComponent<HealthManager>().EnlargeHeart();
+            CountDownForTutorial();
+        }
     }
 
     // Update is called once per frame
@@ -56,6 +65,12 @@ public class CameraScript : MonoBehaviour
         Player.GetComponent<Movement2D>().enabled = true;
         Timer.GetComponent<Timer_Script>().enabled = true;
         GameObject.Find("Hearts").GetComponent<HealthManager>().EnlargeHeart();
+        yield return new WaitForSeconds(1);
+        GameObject.Find("Hearts").GetComponent<HealthManager>().ShrinkHearts();
+    }
+
+    private IEnumerator CountDownForTutorial()
+    {
         yield return new WaitForSeconds(1);
         GameObject.Find("Hearts").GetComponent<HealthManager>().ShrinkHearts();
     }

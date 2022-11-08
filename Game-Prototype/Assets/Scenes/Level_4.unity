@@ -1600,6 +1600,21 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8606178500996400747, guid: b04f8a0d7c6dc450d9a88f2f0587818e, type: 3}
   m_PrefabInstance: {fileID: 255086617}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &255086619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8606178501848727417, guid: b04f8a0d7c6dc450d9a88f2f0587818e, type: 3}
+  m_PrefabInstance: {fileID: 255086617}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &255086620 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8606178500683311855, guid: b04f8a0d7c6dc450d9a88f2f0587818e, type: 3}
+  m_PrefabInstance: {fileID: 255086617}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &255086621 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8606178501687315443, guid: b04f8a0d7c6dc450d9a88f2f0587818e, type: 3}
+  m_PrefabInstance: {fileID: 255086617}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &264524637
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13134,7 +13149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed33da64ed8cf4d7f9ad0ecb0470a4df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GreedyIcon: {fileID: 0}
+  GreedyIcon: {fileID: 255086621}
 --- !u!114 &1811579285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13147,8 +13162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e65d2f6228018c45be81393fee18c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  gameObject: {fileID: 0}
+  myCamera: {fileID: 0}
+  zoomoutIcon: {fileID: 255086620}
 --- !u!114 &1811579286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13161,7 +13176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33bf27818ccd08d47b026e2b53b05bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimerIcon: {fileID: 0}
+  TimerIcon: {fileID: 255086619}
   Timer: {fileID: 435140555}
   condition: 0
 --- !u!1 &1825269716
