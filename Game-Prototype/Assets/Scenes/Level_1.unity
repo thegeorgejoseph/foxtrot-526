@@ -11521,8 +11521,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e65d2f6228018c45be81393fee18c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myCamera: {fileID: 0}
-  zoomoutIcon: {fileID: 1548043047}
+  camera: {fileID: 0}
+  gameObject: {fileID: 1548043047}
 --- !u!114 &1811579297
 MonoBehaviour:
   m_ObjectHideFlags: 0
