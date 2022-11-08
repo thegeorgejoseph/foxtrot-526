@@ -27,31 +27,94 @@ public class LevelselectorScript : MonoBehaviour
         }
         if (CameraScript.level_num == 3 || Exit_Script.level_num == 2)
         {
+            planet_2.text = "Venus";
+            planet_2.color = Color.green;
+
             planet_3.text = "Moon";
             planet_3.color = Color.green;
         }
         if (CameraScript.level_num == 4 || Exit_Script.level_num == 3)
         {
+            planet_2.text = "Venus";
+            planet_2.color = Color.green;
+
+            planet_3.text = "Moon";
+            planet_3.color = Color.green;
+
             planet_4.text = "Mars";
             planet_4.color = Color.green;
         }
         if (CameraScript.level_num == 5 || Exit_Script.level_num == 4)
         {
+            planet_2.text = "Venus";
+            planet_2.color = Color.green;
+
+            planet_3.text = "Moon";
+            planet_3.color = Color.green;
+
+            planet_4.text = "Mars";
+            planet_4.color = Color.green;
+
             planet_5.text = "Asteroid Belt";
             planet_5.color = Color.green;
         }
         if (CameraScript.level_num == 6 || Exit_Script.level_num == 5)
         {
+            planet_2.text = "Venus";
+            planet_2.color = Color.green;
+
+            planet_3.text = "Moon";
+            planet_3.color = Color.green;
+
+            planet_4.text = "Mars";
+            planet_4.color = Color.green;
+
+            planet_5.text = "Asteroid Belt";
+            planet_5.color = Color.green;
+
             planet_6.text = "IO";
             planet_6.color = Color.green;
         }
         if (CameraScript.level_num == 7 || Exit_Script.level_num == 6)
         {
+            planet_2.text = "Venus";
+            planet_2.color = Color.green;
+
+            planet_3.text = "Moon";
+            planet_3.color = Color.green;
+
+            planet_4.text = "Mars";
+            planet_4.color = Color.green;
+
+            planet_5.text = "Asteroid Belt";
+            planet_5.color = Color.green;
+
+            planet_6.text = "IO";
+            planet_6.color = Color.green;
+
             planet_7.text = "Titan";
             planet_7.color = Color.green;
         }
         if (CameraScript.level_num == 8 || Exit_Script.level_num == 7)
         {
+            planet_2.text = "Venus";
+            planet_2.color = Color.green;
+
+            planet_3.text = "Moon";
+            planet_3.color = Color.green;
+
+            planet_4.text = "Mars";
+            planet_4.color = Color.green;
+
+            planet_5.text = "Asteroid Belt";
+            planet_5.color = Color.green;
+
+            planet_6.text = "IO";
+            planet_6.color = Color.green;
+
+            planet_7.text = "Titan";
+            planet_7.color = Color.green;
+
             planet_8.text = "Charon";
             planet_8.color = Color.green;
         }
