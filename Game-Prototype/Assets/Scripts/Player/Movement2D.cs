@@ -9,6 +9,9 @@ public class Movement2D : MonoBehaviour
     Vector2 movementVec;
     public GameObject Player;
     public float portalUsageCount = 0;
+    public Sprite idleUpSprite;
+    public Sprite idleDownSprite;
+    public Sprite idleSideSprite;
 
     // Start is called before the first frame update
     void Start()
@@ -44,13 +47,25 @@ public class Movement2D : MonoBehaviour
     void FixedUpdate()
     {
         rb2d.MovePosition(rb2d.position + movementVec * movementSpeed * Time.fixedDeltaTime);
+        
+        if(movementVec.y<0){
+            Player.GetComponent<SpriteRenderer>().sprite=idleDownSprite;
+        }
+        else if(movementVec.y>0){
+            Player.GetComponent<SpriteRenderer>().sprite=idleUpSprite;
+        }
+        // else{
+        //     Player.GetComponent<SpriteRenderer>().sprite=idleSideSprite;
+        // }
         if (movementVec.x < 0)
         {
-            Player.GetComponent<SpriteRenderer>().flipX = true;
+            Player.GetComponent<SpriteRenderer>().sprite=idleSideSprite;
+            Player.GetComponent<SpriteRenderer>().flipX = false;
         }
         else if (movementVec.x > 0)
         {
-            Player.GetComponent<SpriteRenderer>().flipX = false;
+            Player.GetComponent<SpriteRenderer>().sprite=idleSideSprite;
+            Player.GetComponent<SpriteRenderer>().flipX = true;
         }
     }
 
