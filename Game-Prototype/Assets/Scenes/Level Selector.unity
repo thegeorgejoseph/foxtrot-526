@@ -4102,6 +4102,12 @@ MonoBehaviour:
   rb2d: {fileID: 1811579276}
   Player: {fileID: 1811579274}
   portalUsageCount: 0
+  idleUpSprite: {fileID: 0}
+  idleDownSprite: {fileID: 0}
+  idleSideSprite: {fileID: 0}
+  idleUpAnimator: {fileID: 0}
+  idleDownAnimator: {fileID: 0}
+  idleSideAnimator: {fileID: 0}
 --- !u!50 &1811579276
 Rigidbody2D:
   serializedVersion: 4
@@ -4209,8 +4215,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1811579274}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 35.47, y: -8.06, z: 0}
-  m_LocalScale: {x: 3.8090575, y: 3.8243122, z: 11.623755}
+  m_LocalPosition: {x: 35.46, y: -9.1, z: 0}
+  m_LocalScale: {x: 4.770251, y: 4.789355, z: 14.556941}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -4751,6 +4757,12 @@ MonoBehaviour:
   rb2d: {fileID: 2130376573}
   Player: {fileID: 0}
   portalUsageCount: 0
+  idleUpSprite: {fileID: 0}
+  idleDownSprite: {fileID: 0}
+  idleSideSprite: {fileID: 0}
+  idleUpAnimator: {fileID: 0}
+  idleDownAnimator: {fileID: 0}
+  idleSideAnimator: {fileID: 0}
 --- !u!114 &2130376577
 MonoBehaviour:
   m_ObjectHideFlags: 0

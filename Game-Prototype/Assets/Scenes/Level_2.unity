@@ -4157,11 +4157,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2812329614569848002, guid: 5385a78c902320b45893eee9d63e0403, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.1
+      value: 0.008076101
       objectReference: {fileID: 0}
     - target: {fileID: 2812329614569848002, guid: 5385a78c902320b45893eee9d63e0403, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.1
+      value: 0.008076101
       objectReference: {fileID: 0}
     - target: {fileID: 2812329614569848002, guid: 5385a78c902320b45893eee9d63e0403, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4169,7 +4169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2812329614569848002, guid: 5385a78c902320b45893eee9d63e0403, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.813
       objectReference: {fileID: 0}
     - target: {fileID: 2812329614569848002, guid: 5385a78c902320b45893eee9d63e0403, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10491,6 +10491,7 @@ GameObject:
   - component: {fileID: 1811579284}
   - component: {fileID: 1811579285}
   - component: {fileID: 1811579286}
+  - component: {fileID: 1811579287}
   m_Layer: 0
   m_Name: hero
   m_TagString: Player
@@ -10514,6 +10515,12 @@ MonoBehaviour:
   rb2d: {fileID: 1811579276}
   Player: {fileID: 1811579274}
   portalUsageCount: 0
+  idleUpSprite: {fileID: 3838556530734163676, guid: 9c447c54c8e0416e9446cadb88c48fd3, type: 3}
+  idleDownSprite: {fileID: 8793639957104055765, guid: 9c447c54c8e0416e9446cadb88c48fd3, type: 3}
+  idleSideSprite: {fileID: -3655621501393774895, guid: 9c447c54c8e0416e9446cadb88c48fd3, type: 3}
+  idleUpAnimator: {fileID: 9100000, guid: 8ee5e89a319f66542a650c2b47967c86, type: 2}
+  idleDownAnimator: {fileID: 9100000, guid: 8b793cae8fffcc14590914dae16f6965, type: 2}
+  idleSideAnimator: {fileID: 9100000, guid: c24b834e88000314e87596380ca3734b, type: 2}
 --- !u!50 &1811579276
 Rigidbody2D:
   serializedVersion: 4
@@ -10548,18 +10555,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.006519556, y: 0.7584643}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.56, y: 2.56}
+    pivot: {x: 0.5, y: 0.1}
+    oldSize: {x: 2.7692308, y: 2.3076923}
     newSize: {x: 2.56, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7, y: 2}
+  m_Size: {x: 1.0676057, y: 1.471449}
   m_EdgeRadius: 0
 --- !u!212 &1811579278
 SpriteRenderer:
@@ -10602,7 +10609,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: d692dcc7ef4854bb0b35411f364a7914, type: 3}
+  m_Sprite: {fileID: 8793639957104055765, guid: 9c447c54c8e0416e9446cadb88c48fd3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10621,8 +10628,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1811579274}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.128, y: -0.832, z: 0}
-  m_LocalScale: {x: 0.34075546, y: 0.3077887, z: 1.269584}
+  m_LocalPosition: {x: -2.116, y: -1.197, z: 0}
+  m_LocalScale: {x: 0.53807014, y: 0.48601395, z: 2.0047374}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1980106753}
@@ -10999,6 +11006,26 @@ MonoBehaviour:
   TimerIcon: {fileID: 1531806634}
   Timer: {fileID: 653648743}
   condition: 0
+--- !u!95 &1811579287
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811579274}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8b793cae8fffcc14590914dae16f6965, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1825269716
 GameObject:
   m_ObjectHideFlags: 0
@@ -12981,6 +13008,12 @@ MonoBehaviour:
   rb2d: {fileID: 2130376573}
   Player: {fileID: 0}
   portalUsageCount: 0
+  idleUpSprite: {fileID: 0}
+  idleDownSprite: {fileID: 0}
+  idleSideSprite: {fileID: 0}
+  idleUpAnimator: {fileID: 0}
+  idleDownAnimator: {fileID: 0}
+  idleSideAnimator: {fileID: 0}
 --- !u!114 &2130376577
 MonoBehaviour:
   m_ObjectHideFlags: 0
