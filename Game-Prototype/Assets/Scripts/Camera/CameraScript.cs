@@ -74,9 +74,9 @@ public class CameraScript : MonoBehaviour
         Enemy.SetActive(true);
         Player.GetComponent<Movement2D>().enabled = true;
         Timer.GetComponent<Timer_Script>().enabled = true;
-        GameObject.Find("Hearts").GetComponent<HealthManager>().EnlargeHeart();
+        //GameObject.Find("Hearts").GetComponent<HealthManager>().EnlargeHeart();
         yield return new WaitForSeconds(1);
-        GameObject.Find("Hearts").GetComponent<HealthManager>().ShrinkHearts();
+        //GameObject.Find("Hearts").GetComponent<HealthManager>().ShrinkHearts();
     }
 
     private IEnumerator CountDownForTutorial()

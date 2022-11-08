@@ -232,7 +232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8224332802870053003, guid: 8f79aa8a2ae4cc747adc8ca1cc929bf9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f79aa8a2ae4cc747adc8ca1cc929bf9, type: 3}
@@ -4068,9 +4068,9 @@ Animation:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: b8bf31ae95bf1b947a3c25395ac0103b, type: 2}
+  m_Animation: {fileID: 7400000, guid: 8107248d192c36047b2da0f99e53d08a, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: b8bf31ae95bf1b947a3c25395ac0103b, type: 2}
+  - {fileID: 7400000, guid: 8107248d192c36047b2da0f99e53d08a, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -12808,7 +12808,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1811579274}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.612, y: -0.357, z: 0}
+  m_LocalPosition: {x: -1.6, y: -0.35, z: 0}
   m_LocalScale: {x: 0.5085618, y: 0.4593605, z: 1.894796}
   m_ConstrainProportionsScale: 0
   m_Children:
