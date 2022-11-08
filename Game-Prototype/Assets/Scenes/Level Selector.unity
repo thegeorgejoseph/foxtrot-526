@@ -1243,8 +1243,8 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  - component: {fileID: 519420033}
   - component: {fileID: 519420034}
+  - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1318,22 +1318,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &519420033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a69da6a026b6f0647a2a13834248ca4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Camera_Offset: {x: 0, y: 0, z: -1}
-  Enemy: {fileID: 0}
-  Player: {fileID: 1811579274}
-  Timer: {fileID: 0}
 --- !u!111 &519420034
 Animation:
   m_ObjectHideFlags: 0
@@ -1350,6 +1334,20 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &519420035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43f38515f963c43f8ba38f9e38bbce38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Camera_Offset: {x: 0, y: 0, z: -1}
+  Player: {fileID: 1811579274}
 --- !u!1 &521659391
 GameObject:
   m_ObjectHideFlags: 0
@@ -3317,7 +3315,7 @@ MonoBehaviour:
   analyticsManager: {fileID: 0}
   playerMovement: {fileID: 0}
   did_finish: 0
-  battleInfoScript: {fileID: 1811579280}
+  battleInfoScript: {fileID: 0}
   battleInfo: {fileID: 1811579274}
   scoreBoard: {fileID: 0}
   highScoreTable: {fileID: 0}
@@ -4072,7 +4070,6 @@ GameObject:
   - component: {fileID: 1811579277}
   - component: {fileID: 1811579276}
   - component: {fileID: 1811579275}
-  - component: {fileID: 1811579280}
   - component: {fileID: 1811579282}
   - component: {fileID: 1811579281}
   - component: {fileID: 1811579283}
@@ -4216,45 +4213,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1811579280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1811579274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9c0c9e8f943c444288762c42445d0ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  battleUI: {fileID: 0}
-  GameFinishText: {fileID: 0}
-  GameOver_UI: {fileID: 0}
-  SpaceText: {fileID: 0}
-  player: {fileID: 1811579274}
-  Timer: {fileID: 0}
-  crystalScript: {fileID: 0}
-  DMS: {fileID: 0}
-  HA: {fileID: 0}
-  screenShake: {fileID: 0}
-  respawn: {fileID: 0}
-  analyticsManager: {fileID: 0}
-  did_finish: 0
-  event_called: 0
-  deathScore: {fileID: 0}
-  total_score: {fileID: 0}
-  health: 1
-  count: 0
-  kills: 0
-  enemies_encountered: 0
-  playerMovement: {fileID: 0}
-  greedyPUScript: {fileID: 0}
-  timerPUScript: {fileID: 0}
-  zoomPUScript: {fileID: 0}
-  gemSoundEffect: {fileID: 1811579282}
-  deathSoundEffect: {fileID: 1811579281}
-  shakeSoundEffect: {fileID: 1811579283}
 --- !u!82 &1811579281
 AudioSource:
   m_ObjectHideFlags: 0

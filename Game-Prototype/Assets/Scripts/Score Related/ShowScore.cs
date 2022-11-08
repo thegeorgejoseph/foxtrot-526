@@ -580,5 +580,11 @@ public class ShowScore : MonoBehaviour
             //SceneManager.LoadScene("Level_5");
         }
     }
+
+    public void SelectLevelScene()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Level Selector");
+    }
 }
 
