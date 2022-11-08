@@ -13733,6 +13733,12 @@ MonoBehaviour:
   idleUpAnimator: {fileID: 0}
   idleDownAnimator: {fileID: 0}
   idleSideAnimator: {fileID: 0}
+  runUpSprite: {fileID: 0}
+  runDownSprite: {fileID: 0}
+  runSideSprite: {fileID: 0}
+  runUpAnimator: {fileID: 0}
+  runDownAnimator: {fileID: 0}
+  runSideAnimator: {fileID: 0}
 --- !u!114 &2130376577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14009,6 +14015,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3930298974560176022, guid: 95164ebbe2b1147479ab61ffc13e0b39, type: 3}
+      propertyPath: runUpSprite
+      value: 
+      objectReference: {fileID: 3838556530734163676, guid: 9c447c54c8e0416e9446cadb88c48fd3, type: 3}
+    - target: {fileID: 3930298974560176022, guid: 95164ebbe2b1147479ab61ffc13e0b39, type: 3}
+      propertyPath: runDownSprite
+      value: 
+      objectReference: {fileID: 8793639957104055765, guid: 9c447c54c8e0416e9446cadb88c48fd3, type: 3}
+    - target: {fileID: 3930298974560176022, guid: 95164ebbe2b1147479ab61ffc13e0b39, type: 3}
+      propertyPath: runSideSprite
+      value: 
+      objectReference: {fileID: -3655621501393774895, guid: 9c447c54c8e0416e9446cadb88c48fd3, type: 3}
+    - target: {fileID: 3930298974560176022, guid: 95164ebbe2b1147479ab61ffc13e0b39, type: 3}
+      propertyPath: runUpAnimator
+      value: 
+      objectReference: {fileID: 9100000, guid: 8ee5e89a319f66542a650c2b47967c86, type: 2}
+    - target: {fileID: 3930298974560176022, guid: 95164ebbe2b1147479ab61ffc13e0b39, type: 3}
+      propertyPath: runDownAnimator
+      value: 
+      objectReference: {fileID: 9100000, guid: 8b793cae8fffcc14590914dae16f6965, type: 2}
+    - target: {fileID: 3930298974560176022, guid: 95164ebbe2b1147479ab61ffc13e0b39, type: 3}
+      propertyPath: runSideAnimator
+      value: 
+      objectReference: {fileID: 9100000, guid: c24b834e88000314e87596380ca3734b, type: 2}
     - target: {fileID: 3930298974560176023, guid: 95164ebbe2b1147479ab61ffc13e0b39, type: 3}
       propertyPath: m_Name
       value: hero

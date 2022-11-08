@@ -10521,6 +10521,12 @@ MonoBehaviour:
   idleUpAnimator: {fileID: 9100000, guid: 8ee5e89a319f66542a650c2b47967c86, type: 2}
   idleDownAnimator: {fileID: 9100000, guid: 8b793cae8fffcc14590914dae16f6965, type: 2}
   idleSideAnimator: {fileID: 9100000, guid: c24b834e88000314e87596380ca3734b, type: 2}
+  runUpSprite: {fileID: 3838556530734163676, guid: 9c447c54c8e0416e9446cadb88c48fd3, type: 3}
+  runDownSprite: {fileID: 8793639957104055765, guid: 9c447c54c8e0416e9446cadb88c48fd3, type: 3}
+  runSideSprite: {fileID: -3655621501393774895, guid: 9c447c54c8e0416e9446cadb88c48fd3, type: 3}
+  runUpAnimator: {fileID: 9100000, guid: c84f36d62ab20ff41be80a6a7e6a5291, type: 2}
+  runDownAnimator: {fileID: 9100000, guid: 21863faa0741dc241ba965418a284afc, type: 2}
+  runSideAnimator: {fileID: 9100000, guid: be5c1c9a8091caf4eaf7f0618daaade4, type: 2}
 --- !u!50 &1811579276
 Rigidbody2D:
   serializedVersion: 4
@@ -13014,6 +13020,12 @@ MonoBehaviour:
   idleUpAnimator: {fileID: 0}
   idleDownAnimator: {fileID: 0}
   idleSideAnimator: {fileID: 0}
+  runUpSprite: {fileID: 0}
+  runDownSprite: {fileID: 0}
+  runSideSprite: {fileID: 0}
+  runUpAnimator: {fileID: 0}
+  runDownAnimator: {fileID: 0}
+  runSideAnimator: {fileID: 0}
 --- !u!114 &2130376577
 MonoBehaviour:
   m_ObjectHideFlags: 0
