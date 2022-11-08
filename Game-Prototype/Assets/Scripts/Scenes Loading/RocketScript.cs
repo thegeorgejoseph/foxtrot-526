@@ -27,35 +27,35 @@ public class RocketScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         if (LevelselectorScript.spaceship_level == 1)
         {
-            hint_text.text = "Travelling to planet Mercury";
+            hint_text.text = "Travelling to Mercury";
         }
         else if (LevelselectorScript.spaceship_level == 2)
         {
-            hint_text.text = "Travelling to planet Venus";
+            hint_text.text = "Travelling to Venus";
         }
         else if (LevelselectorScript.spaceship_level == 3)
         {
-            hint_text.text = "Travelling to planet Moon ";
+            hint_text.text = "Travelling to Moon ";
         }
         else if (LevelselectorScript.spaceship_level == 4)
         {
-            hint_text.text = "Travelling to planet Mars ";
+            hint_text.text = "Travelling to Mars ";
         }
         else if (LevelselectorScript.spaceship_level == 5)
         {
-            hint_text.text = "Travelling to planet Asteroid Belt";
+            hint_text.text = "Travelling to Asteroid Belt";
         }
         else if (LevelselectorScript.spaceship_level == 6)
         {
-            hint_text.text = "Travelling to planet IO";
+            hint_text.text = "Travelling to IO";
         }
         else if (LevelselectorScript.spaceship_level == 7)
         {
-            hint_text.text = "Travelling to planet Titan";
+            hint_text.text = "Travelling to Titan";
         }
         else if (LevelselectorScript.spaceship_level == 8)
         {
-            hint_text.text = "Travelling to planet Charon";
+            hint_text.text = "Travelling to Charon";
         }
 
     }
