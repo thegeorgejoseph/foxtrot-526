@@ -2,14 +2,59 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LevelselectorScript : MonoBehaviour
 {
     public static int spaceship_level;
+    public TMP_Text planet_2;
+    public TMP_Text planet_3;
+    public TMP_Text planet_4;
+    public TMP_Text planet_5;
+    public TMP_Text planet_6;
+    public TMP_Text planet_7;
+    public TMP_Text planet_8;
+
+
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log(CameraScript.level_num);
+        if (CameraScript.level_num == 2)
+        {
+            planet_2.text = "Venus";
+            planet_2.color = Color.green;
+        }
+        if (CameraScript.level_num == 3)
+        {
+            planet_3.text = "Moon";
+            planet_3.color = Color.green;
+        }
+        if (CameraScript.level_num == 4)
+        {
+            planet_4.text = "Mars";
+            planet_4.color = Color.green;
+        }
+        if (CameraScript.level_num == 5)
+        {
+            planet_5.text = "Asteroid Belt";
+            planet_5.color = Color.green;
+        }
+        if (CameraScript.level_num == 6)
+        {
+            planet_6.text = "IO";
+            planet_6.color = Color.green;
+        }
+        if (CameraScript.level_num == 7)
+        {
+            planet_7.text = "Titan";
+            planet_7.color = Color.green;
+        }
+        if (CameraScript.level_num == 8)
+        {
+            planet_8.text = "Charon";
+            planet_8.color = Color.green;
+        }
     }
 
     // Update is called once per frame
