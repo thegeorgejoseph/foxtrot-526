@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3930298974560176017}
   - component: {fileID: 3930298974560176022}
   - component: {fileID: 3930298974560176013}
+  - component: {fileID: -6170855461980404899}
   m_Layer: 0
   m_Name: hero
   m_TagString: Player
@@ -79,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: d692dcc7ef4854bb0b35411f364a7914, type: 3}
+  m_Sprite: {fileID: 8793639957104055765, guid: 9c447c54c8e0416e9446cadb88c48fd3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,18 +104,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.027541459, y: -0.088466614}
+  m_Offset: {x: -0.016707063, y: 2.3833797}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.56, y: 2.56}
+    pivot: {x: 0.5, y: 0.1}
+    oldSize: {x: 2.7692308, y: 2.3076923}
     newSize: {x: 2.56, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7196103, y: 2.0458272}
+  m_Size: {x: 1.8423998, y: 2.5434337}
   m_EdgeRadius: 0
 --- !u!50 &3930298974560176017
 Rigidbody2D:
@@ -153,6 +154,12 @@ MonoBehaviour:
   rb2d: {fileID: 3930298974560176017}
   Player: {fileID: 3930298974560176023}
   portalUsageCount: 0
+  idleUpSprite: {fileID: 8793639957104055765, guid: 9c447c54c8e0416e9446cadb88c48fd3, type: 3}
+  idleDownSprite: {fileID: 3838556530734163676, guid: 9c447c54c8e0416e9446cadb88c48fd3, type: 3}
+  idleSideSprite: {fileID: -8410472694813616623, guid: 9c447c54c8e0416e9446cadb88c48fd3, type: 3}
+  idleUpAnimator: {fileID: 9100000, guid: 8ee5e89a319f66542a650c2b47967c86, type: 2}
+  idleDownAnimator: {fileID: 9100000, guid: 8b793cae8fffcc14590914dae16f6965, type: 2}
+  idleSideAnimator: {fileID: 9100000, guid: c24b834e88000314e87596380ca3734b, type: 2}
 --- !u!114 &3930298974560176013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +177,7 @@ MonoBehaviour:
   GameOver_UI: {fileID: 0}
   SpaceText: {fileID: 0}
   player: {fileID: 3930298974560176023}
+  Timer: {fileID: 0}
   crystalScript: {fileID: 0}
   DMS: {fileID: 0}
   HA: {fileID: 3930298974243047765}
@@ -185,6 +193,32 @@ MonoBehaviour:
   kills: 0
   enemies_encountered: 0
   playerMovement: {fileID: 3930298974560176023}
+  greedyPUScript: {fileID: 0}
+  timerPUScript: {fileID: 0}
+  zoomPUScript: {fileID: 0}
+  gemSoundEffect: {fileID: 0}
+  deathSoundEffect: {fileID: 0}
+  shakeSoundEffect: {fileID: 0}
+--- !u!95 &-6170855461980404899
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3930298974560176023}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1264487806818190881
 PrefabInstance:
   m_ObjectHideFlags: 0
