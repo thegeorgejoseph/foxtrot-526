@@ -71,7 +71,7 @@ public class Powerup_Zoom : MonoBehaviour
         yield return new WaitForSeconds(duration);
         myCamera.orthographicSize = currZoom;
         Debug.Log("restore Camera object " + myCamera.orthographicSize);
-        zoomoutIcon.GetComponent<Image>().color = Color.grey;
+        zoomoutIcon.GetComponent<Image>().color = new Color(0.2f, 0.2f, 0.2f, 1);
         changeDroppingStatus(true);
     }
 }

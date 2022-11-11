@@ -69,7 +69,7 @@ public class Powerup_Greedy : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         Debug.Log("finished waiting for powerup");
-        GreedyIcon.GetComponent<Image>().color = Color.grey;
+        GreedyIcon.GetComponent<Image>().color = new Color(0.2f, 0.2f, 0.2f, 1);
         changeCrystalMultiplier(1);
         changeDroppingStatus(true);
     }
