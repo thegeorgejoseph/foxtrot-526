@@ -293,7 +293,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                 SpaceText.SetActive(true);
             }
             // Reset the slider for next battle
-            sliderSC.Reset(currentEnemy, this.gameObject);
+            sliderSC.Reset(currentEnemy, player);
         }
     }
 

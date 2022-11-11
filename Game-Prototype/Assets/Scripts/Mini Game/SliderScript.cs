@@ -48,6 +48,12 @@ public class SliderScript : MonoBehaviour
         //Reset(currentEnemy.gameObject, this.player.gameObject);     
     }
 
+    void Start()
+    {
+        // Increase player scale
+        this.player.gameObject.transform.localScale *= 1.5f;
+    }
+
     // Public method to set the player / enemy speed using a multiplier
     public void setEnemySpeed(float speedMultiplier)
     {
@@ -95,6 +101,7 @@ public class SliderScript : MonoBehaviour
         currentEnemy.sprite = enemy.GetComponent<SpriteRenderer>().sprite;
         this.player.sprite = player.GetComponent<SpriteRenderer>().sprite;
 
+        
         // Reset Position
         this.player.gameObject.transform.position = playerOriginPos;
         currentEnemy.gameObject.transform.position = enemyOriginPos;
