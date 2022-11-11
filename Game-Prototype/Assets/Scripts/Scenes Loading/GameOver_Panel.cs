@@ -53,7 +53,16 @@ public class GameOver_Panel : MonoBehaviour
     public void loadLevelNameEnterScene()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("InputNameScene");
+
+        if(InputNameScript.username != null)
+        {
+            SceneManager.LoadScene("Level Selector");
+        }
+        else
+        {
+            SceneManager.LoadScene("InputNameScene");
+        }
+        
     }
 
     public void loadHighScoreTotal()
