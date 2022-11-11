@@ -151,24 +151,6 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                             deathScore.SetActive(true);
                         }
 
-                        // if(SceneManager.GetActiveScene().name == Loader.Scene.Level_2.ToString())
-                        // {
-                        //     total_score.text = Exit_Script.score_till_curr_level.ToString();
-                        // }
-                        // else if(SceneManager.GetActiveScene().name == Loader.Scene.Level_3.ToString())
-                        // {
-                        //     total_score.text = Exit_Script.score_till_curr_level.ToString();
-                        // }
-                        // else if (SceneManager.GetActiveScene().name == Loader.Scene.Level_4.ToString())
-                        // {
-                        //     total_score.text = Exit_Script.score_till_curr_level.ToString();
-                        // }
-                        // else if (SceneManager.GetActiveScene().name == Loader.Scene.Level_5.ToString())
-                        // {
-                        //     total_score.text = Exit_Script.score_till_curr_level.ToString();
-                        // }
-
-
                         if (!event_called)
                         {
 

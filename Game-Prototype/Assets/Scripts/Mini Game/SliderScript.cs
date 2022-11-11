@@ -48,6 +48,12 @@ public class SliderScript : MonoBehaviour
         //Reset(currentEnemy.gameObject, this.player.gameObject);     
     }
 
+    void Start()
+    {
+        // Increase player scale
+        this.player.gameObject.transform.localScale *= 1.5f;
+    }
+
     // Public method to set the player / enemy speed using a multiplier
     public void setEnemySpeed(float speedMultiplier)
     {
@@ -138,7 +144,7 @@ public class SliderScript : MonoBehaviour
         if (!stopMoving)
         {
             // Enemy Movement
-            //Debug.Log("Enemy Distance Delta: " + getDistance(currentEnemy.gameObject.transform, enemy_nextCoor));
+            // Debug.Log("Enemy Distance Delta: " + getDistance(currentEnemy.gameObject.transform, enemy_nextCoor));
             // Debug.Log("Min delta Enemy: " + Time.deltaTime * enemySpeed * (remainCoorEnemy[0] == 0 ? Mathf.Abs(remainCoorEnemy[1]) : Mathf.Abs(remainCoorEnemy[0])));
             if (getDistance(currentEnemy.gameObject.transform, enemy_nextCoor) <= (Time.deltaTime * enemySpeed * (remainCoorEnemy[0] == 0 ? Mathf.Abs(remainCoorEnemy[1]) : Mathf.Abs(remainCoorEnemy[0]))))
             {
@@ -150,7 +156,7 @@ public class SliderScript : MonoBehaviour
             currentEnemy.gameObject.transform.position = currentEnemy.gameObject.transform.position + new Vector3((remainCoorEnemy[0] == 0) ? 0 : (remainCoorEnemy[0] * Time.deltaTime * enemySpeed), (remainCoorEnemy[1] == 0) ? 0 : (remainCoorEnemy[1] * Time.deltaTime * enemySpeed), 0);
 
             // Player Movement
-            //Debug.Log("Player Distance Delta: " + getDistance(player.gameObject.transform, player_nextCoor));
+            // Debug.Log("Player Distance Delta: " + getDistance(player.gameObject.transform, player_nextCoor));
             // Debug.Log("Min delta Player: " + Time.deltaTime * playerSpeed * (remainCoorPlayer[0] == 0 ? Mathf.Abs(remainCoorPlayer[1]) : Mathf.Abs(remainCoorPlayer[0])));
             if (getDistance(player.gameObject.transform, player_nextCoor) <= (Time.deltaTime * playerSpeed * (remainCoorPlayer[0] == 0 ? Mathf.Abs(remainCoorPlayer[1]) : Mathf.Abs(remainCoorPlayer[0]))))
             {
@@ -164,16 +170,11 @@ public class SliderScript : MonoBehaviour
             player.gameObject.transform.position = player.gameObject.transform.position + new Vector3((remainCoorPlayer[0] == 0) ? 0 : (remainCoorPlayer[0] * Time.deltaTime * playerSpeed), (remainCoorPlayer[1] == 0) ? 0 : (remainCoorPlayer[1] * Time.deltaTime * playerSpeed), 0);
         }
 
-        //PlayerPos = player.gameObject.transform.position;
-        //EnemyPos = currentEnemy.gameObject.transform.position;
-
         // Hit Pending Part
         if (Input.GetKey(KeyCode.Space) && canAttack)
         {
             stopMoving = true;
             canAttack = false;
-
-            //PlayerPos = player.gameObject.transform.position;
 
             // Debug.Log("Dist = " + getDistance(player.gameObject.transform, currentEnemy.gameObject.transform));
             if (getDistance(player.gameObject.transform, currentEnemy.gameObject.transform) < 100f)
