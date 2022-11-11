@@ -52,7 +52,6 @@ public class Powerup_Timer : MonoBehaviour
         yield return new WaitForSeconds(duration);
         condition = false;
         Timer.GetComponent<Timer_Script>().freeze = false; 
-        TimerIcon.GetComponent<Image>().color = Color.grey;
-        changeDroppingStatus(true);
+        TimerIcon.GetComponent<Image>().color = new Color(0.2f, 0.2f, 0.2f, 1);
     }
 }
