@@ -237,6 +237,11 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                         // {
                         //     Instantiate(greedyPUPrefab, currentEnemy.transform.position, Quaternion.identity);
                         // }
+                        if (level == Loader.Scene.Level_1.ToString() && firstEnemy)
+                        {
+                            popUps[0].SetActive(true);
+                            firstEnemy = false;
+                        }
                         if (freezePUScript.getDroppingStatus())
                         {
                             Instantiate(freezePUPrefab, currentEnemy.transform.position, Quaternion.identity);
