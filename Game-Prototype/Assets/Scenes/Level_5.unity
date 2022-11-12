@@ -6440,7 +6440,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4968055004328948149, guid: dd9935d51768a4131b5ae19dd80303c3, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4968055004328948149, guid: dd9935d51768a4131b5ae19dd80303c3, type: 3}
       propertyPath: m_AnchorMax.x
@@ -14284,8 +14284,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1811579274}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.912, y: -0.37, z: 0}
-  m_LocalScale: {x: 0.3022863, y: 0.27304128, z: 1.1262561}
+  m_LocalPosition: {x: -1.952, y: -0.353, z: 0}
+  m_LocalScale: {x: 0.27613854, y: 0.2494232, z: 1.0288349}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 849641956}
@@ -14305,6 +14305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c0c9e8f943c444288762c42445d0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popUps: []
   battleUI: {fileID: 23616311}
   GameFinishText: {fileID: 1788523839}
   GameOver_UI: {fileID: 1832000481}
@@ -15384,7 +15385,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.056022286, y: 0}
+  m_Offset: {x: -0.014199764, y: -0.0054003596}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -15395,7 +15396,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9420688, y: 1}
+  m_Size: {x: 0.8016247, y: 0.8811625}
   m_EdgeRadius: 0
 --- !u!212 &1909966518
 SpriteRenderer:
@@ -17685,6 +17686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c0c9e8f943c444288762c42445d0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popUps: []
   battleUI: {fileID: 0}
   GameFinishText: {fileID: 0}
   GameOver_UI: {fileID: 0}

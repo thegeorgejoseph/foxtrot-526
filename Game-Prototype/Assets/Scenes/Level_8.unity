@@ -28016,8 +28016,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1811579274}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9631, y: -0.1767, z: 0}
-  m_LocalScale: {x: 0.19935976, y: 0.18007249, z: 0.74277323}
+  m_LocalPosition: {x: -0.968, y: -0.147, z: 0}
+  m_LocalScale: {x: 0.14817603, y: 0.13384059, z: 0.55207324}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 849641956}
@@ -28037,6 +28037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c0c9e8f943c444288762c42445d0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popUps: []
   battleUI: {fileID: 23616311}
   GameFinishText: {fileID: 1788523839}
   GameOver_UI: {fileID: 1832000481}
@@ -34821,6 +34822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c0c9e8f943c444288762c42445d0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popUps: []
   battleUI: {fileID: 0}
   GameFinishText: {fileID: 0}
   GameOver_UI: {fileID: 0}
