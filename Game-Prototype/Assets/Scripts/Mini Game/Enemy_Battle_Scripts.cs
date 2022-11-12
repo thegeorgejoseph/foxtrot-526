@@ -8,6 +8,8 @@ using System;
 
 public class Enemy_Battle_Scripts : MonoBehaviour
 {
+    public GameObject[] popUps;
+
     public GameObject battleUI; // Battle UI 
     private SliderScript sliderSC; // SliderScript object to call function
     public TextMeshProUGUI GameFinishText; // Text box to display the text when the game reaches to an end
@@ -60,6 +62,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     private GameObject zoomPUPrefab;
     private GameObject freezePUPrefab;
 
+    private bool firstEnemy = true;
+
     [SerializeField] private AudioSource gemSoundEffect;
     [SerializeField] private AudioSource deathSoundEffect;
     [SerializeField] private AudioSource shakeSoundEffect;
@@ -96,12 +100,18 @@ public class Enemy_Battle_Scripts : MonoBehaviour
         greedyPUPrefab = (GameObject)Resources.Load("Powerup-greedy", typeof(GameObject));
         timerPUPrefab = (GameObject)Resources.Load("Powerup-timer", typeof(GameObject));
         zoomPUPrefab = (GameObject)Resources.Load("Powerup-zoom", typeof(GameObject));
+
+        popUps[0].SetActive(false);
         freezePUPrefab = (GameObject)Resources.Load("Powerup-freeze", typeof(GameObject));
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Return) && popUps[0].active)
+        {
+            popUps[0].SetActive(false);
+        }
         // Check if the battle is activated
         if (battle_started)
         {
@@ -216,7 +226,9 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     DMS.updateSpeed();
                     GetComponent<Movement2D>().enabled = true;
 
-                    // drop powerups
+                    string level = SceneManager.GetActiveScene().name;
+
+                        // drop powerups
                     String enemySpriteName = currentEnemy.GetComponent<SpriteRenderer>().sprite.name;
 
                     if (enemySpriteName == "ooze-blue") // if enemy is blue, drop greedy
@@ -225,6 +237,11 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                         // {
                         //     Instantiate(greedyPUPrefab, currentEnemy.transform.position, Quaternion.identity);
                         // }
+                        if (level == Loader.Scene.Level_1.ToString() && firstEnemy)
+                        {
+                            popUps[0].SetActive(true);
+                            firstEnemy = false;
+                        }
                         if (freezePUScript.getDroppingStatus())
                         {
                             Instantiate(freezePUPrefab, currentEnemy.transform.position, Quaternion.identity);
@@ -232,6 +249,11 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     }
                     else if (enemySpriteName == "ooze-red") // if enemy is red, drop timer
                     {
+                        if (level == Loader.Scene.Level_2.ToString() && firstEnemy)
+                        {
+                            popUps[0].SetActive(true);
+                            firstEnemy = false;
+                        }
                         if (timerPUScript.getDroppingStatus())
                         {
                             Instantiate(timerPUPrefab, currentEnemy.transform.position, Quaternion.identity);
@@ -239,6 +261,12 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     }
                     else if (enemySpriteName == "ooze-green") // if enemy is green, drop zoom
                     {
+                        if (level == Loader.Scene.Level_3.ToString() && firstEnemy)
+                        {
+                            popUps[0].SetActive(true);
+                            firstEnemy = false;
+                        }
+
                         if (zoomPUScript.getDroppingStatus())
                         {
                             Instantiate(zoomPUPrefab, currentEnemy.transform.position, Quaternion.identity);

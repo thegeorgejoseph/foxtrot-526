@@ -11,6 +11,7 @@ public class RocketScript : MonoBehaviour
     Rigidbody2D rb;
     public float lifetime = 5f;
     public TextMeshProUGUI hint_text;
+    public TextMeshProUGUI powerup_hint;
 
     private void Awake()
     {
@@ -32,30 +33,48 @@ public class RocketScript : MonoBehaviour
         else if (LevelselectorScript.spaceship_level == 2)
         {
             hint_text.text = "Travelling to Venus";
+            powerup_hint.text = "Blue enemy drops freeze powerup";
         }
         else if (LevelselectorScript.spaceship_level == 3)
         {
             hint_text.text = "Travelling to Moon ";
+            powerup_hint.text = "Blue enemy drops freeze powerup\n" +
+    "Red enemy drops timer freeze powerup";
         }
         else if (LevelselectorScript.spaceship_level == 4)
         {
             hint_text.text = "Travelling to Mars ";
+            powerup_hint.text = "Blue enemy drops freeze powerup\n" +
+              "Red enemy drops timer freeze powerup\n" +
+              "Green enemy drops zoom powerup";
         }
         else if (LevelselectorScript.spaceship_level == 5)
         {
             hint_text.text = "Travelling to Asteroid Belt";
+            powerup_hint.text = "Blue enemy drops freeze powerup\n" +
+             "Red enemy drops timer freeze powerup\n" +
+             "Green enemy drops zoom powerup";
         }
         else if (LevelselectorScript.spaceship_level == 6)
         {
             hint_text.text = "Travelling to IO";
+            powerup_hint.text = "Blue enemy drops freeze powerup\n" +
+             "Red enemy drops timer freeze powerup\n" +
+             "Green enemy drops zoom powerup";
         }
         else if (LevelselectorScript.spaceship_level == 7)
         {
             hint_text.text = "Travelling to Titan";
+            powerup_hint.text = "Blue enemy drops freeze powerup\n" +
+             "Red enemy drops timer freeze powerup\n" +
+             "Green enemy drops zoom powerup";
         }
         else if (LevelselectorScript.spaceship_level == 8)
         {
             hint_text.text = "Travelling to Charon";
+            powerup_hint.text = "Blue enemy drops freeze powerup\n" +
+             "Red enemy drops timer freeze powerup\n" +
+             "Green enemy drops zoom powerup";
         }
 
     }
