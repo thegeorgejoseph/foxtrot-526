@@ -54,10 +54,13 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     public Powerup_Timer timerPUScript;
     public Powerup_Zoom zoomPUScript;
 
+    public Powerup_Freeze freezePUScript;
+
     // powerup prefabs
     private GameObject greedyPUPrefab;
     private GameObject timerPUPrefab;
     private GameObject zoomPUPrefab;
+    private GameObject freezePUPrefab;
 
     private bool firstEnemy = true;
 
@@ -91,6 +94,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
         greedyPUScript = player.GetComponent<Powerup_Greedy>();
         timerPUScript = player.GetComponent<Powerup_Timer>();
         zoomPUScript = player.GetComponent<Powerup_Zoom>();
+        freezePUScript = player.GetComponent<Powerup_Freeze>();
 
         // find powerup prefabs
         greedyPUPrefab = (GameObject)Resources.Load("Powerup-greedy", typeof(GameObject));
@@ -98,6 +102,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
         zoomPUPrefab = (GameObject)Resources.Load("Powerup-zoom", typeof(GameObject));
 
         popUps[0].SetActive(false);
+        freezePUPrefab = (GameObject)Resources.Load("Powerup-freeze", typeof(GameObject));
     }
 
     // Update is called once per frame
@@ -228,9 +233,13 @@ public class Enemy_Battle_Scripts : MonoBehaviour
 
                     if (enemySpriteName == "ooze-blue") // if enemy is blue, drop greedy
                     {
-                        if (greedyPUScript.getDroppingStatus())
+                        // if (greedyPUScript.getDroppingStatus())
+                        // {
+                        //     Instantiate(greedyPUPrefab, currentEnemy.transform.position, Quaternion.identity);
+                        // }
+                        if (freezePUScript.getDroppingStatus())
                         {
-                            Instantiate(greedyPUPrefab, currentEnemy.transform.position, Quaternion.identity);
+                            Instantiate(freezePUPrefab, currentEnemy.transform.position, Quaternion.identity);
                         }
                     }
                     else if (enemySpriteName == "ooze-red") // if enemy is red, drop timer
