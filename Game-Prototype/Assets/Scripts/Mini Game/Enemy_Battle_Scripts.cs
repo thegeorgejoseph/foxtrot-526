@@ -62,6 +62,18 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     private GameObject zoomPUPrefab;
     private GameObject freezePUPrefab;
 
+    private Dictionary<string, float> powerupScalingFactor = new Dictionary<string, float>
+    {
+        { "Level_1", 1.0f },
+        { "Level_2", 1.0f },
+        { "Level_3", 0.4f },
+        { "Level_4", 0.5f },
+        { "Level_5", 0.5f },
+        { "Level_6", 0.7f },
+        { "Level_7", 0.5f },
+        { "Level_8", 0.3f }
+    };
+
     private bool firstEnemy = true;
 
     [SerializeField] private AudioSource gemSoundEffect;
@@ -103,6 +115,13 @@ public class Enemy_Battle_Scripts : MonoBehaviour
 
         popUps[0].SetActive(false);
         freezePUPrefab = (GameObject)Resources.Load("Powerup-freeze", typeof(GameObject));
+
+        // adjust prefab scales
+        String sceneName = SceneManager.GetActiveScene().name;
+        greedyPUPrefab.GetComponent<Transform>().localScale *= powerupScalingFactor[sceneName];
+        timerPUPrefab.GetComponent<Transform>().localScale *= powerupScalingFactor[sceneName];
+        zoomPUPrefab.GetComponent<Transform>().localScale *= powerupScalingFactor[sceneName];
+        freezePUPrefab.GetComponent<Transform>().localScale *= powerupScalingFactor[sceneName];
     }
 
     // Update is called once per frame
@@ -228,7 +247,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
 
                     string level = SceneManager.GetActiveScene().name;
 
-                        // drop powerups
+                    // drop powerups
                     String enemySpriteName = currentEnemy.GetComponent<SpriteRenderer>().sprite.name;
 
                     if (enemySpriteName == "ooze-blue") // if enemy is blue, drop greedy
