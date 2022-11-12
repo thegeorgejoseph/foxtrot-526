@@ -129,6 +129,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return) && popUps[0].active)
         {
+            Time.timeScale = 1;
             popUps[0].SetActive(false);
         }
         // Check if the battle is activated
@@ -259,6 +260,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                         if (level == Loader.Scene.Level_1.ToString() && firstEnemy)
                         {
                             popUps[0].SetActive(true);
+                            Time.timeScale = 0;
                             firstEnemy = false;
                         }
                         if (freezePUScript.getDroppingStatus())
@@ -271,6 +273,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                         if (level == Loader.Scene.Level_2.ToString() && firstEnemy)
                         {
                             popUps[0].SetActive(true);
+                            Time.timeScale = 0;
                             firstEnemy = false;
                         }
                         if (timerPUScript.getDroppingStatus())
@@ -283,6 +286,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                         if (level == Loader.Scene.Level_3.ToString() && firstEnemy)
                         {
                             popUps[0].SetActive(true);
+                            Time.timeScale = 0;
                             firstEnemy = false;
                         }
 
