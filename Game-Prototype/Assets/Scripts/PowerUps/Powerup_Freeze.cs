@@ -28,6 +28,7 @@ public class Powerup_Freeze : MonoBehaviour
             Transform curEnemy = Enemies.transform.GetChild(i);
             curEnemy.gameObject.GetComponent<Enemy_Movement_Script_Basic>().enabled = false;
         }
+        freezeSoundEffect.Play();
         CountDown(freezeTime);
     }
 

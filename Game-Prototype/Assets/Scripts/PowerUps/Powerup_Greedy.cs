@@ -61,6 +61,7 @@ public class Powerup_Greedy : MonoBehaviour
                 GreedyIcon.GetComponent<Image>().color = Color.white;
                 changeCrystalMultiplier(2);
                 changeDroppingStatus(false);
+                greedySoundEffect.Play();
                 StartCoroutine(CountDown(30));
             }
         }

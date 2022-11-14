@@ -59,6 +59,7 @@ public class Powerup_Zoom : MonoBehaviour
             collision.gameObject.SetActive(false);
             zoomoutIcon.GetComponent<Image>().color = Color.white;
             changeDroppingStatus(false);
+            zoomSoundEffect.Play();
             StartCoroutine(CountDown(pauseTime));
         }
     }

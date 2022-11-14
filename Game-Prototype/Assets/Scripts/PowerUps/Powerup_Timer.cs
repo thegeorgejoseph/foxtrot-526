@@ -44,6 +44,7 @@ public class Powerup_Timer : MonoBehaviour
             TimerIcon.GetComponent<Image>().color = Color.white;
             condition = true;
             changeDroppingStatus(false);
+            timerSoundEffect.Play();
             StartCoroutine(CountDown(pauseTime));
         }
 
