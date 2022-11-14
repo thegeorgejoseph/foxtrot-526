@@ -56,6 +56,13 @@ public static class DatabaseHandler{
         });
     }
 
+    public static void GetUserHighScore<T>(string level, string username, GetHighScoreCallback callback, string section = "highscores", string param = "levelScore"){
+        RestClient.Get($"{databaseURL}{section}/{level}/{username}/{param}.json").Then(response =>{
+            var responseJson = response.Text;
+            Debug.Log("Level Score Val is " + response.Text);
+            callback(float.Parse(response.Text));
+        });
+    }
 
     public static void GetTotalScore(string username, GetHighScoreCallback callback, string section="highscores", string level ="totalScore", string param = "totalGameScore"){
         

@@ -85,7 +85,7 @@ public class ShowScore : MonoBehaviour
         level_score.text = total_score_val.ToString();
         time_bonus.text = constant.ToString() + " / " + time.ToString() + " = " + time_bonus_val.ToString();
 
-        level_total_score = total_score_val + Exit_Script.score_till_curr_level;
+        level_total_score = total_score_val;
         total_score.text = (level_total_score).ToString();
         level1_score = level1_score + total_score_val;
 
@@ -220,6 +220,44 @@ public class ShowScore : MonoBehaviour
                 if (found < 0)
                 {
                     Debug.Log("Score Diff " + scoreDiff);
+                    
+                    int currLevel = (int)Exit_Script.level_num;
+
+                    switch(currLevel){
+                        case 1:
+                            LevelselectorScript.level1Score = playerHighscore.levelScore;
+                            Debug.Log("Level 1 score updated in static variable " + LevelselectorScript.level1Score);
+                            break;
+                        case 2:
+                            LevelselectorScript.level2Score = playerHighscore.levelScore;
+                            Debug.Log("Level 2 score updated in static variable " + LevelselectorScript.level2Score);
+                            break;
+                        case 3:
+                            LevelselectorScript.level3Score = playerHighscore.levelScore;
+                            Debug.Log("Level 3 score updated in static variable " + LevelselectorScript.level3Score);
+                            break;
+                        case 4:
+                            LevelselectorScript.level4Score = playerHighscore.levelScore;
+                            Debug.Log("Level 4 score updated in static variable " + LevelselectorScript.level4Score);
+                            break;
+                        case 5:
+                            LevelselectorScript.level5Score = playerHighscore.levelScore;
+                            Debug.Log("Level 5 score updated in static variable " + LevelselectorScript.level5Score);
+                            break;
+                        case 6:
+                            LevelselectorScript.level6Score = playerHighscore.levelScore;
+                            Debug.Log("Level 6 score updated in static variable " + LevelselectorScript.level6Score);
+                            break;
+                        case 7:
+                            LevelselectorScript.level7Score = playerHighscore.levelScore;
+                            Debug.Log("Level 7 score updated in static variable " + LevelselectorScript.level7Score);
+                            break;
+                        case 8:
+                            LevelselectorScript.level8Score = playerHighscore.levelScore;
+                            Debug.Log("Level 8 score updated in static variable " + LevelselectorScript.level8Score);
+                            break;
+                    }
+
                     DatabaseHandler.PostHighScore<HighScores>(playerHighscore, "Level_" + Exit_Script.level_num.ToString(), username, () =>
                     {
                         Debug.Log("done pushing the data " + username + " " + playerHighscore.levelScore);
@@ -228,6 +266,9 @@ public class ShowScore : MonoBehaviour
                         DatabaseHandler.GetTotalScore(username, (totScore) =>
                         {
                             Debug.Log("Old Total Score " + (totScore));
+                            LevelselectorScript.overallGameScore = totScore + scoreDiff;
+                            total_score.text = (LevelselectorScript.overallGameScore).ToString();
+                            Debug.Log("overall total Score updated " + LevelselectorScript.overallGameScore);
                             var playerTotalscore = new MaxScore(totScore + scoreDiff);
                             DatabaseHandler.PostTotalScore<MaxScore>(playerTotalscore, username, () =>
                             {
@@ -238,6 +279,9 @@ public class ShowScore : MonoBehaviour
                     else{
                         if(Exit_Script.level_num == 1){
                             var playerTotalscore = new MaxScore(level_total_score);
+                            LevelselectorScript.overallGameScore = level_total_score;
+                            Debug.Log("overall total Score updated " + LevelselectorScript.overallGameScore);
+                            total_score.text = (LevelselectorScript.overallGameScore).ToString();
                             DatabaseHandler.PostTotalScore<MaxScore>(playerTotalscore, username, () =>
                             {
                                 Debug.Log("Updated new HighScore");
@@ -248,6 +292,9 @@ public class ShowScore : MonoBehaviour
                             {
                                 Debug.Log("New Updated Score " + (totScore + level_total_score));
                                 var playerTotalscore = new MaxScore(totScore + level_total_score);
+                                LevelselectorScript.overallGameScore = totScore + level_total_score;
+                                Debug.Log("overall total Score updated " + LevelselectorScript.overallGameScore);
+                                total_score.text = (LevelselectorScript.overallGameScore).ToString();
                                 DatabaseHandler.PostTotalScore<MaxScore>(playerTotalscore, username, () =>
                                 {
                                     Debug.Log("Updated new HighScore");
@@ -477,7 +524,6 @@ public class ShowScore : MonoBehaviour
 
         }
 
-        Exit_Script.score_till_curr_level = level_total_score;
         if (Exit_Script.level_num == 8)
         {
             NextLevelButton.SetActive(false);

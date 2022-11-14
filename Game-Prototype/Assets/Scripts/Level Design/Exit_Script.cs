@@ -34,7 +34,6 @@ public class Exit_Script : MonoBehaviour
     public TMP_Text total_score;
     public TMP_Text level_pass_msg;
     public static float level1_score;
-    public static float score_till_curr_level;
     public float level_score_metric;
     public static float level_num;
     public GameObject MainMenuBtn;
@@ -134,6 +133,8 @@ public class Exit_Script : MonoBehaviour
 
                 string level = level_num.ToString();
                 did_finish = true;
+                LevelselectorScript.level1Completed = true;
+
                 analyticsManagerScript.timer.Stop();
 
                 // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
@@ -191,6 +192,7 @@ public class Exit_Script : MonoBehaviour
 
                 string level = level_num.ToString();
                 did_finish = true;
+                LevelselectorScript.level2Completed = true;
                 analyticsManagerScript.timer.Stop();
                 // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
                 Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);
@@ -239,6 +241,7 @@ public class Exit_Script : MonoBehaviour
 
                 did_finish = true;
                 analyticsManagerScript.timer.Stop();
+                LevelselectorScript.level3Completed = true;
                 // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
                 Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);
                 // level_score_metric = HealthManager.health * 100 + enemies_count * 100 + 100  + bonus_num;
@@ -270,6 +273,7 @@ public class Exit_Script : MonoBehaviour
 
                 string level = level_num.ToString();
                 did_finish = true;
+                LevelselectorScript.level4Completed = true;
                 analyticsManagerScript.timer.Stop();
                 // level_score_metric = HealthManager.health * 100 + enemies_count * 100 + 100 + bonus_num;
                 level_score_metric = HealthManager.health * 100 + crystal_count * 100 + 100 + bonus_num;
@@ -305,6 +309,7 @@ public class Exit_Script : MonoBehaviour
                 // level_score_metric = HealthManager.health * 100 + enemies_count * 100 + 100 + bonus_num;
                 level_score_metric = HealthManager.health * 100 + crystal_count * 100 + 100 + bonus_num;
                 did_finish = true;
+                LevelselectorScript.level5Completed = true;
                 analyticsManagerScript.timer.Stop();
                 // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
                 Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);
@@ -337,6 +342,7 @@ public class Exit_Script : MonoBehaviour
                 // level_score_metric = HealthManager.health * 100 + enemies_count * 100 + 100 + bonus_num;
                 level_score_metric = HealthManager.health * 100 + crystal_count * 100 + 100 + bonus_num;
                 did_finish = true;
+                LevelselectorScript.level6Completed = true;
                 analyticsManagerScript.timer.Stop();
                 // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
                 Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);
@@ -369,6 +375,7 @@ public class Exit_Script : MonoBehaviour
                 // level_score_metric = HealthManager.health * 100 + enemies_count * 100 + 100 + bonus_num;
                 level_score_metric = HealthManager.health * 100 + crystal_count * 100 + 100 + bonus_num;
                 did_finish = true;
+                LevelselectorScript.level7Completed = true;
                 analyticsManagerScript.timer.Stop();
                 // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
                 Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);
@@ -400,6 +407,7 @@ public class Exit_Script : MonoBehaviour
                 // level_score_metric = HealthManager.health * 100 + enemies_count * 100 + 100 + bonus_num;
                 level_score_metric = HealthManager.health * 100 + crystal_count * 100 + 100 + bonus_num;
                 did_finish = true;
+                LevelselectorScript.level8Completed = true;
                 analyticsManagerScript.timer.Stop();
                 // Debug.Log("timer " + analyticsManagerScript.timer.Elapsed);
                 Debug.Log("timer " + analyticsManagerScript.timer.ElapsedTicks / 10000000);

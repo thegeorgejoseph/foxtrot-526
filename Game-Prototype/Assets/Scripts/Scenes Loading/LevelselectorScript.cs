@@ -15,6 +15,24 @@ public class LevelselectorScript : MonoBehaviour
     public TMP_Text planet_7;
     public TMP_Text planet_8;
 
+    public static bool level1Completed = false;
+    public static bool level2Completed = false;
+    public static bool level3Completed = false;
+    public static bool level4Completed = false;
+    public static bool level5Completed = false;
+    public static bool level6Completed = false;
+    public static bool level7Completed = false;
+    public static bool level8Completed = false;
+
+    public static float level1Score;
+    public static float level2Score;
+    public static float level3Score;
+    public static float level4Score;
+    public static float level5Score;
+    public static float level6Score;
+    public static float level7Score;
+    public static float level8Score;
+    public static float overallGameScore;
 
     // Start is called before the first frame update
     void Start()
