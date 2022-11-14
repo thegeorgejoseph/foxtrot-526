@@ -22,6 +22,8 @@ public class Powerup_Zoom : MonoBehaviour
         { "Level_8", 3.0f }
     };
 
+    [SerializeField] private AudioSource zoomSoundEffect;
+
     // dropping status
     private bool droppingEnabled;
     void Start()

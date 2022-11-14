@@ -13,6 +13,8 @@ public class Powerup_Freeze : MonoBehaviour
     private bool droppingEnabled;
     public GameObject FreezeIcon;
 
+    [SerializeField] private AudioSource freezeSoundEffect;
+
     public void setFreezeTime(float newTime)
     {
         freezeTime = newTime;

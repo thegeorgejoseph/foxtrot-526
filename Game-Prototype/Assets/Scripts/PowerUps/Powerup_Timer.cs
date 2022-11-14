@@ -14,6 +14,8 @@ public class Powerup_Timer : MonoBehaviour
     // dropping status
     private bool droppingEnabled;
 
+    [SerializeField] private AudioSource timerSoundEffect;
+
     void Start()
     {
         pauseTime = 10;

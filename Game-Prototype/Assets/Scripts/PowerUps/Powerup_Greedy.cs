@@ -11,6 +11,8 @@ public class Powerup_Greedy : MonoBehaviour
     private bool droppingEnabled;
     public GameObject GreedyIcon;
 
+    [SerializeField] private AudioSource greedySoundEffect;
+
     // Start is called before the first frame update
     void Start()
     {
