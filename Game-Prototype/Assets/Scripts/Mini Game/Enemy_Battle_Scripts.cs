@@ -252,9 +252,11 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     string level = SceneManager.GetActiveScene().name;
 
                     // drop powerups
-                    String enemySpriteName = currentEnemy.GetComponent<SpriteRenderer>().sprite.name;
+                    // String enemySpriteName = currentEnemy.GetComponent<SpriteRenderer>().sprite.name;
+                    Color enemySpriteColor = currentEnemy.GetComponent<SpriteRenderer>().color;
 
-                    if (enemySpriteName == "ooze-blue") // if enemy is blue, drop greedy
+                    // if (enemySpriteName == "ooze-blue") // if enemy is blue, drop freeze
+                    if (enemySpriteColor == Color.blue)
                     {
                         // if (greedyPUScript.getDroppingStatus())
                         // {
@@ -271,7 +273,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                             Instantiate(freezePUPrefab, currentEnemy.transform.position, Quaternion.identity);
                         }
                     }
-                    else if (enemySpriteName == "ooze-red") // if enemy is red, drop timer
+                    // else if (enemySpriteName == "ooze-red") // if enemy is red, drop timer
+                    else if (enemySpriteColor == Color.red)
                     {
                         if (level == Loader.Scene.Level_2.ToString() && firstEnemy)
                         {
@@ -284,7 +287,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                             Instantiate(timerPUPrefab, currentEnemy.transform.position, Quaternion.identity);
                         }
                     }
-                    else if (enemySpriteName == "ooze-green") // if enemy is green, drop zoom
+                    // else if (enemySpriteName == "ooze-green") // if enemy is green, drop zoom
+                    else if (enemySpriteColor == Color.green)
                     {
                         if (level == Loader.Scene.Level_3.ToString() && firstEnemy)
                         {
