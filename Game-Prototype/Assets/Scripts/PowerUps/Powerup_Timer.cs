@@ -53,5 +53,6 @@ public class Powerup_Timer : MonoBehaviour
         condition = false;
         Timer.GetComponent<Timer_Script>().freeze = false; 
         TimerIcon.GetComponent<Image>().color = new Color(0.2f, 0.2f, 0.2f, 1);
+        changeDroppingStatus(true);
     }
 }
