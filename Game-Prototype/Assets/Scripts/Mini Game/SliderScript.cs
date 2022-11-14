@@ -52,17 +52,20 @@ public class SliderScript : MonoBehaviour
     {
         // Increase player scale
         this.player.gameObject.transform.localScale *= 1.5f;
+        currentEnemy.gameObject.transform.localScale *= 1.8f;
     }
 
     // Public method to set the player / enemy speed using a multiplier
     public void setEnemySpeed(float speedMultiplier)
     {
         enemySpeed *= speedMultiplier;
+        Debug.Log("Enemy Speed: " + enemySpeed);
     }
 
     public void setPlayerSpeed(float speedMultiplier)
     {
         playerSpeed *= speedMultiplier;
+        Debug.Log("Player Speed: " + playerSpeed);
     }
 
     public bool checkBattleResult()
@@ -98,9 +101,11 @@ public class SliderScript : MonoBehaviour
         {
             Debug.Log("Warning: No enemy object found!");
         }
+        // Sync the sprite and color of enemy & player
         currentEnemy.sprite = enemy.GetComponent<SpriteRenderer>().sprite;
+        currentEnemy.color = enemy.GetComponent<SpriteRenderer>().color;
         this.player.sprite = player.GetComponent<SpriteRenderer>().sprite;
-
+        this.player.color = player.GetComponent<SpriteRenderer>().color;
         // Reset Position
         this.player.gameObject.transform.position = playerOriginPos;
         currentEnemy.gameObject.transform.position = enemyOriginPos;
