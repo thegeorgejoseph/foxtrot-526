@@ -223,6 +223,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                         screenShake.TriggerShake();
                         shakeSoundEffect.Play();
                         GetComponent<Movement2D>().enabled = true;
+                        // Decrease slider game speed
+                        DMS.decreaseSpeed();
                     }
                 }
                 else
@@ -243,7 +245,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     // Enable player movement
                     kills += 1;
                     gemSoundEffect.Play();
-                    DMS.updateSpeed();
+                    // Increase slider game speed
+                    DMS.increaseSpeed();
                     GetComponent<Movement2D>().enabled = true;
 
                     string level = SceneManager.GetActiveScene().name;
@@ -313,7 +316,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
         {
             // Record which enemy the player encountered
             enemies_encountered += 1;
-            Debug.Log("enemy encountered: " + enemies_encountered);
+            // Debug.Log("enemy encountered: " + enemies_encountered);
             currentEnemy = collider.gameObject;
             // Stop movements
             currentEnemy.GetComponent<Rigidbody2D>().velocity = Vector2.zero;

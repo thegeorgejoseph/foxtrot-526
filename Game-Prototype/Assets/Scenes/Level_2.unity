@@ -212,6 +212,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 137012903}
     m_Modifications:
+    - target: {fileID: 675706888912338086, guid: 8f79aa8a2ae4cc747adc8ca1cc929bf9, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: dc9503ad8d9824011b413d34c1c88d7c, type: 2}
+    - target: {fileID: 675706888912338086, guid: 8f79aa8a2ae4cc747adc8ca1cc929bf9, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 4606754223789812996, guid: dc9503ad8d9824011b413d34c1c88d7c, type: 2}
     - target: {fileID: 5757473745887038933, guid: 8f79aa8a2ae4cc747adc8ca1cc929bf9, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -314,7 +322,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8224332802870053003, guid: 8f79aa8a2ae4cc747adc8ca1cc929bf9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f79aa8a2ae4cc747adc8ca1cc929bf9, type: 3}
