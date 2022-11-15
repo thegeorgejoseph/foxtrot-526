@@ -22,6 +22,8 @@ public class Powerup_Zoom : MonoBehaviour
         { "Level_8", 3.0f }
     };
 
+    [SerializeField] private AudioSource zoomSoundEffect;
+
     // dropping status
     private bool droppingEnabled;
     void Start()
@@ -57,6 +59,7 @@ public class Powerup_Zoom : MonoBehaviour
             collision.gameObject.SetActive(false);
             zoomoutIcon.GetComponent<Image>().color = Color.white;
             changeDroppingStatus(false);
+            zoomSoundEffect.Play();
             StartCoroutine(CountDown(pauseTime));
         }
     }

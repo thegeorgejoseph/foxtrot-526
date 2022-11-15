@@ -14,6 +14,8 @@ public class Powerup_Timer : MonoBehaviour
     // dropping status
     private bool droppingEnabled;
 
+    [SerializeField] private AudioSource timerSoundEffect;
+
     void Start()
     {
         pauseTime = 10;
@@ -42,6 +44,7 @@ public class Powerup_Timer : MonoBehaviour
             TimerIcon.GetComponent<Image>().color = Color.white;
             condition = true;
             changeDroppingStatus(false);
+            timerSoundEffect.Play();
             StartCoroutine(CountDown(pauseTime));
         }
 

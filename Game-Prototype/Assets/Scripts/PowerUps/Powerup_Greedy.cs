@@ -11,6 +11,8 @@ public class Powerup_Greedy : MonoBehaviour
     private bool droppingEnabled;
     public GameObject GreedyIcon;
 
+    [SerializeField] private AudioSource greedySoundEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +61,7 @@ public class Powerup_Greedy : MonoBehaviour
                 GreedyIcon.GetComponent<Image>().color = Color.white;
                 changeCrystalMultiplier(2);
                 changeDroppingStatus(false);
+                greedySoundEffect.Play();
                 StartCoroutine(CountDown(30));
             }
         }

@@ -13,6 +13,8 @@ public class Powerup_Freeze : MonoBehaviour
     private bool droppingEnabled;
     public GameObject FreezeIcon;
 
+    [SerializeField] private AudioSource freezeSoundEffect;
+
     public void setFreezeTime(float newTime)
     {
         freezeTime = newTime;
@@ -26,6 +28,7 @@ public class Powerup_Freeze : MonoBehaviour
             Transform curEnemy = Enemies.transform.GetChild(i);
             curEnemy.gameObject.GetComponent<Enemy_Movement_Script_Basic>().enabled = false;
         }
+        freezeSoundEffect.Play();
         CountDown(freezeTime);
     }
 
