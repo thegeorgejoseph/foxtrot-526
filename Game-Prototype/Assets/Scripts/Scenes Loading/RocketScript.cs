@@ -50,7 +50,7 @@ public class RocketScript : MonoBehaviour
         }
         else if (LevelselectorScript.spaceship_level == 5)
         {
-            hint_text.text = "Travelling to Asteroid Belt";
+            hint_text.text = "Travelling to Titan";
             powerup_hint.text = "Blue enemy drops freeze powerup\n" +
              "Red enemy drops timer freeze powerup\n" +
              "Green enemy drops zoom powerup";
@@ -64,7 +64,7 @@ public class RocketScript : MonoBehaviour
         }
         else if (LevelselectorScript.spaceship_level == 7)
         {
-            hint_text.text = "Travelling to Titan";
+            hint_text.text = "Travelling to Asteroid Belt";
             powerup_hint.text = "Blue enemy drops freeze powerup\n" +
              "Red enemy drops timer freeze powerup\n" +
              "Green enemy drops zoom powerup";

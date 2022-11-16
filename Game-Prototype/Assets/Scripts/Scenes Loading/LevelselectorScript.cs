@@ -73,7 +73,7 @@ public class LevelselectorScript : MonoBehaviour
             planet_4.text = "Mars";
             planet_4.color = Color.green;
 
-            planet_5.text = "Asteroid Belt";
+            planet_5.text = "Titan";
             planet_5.color = Color.green;
         }
         if (CameraScript.level_num == 6 || Exit_Script.level_num == 5)
@@ -87,7 +87,7 @@ public class LevelselectorScript : MonoBehaviour
             planet_4.text = "Mars";
             planet_4.color = Color.green;
 
-            planet_5.text = "Asteroid Belt";
+            planet_5.text = "Titan";
             planet_5.color = Color.green;
 
             planet_6.text = "IO";
@@ -104,13 +104,13 @@ public class LevelselectorScript : MonoBehaviour
             planet_4.text = "Mars";
             planet_4.color = Color.green;
 
-            planet_5.text = "Asteroid Belt";
+            planet_5.text = "Titan";
             planet_5.color = Color.green;
 
             planet_6.text = "IO";
             planet_6.color = Color.green;
 
-            planet_7.text = "Titan";
+            planet_7.text = "Asteroid Belt";
             planet_7.color = Color.green;
         }
         if (CameraScript.level_num == 8 || Exit_Script.level_num == 7)
@@ -124,13 +124,13 @@ public class LevelselectorScript : MonoBehaviour
             planet_4.text = "Mars";
             planet_4.color = Color.green;
 
-            planet_5.text = "Asteroid Belt";
+            planet_5.text = "Titan";
             planet_5.color = Color.green;
 
             planet_6.text = "IO";
             planet_6.color = Color.green;
 
-            planet_7.text = "Titan";
+            planet_7.text = "Asteroid Belt";
             planet_7.color = Color.green;
 
             planet_8.text = "Charon";
