@@ -11,6 +11,7 @@ public class CameraScript : MonoBehaviour
     public GameObject Enemy;
     public GameObject Player;
     public GameObject Timer;
+    public GameObject Compass;
 
     private Animation camAni;
     public static int level_num = 1;
@@ -38,6 +39,10 @@ public class CameraScript : MonoBehaviour
         // Play starting animation
         if (gameObject.GetComponent<Animation>() != null)
         {
+            if (Compass != null)
+            {
+                Compass.SetActive(false);
+            }
             camAni = gameObject.GetComponent<Animation>();
             camAni.Play();
             StartCoroutine(CountDown((int)Mathf.Ceil(camAni.clip.length)));
@@ -72,6 +77,10 @@ public class CameraScript : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         Enemy.SetActive(true);
+        if (Compass != null)
+        {
+            Compass.SetActive(true);
+        }
         Player.GetComponent<Movement2D>().enabled = true;
         Timer.GetComponent<Timer_Script>().enabled = true;
         GameObject.Find("Hearts").GetComponent<HealthManager>().EnlargeHeart();
