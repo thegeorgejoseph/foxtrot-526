@@ -90,6 +90,7 @@ public class SliderScript : MonoBehaviour
 
         enemyDirection = Random.Range(0, 2); // 0 for clockwise, 1 for counter-clockwise
         playerDirection = (enemyDirection == 0) ? 1 : 0; // Opposite of enemy's direction
+        // playerDirection = Random.Range(0, 2);
         curEnemyWaypoint = 0;   // Current Waypoint: 0, 1, 2, 3
         curPlayerWaypoint = 2;
         enemy_nextCoor = wayPoints.transform.GetChild(curEnemyWaypoint);
@@ -151,19 +152,19 @@ public class SliderScript : MonoBehaviour
             // Enemy Movement
             // Debug.Log("Enemy Distance Delta: " + getDistance(currentEnemy.gameObject.transform, enemy_nextCoor));
             // Debug.Log("Min delta Enemy: " + Time.deltaTime * enemySpeed * (remainCoorEnemy[0] == 0 ? Mathf.Abs(remainCoorEnemy[1]) : Mathf.Abs(remainCoorEnemy[0])));
-            if (getDistance(currentEnemy.gameObject.transform, enemy_nextCoor) <= (Time.deltaTime * enemySpeed * (remainCoorEnemy[0] == 0 ? Mathf.Abs(remainCoorEnemy[1]) : Mathf.Abs(remainCoorEnemy[0]))))
+            if (getDistance(currentEnemy.gameObject.transform, enemy_nextCoor) <= (Time.deltaTime * enemySpeed * ( Mathf.Abs(remainCoorEnemy[0]) <= 0.1f ? Mathf.Abs(remainCoorEnemy[1]) : Mathf.Abs(remainCoorEnemy[0]))))
             {
                 currentEnemy.gameObject.transform.position = enemy_nextCoor.position; // Line up with current point
                 enemy_nextCoor = changeMovementDirection(enemyDirection, ref curEnemyWaypoint); // Set next waypoint
                 remainCoorEnemy[0] = enemy_nextCoor.position.x - currentEnemy.gameObject.transform.position.x;
                 remainCoorEnemy[1] = enemy_nextCoor.position.y - currentEnemy.gameObject.transform.position.y;
             }
-            currentEnemy.gameObject.transform.position = currentEnemy.gameObject.transform.position + new Vector3((remainCoorEnemy[0] == 0) ? 0 : (remainCoorEnemy[0] * Time.deltaTime * enemySpeed), (remainCoorEnemy[1] == 0) ? 0 : (remainCoorEnemy[1] * Time.deltaTime * enemySpeed), 0);
+            currentEnemy.gameObject.transform.position = currentEnemy.gameObject.transform.position + new Vector3(Mathf.Abs(remainCoorEnemy[0]) <= 0.1f ? 0 : (remainCoorEnemy[0] * Time.deltaTime * enemySpeed), (remainCoorEnemy[1] == 0) ? 0 : (remainCoorEnemy[1] * Time.deltaTime * enemySpeed), 0);
 
             // Player Movement
             // Debug.Log("Player Distance Delta: " + getDistance(player.gameObject.transform, player_nextCoor));
             // Debug.Log("Min delta Player: " + Time.deltaTime * playerSpeed * (remainCoorPlayer[0] == 0 ? Mathf.Abs(remainCoorPlayer[1]) : Mathf.Abs(remainCoorPlayer[0])));
-            if (getDistance(player.gameObject.transform, player_nextCoor) <= (Time.deltaTime * playerSpeed * (remainCoorPlayer[0] == 0 ? Mathf.Abs(remainCoorPlayer[1]) : Mathf.Abs(remainCoorPlayer[0]))))
+            if (getDistance(player.gameObject.transform, player_nextCoor) <= (Time.deltaTime * playerSpeed * (Mathf.Abs(remainCoorPlayer[0]) <= 0.1f ? Mathf.Abs(remainCoorPlayer[1]) : Mathf.Abs(remainCoorPlayer[0]))))
             {
                 player.gameObject.transform.position = player_nextCoor.position; // Line up with current point
                 player_nextCoor = changeMovementDirection(playerDirection, ref curPlayerWaypoint); // Set next waypoint
@@ -172,7 +173,7 @@ public class SliderScript : MonoBehaviour
                
             }
             //Debug.Log("Player offest = " + remainCoorPlayer[0] + ", " + remainCoorPlayer[1]);
-            player.gameObject.transform.position = player.gameObject.transform.position + new Vector3((remainCoorPlayer[0] == 0) ? 0 : (remainCoorPlayer[0] * Time.deltaTime * playerSpeed), (remainCoorPlayer[1] == 0) ? 0 : (remainCoorPlayer[1] * Time.deltaTime * playerSpeed), 0);
+            player.gameObject.transform.position = player.gameObject.transform.position + new Vector3(Mathf.Abs(remainCoorPlayer[0]) <= 0.1f ? 0 : (remainCoorPlayer[0] * Time.deltaTime * playerSpeed), (remainCoorPlayer[1] == 0) ? 0 : (remainCoorPlayer[1] * Time.deltaTime * playerSpeed), 0);
         }
 
         // Hit Pending Part
