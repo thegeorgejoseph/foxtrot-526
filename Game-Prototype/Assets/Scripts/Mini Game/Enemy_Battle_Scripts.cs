@@ -232,7 +232,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     HealthManager.health += 0.5f;
                     // The player has won
                     /*  OLD currentEnemy.SetActive(false);   */
-                    respawn.DisableEnemy(currentEnemy);
+                    //respawn.DisableEnemy(currentEnemy);
+                    currentEnemy.SetActive(false);
                     // Player will not get into battle for 3 secs.
                     player.tag = "Invisible";
                     StartCoroutine(Invisible(1f));

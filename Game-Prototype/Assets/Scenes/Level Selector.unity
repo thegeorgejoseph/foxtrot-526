@@ -2925,7 +2925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3903107452790197172, guid: aae3b432c90d54c37914fafb3bb80ab3, type: 3}
       propertyPath: m_Name
-      value: Planet8Collider
+      value: Planet7Collider
       objectReference: {fileID: 0}
     - target: {fileID: 3903107452790197172, guid: aae3b432c90d54c37914fafb3bb80ab3, type: 3}
       propertyPath: m_TagString
@@ -3489,7 +3489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3903107452790197172, guid: aae3b432c90d54c37914fafb3bb80ab3, type: 3}
       propertyPath: m_Name
-      value: Planet7Collider
+      value: Planet8Collider
       objectReference: {fileID: 0}
     - target: {fileID: 3903107452790197172, guid: aae3b432c90d54c37914fafb3bb80ab3, type: 3}
       propertyPath: m_TagString
@@ -4545,6 +4545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GreedyIcon: {fileID: 0}
+  greedySoundEffect: {fileID: 0}
 --- !u!95 &1811579286
 Animator:
   serializedVersion: 4
