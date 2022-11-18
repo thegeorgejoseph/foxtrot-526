@@ -217,4 +217,32 @@ public class LevelselectorScript : MonoBehaviour
         }
 
     }
+    
+    public void unlockAllLevels() {
+            Debug.Log("In the level");
+            planet_2.text = "Venus";
+            planet_2.color = Color.green;
+
+            planet_3.text = "Moon";
+            planet_3.color = Color.green;
+
+            planet_4.text = "Mars";
+            planet_4.color = Color.green;
+
+            planet_5.text = "Titan";
+            planet_5.color = Color.green;
+
+            planet_6.text = "IO";
+            planet_6.color = Color.green;
+
+            planet_7.text = "Asteroid Belt";
+            planet_7.color = Color.green;
+
+            planet_8.text = "Charon";
+            planet_8.color = Color.green;
+
+            CameraScript.level_num = 8;
+            Exit_Script.level_num = 7;
+
+    }
 }
