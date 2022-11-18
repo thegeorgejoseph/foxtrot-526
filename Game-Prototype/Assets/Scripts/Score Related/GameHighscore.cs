@@ -54,6 +54,7 @@ public class GameHighscore : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        HealthManager.health = 1.0f;
         var username = InputNameScript.username + "_" + analyticsManagerScript.clientID;
         Debug.Log("highscore username " + username);
         Debug.Log("Failure Level " + Exit_Script.level_num.ToString());

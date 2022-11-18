@@ -229,6 +229,11 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                 }
                 else
                 {
+                    string level = SceneManager.GetActiveScene().name;
+                    if (level == Loader.Scene.Level_0.ToString())
+                    {
+                        Time.timeScale = 0;
+                    }
                     HealthManager.health += 0.5f;
                     // The player has won
                     /*  OLD currentEnemy.SetActive(false);   */
@@ -249,8 +254,6 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     // Increase slider game speed
                     DMS.increaseSpeed();
                     GetComponent<Movement2D>().enabled = true;
-
-                    string level = SceneManager.GetActiveScene().name;
 
                     // drop powerups
                     // String enemySpriteName = currentEnemy.GetComponent<SpriteRenderer>().sprite.name;

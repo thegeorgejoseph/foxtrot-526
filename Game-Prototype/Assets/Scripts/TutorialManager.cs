@@ -10,14 +10,21 @@ public class TutorialManager : MonoBehaviour
     void Start()
     {
         popUpIndex = 0;
+        Time.timeScale = 0;
     }
 
     // Update is called once per frame
     void Update()
-    {   
+    {
+        if (Input.GetKeyDown(KeyCode.Return) && popUps[popUpIndex].active)
+        {
+            Time.timeScale = 1;
+            popUps[popUpIndex].SetActive(false);
+        }
+
         if (popUpIndex < popUps.Length){
             
-            if (popUpIndex == 0) {
+        if (popUpIndex == 0) {
             popUps[0].SetActive(true);
             popUps[1].SetActive(false);
             popUps[2].SetActive(false);
@@ -71,6 +78,7 @@ public class TutorialManager : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other){
         popUpIndex++;
         Destroy(gameObject);
-        
+        Time.timeScale = 0;
+
     }
 }
