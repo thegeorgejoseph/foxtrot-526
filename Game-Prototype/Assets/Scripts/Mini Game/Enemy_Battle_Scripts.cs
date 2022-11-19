@@ -113,7 +113,10 @@ public class Enemy_Battle_Scripts : MonoBehaviour
         timerPUPrefab = (GameObject)Resources.Load("Powerup-timer", typeof(GameObject));
         zoomPUPrefab = (GameObject)Resources.Load("Powerup-zoom", typeof(GameObject));
 
-        popUps[0].SetActive(false);
+        if (popUps.Length > 0)
+        {
+            popUps[0].SetActive(false);
+        }
         freezePUPrefab = (GameObject)Resources.Load("Powerup-freeze", typeof(GameObject));
 
         // adjust prefab scales
@@ -127,7 +130,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && popUps[0].active)
+        if (Input.GetKeyDown(KeyCode.Return) && popUps.Length > 0 && popUps[0].active)
         {
             Time.timeScale = 1;
             popUps[0].SetActive(false);
@@ -230,10 +233,6 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                 else
                 {
                     string level = SceneManager.GetActiveScene().name;
-                    if (level == Loader.Scene.Level_0.ToString())
-                    {
-                        Time.timeScale = 0;
-                    }
                     HealthManager.health += 0.5f;
                     // The player has won
                     /*  OLD currentEnemy.SetActive(false);   */
