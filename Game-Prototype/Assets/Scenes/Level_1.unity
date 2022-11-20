@@ -10559,9 +10559,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Powerup-greedy
       objectReference: {fileID: 0}
+    - target: {fileID: 4543461263846462952, guid: 06b38e0bd2840497aa085d6ce4d8a095, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4543461263846462954, guid: 06b38e0bd2840497aa085d6ce4d8a095, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4543461263846462954, guid: 06b38e0bd2840497aa085d6ce4d8a095, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4543461263846462954, guid: 06b38e0bd2840497aa085d6ce4d8a095, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4543461263846462954, guid: 06b38e0bd2840497aa085d6ce4d8a095, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4543461263846462954, guid: 06b38e0bd2840497aa085d6ce4d8a095, type: 3}
       propertyPath: m_LocalPosition.x

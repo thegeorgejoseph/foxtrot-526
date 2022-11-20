@@ -113,7 +113,10 @@ public class Enemy_Battle_Scripts : MonoBehaviour
         timerPUPrefab = (GameObject)Resources.Load("Powerup-timer", typeof(GameObject));
         zoomPUPrefab = (GameObject)Resources.Load("Powerup-zoom", typeof(GameObject));
 
-        popUps[0].SetActive(false);
+        if (popUps.Length > 0)
+        {
+            popUps[0].SetActive(false);
+        }
         freezePUPrefab = (GameObject)Resources.Load("Powerup-freeze", typeof(GameObject));
 
         // adjust prefab scales
@@ -127,7 +130,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && popUps[0].active)
+        if (Input.GetKeyDown(KeyCode.Return) && popUps.Length > 0 && popUps[0].active)
         {
             Time.timeScale = 1;
             popUps[0].SetActive(false);
@@ -229,6 +232,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                 }
                 else
                 {
+                    string level = SceneManager.GetActiveScene().name;
                     HealthManager.health += 0.5f;
                     // The player has won
                     /*  OLD currentEnemy.SetActive(false);   */
@@ -250,8 +254,6 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                     DMS.increaseSpeed();
                     GetComponent<Movement2D>().enabled = true;
 
-                    string level = SceneManager.GetActiveScene().name;
-
                     // drop powerups
                     // String enemySpriteName = currentEnemy.GetComponent<SpriteRenderer>().sprite.name;
                     Color enemySpriteColor = currentEnemy.GetComponent<SpriteRenderer>().color;
@@ -271,7 +273,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                         }
                         if (freezePUScript.getDroppingStatus())
                         {
-                            Instantiate(freezePUPrefab, currentEnemy.transform.position, Quaternion.identity);
+                            Vector3 enemyScale = currentEnemy.transform.localScale;
+                            Instantiate(freezePUPrefab, currentEnemy.transform.position + new Vector3(-0.2f * enemyScale.x, 0.2f * enemyScale.y, 0), Quaternion.identity);
                         }
                     }
                     // else if (enemySpriteName == "ooze-red") // if enemy is red, drop timer
@@ -285,7 +288,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                         }
                         if (timerPUScript.getDroppingStatus())
                         {
-                            Instantiate(timerPUPrefab, currentEnemy.transform.position, Quaternion.identity);
+                            Vector3 enemyScale = currentEnemy.transform.localScale;
+                            Instantiate(timerPUPrefab, currentEnemy.transform.position + new Vector3(-0.2f * enemyScale.x, 0.2f * enemyScale.y, 0), Quaternion.identity);
                         }
                     }
                     // else if (enemySpriteName == "ooze-green") // if enemy is green, drop zoom
@@ -300,7 +304,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
 
                         if (zoomPUScript.getDroppingStatus())
                         {
-                            Instantiate(zoomPUPrefab, currentEnemy.transform.position, Quaternion.identity);
+                            Vector3 enemyScale = currentEnemy.transform.localScale;
+                            Instantiate(zoomPUPrefab, currentEnemy.transform.position + new Vector3(-0.2f * enemyScale.x, 0.2f * enemyScale.y, 0), Quaternion.identity);
                         }
                     }
                 }
