@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
+using System;
 
 public class Movement2D : MonoBehaviour
 {
@@ -23,10 +27,24 @@ public class Movement2D : MonoBehaviour
     public RuntimeAnimatorController runSideAnimator;
     int direction;
 
+    private Dictionary<string, float> movementSpeedMapping = new Dictionary<string, float>
+    {
+        { "Level_0", 5.0f },
+        { "Level_1", 5.0f },
+        { "Level_2", 4.5f },
+        { "Level_3", 2.5f },
+        { "Level_4", 4.0f },
+        { "Level_5", 3.0f },
+        { "Level_6", 5.0f },
+        { "Level_7", 2.5f },
+        { "Level_8", 2.5f }
+    };
+
     // Start is called before the first frame update
     void Start()
     {
-            
+        String sceneName = SceneManager.GetActiveScene().name;
+        movementSpeed = movementSpeedMapping[sceneName];
     }
 
     // Update is called once per frame
@@ -57,45 +75,51 @@ public class Movement2D : MonoBehaviour
     void FixedUpdate()
     {
         rb2d.MovePosition(rb2d.position + movementVec * movementSpeed * Time.fixedDeltaTime);
-        
-        if(movementVec.y<0){
-            Player.GetComponent<SpriteRenderer>().sprite=runDownSprite;
+
+        if (movementVec.y < 0)
+        {
+            Player.GetComponent<SpriteRenderer>().sprite = runDownSprite;
             Player.GetComponent<Animator>().runtimeAnimatorController = runDownAnimator;
-            direction=1;
+            direction = 1;
         }
-        else if(movementVec.y>0){
-            Player.GetComponent<SpriteRenderer>().sprite=runUpSprite;
+        else if (movementVec.y > 0)
+        {
+            Player.GetComponent<SpriteRenderer>().sprite = runUpSprite;
             Player.GetComponent<Animator>().runtimeAnimatorController = runUpAnimator;
-            direction=2;
+            direction = 2;
         }
         // else{
         //     Player.GetComponent<SpriteRenderer>().sprite=idleSideSprite;
         // }
         if (movementVec.x < 0)
         {
-            Player.GetComponent<SpriteRenderer>().sprite=runSideSprite;
+            Player.GetComponent<SpriteRenderer>().sprite = runSideSprite;
             Player.GetComponent<Animator>().runtimeAnimatorController = runSideAnimator;
             Player.GetComponent<SpriteRenderer>().flipX = false;
-            direction=3;
+            direction = 3;
         }
         else if (movementVec.x > 0)
         {
-            Player.GetComponent<SpriteRenderer>().sprite=runSideSprite;
+            Player.GetComponent<SpriteRenderer>().sprite = runSideSprite;
             Player.GetComponent<Animator>().runtimeAnimatorController = runSideAnimator;
             Player.GetComponent<SpriteRenderer>().flipX = true;
-            direction=3;
+            direction = 3;
         }
-        if(movementVec.x == 0 && movementVec.y == 0){
-            if(direction == 1){
-                Player.GetComponent<SpriteRenderer>().sprite=idleDownSprite;
+        if (movementVec.x == 0 && movementVec.y == 0)
+        {
+            if (direction == 1)
+            {
+                Player.GetComponent<SpriteRenderer>().sprite = idleDownSprite;
                 Player.GetComponent<Animator>().runtimeAnimatorController = idleDownAnimator;
             }
-            if(direction == 2){
-                Player.GetComponent<SpriteRenderer>().sprite=idleUpSprite;
+            if (direction == 2)
+            {
+                Player.GetComponent<SpriteRenderer>().sprite = idleUpSprite;
                 Player.GetComponent<Animator>().runtimeAnimatorController = idleUpAnimator;
             }
-            if(direction == 3){
-                Player.GetComponent<SpriteRenderer>().sprite=idleSideSprite;
+            if (direction == 3)
+            {
+                Player.GetComponent<SpriteRenderer>().sprite = idleSideSprite;
                 Player.GetComponent<Animator>().runtimeAnimatorController = idleSideAnimator;
             }
         }

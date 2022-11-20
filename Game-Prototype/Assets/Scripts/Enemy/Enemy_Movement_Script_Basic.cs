@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
+using System;
 
 public class Enemy_Movement_Script_Basic : MonoBehaviour
 {
@@ -21,6 +25,18 @@ public class Enemy_Movement_Script_Basic : MonoBehaviour
 
     private int frameCount = 0;
 
+    private Dictionary<string, float> movementSpeedMapping = new Dictionary<string, float>
+    {
+        { "Level_1", 2.5f },
+        { "Level_2", 2.0f },
+        { "Level_3", 1.5f },
+        { "Level_4", 2.0f },
+        { "Level_5", 1.5f },
+        { "Level_6", 2.5f },
+        { "Level_7", 1.0f },
+        { "Level_8", 1.5f }
+    };
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +47,9 @@ public class Enemy_Movement_Script_Basic : MonoBehaviour
         bottonWall = GameObject.Find("BottonWall");
         movementVec.x = 0;
         movementVec.y = 0;
+
+        String sceneName = SceneManager.GetActiveScene().name;
+        movementSpeed = movementSpeedMapping[sceneName];
     }
 
     void FixedUpdate()
@@ -47,7 +66,7 @@ public class Enemy_Movement_Script_Basic : MonoBehaviour
                 frameCount = 0;
                 movementVec.x = 0;
                 movementVec.y = 0;
-                int roll = Random.Range(0, 5);
+                int roll = UnityEngine.Random.Range(0, 5);
                 if (roll == 1)
                 {
                     movementVec.y = 1;

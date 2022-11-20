@@ -273,7 +273,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                         }
                         if (freezePUScript.getDroppingStatus())
                         {
-                            Instantiate(freezePUPrefab, currentEnemy.transform.position, Quaternion.identity);
+                            Vector3 enemyScale = currentEnemy.transform.localScale;
+                            Instantiate(freezePUPrefab, currentEnemy.transform.position + new Vector3(-0.2f * enemyScale.x, 0.2f * enemyScale.y, 0), Quaternion.identity);
                         }
                     }
                     // else if (enemySpriteName == "ooze-red") // if enemy is red, drop timer
@@ -287,7 +288,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
                         }
                         if (timerPUScript.getDroppingStatus())
                         {
-                            Instantiate(timerPUPrefab, currentEnemy.transform.position, Quaternion.identity);
+                            Vector3 enemyScale = currentEnemy.transform.localScale;
+                            Instantiate(timerPUPrefab, currentEnemy.transform.position + new Vector3(-0.2f * enemyScale.x, 0.2f * enemyScale.y, 0), Quaternion.identity);
                         }
                     }
                     // else if (enemySpriteName == "ooze-green") // if enemy is green, drop zoom
@@ -302,7 +304,8 @@ public class Enemy_Battle_Scripts : MonoBehaviour
 
                         if (zoomPUScript.getDroppingStatus())
                         {
-                            Instantiate(zoomPUPrefab, currentEnemy.transform.position, Quaternion.identity);
+                            Vector3 enemyScale = currentEnemy.transform.localScale;
+                            Instantiate(zoomPUPrefab, currentEnemy.transform.position + new Vector3(-0.2f * enemyScale.x, 0.2f * enemyScale.y, 0), Quaternion.identity);
                         }
                     }
                 }
