@@ -10,6 +10,7 @@ public class InputNameScript : MonoBehaviour
     public TMP_InputField Inputname;
     public TMP_Text Error_Msg;
     public static string username;
+    public static bool gameStart = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +33,7 @@ public class InputNameScript : MonoBehaviour
         else
         {
             username = Inputname.text;
+            gameStart = true;
             SceneManager.LoadScene("Level Selector");
         }
     }
