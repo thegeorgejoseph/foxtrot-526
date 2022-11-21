@@ -68,7 +68,7 @@ public class ShowScore : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
         int time_bonus_val = Exit_Script.bonus_num;
         float heart_count = HealthManager.health;
         float total_score_val = 0;
