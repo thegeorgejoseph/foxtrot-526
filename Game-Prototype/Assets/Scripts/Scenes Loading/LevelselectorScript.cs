@@ -52,16 +52,19 @@ public class LevelselectorScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Debug.Log("L1 score " + level1Score);
+        // planet_1_score.text = level1Score.ToString();
+        // planet_2_score.text = level2Score.ToString();
+        // planet_3_score.text = level3Score.ToString();
+        // planet_4_score.text = level4Score.ToString();
+        // planet_5_score.text = level5Score.ToString();
+        // planet_6_score.text = level6Score.ToString();
+        // planet_7_score.text = level7Score.ToString();
+        // planet_8_score.text = level8Score.ToString();
+        overallGameScore = level1Score + level2Score + level3Score + level4Score + level5Score + level6Score + level7Score + level8Score;
         Debug.Log("Init Score " + overallGameScore);
-        score.text = overallGameScore.ToString();
-        planet_1_score.text = level1Score.ToString();
-        planet_2_score.text = level2Score.ToString();
-        planet_3_score.text = level3Score.ToString();
-        planet_4_score.text = level4Score.ToString();
-        planet_5_score.text = level5Score.ToString();
-        planet_6_score.text = level6Score.ToString();
-        planet_7_score.text = level7Score.ToString();
-        planet_8_score.text = level8Score.ToString();
+        // score.text = overallGameScore.ToString();
+        
 
         gameObject = GameObject.FindGameObjectsWithTag ("Highscore");
         levelObject = GameObject.FindGameObjectsWithTag ("LevelScore");
@@ -78,6 +81,8 @@ public class LevelselectorScript : MonoBehaviour
 
         if(level1Completed){
            planet_1.alignment = TextAlignmentOptions.Top;
+           planet_1_score.text = level1Score.ToString();
+           score.text = overallGameScore.ToString();
            foreach(GameObject go in gameObject)
             {
                 if(go.name == "highscore_1"){
@@ -94,7 +99,9 @@ public class LevelselectorScript : MonoBehaviour
         }
 
         if(level2Completed){
+           planet_2_score.text = level2Score.ToString();
            planet_2.alignment = TextAlignmentOptions.Top;
+           score.text = overallGameScore.ToString();
            foreach(GameObject go in gameObject)
             {
                 if(go.name == "highscore_2"){
@@ -111,7 +118,9 @@ public class LevelselectorScript : MonoBehaviour
         }
 
         if(level3Completed){
+           planet_3_score.text = level3Score.ToString();
            planet_3.alignment = TextAlignmentOptions.Top;
+           score.text = overallGameScore.ToString();
            foreach(GameObject go in gameObject)
             {
                 if(go.name == "highscore_3"){
@@ -128,7 +137,9 @@ public class LevelselectorScript : MonoBehaviour
         }
 
         if(level4Completed){
+           planet_4_score.text = level4Score.ToString();
            planet_4.alignment = TextAlignmentOptions.Top;
+           score.text = overallGameScore.ToString();
            foreach(GameObject go in gameObject)
             {
                 if(go.name == "highscore_4"){
@@ -145,7 +156,9 @@ public class LevelselectorScript : MonoBehaviour
         }
         
         if(level5Completed){
+           planet_5_score.text = level5Score.ToString();
            planet_5.alignment = TextAlignmentOptions.Top;
+           score.text = overallGameScore.ToString();
            foreach(GameObject go in gameObject)
             {
                 if(go.name == "highscore_5"){
@@ -162,7 +175,9 @@ public class LevelselectorScript : MonoBehaviour
         }
         
         if(level6Completed){
+            planet_6_score.text = level6Score.ToString();
            planet_6.alignment = TextAlignmentOptions.Top;
+           score.text = overallGameScore.ToString();
            foreach(GameObject go in gameObject)
             {
                 if(go.name == "highscore_6"){
@@ -179,7 +194,9 @@ public class LevelselectorScript : MonoBehaviour
         }
 
         if(level7Completed){
+            planet_7_score.text = level7Score.ToString();
            planet_7.alignment = TextAlignmentOptions.Top;
+           score.text = overallGameScore.ToString();
            foreach(GameObject go in gameObject)
             {
                 if(go.name == "highscore_7"){
@@ -196,7 +213,9 @@ public class LevelselectorScript : MonoBehaviour
         }
 
         if(level8Completed){
+            planet_8_score.text = level8Score.ToString();
            planet_8.alignment = TextAlignmentOptions.Top;
+           score.text = overallGameScore.ToString();
            foreach(GameObject go in gameObject)
             {
                 if(go.name == "highscore_8"){
