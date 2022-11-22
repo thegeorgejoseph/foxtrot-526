@@ -28,13 +28,23 @@ public class InputNameScript : MonoBehaviour
         Debug.Log(Inputname.text);
         if(Inputname.text == "")
         {
+            Error_Msg.text = "Please enter name";
             Error_Msg.gameObject.SetActive(true);
         }
         else
         {
             username = Inputname.text;
-            gameStart = true;
-            SceneManager.LoadScene("Level Selector");
+            if(username.Length > 8)
+            {
+                Error_Msg.text = "Please enter name upto 8 characters";
+                Error_Msg.gameObject.SetActive(true);
+            }
+            else
+            {
+                gameStart = true;
+                SceneManager.LoadScene("Level Selector");
+            }
+            
         }
     }
 }
