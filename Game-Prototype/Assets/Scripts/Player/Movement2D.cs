@@ -29,6 +29,7 @@ public class Movement2D : MonoBehaviour
 
     private Dictionary<string, float> movementSpeedMapping = new Dictionary<string, float>
     {
+        { "Level Selector", 40.0f },
         { "Level_0", 5.0f },
         { "Level_1", 5.0f },
         { "Level_2", 4.5f },
