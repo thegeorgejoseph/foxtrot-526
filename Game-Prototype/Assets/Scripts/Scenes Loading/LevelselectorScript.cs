@@ -52,9 +52,8 @@ public class LevelselectorScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Init Score " + overallGameScore);
-        score.text = overallGameScore.ToString();
         planet_1_score.text = level1Score.ToString();
+        Debug.Log("L1 score " + level1Score);
         planet_2_score.text = level2Score.ToString();
         planet_3_score.text = level3Score.ToString();
         planet_4_score.text = level4Score.ToString();
@@ -62,6 +61,10 @@ public class LevelselectorScript : MonoBehaviour
         planet_6_score.text = level6Score.ToString();
         planet_7_score.text = level7Score.ToString();
         planet_8_score.text = level8Score.ToString();
+        overallGameScore = level1Score + level2Score + level3Score + level4Score + level5Score + level6Score + level7Score + level8Score;
+        Debug.Log("Init Score " + overallGameScore);
+        score.text = overallGameScore.ToString();
+        
 
         gameObject = GameObject.FindGameObjectsWithTag ("Highscore");
         levelObject = GameObject.FindGameObjectsWithTag ("LevelScore");
