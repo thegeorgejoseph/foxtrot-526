@@ -9,6 +9,7 @@ using System;
 public class Enemy_Battle_Scripts : MonoBehaviour
 {
     public GameObject[] popUps;
+    public GameObject PauseMenu;
 
     public GameObject battleUI; // Battle UI 
     private SliderScript sliderSC; // SliderScript object to call function
@@ -89,6 +90,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PauseMenu.SetActive(false);
         sliderSC = battleUI.GetComponent<SliderScript>();
         // Set battle UI to be inactive in the beginning
         battleUI.SetActive(false);
@@ -373,5 +375,10 @@ public class Enemy_Battle_Scripts : MonoBehaviour
     public bool checkBattleStatus()
     {
         return battle_started;
+    }
+
+    public void ShowPauseMenu()
+    {
+        PauseMenu.SetActive(true);
     }
 }
