@@ -4606,6 +4606,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   analyticsManager: {fileID: 475434221}
   event_called: 0
+  animator: {fileID: 1811579286}
 --- !u!61 &924515476
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5337,6 +5338,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   analyticsManager: {fileID: 475434221}
   event_called: 0
+  animator: {fileID: 1811579286}
 --- !u!61 &1066689383
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5770,6 +5772,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   analyticsManager: {fileID: 475434221}
   event_called: 0
+  animator: {fileID: 1811579286}
 --- !u!61 &1171531797
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6694,6 +6697,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   analyticsManager: {fileID: 475434221}
   event_called: 0
+  animator: {fileID: 1811579286}
 --- !u!1 &1450173154
 GameObject:
   m_ObjectHideFlags: 0
@@ -7229,6 +7233,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   analyticsManager: {fileID: 475434221}
   event_called: 0
+  animator: {fileID: 1811579286}
 --- !u!61 &1594816632
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9418,6 +9423,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   analyticsManager: {fileID: 475434221}
   event_called: 0
+  animator: {fileID: 1811579286}
 --- !u!61 &1920860004
 BoxCollider2D:
   m_ObjectHideFlags: 0

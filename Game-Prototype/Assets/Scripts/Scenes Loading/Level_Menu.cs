@@ -68,6 +68,12 @@ public class Level_Menu : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    public void loadCredit()
+    {
+        SceneManager.LoadScene("Credit");
+        Time.timeScale = 1f;
+    }
+
     public void QuitGame()
     {
         Application.Quit();
