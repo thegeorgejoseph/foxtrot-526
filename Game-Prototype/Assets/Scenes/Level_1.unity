@@ -10003,7 +10003,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1442377931
@@ -10063,6 +10063,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   analyticsManager: {fileID: 475434221}
   event_called: 0
+  animator: {fileID: 3930298972757247518}
 --- !u!1001 &1505444575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13105,7 +13106,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1920860002
@@ -13139,6 +13140,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   analyticsManager: {fileID: 475434221}
   event_called: 0
+  animator: {fileID: 3930298972757247518}
 --- !u!61 &1920860004
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14810,6 +14812,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6170855461980404899, guid: 95164ebbe2b1147479ab61ffc13e0b39, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 8ee5e89a319f66542a650c2b47967c86, type: 2}
     - target: {fileID: 3588971985156052424, guid: 95164ebbe2b1147479ab61ffc13e0b39, type: 3}
       propertyPath: player
       value: 
@@ -14978,6 +14984,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3930298974560176019, guid: 95164ebbe2b1147479ab61ffc13e0b39, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3930298974560176022, guid: 95164ebbe2b1147479ab61ffc13e0b39, type: 3}
       propertyPath: runUpSprite
       value: 
@@ -15008,6 +15018,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95164ebbe2b1147479ab61ffc13e0b39, type: 3}
+--- !u!95 &3930298972757247518 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -6170855461980404899, guid: 95164ebbe2b1147479ab61ffc13e0b39, type: 3}
+  m_PrefabInstance: {fileID: 3930298972757247517}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4968055004877168150
 PrefabInstance:
   m_ObjectHideFlags: 0
