@@ -14579,7 +14579,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1751084030414913696, guid: 9dcc4a868c8fd47429a0805592f06207, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowPauseMenu
+      value: togglePauseMenu
       objectReference: {fileID: 0}
     - target: {fileID: 1751084030414913696, guid: 9dcc4a868c8fd47429a0805592f06207, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -14690,6 +14690,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 137012903}
     m_Modifications:
+    - target: {fileID: 3832529361924463450, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529361924463450, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529361924463450, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1811579280}
+    - target: {fileID: 3832529361924463450, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529361924463450, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: levelSelectorButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529361924463450, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Enemy_Battle_Scripts, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529361924463450, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3832529362151988363, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -14789,14 +14817,38 @@ PrefabInstance:
     - target: {fileID: 3832529362626466836, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1811579280}
+    - target: {fileID: 3832529362626466836, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: restartButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529362626466836, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Enemy_Battle_Scripts, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3832529362800094984, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1811579280}
+    - target: {fileID: 3832529362800094984, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: mainMenuButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529362800094984, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Enemy_Battle_Scripts, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3832529363338545047, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1811579280}
+    - target: {fileID: 3832529363338545047, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: togglePauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529363338545047, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Enemy_Battle_Scripts, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}

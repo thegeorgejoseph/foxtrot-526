@@ -65,6 +65,7 @@ public class Enemy_Battle_Scripts : MonoBehaviour
 
     private Dictionary<string, float> powerupScalingFactor = new Dictionary<string, float>
     {
+        { "Level_0", 1.0f },
         { "Level_1", 1.0f },
         { "Level_2", 1.0f },
         { "Level_3", 0.4f },
@@ -377,8 +378,38 @@ public class Enemy_Battle_Scripts : MonoBehaviour
         return battle_started;
     }
 
-    public void ShowPauseMenu()
+    public void togglePauseMenu()
     {
-        PauseMenu.SetActive(true);
+        if (PauseMenu.activeSelf)
+        {
+            PauseMenu.SetActive(false);
+            Time.timeScale = 1;
+        }
+        else
+        {
+            PauseMenu.SetActive(true);
+            Time.timeScale = 0;
+        }
     }
+
+    public void restartButton()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
+        Time.timeScale = 1;
+    }
+
+    public void mainMenuButton()
+    {
+        SceneManager.LoadScene("Level_Menu");
+        Time.timeScale = 1;
+    }
+
+    public void levelSelectorButton()
+    {
+        SceneManager.LoadScene("Level Selector");
+        Time.timeScale = 1;
+    }
+
+
 }

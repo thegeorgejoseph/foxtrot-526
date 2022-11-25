@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 1811579280}
     - target: {fileID: 1751084030414913696, guid: 9dcc4a868c8fd47429a0805592f06207, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowPauseMenu
+      value: togglePauseMenu
       objectReference: {fileID: 0}
     - target: {fileID: 1751084030414913696, guid: 9dcc4a868c8fd47429a0805592f06207, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1848,6 +1848,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   analyticsManager: {fileID: 475434221}
   event_called: 0
+  animator: {fileID: 0}
 --- !u!61 &118990347
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1923,7 +1924,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &118990349
@@ -3116,6 +3117,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   analyticsManager: {fileID: 475434221}
   event_called: 0
+  animator: {fileID: 0}
 --- !u!61 &211866125
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3191,7 +3193,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &211866127
@@ -9541,6 +9543,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   analyticsManager: {fileID: 475434221}
   event_called: 0
+  animator: {fileID: 0}
 --- !u!61 &594324237
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9616,7 +9619,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &594324239
@@ -19759,6 +19762,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   analyticsManager: {fileID: 475434221}
   event_called: 0
+  animator: {fileID: 0}
 --- !u!61 &1255279787
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19834,7 +19838,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1255279789
@@ -19859,6 +19863,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 137012903}
     m_Modifications:
+    - target: {fileID: 3832529361924463450, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529361924463450, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529361924463450, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1811579280}
+    - target: {fileID: 3832529361924463450, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529361924463450, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: levelSelectorButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529361924463450, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Enemy_Battle_Scripts, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529361924463450, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3832529362229995917, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
       propertyPath: m_Name
       value: PauseMenu
@@ -19946,6 +19978,42 @@ PrefabInstance:
     - target: {fileID: 3832529362229995918, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529362626466836, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1811579280}
+    - target: {fileID: 3832529362626466836, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: restartButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529362626466836, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Enemy_Battle_Scripts, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529362800094984, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1811579280}
+    - target: {fileID: 3832529362800094984, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: mainMenuButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529362800094984, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Enemy_Battle_Scripts, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529363338545047, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1811579280}
+    - target: {fileID: 3832529363338545047, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: togglePauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529363338545047, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Enemy_Battle_Scripts, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
@@ -25628,6 +25696,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   analyticsManager: {fileID: 475434221}
   event_called: 0
+  animator: {fileID: 0}
 --- !u!61 &1645690250
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25703,7 +25772,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1645690252
@@ -30845,6 +30914,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   analyticsManager: {fileID: 475434221}
   event_called: 0
+  animator: {fileID: 0}
 --- !u!61 &1892670297
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30920,7 +30990,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1892670299
@@ -33315,6 +33385,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   analyticsManager: {fileID: 475434221}
   event_called: 0
+  animator: {fileID: 0}
 --- !u!61 &2026645909
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -33390,7 +33461,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &2026645911
@@ -33853,6 +33924,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   analyticsManager: {fileID: 475434221}
   event_called: 0
+  animator: {fileID: 0}
 --- !u!61 &2046701229
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -33928,7 +34000,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &2046701231
