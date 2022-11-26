@@ -10318,6 +10318,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   analyticsManager: {fileID: 475434221}
   event_called: 0
+  animator: {fileID: 0}
 --- !u!61 &1180511917
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10393,7 +10394,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1180511919
@@ -11650,6 +11651,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   analyticsManager: {fileID: 475434221}
   event_called: 0
+  animator: {fileID: 0}
 --- !u!61 &1334635819
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11725,7 +11727,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1334635821
@@ -12247,6 +12249,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 137012903}
     m_Modifications:
+    - target: {fileID: 3832529361924463450, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529361924463450, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529361924463450, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1811579280}
+    - target: {fileID: 3832529361924463450, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529361924463450, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: levelSelectorButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529361924463450, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Enemy_Battle_Scripts, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529361924463450, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3832529362229995917, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
       propertyPath: m_Name
       value: PauseMenu
@@ -12334,6 +12364,42 @@ PrefabInstance:
     - target: {fileID: 3832529362229995918, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529362626466836, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1811579280}
+    - target: {fileID: 3832529362626466836, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: restartButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529362626466836, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Enemy_Battle_Scripts, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529362800094984, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1811579280}
+    - target: {fileID: 3832529362800094984, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: mainMenuButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529362800094984, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Enemy_Battle_Scripts, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529363338545047, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1811579280}
+    - target: {fileID: 3832529363338545047, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: togglePauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832529363338545047, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Enemy_Battle_Scripts, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68502240a0db5e14f98b2a696be8a807, type: 3}
@@ -13116,6 +13182,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   analyticsManager: {fileID: 475434221}
   event_called: 0
+  animator: {fileID: 0}
 --- !u!61 &1599874862
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13191,7 +13258,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1599874864
@@ -13576,6 +13643,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   analyticsManager: {fileID: 475434221}
   event_called: 0
+  animator: {fileID: 0}
 --- !u!61 &1668040832
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13651,7 +13719,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1668040834
@@ -15920,6 +15988,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   analyticsManager: {fileID: 475434221}
   event_called: 0
+  animator: {fileID: 0}
 --- !u!61 &1887002449
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15995,7 +16064,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1887002451
@@ -16265,6 +16334,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   analyticsManager: {fileID: 475434221}
   event_called: 0
+  animator: {fileID: 0}
 --- !u!61 &1909966517
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16340,7 +16410,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1909966519
@@ -16579,7 +16649,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1920860002
@@ -16613,6 +16683,7 @@ MonoBehaviour:
   player: {fileID: 1811579274}
   analyticsManager: {fileID: 475434221}
   event_called: 0
+  animator: {fileID: 0}
 --- !u!61 &1920860004
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18651,7 +18722,7 @@ PrefabInstance:
       objectReference: {fileID: 1811579280}
     - target: {fileID: 1751084030414913696, guid: 9dcc4a868c8fd47429a0805592f06207, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowPauseMenu
+      value: togglePauseMenu
       objectReference: {fileID: 0}
     - target: {fileID: 1751084030414913696, guid: 9dcc4a868c8fd47429a0805592f06207, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
