@@ -918,9 +918,10 @@ GameObject:
   m_Component:
   - component: {fileID: 462716456}
   - component: {fileID: 462716455}
+  - component: {fileID: 462716457}
   m_Layer: 0
   m_Name: BG Music
-  m_TagString: Untagged
+  m_TagString: Background Music
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -937,7 +938,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 00697b2ff89ca487190d7b3971a336bf, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.166
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1036,6 +1037,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &462716457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462716454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a4b15baa4bf641d3ad3417c3bc35449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &643345184
 GameObject:
   m_ObjectHideFlags: 0
