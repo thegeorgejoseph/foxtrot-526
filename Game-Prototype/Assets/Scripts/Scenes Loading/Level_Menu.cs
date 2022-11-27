@@ -2,19 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Level_Menu : MonoBehaviour
 {
+    
+    
     // Start is called before the first frame update
-    void Start()
-    {
-
+    void Start(){
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
+    void Update(){
     }
 
     public void RoadLevel_0(){
@@ -66,6 +65,12 @@ public class Level_Menu : MonoBehaviour
     public void RoadLevel_8()
     {
         SceneManager.LoadScene("Level_8");
+        Time.timeScale = 1f;
+    }
+
+    public void loadCredit()
+    {
+        SceneManager.LoadScene("Credit");
         Time.timeScale = 1f;
     }
 
