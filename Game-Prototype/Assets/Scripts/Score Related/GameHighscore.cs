@@ -58,10 +58,22 @@ public class GameHighscore : MonoBehaviour
         
         if(InputNameScript.gameStart == false){
             Debug.Log("Checking Highscore without playing game");
-            GameObject[] gameObject = GameObject.FindGameObjectsWithTag ("LevelSelectorButton");
+            GameObject[] gameObject = GameObject.FindGameObjectsWithTag("LevelSelectorButton");
             foreach(GameObject go in gameObject)
             {
                 go.SetActive (false);
+            }
+
+            GameObject[] gameObject1 = GameObject.FindGameObjectsWithTag("MainMenuButton");
+            foreach(GameObject go in gameObject1)
+            {
+                go.SetActive (false);
+            }
+
+            GameObject[] gameObject2 = GameObject.FindGameObjectsWithTag("AlternateMainMenuButton");
+            foreach(GameObject go in gameObject2)
+            {
+                go.SetActive (true);
             }
 
 
@@ -130,6 +142,17 @@ public class GameHighscore : MonoBehaviour
                 go.SetActive (true);
             }
 
+            GameObject[] gameObject1 = GameObject.FindGameObjectsWithTag("MainMenuButton");
+            foreach(GameObject go in gameObject1)
+            {
+                go.SetActive (true);
+            }
+
+            GameObject[] gameObject2 = GameObject.FindGameObjectsWithTag("AlternateMainMenuButton");
+            foreach(GameObject go in gameObject2)
+            {
+                go.SetActive (false);
+            }
 
             HealthManager.health = 1.0f;
             var username = InputNameScript.username + "_" + analyticsManagerScript.clientID;
