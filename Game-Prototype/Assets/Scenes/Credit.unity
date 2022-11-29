@@ -797,14 +797,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 839274507}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.0017452955, z: 0, w: 0.9999985}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 164287322}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0.2, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -1236}
@@ -850,15 +850,16 @@ MonoBehaviour:
 
     Srinivasan Kezhanatham Seshadri
 
+    George Joseph
 
 
 
-    Game Mechanic
+    Game
+    Mechanic
 
     |
 
-    Hongze
-    Leng
+    Hongze Leng
 
     Minghao Zhu
 
@@ -869,27 +870,28 @@ MonoBehaviour:
 
     |
 
-    Harini Ashok
+    Harini
+    Ashok
 
-    Sara
-    Pesavento
-
-
+    Sara Pesavento
 
 
-    User Interface
+
+
+    User Interface/Art
 
     |
 
-    Chanda Mehreja
-
     Amal Jose
 
+    Chanda
+    Mehreja
 
 
 
-    Version
-    Control
+
+
+    Scrum Master
 
     |
 
@@ -902,7 +904,8 @@ MonoBehaviour:
 
 
 
-    Thanks For Playing!'
+    Thanks For
+    Playing!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc9503ad8d9824011b413d34c1c88d7c, type: 2}
   m_sharedMaterial: {fileID: 4606754223789812996, guid: dc9503ad8d9824011b413d34c1c88d7c, type: 2}
